@@ -1,0 +1,55 @@
+<a class="status status_need" href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $this->movie->id,
+		'status' => Default_Model_Status::Need
+    ),
+    'default', 
+    true) ?>">Need</a>
+	
+<a class="status status_favorite" href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $this->movie->id,
+		'status' => Default_Model_Status::Favorite
+    ),
+    'default', 
+    true) ?>">Favorite</a>
+	
+	
+<a class="status status_excellent" href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $this->movie->id,
+		'status' => Default_Model_Status::Excellent
+    ),
+    'default', 
+    true) ?>">Excellent</a>
+	
+<a class="status status_ok" href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $this->movie->id,
+		'status' => Default_Model_Status::Ok
+    ),
+    'default', 
+    true) ?>">Ok</a>
+	
+<a class="status status_bad" href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $this->movie->id,
+		'status' => Default_Model_Status::Bad
+    ),
+    'default', 
+    true) ?>">Bad</a>

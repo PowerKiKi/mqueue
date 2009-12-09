@@ -1,0 +1,39 @@
+<?php
+
+?>
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'add'
+    ), 
+    'default', 
+    true) ?>">Add movie</a></p>
+
+Movies Entries: <br />
+<table>
+<th>Title</th>
+<th>Status</th>
+    <?php foreach ($this->entries as $entry): ?>
+	<tr>
+		<td><a href="
+<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $entry->id
+    ),
+    'default', 
+    true) ?>">*</a> <a href="<?php echo $entry->imdbUrl; ?>"><?php echo $this->escape($entry->title) ?></a></td>
+		<td><?php echo $this->escape($entry->status) ?>
+		<iframe src="<?php echo 'http://' . $_SERVER["HTTP_HOST"] . $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'view',
+		'id' => $entry->id
+    ),
+    'default', 
+    true) ?>" >blop</iframe></td>
+	</tr>
+    <?php endforeach ?>
+</table>
+

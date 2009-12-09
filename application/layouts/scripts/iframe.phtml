@@ -1,0 +1,16 @@
+<?php 
+// application/layouts/scripts/layout.phtml
+
+echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>Yopla Boum</title>
+  <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+</head> 
+<body>
+
+<?php echo $this->layout()->content ?>
+
+</body>
+</html>
