@@ -30,9 +30,11 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		if (!isset($this->title))
 		{
 			$file = file_get_contents($this->getImdbUrl());
-			preg_match("/<h1>(.*) <span>/", $file, $m);
-
-			$this->title = $m[1];
+			$ok = preg_match("/<title>(.*)<\/title>/", $file, $m);
+			if ($ok != 1)
+				throw new Exception("could not find movie with IMDB ID ='$this->imdb' '$ok' $this->imdbUrl");
+			
+			$this->title = html_entity_decode($m[1], ENT_COMPAT, 'utf-8');
 		}
 		
 		return $this->title;
