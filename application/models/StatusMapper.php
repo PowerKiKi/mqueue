@@ -1,6 +1,6 @@
 <?php
 
-class Default_Model_MovieMapper
+class Default_Model_StatusMapper
 {
     protected $_dbTable;
 
@@ -19,19 +19,21 @@ class Default_Model_MovieMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Default_Model_DbTable_Movie');
+            $this->setDbTable('Default_Model_DbTable_Status');
         }
         return $this->_dbTable;
     }
 
-    public function save(Default_Model_Movie $movie)
+    public function save(Default_Model_Status $status)
     {
         $data = array(
-            'imdb'   => $movie->getImdb(),
-            'title'   => $movie->getTitle(),
+            'id'   => $status->getId(),
+            'id_user'   => $status->getIdUser(),
+            'id_movie'   => $status->getIdMovie(),
+            'rating'   => $status->getRating()
         );
 
-        if (null === ($id = $movie->getId())) {
+        if (null === ($id = $status->getId())) {
             unset($data['id']);
             $this->getDbTable()->insert($data);
         } else {
@@ -39,20 +41,27 @@ class Default_Model_MovieMapper
         }
     }
 
-    public function find($id)
+    public function find($id_user, $id_movie)
     {
-		$movie = new Default_Model_Movie();
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result))
+		$status = new Default_Model_Status();
+        $row = $this->getDbTable()->fetchRow("id_user='$id_user' AND id_movie='$id_movie'");
+
+
+		if ($row == null)
 		{
-            return;
+			$status->setIdUser($id_user);
+			$status->setIdMovie($id_movie);
         }
+		else
+		{
 		
-        $row = $result->current();
-        $movie->setId($row->id)
-                  ->setImdb($row->imdb);
+			$status->setId($row->id)
+				  ->setIdUser($row->id_user)
+				  ->setIdMovie($row->id_movie)
+				  ->setRating($row->rating);
+		}
 				  
-		return $movie;
+		return $status;
     }
 
     public function fetchAll()
@@ -61,10 +70,11 @@ class Default_Model_MovieMapper
         $entries   = array();
         foreach ($resultSet as $row)
 		{
-            $entry = new Default_Model_Movie();
+            $entry = new Default_Model_Status();
             $entry->setId($row->id)
-                  ->setImdb($row->imdb)
-                  ->setTitle($row->title)
+                  ->setIdUser($row->id_user)
+                  ->setIdMovie($row->id_movie)
+                  ->setRating($row->rating)
                   ;//->setMapper($this);
             $entries[] = $entry;
         }

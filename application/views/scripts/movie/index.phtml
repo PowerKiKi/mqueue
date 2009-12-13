@@ -1,15 +1,6 @@
-<?php
 
-?>
-<p><a href="<?php echo $this->url(
-    array(
-        'controller' => 'movie',
-        'action'     => 'add'
-    ), 
-    'default', 
-    true) ?>">Add movie</a></p>
 
-Movies Entries: <br />
+<h2></h2>Movies list</h2>
 <table>
 <th>Title</th>
 <th>Status</th>
@@ -18,18 +9,15 @@ Movies Entries: <br />
 		<td><a href="
 <?php echo $this->url(
     array(
-        'controller' => 'movie',
-        'action'     => 'view',
-		'id' => $entry->id
+        'controller' => 'status',
+		'movie' => $entry->id
     ),
     'default', 
     true) ?>">*</a> <a href="<?php echo $entry->imdbUrl; ?>"><?php echo $this->escape($entry->title) ?></a></td>
-		<td><?php echo $this->escape($entry->status) ?>
-		<iframe src="<?php echo 'http://' . $_SERVER["HTTP_HOST"] . $this->url(
+		<td><iframe src="<?php echo 'http://' . $_SERVER["HTTP_HOST"] . $this->url(
     array(
-        'controller' => 'movie',
-        'action'     => 'view',
-		'id' => $entry->id
+        'controller' => 'status',
+		'movie' => $entry->id
     ),
     'default', 
     true) ?>" >blop</iframe></td>
@@ -37,3 +25,10 @@ Movies Entries: <br />
     <?php endforeach ?>
 </table>
 
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'movie',
+        'action'     => 'add'
+    ), 
+    'default', 
+    true) ?>">Add movie</a></p>

@@ -5,7 +5,6 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	private $id;
 	private $title;
 	private $imdb;
-	private $status;
 	private $date_update;
 	
 	
@@ -28,6 +27,14 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	
 	public function getTitle()
 	{
+		if (!isset($this->title))
+		{
+			$file = file_get_contents($this->getImdbUrl());
+			preg_match("/<h1>(.*) <span>/", $file, $m);
+
+			$this->title = $m[1];
+		}
+		
 		return $this->title;
 	}
 	
@@ -42,26 +49,17 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return $this->imdb;
 	}
 	
+	public function setImdb($imdb)
+	{
+		$valid = preg_match_all("/(\d{7})/", $imdb, $r);
+		if (isset($r[1][0]))
+			$this->imdb = $r[1][0];
+		return $this;
+	}
+	
 	public function getImdbUrl()
 	{
 		return "http://www.imdb.com/title/tt" . $this->imdb . "/";
-	}
-	
-	public function setImdb($imdb)
-	{
-		$this->imdb = (int)$imdb;
-		return $this;
-	}
-	
-	public function getStatus()
-	{
-		return $this->status;
-	}
-	
-	public function setStatus($status)
-	{
-		$this->status = (int)$status;
-		return $this;
 	}
 }
 

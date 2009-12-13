@@ -1,0 +1,12 @@
+iframe {
+	padding: 0px;
+	margin: 0px;
+	width: 300px;
+	height: 2em;
+	border: none;
+	overflow: hidden;
+}
+
+.current {
+	font-weight: bold;
+}
