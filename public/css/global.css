@@ -1,12 +1,125 @@
 iframe {
 	padding: 0px;
 	margin: 0px;
-	width: 300px;
-	height: 2em;
+	width: 80px;
+	height: 16px;
 	border: none;
 	overflow: hidden;
 }
 
-.current {
-	font-weight: bold;
+.iframe_body{
+	margin: 0px;
+	padding: 0px;
 }
+
+.status {
+	display: inline-block;
+	clear: none;
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+	padding: 0px;
+	background-image: url(/images/status.png);
+	text-indent:-9999px;
+}
+
+.status_need
+{
+	background-position: 0px -16px;
+}
+
+.status_need:hover
+{
+	background-position: 0px 0px;
+}
+
+.status_need.current
+{
+	background-position: 0px -0px;
+}
+
+.status_need.current:hover
+{
+	background-position: 0px -16px;
+}
+
+.status_bad
+{
+	background-position: -16px -16px;
+}
+
+.status_bad:hover
+{
+	background-position: -16px 0px;
+}
+
+.status_bad.current
+{
+	background-position: -16px 0px;
+}
+
+.status_bad.current:hover
+{
+	background-position: -16px -16px;
+}
+
+.status_ok
+{
+	background-position: -32px -16px;
+}
+
+.status_ok:hover
+{
+	background-position: -32px 0px;
+}
+
+.status_ok.current
+{
+	background-position: -32px 0px;
+}
+
+.status_ok.current:hover
+{
+	background-position: -32px -16px;
+}
+
+.status_excellent
+{
+	background-position: -48px -16px;
+}
+
+.status_excellent:hover
+{
+	background-position: -48px 0px;
+}
+
+.status_excellent.current
+{
+	background-position: -48px 0px;
+}
+
+.status_excellent.current:hover
+{
+	background-position: -48px -16px;
+}
+
+.status_favorite
+{
+	background-position: -64px -16px;
+}
+
+.status_favorite:hover
+{
+	background-position: -64px 0px;
+}
+
+.status_favorite.current
+{
+	background-position: -64px 0px;
+}
+
+.status_favorite.current:hover
+{
+	background-position: -64px -16px;
+}
+

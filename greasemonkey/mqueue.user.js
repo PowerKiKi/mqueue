@@ -7,7 +7,7 @@
 
 
 // Les messages sont pr?ormatt? (breakline ?la place de \n)
-var style=".mqueue {border: none; height: 2em; width: 200px;}";
+var style=".mqueue {padding: 0px; margin: 0px; width: 80px; height: 16px; border: none; overflow: hidden;}";
 var head=document.getElementsByTagName("HEAD")[0];
 var el=window.document.createElement('link');
 el.rel='stylesheet';

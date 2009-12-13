@@ -1,11 +1,10 @@
 <?php foreach (Default_Model_Status::$ratings as $name => $val): ?>
-	<a class="status status_<?php echo strtolower($name); if ($this->status->rating == $val) echo ' current'?>"
-		href="<?php echo $this->url(
-			array(
-				'controller' => 'status',
-				'movie' => $this->status->idMovie,
-				'rating' => ($val == $this->status->rating) ? 0 : $val
-			),
-			'default', 
-			true) ?>"><?php echo $name; ?></a>
-<?php endforeach ?>
+<a class="status status_<?php echo strtolower($name); if ($this->status->rating == $val) echo ' current';
+?>" href="<?php echo $this->url(
+		array(
+			'controller' => 'status',
+			'movie' => $this->status->idMovie,
+			'rating' => ($val == $this->status->rating) ? 0 : $val
+		),
+		'default', 
+		true) ?>"><?php echo $name; ?></a><?php endforeach ?>
