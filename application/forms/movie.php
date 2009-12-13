@@ -8,7 +8,7 @@ class Default_Form_Movie extends Zend_Form
         $this->setMethod('post');
 
         // Add the comment element
-        $this->addElement('text', 'imdb', array(
+        $this->addElement('text', 'id', array(
             'label'      => 'IMDB url or id:',
             'required'   => true,
             'validators' => array(

@@ -12,12 +12,18 @@ class StatusController extends Zend_Controller_Action
     {
         $this->_helper->layout->setLayout('iframe');
         		$idMovie = $this->_request->getParam('movie');
-        		if ($idMovie == null)
+				$mapper = new Default_Model_StatusMapper();
+        		
+        		if ($idMovie != null)
+				{
+					$status = $mapper->find(1, $idMovie);
+        		}
+				else
+				{
         			throw new Exception('no movie specified.');
-        		
-                $mapper = new Default_Model_StatusMapper();
-        		$status = $mapper->find(1, $idMovie);
-        		
+				}
+				
+				
         		$rating = $this->_request->getParam('rating');
         		if (isset($rating))
         		{

@@ -26,6 +26,17 @@ class Default_Model_StatusMapper
 
     public function save(Default_Model_Status $status)
     {
+		$movieMapper = new Default_Model_MovieMapper();
+		$movie = $movieMapper->find($status->idMovie);
+		
+		if ($movie == null)
+		{
+			$movie = new Default_Model_Movie();
+			$movie->id = $status->idMovie;
+			
+			$movieMapper->save($movie);	
+		}
+	
         $data = array(
             'id'   => $status->getId(),
             'id_user'   => $status->getIdUser(),

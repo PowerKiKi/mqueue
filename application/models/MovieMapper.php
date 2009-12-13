@@ -27,30 +27,28 @@ class Default_Model_MovieMapper
     public function save(Default_Model_Movie $movie)
     {
         $data = array(
-            'imdb'   => $movie->getImdb(),
+            'id'   => $movie->getId(),
             'title'   => $movie->getTitle(),
         );
 
-        if (null === ($id = $movie->getId())) {
-            unset($data['id']);
-            $this->getDbTable()->insert($data);
-        } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
-        }
+            
+        $this->getDbTable()->insert($data);
+        
     }
 
     public function find($id)
     {
-		$movie = new Default_Model_Movie();
+		
         $result = $this->getDbTable()->find($id);
         if (0 == count($result))
 		{
-            return;
+            return null;
         }
 		
         $row = $result->current();
-        $movie->setId($row->id)
-                  ->setImdb($row->imdb);
+        $movie = new Default_Model_Movie();
+		$movie->setId($row->id)
+                  ->setTitle($row->title);
 				  
 		return $movie;
     }
@@ -63,9 +61,8 @@ class Default_Model_MovieMapper
 		{
             $entry = new Default_Model_Movie();
             $entry->setId($row->id)
-                  ->setImdb($row->imdb)
-                  ->setTitle($row->title)
-                  ;//->setMapper($this);
+                  ->setTitle($row->title);
+					
             $entries[] = $entry;
         }
 		

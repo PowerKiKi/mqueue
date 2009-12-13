@@ -4,7 +4,6 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 {
 	private $id;
 	private $title;
-	private $imdb;
 	private $date_update;
 	
 	
@@ -13,18 +12,6 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		parent::__construct($options);
     }
 	
-	public function getId()
-	{
-		return $this->id;
-	}
-	
-	public function setId($id)
-	{
-		$this->id = (int)$id;
-		return $this;
-	}
-	
-	
 	public function getTitle()
 	{
 		if (!isset($this->title))
@@ -32,7 +19,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 			$file = file_get_contents($this->getImdbUrl());
 			$ok = preg_match("/<title>(.*)<\/title>/", $file, $m);
 			if ($ok != 1)
-				throw new Exception("could not find movie with IMDB ID ='$this->imdb' '$ok' $this->imdbUrl");
+				throw new Exception("could not find movie with ID ='$this->id' '$ok' $this->imdbUrl");
 			
 			$this->title = html_entity_decode($m[1], ENT_COMPAT, 'utf-8');
 		}
@@ -46,22 +33,23 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return $this;
 	}
 	
-	public function getImdb()
+	public function getId()
 	{
-		return $this->imdb;
+		return $this->id;
 	}
 	
-	public function setImdb($imdb)
+	public function setId($id)
 	{
-		$valid = preg_match_all("/(\d{7})/", $imdb, $r);
+		$valid = preg_match_all("/(\d{7})/", $id, $r);
 		if (isset($r[1][0]))
-			$this->imdb = $r[1][0];
+			$this->id = $r[1][0];
+			
 		return $this;
 	}
 	
 	public function getImdbUrl()
 	{
-		return "http://www.imdb.com/title/tt" . $this->imdb . "/";
+		return "http://www.imdb.com/title/tt" . $this->id . "/";
 	}
 }
 
