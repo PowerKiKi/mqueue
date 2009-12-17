@@ -45,7 +45,7 @@ class Default_Model_MovieMapper
             return null;
         }
 		
-        $row = $result->current();
+        return $result->current();
         $movie = new Default_Model_Movie();
 		$movie->setId($row->id)
                   ->setTitle($row->title);

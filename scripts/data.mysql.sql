@@ -19,7 +19,7 @@ START TRANSACTION;
 -- Dumping data for table `movie`
 --
 
-INSERT INTO `movie` (`id`, `status`, `date_update`, `title`) VALUES
+INSERT INTO `movie` (`id`, `status`, `dateUpdate`, `title`) VALUES
 ('0120569', 0, '0000-00-00 00:00:00', '"Conan" (1997)'),
 ('0337978', 0, '0000-00-00 00:00:00', 'Live Free or Die Hard (2007)'),
 ('0340163', 0, '0000-00-00 00:00:00', 'Hostage (2005/I)'),
@@ -43,7 +43,7 @@ INSERT INTO `user` (`id`, `nickname`, `email`, `password`) VALUES
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`id`, `id_user`, `id_movie`, `rating`) VALUES
+INSERT INTO `status` (`id`, `idUser`, `idMovie`, `rating`) VALUES
 (20, 1, '1038686', 1),
 (21, 1, '0462322', 3),
 (22, 1, '0337978', 4),

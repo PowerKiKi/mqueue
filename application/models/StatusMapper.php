@@ -39,8 +39,8 @@ class Default_Model_StatusMapper
 	
         $data = array(
             'id'   => $status->getId(),
-            'id_user'   => $status->getIdUser(),
-            'id_movie'   => $status->getIdMovie(),
+            'idUser'   => $status->getIdUser(),
+            'idMovie'   => $status->getIdMovie(),
             'rating'   => $status->getRating()
         );
 
@@ -52,23 +52,23 @@ class Default_Model_StatusMapper
         }
     }
 
-    public function find($id_user, $id_movie)
+    public function find($idUser, $idMovie)
     {
 		$status = new Default_Model_Status();
-        $row = $this->getDbTable()->fetchRow("id_user='$id_user' AND id_movie='$id_movie'");
+        $row = $this->getDbTable()->fetchRow("idUser='$idUser' AND idMovie='$idMovie'");
 
 
 		if ($row == null)
 		{
-			$status->setIdUser($id_user);
-			$status->setIdMovie($id_movie);
+			$status->setIdUser($idUser);
+			$status->setIdMovie($idMovie);
         }
 		else
 		{
 		
 			$status->setId($row->id)
-				  ->setIdUser($row->id_user)
-				  ->setIdMovie($row->id_movie)
+				  ->setIdUser($row->idUser)
+				  ->setIdMovie($row->idMovie)
 				  ->setRating($row->rating);
 		}
 				  
@@ -83,8 +83,8 @@ class Default_Model_StatusMapper
 		{
             $entry = new Default_Model_Status();
             $entry->setId($row->id)
-                  ->setIdUser($row->id_user)
-                  ->setIdMovie($row->id_movie)
+                  ->setIdUser($row->idUser)
+                  ->setIdMovie($row->idMovie)
                   ->setRating($row->rating)
                   ;//->setMapper($this);
             $entries[] = $entry;
