@@ -10,14 +10,14 @@
 <?php echo $this->url(
     array(
         'controller' => 'status',
-		'movie' => $entry->getId()
+		'movie' => $entry->id
     ),
     'default', 
     true) ?>">*</a> <a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
 		<td><iframe src="<?php echo 'http://' . $_SERVER["HTTP_HOST"] . $this->url(
     array(
         'controller' => 'status',
-		'movie' => $entry->getId()
+		'movie' => $entry->id
     ),
     'default', 
     true) ?>" >blop</iframe></td>

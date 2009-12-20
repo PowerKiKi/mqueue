@@ -18,19 +18,7 @@ class MovieController extends Zend_Controller_Action
 
     public function viewAction()
     {
-        $this->_helper->layout->setLayout('iframe');
-        		$id = $this->_request->getParam('id');
-                $mapper = new Default_Model_MovieMapper();
-        		$movie = $mapper->find($id);
-        		
-        		$status = $this->_request->getParam('status');
-        		if (isset($status))
-        		{
-        			$movie->status = $status;
-        			$mapper->save($movie);
-        		}
-        		
-        		$this->view->movie = $movie;
+		// Should display status from all users for this movie
     }
 
     public function addAction()
@@ -40,14 +28,17 @@ class MovieController extends Zend_Controller_Action
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost()))
-			{
-                $model = new Default_Model_Movie($form->getValues());
-				$this->_helper->FlashMessenger('We did something in the last request');
-				
-				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
-				
+			{	
+				$values = $form->getValues();
                 $mapper = new Default_Model_MovieMapper();
-                $mapper->save($model);
+				$movie = $mapper->getDbTable()->createRow();
+				$movie->setId($values['id']);
+				$movie->save();
+				
+				
+				$this->_helper->FlashMessenger('We did something in the last request');				
+				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
+			
              //   return $this->_helper->redirector('index');
             }
         }
