@@ -15,7 +15,6 @@ class Default_Model_Status extends Default_Model_AbstractModel
 		 'Ok' => Default_Model_Status::Ok,
 		 'Excellent' => Default_Model_Status::Excellent,
 		 'Favorite' => Default_Model_Status::Favorite);
-		 
 }
 
 ?>

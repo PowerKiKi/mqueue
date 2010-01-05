@@ -20,6 +20,7 @@
         <controllerFile controllerName="status">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
+          <actionMethod actionName="list"/>
         </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
@@ -47,6 +48,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="movie">
             <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="status">
+            <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
