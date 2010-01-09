@@ -1,6 +1,6 @@
 <?php foreach (Default_Model_Status::$ratings as $name => $val): ?>
 <a class="status status_<?php echo strtolower($name); if ($this->status->rating == $val) echo ' current';
-?>" href="<?php echo $this->url(
+?>" href="<?php echo $this->serverUrl() . $this->url(
 		array(
 			'controller' => 'status',
 			'movie' => $this->status->idMovie,

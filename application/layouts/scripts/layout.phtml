@@ -6,7 +6,7 @@ echo $this->doctype() ?>
 <head>  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title>mQueue</title>
-  <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+  <?php echo $this->headLink()->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css')) ?>
 </head> 
 <body>
 <div id="container">
@@ -15,7 +15,7 @@ echo $this->doctype() ?>
 			mQueue
 		</div>
 		<div id="header-navigation">
-			<a href="<?php echo $this->url(
+			<a href="<?php echo $this->serverUrl() . $this->url(
 				array('controller'=>'movie'), 
 				'default', 
 				true) ?>">Movies</a>
@@ -26,6 +26,7 @@ echo $this->doctype() ?>
 	</div>
 	<div id="footer">
 
-	</body>
+	</div>
 </div>
+</body>
 </html>
