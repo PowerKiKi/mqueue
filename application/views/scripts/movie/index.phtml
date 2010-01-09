@@ -1,28 +1,22 @@
 
-
-<h2></h2>Movies list</h2>
+<h2><?php echo $this->translate('Movies list'); ?></h2>
 <table>
-<th>Title</th>
-<th>Status</th>
-    <?php foreach ($this->entries as $entry): ?>
+<tr>
+	<th><?php echo $this->translate('Title'); ?></th>
+	<th><?php echo $this->translate('Status'); ?></th>
+</tr>
+<?php foreach ($this->entries as $entry): ?>
 	<tr>
-		<td><a href="
-<?php echo $this->serverUrl() . $this->url(
-    array(
-        'controller' => 'status',
-		'movie' => $entry->id
-    ),
-    'default', 
-    true) ?>">*</a> <a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+		<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
 		<td><iframe src="<?php echo $this->serverUrl() . $this->url(
     array(
         'controller' => 'status',
 		'movie' => $entry->id
     ),
     'default', 
-    true) ?>" >blop</iframe></td>
+    true) ?>" ><?php echo $this->translate('need browser with iframe'); ?></iframe></td>
 	</tr>
-    <?php endforeach ?>
+<?php endforeach ?>
 </table>
 
 <p><a href="<?php echo $this->serverUrl() . $this->url(
@@ -31,4 +25,4 @@
         'action'     => 'add'
     ), 
     'default', 
-    true) ?>">Add movie</a></p>
+    true) ?>"><?php echo $this->translate('Add movie'); ?></a></p>

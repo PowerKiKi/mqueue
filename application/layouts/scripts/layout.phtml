@@ -1,7 +1,4 @@
-<?php 
-// application/layouts/scripts/layout.phtml
-
-echo $this->doctype() ?>
+<?php echo $this->doctype() ?>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -18,7 +15,7 @@ echo $this->doctype() ?>
 			<a href="<?php echo $this->serverUrl() . $this->url(
 				array('controller'=>'movie'), 
 				'default', 
-				true) ?>">Movies</a>
+				true) ?>"><?php echo $this->translate('Movies'); ?></a>
 		</div>
 	</div>
 	<div id="content">
