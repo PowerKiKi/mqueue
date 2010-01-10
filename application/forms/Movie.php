@@ -19,7 +19,7 @@ class Default_Form_Movie extends Zend_Form
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Sign Guestbook',
+            'label'    => 'Add movie',
         ));
 
         // And finally add some CSRF protection

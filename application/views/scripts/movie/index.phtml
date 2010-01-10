@@ -3,7 +3,7 @@
 <table>
 <tr>
 	<th><?php echo $this->translate('Title'); ?></th>
-	<th><?php echo $this->translate('Status'); ?></th>
+	<th><?php echo $this->translate('Rating'); ?></th>
 </tr>
 <?php foreach ($this->entries as $entry): ?>
 	<tr>
@@ -26,3 +26,4 @@
     ), 
     'default', 
     true) ?>"><?php echo $this->translate('Add movie'); ?></a></p>
+<div><?php echo $this->statusHelp(); ?></div>
