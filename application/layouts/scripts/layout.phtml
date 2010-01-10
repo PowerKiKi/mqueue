@@ -16,13 +16,32 @@
 				array('controller'=>'movie'), 
 				'default', 
 				true) ?>"><?php echo $this->translate('Movies'); ?></a>
+				
+			<a href="<?php echo $this->serverUrl() . $this->url(
+				array('controller'=>'user', 'action' => 'login'), 
+				'default', 
+				true) ?>"><?php echo $this->translate('Login'); ?></a>
+				
+			<a href="<?php echo $this->serverUrl() . $this->url(
+				array('controller'=>'user', 'action' => 'logout'), 
+				'default', 
+				true) ?>"><?php echo $this->translate('Logout'); ?></a>
+			<a href="<?php echo $this->serverUrl() . $this->url(
+				array('controller'=>'user', 'action' => 'new'), 
+				'default', 
+				true) ?>"><?php echo $this->translate('Subscribe'); ?></a>
+			<?php echo $this->loginState(); ?>
 		</div>
 	</div>
 	<div id="content">
 		<?php echo $this->layout()->content ?>
 	</div>
+	<div id="messages"><?php if (isset($this->messages)) foreach($this->messages as $message) echo '<p>' . $message . '</p>'; ?></div>
 	<div id="footer">
-
+<?php 
+//$session = new Zend_Session_Namespace();
+//v($_SESSION); 
+?>
 	</div>
 </div>
 </body>
