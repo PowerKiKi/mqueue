@@ -28,6 +28,12 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="logout"/>
         </controllerFile>
+        <controllerFile controllerName="faq">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="about">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -70,6 +76,12 @@
           <viewControllerScriptsDirectory forControllerName="user">
             <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="faq">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="about">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -101,6 +113,8 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
