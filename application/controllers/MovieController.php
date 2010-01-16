@@ -35,7 +35,7 @@ class MovieController extends Zend_Controller_Action
 				$movie->setId($values['id']);
 				$movie->save();
 				
-				
+				$this->view->movie = $movie;
 				$this->_helper->FlashMessenger('We did something in the last request');				
 				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
 			

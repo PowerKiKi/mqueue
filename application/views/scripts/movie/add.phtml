@@ -1,2 +1,15 @@
 <h2><?php echo $this->translate('Add a new movie')?></h2>
 <?php echo $this->form; ?>
+<?php if (isset($this->movie)): ?>
+	<div>Movie added:
+	<a href="<?php echo $this->movie->getImdbUrl(); ?>"><?php echo $this->escape($this->movie->getTitle()) ?></a></td>
+		<td><iframe src="<?php echo $this->serverUrl() . $this->url(
+    array(
+        'controller' => 'status',
+		'movie' => $this->movie->id
+    ),
+    'default', 
+    true) ?>" ><?php echo $this->translate('need browser with iframe'); ?></iframe>
+	
+	
+<?php endif;?>
