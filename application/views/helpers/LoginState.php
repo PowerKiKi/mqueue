@@ -14,9 +14,9 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'logout'), 
 				'default', 
-				true) . '">' . $this->view->translate('Logout') . '</a>';
+				true) . '">' . $this->view->translate('Logout') . '</a> ';
 		
-			$result .= ' logged as ' . $user->nickname;
+			$result .= $this->view->translate('logged as ') . $user->nickname;
 		}
 		else
 		{
@@ -28,8 +28,8 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 			$result .= ' <a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'new'), 
 				'default', 
-				true) . '">' . $this->view->translate('Subscribe') . '</a>';
-			$result .= ' not logged in';
+				true) . '">' . $this->view->translate('Subscribe') . '</a> ';
+			$result .= $this->view->translate('not logged in');
 		}
 		
 		return $result;

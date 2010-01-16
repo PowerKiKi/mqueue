@@ -1,4 +1,4 @@
-<?php foreach (Default_Model_Status::$ratings as $name => $val): ?>
+<?php foreach (Default_Model_Status::$ratings as $val => $name): ?>
 <a class="status status_<?php echo strtolower($name); if ($this->status->rating == $val) echo ' current';
 ?>" href="<?php echo $this->serverUrl() . $this->url(
 		array(

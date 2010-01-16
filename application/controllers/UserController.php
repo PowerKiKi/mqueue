@@ -10,7 +10,12 @@ class UserController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		// action body
+		$session = new Zend_Session_Namespace();
+		if (isset($session->idUser))
+		{
+			$mapper = new Default_Model_UserMapper();
+			$this->view->user = $mapper->find($session->idUser);
+		}
 	}
 
 	public function newAction()

@@ -10,11 +10,11 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	const Favorite = 5;
 	
 	public static $ratings = array(
-		 'Need' => Default_Model_Status::Need,
-		 'Bad' => Default_Model_Status::Bad,
-		 'Ok' => Default_Model_Status::Ok,
-		 'Excellent' => Default_Model_Status::Excellent,
-		 'Favorite' => Default_Model_Status::Favorite);
+		 Default_Model_Status::Need => 'Need',
+		 Default_Model_Status::Bad => 'Bad',
+		 Default_Model_Status::Ok => 'Ok',
+		 Default_Model_Status::Excellent => 'Excellent',
+		 Default_Model_Status::Favorite => 'Favorite');
 }
 
 ?>
