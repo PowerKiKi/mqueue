@@ -1,20 +1,13 @@
-
 <h2><?php echo $this->translate('Movies list'); ?></h2>
 <table>
 <tr>
-	<th><?php echo $this->translate('Title'); ?></th>
 	<th><?php echo $this->translate('Rating'); ?></th>
+	<th><?php echo $this->translate('Title'); ?></th>
 </tr>
 <?php foreach ($this->entries as $entry): ?>
 	<tr>
+		<td><?php echo $this->statusLinks($entry->getStatus(1))?></td>
 		<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
-		<td><iframe src="<?php echo $this->serverUrl() . $this->url(
-    array(
-        'controller' => 'status',
-		'movie' => $entry->id
-    ),
-    'default', 
-    true) ?>" ><?php echo $this->translate('need browser with iframe'); ?></iframe></td>
 	</tr>
 <?php endforeach ?>
 </table>

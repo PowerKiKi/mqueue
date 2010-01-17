@@ -6,13 +6,16 @@ class StatusController extends Zend_Controller_Action
 	{
 		$contextSwitch = $this->_helper->getHelper('contextSwitch');
 		$contextSwitch->addActionContext('list', 'json')
+		->addActionContext('index', 'json')
 		->initContext();
 			//$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	}
 
 	public function indexAction()
 	{
-		$this->_helper->layout->setLayout('iframe');
+		if ($this->_helper->layout->isEnabled())
+			$this->_helper->layout->setLayout('iframe');
+			
 		$idMovie = $this->_request->getParam('movie');
 		$mapper = new Default_Model_StatusMapper();
 
@@ -41,7 +44,18 @@ class StatusController extends Zend_Controller_Action
 			$status->save();
 		}
 
-		$this->view->status = $status;
+		
+		if ($this->_helper->layout->isEnabled())
+		{
+			$this->view->status = $status;	
+		}
+		else
+		{
+			$json = array();
+			$html = $this->view->statusLinks($status);
+			$this->view->status = $html;
+			$this->view->id = $status->id;
+		}
 	}
 
 	public function listAction()
@@ -56,8 +70,7 @@ class StatusController extends Zend_Controller_Action
 		$json = array();
 		foreach ($statuses as $s)
 		{
-			$this->view->status = $s;
-			$html = $this->view->render('status/index.phtml');
+			$html = $this->view->statusLink($s);
 			$json[$s->idMovie] = $html;
 		}
 		

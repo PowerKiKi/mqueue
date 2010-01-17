@@ -3,7 +3,12 @@
 <head>  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title>mQueue</title>
-  <?php echo $this->headLink()->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css')) ?>
+  <?php 
+  echo $this->headLink()->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'));
+  
+	echo $this->headScript()
+			->prependFile($this->serverUrl() . $this->baseUrl('/js/remote.js.php')); 
+  ?>
 </head> 
 <body>
 <div id="container">
