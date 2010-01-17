@@ -33,10 +33,12 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return "http://www.imdb.com/title/tt" . $this->id . "/";
 	}
 	
-	public function getStatus($idUser)
+	public function getStatus()
 	{
+		$session = new Zend_Session_Namespace();
+			
 		$mapper = new Default_Model_StatusMapper();
-		return $mapper->find($idUser, $this->id);
+		return $mapper->find($session->idUser, $this->id);
 	}
 }
 

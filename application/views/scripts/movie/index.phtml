@@ -6,7 +6,7 @@
 </tr>
 <?php foreach ($this->entries as $entry): ?>
 	<tr>
-		<td><?php echo $this->statusLinks($entry->getStatus(1))?></td>
+		<td><?php echo $this->statusLinks($entry->getStatus())?></td>
 		<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
 	</tr>
 <?php endforeach ?>
