@@ -7,7 +7,10 @@ function scan()
 		{
 			$.getJSON(this.href + '?format=json',
 			        function(data){
-				$('.status_links_' + data.id).replaceWith(data.status);
+				$('.status_links_' + data.id).each(function()
+				{
+					$(this).replaceWith(data.status);
+				})
 				scan();
 			})		
 			return false;
