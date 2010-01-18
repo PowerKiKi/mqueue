@@ -23,6 +23,12 @@ iframe {
 	text-indent:-9999px;
 }
 
+.status_links
+{
+	display: inline;
+	
+}
+
 .status_need
 {
 	background-position: 0px -16px;

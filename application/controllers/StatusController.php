@@ -16,6 +16,13 @@ class StatusController extends Zend_Controller_Action
 		if ($this->_helper->layout->isEnabled())
 			$this->_helper->layout->setLayout('iframe');
 			
+		$jsonCallback = $this->_request->getParam('jsoncallback');
+		if ($jsonCallback)
+		{
+			$this->_helper->layout->setLayout('jsonp');
+			$this->view->jsonCallback = $jsonCallback;
+		}
+		
 		$idMovie = $this->_request->getParam('movie');
 		$mapper = new Default_Model_StatusMapper();
 
@@ -45,7 +52,7 @@ class StatusController extends Zend_Controller_Action
 		}
 
 		
-		if ($this->_helper->layout->isEnabled())
+		if (!$jsonCallback)
 		{
 			$this->view->status = $status;	
 		}
@@ -60,7 +67,14 @@ class StatusController extends Zend_Controller_Action
 
 	public function listAction()
 	{
-		$idMovies = split(',', $this->_request->getParam('movies'));	
+		$jsonCallback = $this->_request->getParam('jsoncallback');
+		if ($jsonCallback)
+		{
+			$this->_helper->layout->setLayout('jsonp');
+			$this->view->jsonCallback = $jsonCallback;
+		}
+			
+		$idMovies = split(',', trim($this->_request->getParam('movies'), ','));
 
 		
 		$session = new Zend_Session_Namespace();
@@ -70,7 +84,7 @@ class StatusController extends Zend_Controller_Action
 		$json = array();
 		foreach ($statuses as $s)
 		{
-			$html = $this->view->statusLink($s);
+			$html = $this->view->statusLinks($s);
 			$json[$s->idMovie] = $html;
 		}
 		

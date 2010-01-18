@@ -6,8 +6,9 @@
   <?php 
   echo $this->headLink()->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'));
   
-	echo $this->headScript()
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/remote.js.php')); 
+	echo $this->headScript()	
+			->prependFile($this->serverUrl() . $this->baseUrl('/js/script.js'))
+			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.4.min.js')); 
   ?>
 </head> 
 <body>
