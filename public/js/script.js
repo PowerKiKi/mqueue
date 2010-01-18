@@ -47,8 +47,6 @@ function scanIMDB(server)
 	{
 		$.each(data.status, function(id, status)
 		{
-			//alert(id);
-			//alert(status);
 			q = "a[href*='/title/tt" + id.split('_')[0] + "']";
 			
 			$(q).before(status);
