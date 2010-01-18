@@ -44,11 +44,6 @@ iframe {
 	background-position: 0px -0px;
 }
 
-.status_need.current:hover
-{
-	background-position: 0px -16px;
-}
-
 .status_bad
 {
 	background-position: -16px -16px;
@@ -62,11 +57,6 @@ iframe {
 .status_bad.current
 {
 	background-position: -16px 0px;
-}
-
-.status_bad.current:hover
-{
-	background-position: -16px -16px;
 }
 
 .status_ok
@@ -84,11 +74,6 @@ iframe {
 	background-position: -32px 0px;
 }
 
-.status_ok.current:hover
-{
-	background-position: -32px -16px;
-}
-
 .status_excellent
 {
 	background-position: -48px -16px;
@@ -102,11 +87,6 @@ iframe {
 .status_excellent.current
 {
 	background-position: -48px 0px;
-}
-
-.status_excellent.current:hover
-{
-	background-position: -48px -16px;
 }
 
 .status_favorite
@@ -123,9 +103,3 @@ iframe {
 {
 	background-position: -64px 0px;
 }
-
-.status_favorite.current:hover
-{
-	background-position: -64px -16px;
-}
-
