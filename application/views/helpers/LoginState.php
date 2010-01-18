@@ -16,7 +16,12 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 				'default', 
 				true) . '">' . $this->view->translate('Logout') . '</a> ';
 		
-			$result .= $this->view->translate('logged as ') . $user->nickname;
+			$result .= $this->view->translate('logged as ');
+			 $result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
+				array('controller'=>'user'), 
+				'default', 
+				true) . '">' .  $user->nickname . '</a> ';
+		;
 		}
 		else
 		{

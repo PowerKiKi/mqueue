@@ -10,11 +10,24 @@ class UserController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		$session = new Zend_Session_Namespace();
-		if (isset($session->idUser))
+		$mapper = new Default_Model_UserMapper();
+		
+		if ($this->getRequest()->getParam('nickname'))
 		{
-			$mapper = new Default_Model_UserMapper();
-			$this->view->user = $mapper->find($session->idUser);
+			$this->view->user = $mapper->findNickname($this->getRequest()->getParam('nickname'));
+		}
+		else
+		{
+			$session = new Zend_Session_Namespace();
+			if (isset($session->idUser))
+			{
+				$this->view->user = $mapper->find($session->idUser);
+			}
+		}
+		
+		if (!$this->view->user)
+		{
+			throw new Exception($this->view->translate('User not found'));
 		}
 	}
 

@@ -2,6 +2,16 @@
 
 class Default_Model_UserMapper extends Default_Model_AbstractMapper
 {
+	public function findNickname($nickname)
+	{
+		$select = $this->getDbTable()->select()
+			->where('nickname = ?', $nickname);
+		
+		$record = $this->getDbTable()->fetchRow($select);
+		
+		return $record;
+	}
+	
 	public function findEmailPassword($email, $password)
 	{
 		$select = $this->getDbTable()->select()
