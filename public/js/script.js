@@ -17,7 +17,7 @@ function scanStatus()
 	})
 }
 
-function scanIMDB()
+function scanIMDB(server)
 {
 	var query = '';
 	var list = new Array();
@@ -42,7 +42,6 @@ function scanIMDB()
 	if (query == '')
 		return;
 	
-	var server = 'http://mqueue/';
 	var url = server + "status/list/movies/" + query + "?format=json&jsoncallback=?";
 	$.getJSON(url, function(data)
 	{
