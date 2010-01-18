@@ -49,7 +49,7 @@ function scanIMDB(server)
 		{
 			//alert(id);
 			//alert(status);
-			q = "a[href*='/title/tt" + id + "']";
+			q = "a[href*='/title/tt" + id.split('_')[0] + "']";
 			
 			$(q).before(status);
 		});

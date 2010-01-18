@@ -4,7 +4,7 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 {
 	public function statusLinks(Default_Model_Status $status)
 	{
-		$result = '<div class="status_links status_links_' . $status->id .'">';
+		$result = '<div class="status_links status_links_' . $status->getUniqueId() .'">';
 		foreach (Default_Model_Status::$ratings as $val => $name)
 		{
 			$class = strtolower($name) . ($status->rating == $val ? ' current' : '');

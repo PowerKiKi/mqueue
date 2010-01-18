@@ -15,6 +15,11 @@ class Default_Model_Status extends Default_Model_AbstractModel
 		 Default_Model_Status::Ok => 'Ok',
 		 Default_Model_Status::Excellent => 'Excellent',
 		 Default_Model_Status::Favorite => 'Favorite');
+		 
+	public function getUniqueId()
+	{
+		return $this->idMovie . '_' . $this->idUser;
+	}
 }
 
 ?>

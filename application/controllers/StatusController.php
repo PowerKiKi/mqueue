@@ -61,7 +61,7 @@ class StatusController extends Zend_Controller_Action
 			$json = array();
 			$html = $this->view->statusLinks($status);
 			$this->view->status = $html;
-			$this->view->id = $status->id;
+			$this->view->id = $status->getUniqueId();
 		}
 	}
 
@@ -85,7 +85,7 @@ class StatusController extends Zend_Controller_Action
 		foreach ($statuses as $s)
 		{
 			$html = $this->view->statusLinks($s);
-			$json[$s->idMovie] = $html;
+			$json[$s->getUniqueId()] = $html;
 		}
 		
 		$this->view->status = $json;
