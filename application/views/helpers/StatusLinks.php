@@ -15,7 +15,7 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 			),
 													'default', 
 			true);
-			$result .= '<a class="status status_' . $class . '" href="' . $url . '" title="' . $name . '">' . $name . '</a>';
+			$result .= '<a class="status status_' . $class . '" href="' . $url . '" title="' . $name . '"><span>' . $name . '</span></a>';
 
 		}
 		$result .= '</div>';

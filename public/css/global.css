@@ -20,7 +20,11 @@ iframe {
 	margin: 0px;
 	padding: 0px;
 	background-image: url(../images/status.png);
-	text-indent:-9999px;
+}
+
+.status>span
+{
+	display: none;
 }
 
 .status_links
