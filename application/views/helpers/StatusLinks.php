@@ -11,7 +11,7 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 			$url = $this->view->serverUrl() . $this->view->url(array(
 														'controller' => 'status',
 														'movie' => $status->idMovie,
-														'rating' => ($val == $this->status->rating) ? 0 : $val
+														'rating' => ($val == $status->rating) ? 0 : $val
 			),
 													'default', 
 			true);

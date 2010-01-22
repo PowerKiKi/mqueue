@@ -6,6 +6,7 @@ class Default_View_Helper_Navigation extends Zend_View_Helper_Abstract
 	{
 		$result = '';
 
+		$session = new Zend_Session_Namespace();
 		$mapper = new Default_Model_UserMapper();
 		$user = $mapper->find($session->idUser);
 			
