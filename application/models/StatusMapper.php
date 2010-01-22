@@ -59,10 +59,8 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 				'rating' => 'IFNULL(rating, 0 )',
 				'count' => 'count(IFNULL(rating, 0))'))
 			->joinRight('movie', 
-				'movie.id = status.idMovie', 
+				'movie.id = status.idMovie AND status.idUser = '.$idUser, 
 				array())
-			->where('status.idUser = ?', $idUser)
-			->orWhere('status.idUser IS NULL')
 			->group('IFNULL(rating, 0)')
 			;
 			
