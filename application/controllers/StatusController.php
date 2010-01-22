@@ -74,7 +74,7 @@ class StatusController extends Zend_Controller_Action
 			$this->view->jsonCallback = $jsonCallback;
 		}
 			
-		$idMovies = split(',', trim($this->_request->getParam('movies'), ','));
+		$idMovies = explode(',', trim($this->_request->getParam('movies'), ','));
 
 		
 		$session = new Zend_Session_Namespace();
