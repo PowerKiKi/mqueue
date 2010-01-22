@@ -9,12 +9,7 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	const Excellent = 4;
 	const Favorite = 5;
 	
-	public static $ratings = array(
-		 Default_Model_Status::Need => 'Need',
-		 Default_Model_Status::Bad => 'Bad',
-		 Default_Model_Status::Ok => 'Ok',
-		 Default_Model_Status::Excellent => 'Excellent',
-		 Default_Model_Status::Favorite => 'Favorite');
+	public static $ratings = null; 
 		 
 	public function getUniqueId()
 	{
@@ -22,4 +17,10 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	}
 }
 
+Default_Model_Status::$ratings = array(
+		 Default_Model_Status::Need => _tr('Need'),
+		 Default_Model_Status::Bad => _tr('Bad'),
+		 Default_Model_Status::Ok => _tr('Ok'),
+		 Default_Model_Status::Excellent => _tr('Excellent'),
+		 Default_Model_Status::Favorite => _tr('Favorite'));
 ?>

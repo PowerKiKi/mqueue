@@ -3,6 +3,8 @@ require_once('debug.php');
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+	public static $translator = null;
+	
 	protected function _initAutoload()
 	{
 		$autoloader = new Zend_Application_Module_Autoloader(array(
@@ -24,5 +26,39 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 	}
 
+	protected function _initLanguage()
+	{
+		$session = new Zend_Session_Namespace();
+		
+		// handle language switch
+		if (isset($_GET['lang']))
+		{
+			$session->locale = $_GET['lang'];
+		}
+
+		if (isset($session->locale))
+		{
+			$locale = new Zend_Locale($session->locale);
+		}
+		else
+		{
+			$locale = new Zend_Locale(Zend_Locale::BROWSER); // autodetect browser
+		}
+		Zend_Registry::set('Zend_Locale', $locale);
+
+		$adapter = new Zend_Translate('gettext', APPLICATION_PATH . '/localization', $locale, array('scan' => Zend_Translate::LOCALE_FILENAME, 'disableNotices' => true));
+		Zend_Registry::set('Zend_Translate', $adapter);
+		self::$translator = $adapter;
+	}
 }
 
+/**
+ * Global shortcut method that returns localized strings 
+ * 
+ * @param string $msgId the original string to translate
+ * @return string the translated string
+ */
+function _tr($msgId)
+{
+	return Bootstrap::$translator->translate($msgId);
+}

@@ -37,7 +37,6 @@ class StatusController extends Zend_Controller_Action
 		$rating = $this->_request->getParam('rating');
 		if (isset($rating))
 		{
-
 			$movieMapper = new Default_Model_MovieMapper();
 			$movie = $movieMapper->find($status->idMovie);
 			 

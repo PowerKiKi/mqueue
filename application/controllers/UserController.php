@@ -11,24 +11,7 @@ class UserController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$mapper = new Default_Model_UserMapper();
-		
-		if ($this->getRequest()->getParam('nickname'))
-		{
-			$this->view->user = $mapper->findNickname($this->getRequest()->getParam('nickname'));
-		}
-		else
-		{
-			$session = new Zend_Session_Namespace();
-			if (isset($session->idUser))
-			{
-				$this->view->user = $mapper->find($session->idUser);
-			}
-		}
-		
-		if (!$this->view->user)
-		{
-			throw new Exception($this->view->translate('User not found'));
-		}
+		$this->view->users = $mapper->fetchAll(); 
 	}
 
 	public function newAction()
@@ -52,7 +35,7 @@ class UserController extends Zend_Controller_Action
 
 				$this->_helper->FlashMessenger('new user created !');
 				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
-					
+				 
 				return $this->_helper->redirector('index', 'movie');
 			}
 		}
@@ -62,7 +45,6 @@ class UserController extends Zend_Controller_Action
 
 	public function loginAction()
 	{
-
 		$request = $this->getRequest();
 		$form    = new Default_Form_Login();
 
@@ -96,5 +78,29 @@ class UserController extends Zend_Controller_Action
 		$session->idUser = null;
 	}
 
+	public function viewAction()
+	{
+		$mapper = new Default_Model_UserMapper();
 
+		if ($this->getRequest()->getParam('nickname'))
+		{
+			$this->view->user = $mapper->findNickname($this->getRequest()->getParam('nickname'));
+		}
+		else
+		{
+			$session = new Zend_Session_Namespace();
+			if (isset($session->idUser))
+			{
+				$this->view->user = $mapper->find($session->idUser);
+			}
+		}
+
+		if (!$this->view->user)
+		{
+			throw new Exception($this->view->translate('User not found'));
+		}
+		
+	}
 }
+
+

@@ -1,0 +1,14 @@
+<h2><?php echo $this->user->nickname; ?></h2>
+<h3><?php echo $this->translate('Statistics'); ?></h3>
+
+<table>
+<?php 
+$stats = $this->user->getStatistics();
+foreach (Default_Model_Status::$ratings as $val => $name)
+{
+	echo '<tr><td>' .  $name . '</td><td>' . $stats[$val] . '</td></tr>';
+}
+echo '<tr><td>' .  $this->translate('Not rated') . '</td><td>' . $stats[Default_Model_Status::Nothing] . '</td></tr>';
+echo '<tr><td>' .  $this->translate('Total') . '</td><td>' . $stats['total'] . '</td></tr>';
+?>
+</table>

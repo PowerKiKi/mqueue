@@ -27,6 +27,7 @@
           <actionMethod actionName="new"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="logout"/>
+          <actionMethod actionName="view"/>
         </controllerFile>
         <controllerFile controllerName="faq">
           <actionMethod actionName="index"/>
@@ -95,6 +96,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="js">
             <viewScriptFile forActionName="mqueue.user.js"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="user">
+            <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

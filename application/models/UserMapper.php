@@ -32,7 +32,7 @@ class Default_Model_UserMapper extends Default_Model_AbstractMapper
 
     public function fetchAll()
     {
-        $resultSet = $this->getDbTable()->fetchAll();
+        $resultSet = $this->getDbTable()->fetchAll(null, 'nickname');
 		
         return $resultSet;
     }

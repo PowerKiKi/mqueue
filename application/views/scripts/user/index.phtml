@@ -1,15 +1,31 @@
-<h2><?php echo $this->user->nickname; ?></h2>
-<h3><?php echo $this->translate('Statistics'); ?></h3>
+<h2><?php echo $this->translate('Users list'); ?></h2>
 
 <table>
-<tr></tr>
-<?php 
-$stats = $this->user->getStatistics();
+<?php
+
+// Table header
+echo '<tr>';
+echo '<th></th>';
 foreach (Default_Model_Status::$ratings as $val => $name)
 {
-	echo '<tr><td>' .  $name . '</td><td>' . $stats[$val] . '</td></tr>';
+	echo '<th>' . $name . '</th>';
 }
-echo '<tr><td>' .  $this->translate('Not rated') . '</td><td>' . $stats[Default_Model_Status::Nothing] . '</td></tr>';
-echo '<tr><td>' .  $this->translate('Total') . '</td><td>' . $stats['total'] . '</td></tr>';
+echo '<th>' . $this->translate('Not rated') . '</th>';	
+echo '</tr>';
+
+// Table data
+foreach ($this->users as $user)
+{
+	echo '<tr>';
+	echo '<td>' . $this->escape($user->nickname) . '</td>';
+	$stats = $user->getStatistics();
+	foreach (Default_Model_Status::$ratings as $val => $name)
+	{
+		echo '<td>' . $stats[$val] . '</td>';
+	}
+	echo '<td>' . $stats[Default_Model_Status::Nothing] . '</td>';
+	echo '</tr>';
+}
 ?>
 </table>
+<p><?php echo $this->translate('Total number of movie is %s', array($stats['total'])); ?></p>

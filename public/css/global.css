@@ -33,77 +33,77 @@ iframe {
 	
 }
 
-.status_need
+.status_1
 {
 	background-position: 0px -16px;
 }
 
-.status_need:hover
+.status_1:hover
 {
 	background-position: 0px 0px;
 }
 
-.status_need.current
+.status_1.current
 {
 	background-position: 0px -0px;
 }
 
-.status_bad
+.status_2
 {
 	background-position: -16px -16px;
 }
 
-.status_bad:hover
+.status_2:hover
 {
 	background-position: -16px 0px;
 }
 
-.status_bad.current
+.status_2.current
 {
 	background-position: -16px 0px;
 }
 
-.status_ok
+.status_3
 {
 	background-position: -32px -16px;
 }
 
-.status_ok:hover
+.status_3:hover
 {
 	background-position: -32px 0px;
 }
 
-.status_ok.current
+.status_3.current
 {
 	background-position: -32px 0px;
 }
 
-.status_excellent
+.status_4
 {
 	background-position: -48px -16px;
 }
 
-.status_excellent:hover
+.status_4:hover
 {
 	background-position: -48px 0px;
 }
 
-.status_excellent.current
+.status_4.current
 {
 	background-position: -48px 0px;
 }
 
-.status_favorite
+.status_5
 {
 	background-position: -64px -16px;
 }
 
-.status_favorite:hover
+.status_5:hover
 {
 	background-position: -64px 0px;
 }
 
-.status_favorite.current
+.status_5.current
 {
 	background-position: -64px 0px;
 }
