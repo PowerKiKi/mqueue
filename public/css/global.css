@@ -13,24 +13,23 @@ iframe {
 }
 
 .status {
-	display: inline-block;
-	clear: none;
-	width: 16px;
-	height: 16px;
-	margin: 0px;
-	padding: 0px;
-	background-image: url(../images/status.png);
+	display: inline-block !important;
+	clear: none !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	background-image: url(../images/status.png) !important;
 }
 
 .status>span
 {
-	display: none;
+	display: none !important;
 }
 
 .status_links
 {
-	display: inline;
-	
+	display: inline !important;
 }
 
 .status_1
