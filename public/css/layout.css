@@ -1,6 +1,17 @@
+a
+{
+	text-decoration: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+
 html
 {
+	color: grey;
 	height: 101%;
+	font-family:arial,sans-serif;
 }
 
 body
@@ -45,9 +56,11 @@ body
 	color: white;
 	background: black;
 	/* for IE */
-	filter: alpha(opacity =   60);
+	//filter: alpha(opacity =   60);
 	/* CSS3 standard */
 	opacity: 0.6;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
 	
 }
 
@@ -70,4 +83,9 @@ color: black;
 #content
 {
 	padding-left: 20px;
+}
+
+.loginState
+{
+	float: right;
 }
