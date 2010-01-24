@@ -17,7 +17,12 @@ echo '</tr>';
 foreach ($this->users as $user)
 {
 	echo '<tr>';
-	echo '<td>' . $this->escape($user->nickname) . '</td>';
+	echo '<td><a href="' . $this->url(array(
+										'controller' => 'user',
+										'action' => 'view',
+										'nickname' => $user->nickname
+										),
+									'default', true) . '">' . $this->escape($user->nickname) . '</a></td>';
 	$stats = $user->getStatistics();
 	foreach (Default_Model_Status::$ratings as $val => $name)
 	{

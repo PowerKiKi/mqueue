@@ -2,6 +2,7 @@ a
 {
 	text-decoration: none;
 }
+
 a:hover
 {
 	text-decoration: underline;
@@ -40,6 +41,12 @@ body
 #header h1
 {
 	margin: 0px;
+}
+
+#header h1 a
+{
+	color: white;
+	opacity: 0.6;
 }
 
 #header-logo
