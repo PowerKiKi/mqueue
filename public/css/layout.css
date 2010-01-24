@@ -1,0 +1,73 @@
+html
+{
+	height: 101%;
+}
+
+body
+{
+	background: url(../images/background.gif);
+	margin-top: 20px;
+	margin-bottom: 70px;
+}
+
+#container
+{
+	background: white;
+	width: 900px;
+	margin: 0 auto;
+	border: 6px solid #0055FF;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#header 
+{	
+	background: url(../images/header.png);
+}
+
+#header h1
+{
+	margin: 0px;
+}
+
+#header-logo
+{
+	padding:20px;
+}
+	
+#header-navigation
+{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 5px;
+	color: white;
+	background: black;
+	/* for IE */
+	filter: alpha(opacity =   60);
+	/* CSS3 standard */
+	opacity: 0.6;
+	
+}
+
+#header-navigation a
+{
+	padding:  5px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+#header-navigation a:hover
+{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+color: black;
+	background-color: white;
+}
+
+#content
+{
+	padding-left: 20px;
+}

@@ -4,7 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title>mQueue</title>
   <?php 
-  echo $this->headLink()->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'));
+  	echo $this->headLink()
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'))
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/layout.css'));
   
 	echo $this->headScript()	
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/script.js'))
