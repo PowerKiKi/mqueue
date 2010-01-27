@@ -136,3 +136,34 @@ ol ol
 {
 	list-style-type: lower-alpha;
 }
+
+.language_selector
+{
+	float: right;
+}
+
+.language
+{
+	display: inline-block;
+	height: 22px;
+	width: 22px;
+}
+.language span
+{
+	display: none;
+}
+
+.language_en
+{
+	background: url(../images/lang_en.gif) no-repeat;
+}
+
+.language_ko
+{
+	background: url(../images/lang_ko.gif) no-repeat;
+}
+
+.language_fr
+{
+	background: url(../images/lang_fr.gif) no-repeat;
+}

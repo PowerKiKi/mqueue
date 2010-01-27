@@ -16,6 +16,7 @@
 <body>
 <div id="container">
 	<div id="header">
+		<?php echo $this->languageSelector(); ?>
 		<div id="header-logo"><h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>"><?php echo $this->translate('mQueue'); ?></a></h1></div>
 		<div id="header-navigation">
 			<?php echo $this->navigation(); ?> 
