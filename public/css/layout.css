@@ -17,9 +17,9 @@ html
 
 body
 {
-	background: url(../images/background.gif);
-	margin-top: 20px;
-	margin-bottom: 70px;
+	background: url(../images/background.gif) fixed;
+	padding-top: 10px;
+	padding-bottom: 70px;
 }
 
 #container
