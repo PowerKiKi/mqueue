@@ -4,9 +4,16 @@
 	<dd><?php echo $this->translate('To get the most of this website, you should:'); ?>
 		<ol>
 			<li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'new')); ?>"><?php echo $this->translate('Create an account'); ?></a></li>
-			<li><a href="https://addons.mozilla.org/en-US/firefox/addon/748"><?php echo $this->translate('Install Greasemonkey'); ?></a></li>
-			<li><a href="<?php echo $this->baseUrl('js/mqueue.user.js'); ?>"><?php echo $this->translate('Install our Greasemonkey script'); ?></a></li>
-			<li><?php echo $this->translate('Surf on '); ?><a href="http://www.imdb.com/">www.imdb.com</a></li>
+			<li>
+				<ol>
+					<li><?php echo $this->translate('For Chrome, do nothing'); ?></li>
+					<li><?php echo $this->translate('For Firefox, <a href="https://addons.mozilla.org/en-US/firefox/addon/748">install Greasemonkey</a>'); ?></li>
+					<li><?php echo $this->translate('For Safari, <a href="http://www.culater.net/software/SIMBL/SIMBL.php">SIMBL</a> and <a href="http://8-p.info/greasekit/">GreaseKit</a> should work'); ?></li>
+					<li><?php echo $this->translate('For IE, <a href="http://www.gm4ie.com">Greasemonkey for IE</a> may hopefully help'); ?></li>
+				</ol>
+			</li>
+			<li><a href="<?php echo $this->baseUrl('js/mqueue.user.js'); ?>"><?php echo $this->translate('Install the user script'); ?></a></li>
+			<li><?php echo $this->translate('Surf on '); ?><a href="http://www.imdb.com/">www.imdb.com</a> and rate movies by clicking icons</li>
 		</ol>
 	</dd>
 	

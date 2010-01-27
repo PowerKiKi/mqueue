@@ -131,3 +131,8 @@ color: black;
 {
 		display: inline;
 }
+
+ol ol
+{
+	list-style-type: lower-alpha;
+}
