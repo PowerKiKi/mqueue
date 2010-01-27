@@ -1,0 +1,281 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mqueue\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-27 23:01+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: translate;_tr;_\n"
+"X-Poedit-SearchPath-0: ../configs\n"
+"X-Poedit-SearchPath-1: ../controllers\n"
+"X-Poedit-SearchPath-2: ../forms\n"
+"X-Poedit-SearchPath-3: ../layouts\n"
+"X-Poedit-SearchPath-4: ../layouts/scripts\n"
+"X-Poedit-SearchPath-5: ../localization\n"
+"X-Poedit-SearchPath-6: ../models\n"
+"X-Poedit-SearchPath-7: ../models/DbTable\n"
+"X-Poedit-SearchPath-8: ../views\n"
+"X-Poedit-SearchPath-9: ../views/helpers\n"
+"X-Poedit-SearchPath-10: ../views/scripts\n"
+"X-Poedit-SearchPath-11: ../views/scripts/about\n"
+"X-Poedit-SearchPath-12: ../views/scripts/error\n"
+"X-Poedit-SearchPath-13: ../views/scripts/faq\n"
+"X-Poedit-SearchPath-14: ../views/scripts/index\n"
+"X-Poedit-SearchPath-15: ../views/scripts/js\n"
+"X-Poedit-SearchPath-16: ../views/scripts/movie\n"
+"X-Poedit-SearchPath-17: ../views/scripts/status\n"
+"X-Poedit-SearchPath-18: ../views/scripts/user\n"
+
+#: ../controllers/UserController.php:100
+msgid "User not found"
+msgstr "사용자를 찾을 수 없습니다."
+
+#: ../forms/Filter.php:10
+msgid "<< me >>"
+msgstr "<< 내계정 >>"
+
+#: ../forms/Filter.php:17
+msgid "User :"
+msgstr "사용자 :"
+
+#: ../forms/Filter.php:23
+msgid "Apply"
+msgstr "적용"
+
+#: ../forms/Filter.php:29
+msgid "Clear"
+msgstr "취소"
+
+#: ../forms/Filter.php:33
+msgid "Filter"
+msgstr "필터"
+
+#: ../models/Status.php:21
+msgid "Need"
+msgstr "볼것"
+
+#: ../models/Status.php:22
+msgid "Bad"
+msgstr "재미없음"
+
+#: ../models/Status.php:23
+msgid "Ok"
+msgstr "괜찮음"
+
+#: ../models/Status.php:24
+msgid "Excellent"
+msgstr "재밌음"
+
+#: ../models/Status.php:25
+msgid "Favorite"
+msgstr "최고"
+
+#: ../views/helpers/LanguageSelector.php:8
+msgid "English"
+msgstr "영어"
+
+#: ../views/helpers/LanguageSelector.php:9
+msgid "Korean"
+msgstr "한국어"
+
+#: ../views/helpers/LanguageSelector.php:10
+msgid "French"
+msgstr "불어"
+
+#: ../views/helpers/LoginState.php:14
+msgid "logged as "
+msgstr "접속중"
+
+#: ../views/helpers/LoginState.php:23
+msgid "Logout"
+msgstr "접속종료"
+
+#: ../views/helpers/LoginState.php:30
+msgid "Subscribe"
+msgstr "등록"
+
+#: ../views/helpers/LoginState.php:35
+msgid "Login"
+msgstr "접속"
+
+#: ../views/helpers/Navigation.php:16
+msgid "Movies"
+msgstr "영화"
+
+#: ../views/helpers/Navigation.php:21
+msgid "Users"
+msgstr "사용자"
+
+#: ../views/helpers/Navigation.php:26
+msgid "FAQ"
+msgstr "도움말"
+
+#: ../views/helpers/Navigation.php:31
+msgid "About"
+msgstr "소개"
+
+#: ../views/helpers/StatusHelp.php:8
+msgid "I want to see this movie"
+msgstr "이 영화 보고싶어요."
+
+#: ../views/helpers/StatusHelp.php:9
+msgid "Boring movie, I wasted my time"
+msgstr "재미없음, 시간 낭비했어요."
+
+#: ../views/helpers/StatusHelp.php:10
+msgid "Enjoyable movie (most movies)"
+msgstr "볼만 해요. (대부분의 영화)"
+
+#: ../views/helpers/StatusHelp.php:11
+msgid "Excellent, I would watch it twice"
+msgstr "재밌음, 두번도 보겠어요."
+
+#: ../views/helpers/StatusHelp.php:12
+msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
+msgstr "진짜 괜찮은 영화, 정기적으로 꼭 봐줘야해요."
+
+#: ../layouts/scripts/layout.phtml:20
+msgid "mQueue"
+msgstr "mQueue"
+
+#: ../views/scripts/pagination.phtml:5
+msgid "« Previous"
+msgstr "« 이전"
+
+#: ../views/scripts/pagination.phtml:19
+msgid "Next »"
+msgstr "다음 »"
+
+#: ../views/scripts/pagination.phtml:27
+msgid "Per page:"
+msgstr "페이지 당 :"
+
+#: ../views/scripts/about/index.phtml:3
+msgid ""
+"This project started as a personal need. It is written in PHP and is\n"
+"an opportunity to explore <a href=\"http://framework.zend.com/\">Zend\n"
+"Framework 1.9</a> and <a href=\"http://jquery.com/\">jQuery</a>\n"
+". It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
+msgstr ""
+
+#: ../views/scripts/about/index.phtml:9
+msgid ""
+"Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
+"http://github.com/PowerKiKi/mqueue</a>."
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:3
+msgid "How does this work ?"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:4
+msgid "To get the most of this website, you should:"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:6
+msgid "Create an account"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:9
+msgid "For Chrome, do nothing"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:10
+msgid "For Firefox, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">install Greasemonkey</a>"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:11
+msgid "For Safari, <a href=\"http://www.culater.net/software/SIMBL/SIMBL.php\">SIMBL</a> and <a href=\"http://8-p.info/greasekit/\">GreaseKit</a> should work"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:12
+msgid "For IE, <a href=\"http://www.gm4ie.com\">Greasemonkey for IE</a> may hopefully help"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:15
+msgid "Install the user script"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:16
+msgid "Surf on "
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:20
+msgid "What is the meaning of the icons ?"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:24
+msgid "How can I add more ratings options ?"
+msgstr ""
+
+#: ../views/scripts/faq/index.phtml:25
+msgid "You cannot. It is meant to be a very simple, fast and efficient system. No extra bloating options."
+msgstr ""
+
+#: ../views/scripts/movie/add.phtml:1
+msgid "Add a new movie"
+msgstr "새 영화 등록"
+
+#: ../views/scripts/movie/add.phtml:12
+msgid "need browser with iframe"
+msgstr ""
+
+#: ../views/scripts/movie/index.phtml:1
+msgid "Movies list"
+msgstr "영화 목록"
+
+#: ../views/scripts/movie/index.phtml:5
+msgid "Rating"
+msgstr "평점"
+
+#: ../views/scripts/movie/index.phtml:6
+msgid "Title"
+msgstr "제목"
+
+#: ../views/scripts/movie/index.phtml:10
+#, php-format
+msgid "There is no movie to show. Please read the %s to learn how to add movies."
+msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고하세요."
+
+#: ../views/scripts/movie/index.phtml:28
+msgid "Add movie"
+msgstr "영화 등록"
+
+#: ../views/scripts/user/index.phtml:1
+msgid "Users list"
+msgstr "사용자 목록"
+
+#: ../views/scripts/user/index.phtml:13
+#: ../views/scripts/user/view.phtml:11
+msgid "Not rated"
+msgstr "평가 없음"
+
+#: ../views/scripts/user/index.phtml:36
+#, php-format
+msgid "Total number of movie is %s"
+msgstr "등록된 영화 수는 %s입니다."
+
+#: ../views/scripts/user/logout.phtml:2
+msgid "You successfully log out"
+msgstr "로그아웃 되었습니다."
+
+#: ../views/scripts/user/new.phtml:1
+msgid "Create new user"
+msgstr "새 계정등록"
+
+#: ../views/scripts/user/view.phtml:2
+msgid "Statistics"
+msgstr ""
+
+#: ../views/scripts/user/view.phtml:12
+msgid "Total"
+msgstr "Total"
+
