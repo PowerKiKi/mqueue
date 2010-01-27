@@ -1,17 +1,24 @@
 <h2><?php echo $this->translate('Movies list'); ?></h2>
+<?php echo $this->formFilter; ?>
 <table>
 <tr>
 	<th><?php echo $this->translate('Rating'); ?></th>
 	<th><?php echo $this->translate('Title'); ?></th>
 </tr>
-<?php foreach ($this->entries as $entry): ?>
-	<tr>
-		<td><?php echo $this->statusLinks($entry->getStatus())?></td>
-		<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
-	</tr>
-<?php endforeach ?>
+<?php if ($this->paginator->getTotalItemCount() == 0): ?>
+	<tr><td colspan="2">
+	<?php echo $this->translate('There is no movie to show. Please read the %s to learn how to add movies.', array('<a href="' . $this->url(array('controller' => 'faq')) .'">' . _tr('FAQ') . '</a>')); ?>
+	</td><td></tr>
+<?php else: ?>
+	<?php foreach ($this->paginator as $entry): ?>
+		<tr>
+			<td><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
+			<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+		</tr>
+	<?php endforeach ?>
+<?php endif; ?>
 </table>
-
+<?php echo $this->paginator; ?>
 <p><a href="<?php echo $this->serverUrl() . $this->url(
     array(
         'controller' => 'movie',

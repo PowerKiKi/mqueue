@@ -16,6 +16,16 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		
         return $resultSet;
     }
+    
+    public function getFilteredQuery($idUser)
+    {
+		$select = $this->getDbTable()->select()
+			->from('movie')
+			->joinLeft('status', 'movie.id = status.idMovie' , array())
+			->where('status.idUser = ?', $idUser);
+			
+    	return $select;
+    }
 }
 
 ?>

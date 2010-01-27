@@ -10,10 +10,45 @@ class MovieController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		$mapper = new Default_Model_MovieMapper();
-		$movies = $mapper->fetchAll();
+	
+    	$form = new Default_Form_Filter();
+    	$this->view->formFilter = $form;
 
-		$this->view->entries = $movies;
+    	// Remember filter from session, but overwrites with new values from query
+		$session = new Zend_Session_Namespace();
+    	if (!isset($session->filter))
+    		$session->filter = array();
+    	
+    	if ($this->_getParam('clear', false))
+    	{
+    		$session->filter = array();
+    	}
+    	else
+    	{
+	    	$filter = array_merge($session->filter, $this->getRequest()->getParams()); 
+	    	
+			// Store the filter in session if it's valid
+			if ($form->isValid($filter))
+			{
+				$session->filter = $filter;
+			}
+    	}
+
+		$idUser = (integer)$session->filter['filterUser'];
+		if (!isset($idUser) || !$idUser || $idUser < 0)
+			$idUser = $session->idUser;
+		if (!isset($idUser) || !$idUser || $idUser < 0)
+			$idUser = 0;
+		$this->view->idUser = $idUser;
+		
+		Zend_Paginator::setDefaultScrollingStyle('Elastic');
+		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
+		
+		$mapper = new Default_Model_MovieMapper();
+
+		$this->view->paginator = Zend_Paginator::factory($mapper->getFilteredQuery($idUser));
+		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
+		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 20));
 	}
 
 	public function viewAction()

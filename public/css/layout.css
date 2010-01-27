@@ -96,3 +96,38 @@ color: black;
 {
 	float: right;
 }
+
+.paginationControl
+{
+	font-size: 0.8em;
+}
+
+#fieldset-filter
+{
+	border: 1px solid #E4E4E4;
+	font-size: 0.8em;
+}
+
+#filter-label,
+#fieldset-filter #submit-label,
+#fieldset-filter #clear-label
+{
+	display: none;
+}
+
+#filter-element
+{
+	margin: 0px;
+}
+
+#fieldset-filter #submit-element,
+#fieldset-filter #clear-element
+{
+	float: right;
+}
+
+#filter-element dd, 
+#filter-element dt 
+{
+		display: inline;
+}
