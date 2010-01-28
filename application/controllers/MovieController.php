@@ -53,7 +53,20 @@ class MovieController extends Zend_Controller_Action
 
 	public function viewAction()
 	{
-		// Should display status from all users for this movie
+		$mapper = new Default_Model_MovieMapper();
+
+		if ($this->getRequest()->getParam('idMovie'))
+		{
+			$this->view->movie = $mapper->find($this->getRequest()->getParam('idMovie'));
+		}
+
+		if (!$this->view->movie)
+		{
+			throw new Exception($this->view->translate('Movie not found'));
+		}
+
+		$mapperUser = new Default_Model_UserMapper();
+		$this->view->users = $mapperUser->fetchAll();
 	}
 
 	public function addAction()

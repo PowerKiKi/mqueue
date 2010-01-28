@@ -4,6 +4,7 @@
 <tr>
 	<th><?php echo $this->translate('Rating'); ?></th>
 	<th><?php echo $this->translate('Title'); ?></th>
+	<th><?php echo $this->translate('Link'); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="2">
@@ -13,7 +14,8 @@
 	<?php foreach ($this->paginator as $entry): ?>
 		<tr>
 			<td><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
-			<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+			<td><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+			<td><a href="<?php echo $entry->getImdbUrl(); ?>"><?php echo $this->translate('IMDb') ?></a></td>
 		</tr>
 	<?php endforeach ?>
 <?php endif; ?>

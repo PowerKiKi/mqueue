@@ -1,0 +1,25 @@
+<h2><?php echo $this->movie->getTitle(); ?></h2>
+<p><a href="<?php echo $this->movie->getImdbUrl(); ?>"><?php echo $this->movie->getImdbUrl(); ?></a></p>
+<table>
+<tr>
+	<th><?php echo $this->translate('User'); ?></th>
+	<th><?php echo $this->translate('Rating'); ?></th>
+</tr>
+<?php
+
+// Table data
+foreach ($this->users as $user)
+{
+	echo '<tr>';
+	echo '<td><a href="' . $this->url(array(
+										'controller' => 'user',
+										'action' => 'view',
+										'nickname' => $user->nickname
+										),
+									'default', true) . '">' . $this->escape($user->nickname) . '</a></td>';
+	echo '<td>' . $this->statusLinks($this->movie->getStatus($user->id)) . '</td>';
+		
+	echo '</tr>';
+}
+?>
+</table>
