@@ -5,11 +5,7 @@ class Default_View_Helper_Navigation extends Zend_View_Helper_Abstract
 	public function navigation()
 	{
 		$result = '';
-
-		$session = new Zend_Session_Namespace();
-		$mapper = new Default_Model_UserMapper();
-		$user = $mapper->find($session->idUser);
-			
+		
 		$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 		array('controller'=>'movie'),
 				'default', 

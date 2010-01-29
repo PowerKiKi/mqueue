@@ -80,19 +80,14 @@ class UserController extends Zend_Controller_Action
 
 	public function viewAction()
 	{
-		$mapper = new Default_Model_UserMapper();
-
 		if ($this->getRequest()->getParam('nickname'))
 		{
+			$mapper = new Default_Model_UserMapper();
 			$this->view->user = $mapper->findNickname($this->getRequest()->getParam('nickname'));
 		}
 		else
 		{
-			$session = new Zend_Session_Namespace();
-			if (isset($session->idUser))
-			{
-				$this->view->user = $mapper->find($session->idUser);
-			}
+			$this->view->user = Default_Model_User::getCurrent();
 		}
 
 		if (!$this->view->user)

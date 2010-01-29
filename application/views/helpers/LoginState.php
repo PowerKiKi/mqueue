@@ -5,12 +5,10 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 	public function loginState()
 	{
 		$result = '<div class="loginState">';
-		$session = new Zend_Session_Namespace();
-		if (isset($session->idUser))
-		{
-			$mapper = new Default_Model_UserMapper();
-			$user = $mapper->find($session->idUser);
-			
+		
+		$user = Default_Model_User::getCurrent();
+		if ($user)
+		{	
 			$result .= $this->view->translate('logged as ');
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'view', 'nickname' => $user->nickname), 

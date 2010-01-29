@@ -7,7 +7,13 @@ class Default_Form_Filter extends Zend_Form
 		// Set the method for the display form to GET
 		$this->setMethod('get');
 
-		$users = array(0 => _tr('<< me >>'));
+		
+		$users = array();
+		if (Default_Model_User::getCurrent())
+		{
+			$users = array(0 => _tr('<< me >>'));
+		}
+		
 		$mapperUser = new Default_Model_UserMapper();
 		foreach ($mapperUser->fetchAll() as $user)
 			$users[$user->id] = $user->nickname;
