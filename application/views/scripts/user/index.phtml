@@ -26,9 +26,21 @@ foreach ($this->users as $user)
 	$stats = $user->getStatistics();
 	foreach (Default_Model_Status::$ratings as $val => $name)
 	{
-		echo '<td>' . $stats[$val] . '</td>';
+		echo '<td><a href="' . $this->url(array(
+										'controller' => 'movie',
+										'action' => 'index',
+										'filterUser' => $user->id,
+										'filterStatus' => $val
+										),
+									'default', true) . '">' . $stats[$val] . '</a></td>';
 	}
-	echo '<td>' . $stats[Default_Model_Status::Nothing] . '</td>';
+	echo '<td><a href="' . $this->url(array(
+										'controller' => 'movie',
+										'action' => 'index',
+										'filterUser' => $user->id,
+										'filterStatus' => 0
+										),
+									'default', true) . '">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
 	echo '</tr>';
 }
 ?>
