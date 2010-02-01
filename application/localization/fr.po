@@ -128,7 +128,7 @@ msgstr "Films"
 
 #: ../views/helpers/Navigation.php:17
 msgid "Users"
-msgstr "Utiilisateurs"
+msgstr "Utilisateurs"
 
 #: ../views/helpers/Navigation.php:22
 msgid "FAQ"
