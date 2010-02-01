@@ -39,8 +39,6 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$select->orWhere('status.idUser IS NULL');
 			$select->orWhere('status.rating IS NULL');
 		}
-			
-		echo $select;
 		
     	return $select;
     }
