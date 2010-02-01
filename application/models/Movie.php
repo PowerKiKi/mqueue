@@ -7,10 +7,10 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		// If we didn't get the tilte yet, fetch it and save in out database
 		if (!($this->title))
 		{
-			$file = file_get_contents($this->getImdbUrl());
+			$file = @file_get_contents($this->getImdbUrl());
 			$ok = preg_match("/<title>(.*)<\/title>/", $file, $m);
 			if ($ok != 1)
-				throw new Exception("could not find movie with ID ='$this->id' '$ok' " . $this->getImdbUrl());
+				return '[title not available, could not fetch from IMDb]';
 			
 			$this->title = html_entity_decode($m[1], ENT_COMPAT, 'utf-8');
 			$this->save();

@@ -41,12 +41,19 @@ class MovieController extends Zend_Controller_Action
 		elseif (isset($session->idUser))
 			$idUser = $session->idUser;
 		$this->view->idUser = $idUser;
+
+		// Get the filter for status
+		$statusFilter = -1;
+		if (isset($session->filter['filterStatus']) && (integer)$session->filter['filterStatus'] >= -1 && (integer)$session->filter['filterStatus'] <= 5)
+		{
+			$statusFilter = (integer)$session->filter['filterStatus'];
+		}
 		
 		// Set up the paginator
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
 		$mapper = new Default_Model_MovieMapper();
-		$this->view->paginator = Zend_Paginator::factory($mapper->getFilteredQuery($idUser));
+		$this->view->paginator = Zend_Paginator::factory($mapper->getFilteredQuery($idUser, $statusFilter));
 		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
 		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 20));
 	}

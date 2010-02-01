@@ -106,6 +106,7 @@ color: black;
 {
 	border: 1px solid #E4E4E4;
 	font-size: 0.8em;
+	margin-right: 2em;
 }
 
 #filter-label,
@@ -120,16 +121,23 @@ color: black;
 	margin: 0px;
 }
 
+#filter-element dd, 
+#filter-element dt 
+{
+	display: inline;
+	margin: 0px;
+}
+
+#filter-element dd
+{
+	margin-right: 4em;
+}
+
 #fieldset-filter #submit-element,
 #fieldset-filter #clear-element
 {
 	float: right;
-}
-
-#filter-element dd, 
-#filter-element dt 
-{
-		display: inline;
+	margin-right: 2em;
 }
 
 ol ol

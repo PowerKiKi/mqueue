@@ -22,6 +22,19 @@ class Default_Form_Filter extends Zend_Form
 			'multiOptions'   => $users,
 			'label'	=> _tr('User :'),
 		));
+		
+		
+		$status = array(-1 => _tr('<< all >>'), 0 => _tr('<< none >>'));
+		$status = $status + Default_Model_Status::$ratings;
+		//foreach (Default_Model_Status::$ratings)
+		//	$status[$user->id] = $user->nickname;
+		
+		$this->addElement('select', 'filterStatus', array(
+			'multiOptions'   => $status,
+			'label'	=> _tr('Rating :'),
+		));
+		
+		
 
 		// Add the submit button
 		$this->addElement('submit', 'submit', array(
@@ -36,6 +49,6 @@ class Default_Form_Filter extends Zend_Form
 		));
 		
 		
-		$this->addDisplayGroup(array('filterUser', 'submit','clear'), 'filter', array('legend' => _tr('Filter')));
+		$this->addDisplayGroup(array('filterUser', 'filterStatus', 'submit', 'clear'), 'filter', array('legend' => _tr('Filter')));
 	}
 }
