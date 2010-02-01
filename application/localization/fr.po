@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-01 09:20+0100\n"
+"POT-Creation-Date: 2010-02-01 14:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
@@ -221,8 +221,8 @@ msgid "Install the user script"
 msgstr "Installer le script utilisateur"
 
 #: ../views/scripts/faq/index.phtml:16
-msgid "Surf on "
-msgstr "Surfer sur"
+msgid "Surf on <a href=\"http://www.imdb.com/\">www.imdb.com</a> and rate movies by clicking icons"
+msgstr "Surfer sur <a href=\"http://www.imdb.com/\">www.imdb.com</a> et noter les films en cliquant sur les icones"
 
 #: ../views/scripts/faq/index.phtml:20
 msgid "What is the meaning of the icons ?"
@@ -268,18 +268,18 @@ msgstr "Ajouter un film"
 
 #: ../views/scripts/movie/view.phtml:5
 msgid "User"
-msgstr "Utiilisateur"
+msgstr "Utilisateur"
 
 #: ../views/scripts/user/index.phtml:1
 msgid "Users list"
 msgstr "Liste des utilisateurs"
 
 #: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:11
+#: ../views/scripts/user/view.phtml:17
 msgid "Not rated"
 msgstr "Pas noté"
 
-#: ../views/scripts/user/index.phtml:36
+#: ../views/scripts/user/index.phtml:48
 #, php-format
 msgid "Total number of movie is %s"
 msgstr "Le nombre total de film est de %s"
@@ -296,10 +296,12 @@ msgstr "Créer un nouveau compte"
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: ../views/scripts/user/view.phtml:12
+#: ../views/scripts/user/view.phtml:24
 msgid "Total"
 msgstr "Total"
 
+#~ msgid "Surf on "
+#~ msgstr "Surfer sur"
 #~ msgid "not logged in"
 #~ msgstr "pas loggé"
 
