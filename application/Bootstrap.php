@@ -42,7 +42,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		}
 		else
 		{
-			$locale = new Zend_Locale(Zend_Locale::BROWSER); // autodetect browser
+			$locale = new Zend_Locale(); // autodetect browser
 		}
 		Zend_Registry::set('Zend_Locale', $locale);
 
