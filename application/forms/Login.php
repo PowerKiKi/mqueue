@@ -17,7 +17,7 @@ class Default_Form_Login extends Zend_Form
                 )
         ));
         
-        // Add the password ail element
+        // Add the password element
         $this->addElement('password', 'password', array(
             'label'      => 'Password:',
             'required'   => true,
@@ -26,6 +26,11 @@ class Default_Form_Login extends Zend_Form
             //    array('validator' => 'emailAddress')
                 )
         ));
+		
+		// Checkbox to remember user
+		$this->addElement('checkbox', 'remember', array(
+			'label' => _tr('Remember me'),
+		));
         
         // Add the submit button
         $this->addElement('submit', 'submit', array(

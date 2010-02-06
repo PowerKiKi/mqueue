@@ -58,8 +58,12 @@ class UserController extends Zend_Controller_Action
 				$user = $mapper->findEmailPassword($values['email'], $values['password']);
 				if ($user)
 				{
+					if ($values['remember'])
+						Zend_Session::rememberMe(1 * 60 * 60 * 24 * 365); // Cookie for one year
+					
 					$session = new Zend_Session_Namespace();
 					$session->idUser = $user->id;
+					
 
 					$this->_helper->FlashMessenger('logged in !');
 					$this->view->messages = $this->_helper->FlashMessenger->getMessages();
