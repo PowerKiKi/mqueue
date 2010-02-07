@@ -45,4 +45,4 @@ foreach ($this->users as $user)
 }
 ?>
 </table>
-<p><?php echo $this->translate('Total number of movie is %s', array($stats['total'])); ?></p>
+<p><?php echo $this->translate('Total number of movie is %s', array(isset($stats['total']) ? $stats['total'] : 0)); ?></p>

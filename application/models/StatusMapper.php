@@ -67,7 +67,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$records = $this->getDbTable()->fetchAll($select);
 		
 		// Set all count to 0
-		$result = array('total' => 0);
+		$result = array('total' => 0, Default_Model_Status::Nothing => 0);
 		foreach (Default_Model_Status::$ratings as $val => $name)
 		{
 			$result[$val] = 0;
