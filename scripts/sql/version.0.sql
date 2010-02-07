@@ -19,7 +19,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `movie`
 --
 
-DROP TABLE IF EXISTS `movie`;
 CREATE TABLE IF NOT EXISTS `movie` (
   `id` varchar(7) collate utf8_bin NOT NULL,
   `dateUpdate` timestamp NOT NULL default CURRENT_TIMESTAMP,
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `movie` (
 -- Table structure for table `status`
 --
 
-DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL auto_increment,
   `idUser` int(11) NOT NULL,
@@ -51,7 +49,6 @@ CREATE TABLE IF NOT EXISTS `status` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL auto_increment,
   `nickname` varchar(32) collate utf8_bin NOT NULL,
@@ -60,6 +57,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `nickname` (`nickname`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE IF NOT EXISTS `setting` (
+  `id` varchar(64) COLLATE utf8_bin NOT NULL,
+  `value` longtext COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Constraints for dumped tables

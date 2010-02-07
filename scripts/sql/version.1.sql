@@ -1,14 +1,3 @@
---
--- Table structure for table `setting`
---
-
-DROP TABLE IF EXISTS `setting`;
-CREATE TABLE IF NOT EXISTS `setting` (
-  `id` varchar(64) COLLATE utf8_bin NOT NULL,
-  `value` longtext COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
 
 -- Add timestamp fields
 ALTER TABLE `status` ADD `dateUpdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `rating`;
