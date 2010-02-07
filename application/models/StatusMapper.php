@@ -100,6 +100,19 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		return $result;
 	}
 
+	public function getActivity()
+	{
+		$select = $this->getDbTable()->select()
+			->from('status')
+			->order('dateUpdate DESC')
+			;
+			
+		$records = $this->getDbTable()->fetchAll($select);
+		$result = $this->prepareActivity($records);
+		
+		return $result;
+	}
+
 	public function getActivityForMovie(Default_Model_Movie $movie)
 	{
 		$select = $this->getDbTable()->select()

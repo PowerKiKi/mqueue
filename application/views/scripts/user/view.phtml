@@ -1,35 +1,48 @@
+<?php echo $this->gravatar($this->user, false); ?>
 <h2><?php echo $this->user->nickname; ?></h2>
 <h3><?php echo $this->translate('Statistics'); ?></h3>
 
 <table>
 <?php 
-$stats = $this->user->getStatistics();
+// Table header
+echo '<tr>';
 foreach (Default_Model_Status::$ratings as $val => $name)
 {
-	echo '<tr><td>' .  $name . '</td><td><a href="' . $this->url(array(
+	echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
+}
+echo '<th>' . $this->translate('Not rated') . '</th>';	
+echo '<th>' . $this->translate('Total') . '</th>';
+echo '</tr>';
+
+$stats = $this->user->getStatistics();
+echo '<tr>';
+foreach (Default_Model_Status::$ratings as $val => $name)
+{
+	echo '<td><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $this->user->id,
 										'filterStatus' => $val
 										),
-									'default', true) . '">' . $stats[$val] . '</a></td></tr>';
+									'default', true) . '">' . $stats[$val] . '</a></td>';
 }
-echo '<tr><td>' .  $this->translate('Not rated') . '</td><td><a href="' . $this->url(array(
+echo '<td><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $this->user->id,
 										'filterStatus' => 0
 										),
-									'default', true) . '">' . $stats[Default_Model_Status::Nothing] . '</a></td></tr>';
-echo '<tr><td>' .  $this->translate('Total') . '</td><td><a href="' . $this->url(array(
+									'default', true) . '">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
+echo '<td><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $this->user->id,
 										'filterStatus' => -1
 										),
-									'default', true) . '">' . $stats['total'] . '</a></td></tr>';
+									'default', true) . '">' . $stats['total'] . '</a></td>';
+echo '</tr>';
 ?>
 </table>
 
-<h3><?php echo $this->translate('Recent activies'); ?></h3>
-<?php echo $this->activity($this->user->getActivity()); ?>
+<h3><?php echo $this->translate('Activity'); ?></h3>
+<?php echo $this->activity($this->user->getActivity(), array('user')); ?>

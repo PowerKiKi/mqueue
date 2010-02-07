@@ -7,31 +7,37 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 		$result = '<table class="activity">';
 		
 		$result .= '<tr>';
-		$result .= '<th>' . $this->view->translate('Date') . '</th>';
-		$result .= '<th>' . $this->view->translate('User') . '</th>';
-		$result .= '<th>' . $this->view->translate('Movie') . '</th>';
-		$result .= '<th>' . $this->view->translate('Rating') . '</th>';
+		if (!in_array('date', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Date') . '</th>';
+		if (!in_array('user', $hiddenColumns)) $result .= '<th>' . $this->view->translate('User') . '</th>';
+		if (!in_array('movie', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Movie') . '</th>';
+		if (!in_array('status', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Rating') . '</th>';
 		$result .= '</tr>';
 		
+		$count = 0;
 		foreach ($activity as $a)
 		{
 			$result .= '<tr>';
-			$result .= '<td>' . $a['status']->dateUpdate . '</td>';
-			$result .= '<td><a href="' . $this->view->url(array(
+			if (!in_array('date', $hiddenColumns)) $result .= '<td>' . $a['status']->dateUpdate . '</td>';
+			if (!in_array('user', $hiddenColumns)) $result .= '<td><a href="' . $this->view->url(array(
 										'controller' => 'user',
 										'action' => 'view',
 										'nickname' => $a['user']->nickname
 										),
-									'default', true) . '">' . $this->view->escape($a['user']->nickname) . '</td>';
-			$result .= '<td><a href="' . $this->view->url(array(
+									'default', true) . '">' . $this->view->gravatar($a['user']). ' ' . $this->view->escape($a['user']->nickname) . '</td>';
+			if (!in_array('movie', $hiddenColumns)) $result .= '<td><a href="' . $this->view->url(array(
 										'controller' => 'movie',
 										'action' => 'view',
 										'idMovie' => $a['movie']->id
 										),
 									'default', true) . '">' . $this->view->escape($a['movie']->getTitle()) . '</td>';
-			$result .= '<td>' . $this->view->statusLinks($a['status']) . '</td>';
+			if (!in_array('status', $hiddenColumns)) $result .= '<td>' . $this->view->statusLinks($a['status']) . '</td>';
 			
-			$result .= '</tr>'; 
+			$result .= '</tr>';
+			 
+			if (++$count == 25)
+			{
+				break;
+			}
 		}
 		
 		return $result . '</table>';

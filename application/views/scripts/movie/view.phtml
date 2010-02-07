@@ -24,5 +24,5 @@ foreach ($this->users as $user)
 }
 ?>
 </table>
-<h3><?php echo $this->translate('Recent activies'); ?></h3>
-<?php echo $this->activity($this->movie->getActivity()); ?>
+<h3><?php echo $this->translate('Activity'); ?></h3>
+<?php echo $this->activity($this->movie->getActivity(), array('movie')); ?>

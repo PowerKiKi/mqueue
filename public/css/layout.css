@@ -176,3 +176,14 @@ ol ol
 {
 	background: url(../images/lang_fr.gif) no-repeat;
 }
+
+img.gravatar
+{
+	border: none;
+}
+
+img.gravatar.big
+{
+	float: right;
+	margin-right: 2em;
+}
