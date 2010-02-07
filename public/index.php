@@ -22,7 +22,12 @@ $application = new Zend_Application(
     APPLICATION_ENV, 
     APPLICATION_PATH . '/configs/application.ini'
 );
-$application->bootstrap()
-            ->run();
+$application->bootstrap();
+            
+// we only run the application if this file were NOT included (otherwise, the file was included to access misc functions)
+if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME']))
+{
+	$application->run();
+}
 
 ?>

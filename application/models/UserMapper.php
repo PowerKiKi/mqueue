@@ -16,7 +16,7 @@ class Default_Model_UserMapper extends Default_Model_AbstractMapper
 	{
 		$select = $this->getDbTable()->select()
 			->where('email = ?', $email)
-			->where('password = ?', $password);
+			->where('password = SHA1(?)', $password);
 		
 		$record = $this->getDbTable()->fetchRow($select);
 		

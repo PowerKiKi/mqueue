@@ -27,7 +27,7 @@ class UserController extends Zend_Controller_Action
 				$user = $mapper->getDbTable()->createRow();
 				$user->nickname = $values['nickname'];
 				$user->email = $values['email'];
-				$user->password = $values['password'];
+				$user->password = sha1($values['password']);
 				$user->save();
 
 				$session = new Zend_Session_Namespace();
