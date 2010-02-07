@@ -1,5 +1,6 @@
 <h2><?php echo $this->movie->getTitle(); ?></h2>
 <p><a href="<?php echo $this->movie->getImdbUrl(); ?>"><?php echo $this->movie->getImdbUrl(); ?></a></p>
+<h3><?php echo $this->translate('Current status'); ?></h3>
 <table>
 <tr>
 	<th><?php echo $this->translate('User'); ?></th>
@@ -23,3 +24,5 @@ foreach ($this->users as $user)
 }
 ?>
 </table>
+<h3><?php echo $this->translate('Recent activies'); ?></h3>
+<?php echo $this->activity($this->movie->getActivity()); ?>

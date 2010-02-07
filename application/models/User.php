@@ -28,6 +28,12 @@ class Default_Model_User extends Default_Model_AbstractModel
 		$mapper = new Default_Model_StatusMapper();
 		return $mapper->getStatistics($this->id);
 	}
+
+	public function getActivity()
+	{
+		$mapper = new Default_Model_StatusMapper();
+		return $mapper->getActivityForUser($this);
+	}
 }
 
 ?>

@@ -83,6 +83,50 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		return $result;
 	}
 
+	private function prepareActivity($records)
+	{
+		$result = array();
+		$mapperUser = new Default_Model_UserMapper();
+		$mapperMovie = new Default_Model_MovieMapper();
+		foreach ($records as $r)
+		{
+			$result []= array(
+						'user' => $mapperUser->find($r->idUser),
+						'movie' => $mapperMovie->find($r->idMovie),
+						'status' => $r,
+			);
+		}	
+
+		return $result;
+	}
+
+	public function getActivityForMovie(Default_Model_Movie $movie)
+	{
+		$select = $this->getDbTable()->select()
+			->from('status')
+			->where('idMovie = ?', $movie->id)
+			->order('dateUpdate DESC')
+			;
+			
+		$records = $this->getDbTable()->fetchAll($select);
+		$result = $this->prepareActivity($records);
+		
+		return $result;
+	}
+	
+	public function getActivityForUser(Default_Model_User $user)
+	{
+		$select = $this->getDbTable()->select()
+			->from('status')
+			->where('idUser = ?', $user->id)
+			->order('dateUpdate DESC')
+			;
+			
+		$records = $this->getDbTable()->fetchAll($select);
+		$result = $this->prepareActivity($records);
+		
+		return $result;
+	}
 }
 
 ?>

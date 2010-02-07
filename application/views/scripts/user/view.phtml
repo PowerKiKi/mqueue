@@ -30,3 +30,6 @@ echo '<tr><td>' .  $this->translate('Total') . '</td><td><a href="' . $this->url
 									'default', true) . '">' . $stats['total'] . '</a></td></tr>';
 ?>
 </table>
+
+<h3><?php echo $this->translate('Recent activies'); ?></h3>
+<?php echo $this->activity($this->user->getActivity()); ?>
