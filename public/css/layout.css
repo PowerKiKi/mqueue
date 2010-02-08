@@ -155,6 +155,12 @@ ol ol
 	margin-top:0.5em;
 }
 
+.language_selector a
+{
+	color: white;
+	opacity: 0.8;
+}
+
 img.gravatar
 {
 	border: none;
