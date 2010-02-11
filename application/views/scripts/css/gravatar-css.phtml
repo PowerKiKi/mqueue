@@ -1,0 +1,14 @@
+<?php
+header('Content-type: text/css');
+
+echo  "#filterUser option { padding-left: 20px; background-repeat: no-repeat; }\n";
+foreach ($this->users as $user)
+{
+	$url = 'http://www.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?';
+	$url .= '&default=identicon';
+	$url .= '&size=16';
+	
+	echo "#filterUser option[value='" . $user->id . "'] { background-image: url(" . $url . "); }\n";
+}
+
+?>

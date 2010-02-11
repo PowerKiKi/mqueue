@@ -171,3 +171,22 @@ img.gravatar.big
 	float: right;
 	margin-right: 2em;
 }
+
+.tips
+{
+	width: 80%;
+	padding:1em;
+	margin: 3em auto 0 auto;
+	background: #FFFFCC;
+	border:3px solid #FFCC33;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+ul.statusHelp
+{
+	margin: 0;
+	list-style-type: none;
+	padding-left: 1em;
+}	

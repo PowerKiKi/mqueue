@@ -6,7 +6,8 @@
   <?php 
   	echo $this->headLink()
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'))
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/layout.css'));
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/layout.css'))
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'));
   
 	echo $this->headScript()	
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/script.js'))

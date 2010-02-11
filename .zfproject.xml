@@ -40,6 +40,9 @@
           <actionMethod actionName="remote.js"/>
           <actionMethod actionName="mqueue.user.js"/>
         </controllerFile>
+        <controllerFile controllerName="css">
+          <actionMethod actionName="gravatar.css"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -100,6 +103,9 @@
           <viewControllerScriptsDirectory forControllerName="user">
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="css">
+            <viewScriptFile forActionName="gravatar.css"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -131,6 +137,7 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>

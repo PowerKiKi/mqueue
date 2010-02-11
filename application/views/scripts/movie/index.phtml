@@ -19,11 +19,5 @@
 <?php endif; ?>
 </table>
 <?php echo $this->paginator; ?>
-<p><a href="<?php echo $this->serverUrl() . $this->url(
-    array(
-        'controller' => 'movie',
-        'action'     => 'add'
-    ), 
-    'default', 
-    true) ?>"><?php echo $this->translate('Add movie'); ?></a></p>
-<div><?php echo $this->statusHelp(); ?></div>
+
+<div class="tips"><?php echo $this->statusHelp(); ?></div>
