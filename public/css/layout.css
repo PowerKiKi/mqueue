@@ -90,7 +90,8 @@ color: black;
 
 #content
 {
-	padding-left: 20px;
+	padding-left: 1em;
+	padding-right: 2em;
 }
 
 .loginState
@@ -101,13 +102,13 @@ color: black;
 .paginationControl
 {
 	font-size: 0.8em;
+	margin-top: 1em;
 }
 
 #fieldset-filter
 {
 	border: 1px solid #E4E4E4;
 	font-size: 0.8em;
-	margin-right: 2em;
 }
 
 #filter-label,
