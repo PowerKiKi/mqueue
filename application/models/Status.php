@@ -15,6 +15,13 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	{
 		return $this->idMovie . '_' . $this->idUser;
 	}
+	
+	public function getName()
+	{
+		if ($this->rating == 0)
+			return _tr('Not rated');
+		return Default_Model_Status::$ratings[$this->rating];
+	}
 }
 
 Default_Model_Status::$ratings = array(

@@ -86,7 +86,7 @@ class UserController extends Zend_Controller_Action
 	}
 
 	public function viewAction()
-	{
+	{  
 		if ($this->getRequest()->getParam('nickname'))
 		{
 			$mapper = new Default_Model_UserMapper();
@@ -96,7 +96,9 @@ class UserController extends Zend_Controller_Action
 		{
 			$this->view->user = Default_Model_User::getCurrent();
 		}
-
+		
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'user' => $this->view->user->nickname, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('Activity for %s', array($this->view->user->nickname)));
+		
 		if (!$this->view->user)
 		{
 			throw new Exception($this->view->translate('User not found'));

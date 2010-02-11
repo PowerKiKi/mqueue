@@ -7,7 +7,8 @@
   	echo $this->headLink()
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/global.css'))
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/layout.css'))
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'));
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'))
+  			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'feed', 'format' => 'atom')), 'application/rss+xml', $this->translate('Overall activity'));
   
 	echo $this->headScript()	
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/script.js'))

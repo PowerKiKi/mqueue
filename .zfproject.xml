@@ -42,6 +42,8 @@
         </controllerFile>
         <controllerFile controllerName="css">
           <actionMethod actionName="gravatar.css"/>
+        <controllerFile controllerName="feed">
+          <actionMethod actionName="index"/>
         </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
@@ -105,6 +107,8 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="css">
             <viewScriptFile forActionName="gravatar.css"/>
+          <viewControllerScriptsDirectory forControllerName="feed">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

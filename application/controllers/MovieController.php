@@ -66,6 +66,8 @@ class MovieController extends Zend_Controller_Action
 		{
 			$this->view->movie = $mapper->find($this->getRequest()->getParam('idMovie'));
 		}
+		
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('Activity for %s', array($this->view->movie->getTitle())));
 
 		if (!$this->view->movie)
 		{
