@@ -46,13 +46,24 @@ body
 
 #header h1 a
 {
-	color: white;
-	opacity: 0.6;
+	background:url("../images/logo.png") no-repeat scroll 0 0;
+	display:block;
+	height:157px;
+	left:-36px;
+	position:relative;
+	top:-10px;
+	width:256px;
+}
+
+#header h1 a span
+{
+	display: none;
 }
 
 #header-logo
 {
-	padding:20px;
+	height:135px;
+	padding: 0px;	
 }
 	
 #header-navigation
@@ -69,7 +80,12 @@ body
 	opacity: 0.6;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 
+	/* Repeat the logo slightly over the links */
+	background: black url("../images/logo.png") no-repeat scroll -36px -145px;
 	
+	/* fix for IE8 so the links are always clickable */
+	position: relative;
+	z-index: 1;
 }
 
 #header-navigation a
@@ -79,6 +95,7 @@ body
 	font-weight: bold;
 	text-decoration: none;
 }
+
 #header-navigation a:hover
 {
 	border-radius: 5px;
