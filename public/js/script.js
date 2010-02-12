@@ -32,7 +32,7 @@ function bindStatus()
  */
 function scanIMDB(server)
 {
-	const maxPerQuery = 400;	
+	var maxPerQuery = 400;	
 	var list = new Array();
 	var queries = new Array();
 	
