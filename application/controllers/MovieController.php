@@ -83,20 +83,29 @@ class MovieController extends Zend_Controller_Action
 		$request = $this->getRequest();
 		$form    = new Default_Form_Movie();
 
-		if ($this->getRequest()->isPost()) {
+		if ($this->getRequest()->isPost())
+		{
 			if ($form->isValid($request->getPost()))
 			{
 				$values = $form->getValues();
 				$mapper = new Default_Model_MovieMapper();
-				$movie = $mapper->getDbTable()->createRow();
-				$movie->setId($values['id']);
-				$movie->save();
+				$movie = $mapper->find(Default_Model_Movie::extractId($values['id']));
+				if (!$movie)
+				{
+					$movie = $mapper->getDbTable()->createRow();
+					$movie->setId($values['id']);
+					$movie->save();
+				}
 
-				$this->view->movie = $movie;
-				$this->_helper->FlashMessenger('We did something in the last request');
-				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
+				$this->view->movies = array($movie);
+				//$this->_helper->FlashMessenger('We did something in the last request');
+				//$this->view->messages = $this->_helper->FlashMessenger->getMessages();
 					
-				//   return $this->_helper->redirector('index');
+				$session = new Zend_Session_Namespace();
+				if (isset($session->idUser))
+					$this->view->idUser = $session->idUser;
+				else
+					$this->view->idUser = 0;
 			}
 		}
 

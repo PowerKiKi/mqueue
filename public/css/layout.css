@@ -207,4 +207,15 @@ ul.statusHelp
 	margin: 0;
 	list-style-type: none;
 	padding-left: 1em;
-}	
+}
+
+input[type='text'],
+input[type='password']
+{
+	width: 20em;
+}
+
+input[type='text'][id='id']
+{
+	width: 40em;
+}

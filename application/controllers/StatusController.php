@@ -12,10 +12,7 @@ class StatusController extends Zend_Controller_Action
 	}
 
 	public function indexAction()
-	{
-		if ($this->_helper->layout->isEnabled())
-			$this->_helper->layout->setLayout('iframe');
-			
+	{			
 		$jsonCallback = $this->_request->getParam('jsoncallback');
 		if ($jsonCallback)
 		{

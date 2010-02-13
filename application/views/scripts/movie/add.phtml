@@ -1,18 +1,30 @@
 <h2><?php echo $this->translate('Add a new movie')?></h2>
 <?php echo $this->form; ?>
-<?php if (isset($this->movie)): ?>
-	<div>Movie added:
-	<a href="<?php echo $this->movie->getImdbUrl(); ?>"><?php echo $this->escape($this->movie->getTitle()) ?></a></td>
-		<td><iframe src="<?php echo $this->serverUrl() . $this->url(
-    array(
-        'controller' => 'status',
-		'movie' => $this->movie->id
-    ),
-    'default', 
-    true) ?>" ><?php echo $this->translate('need browser with iframe'); ?></iframe>
+<?php if (isset($this->movies)): ?>
+	<h3>Movie found</h3>
 	
+	<table>
+	<tr>
+		<th><?php echo $this->translate('Rating'); ?></th>
+		<th><?php echo $this->translate('Title'); ?></th>
+	</tr>
+	<?php if (count($this->movies) == 0): ?>
+		<tr><td colspan="2">
+		<?php echo $this->translate('There is no movie to show. Please read the %s to learn how to add movies.', array('<a href="' . $this->url(array('controller' => 'faq')) .'">' . _tr('FAQ') . '</a>')); ?>
+		</td></tr>
+	<?php else: ?>
+		<?php foreach ($this->movies as $entry): ?>
+			<tr>
+				<td><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
+				<td><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+			</tr>
+		<?php endforeach ?>
+	<?php endif; ?>
+	</table>
 	
-<?php endif;?>
+	<div class="tips"><?php echo $this->statusHelp(); ?></div>
+	
+<?php else: ?>
 
 <div class="tips">
 <?php 
@@ -21,3 +33,4 @@
 	)); 
 ?>
 </div>
+<?php endif; ?>

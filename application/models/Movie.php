@@ -2,6 +2,15 @@
 
 class Default_Model_Movie extends Default_Model_AbstractModel
 {
+	static public function extractId($string)
+	{
+		$valid = preg_match_all("/(\d{7})/", $string, $r);
+		if (isset($r[1][0]))
+			return $r[1][0];
+			
+		return null;		
+	}
+	
 	public function getTitle()
 	{
 		// If we didn't get the tilte yet, fetch it and save in out database
@@ -21,10 +30,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	
 	public function setId($id)
 	{
-		$valid = preg_match_all("/(\d{7})/", $id, $r);
-		if (isset($r[1][0]))
-			$this->id = $r[1][0];
-			
+		$this->id = self::extractId($id);
 		return $this;
 	}
 	

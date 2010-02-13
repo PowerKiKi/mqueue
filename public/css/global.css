@@ -1,18 +1,5 @@
-iframe {
-	padding: 0px;
-	margin: 0px;
-	width: 80px;
-	height: 16px;
-	border: none;
-	overflow: hidden;
-}
-
-.iframe_body{
-	margin: 0px;
-	padding: 0px;
-}
-
-.status {
+.status
+{
 	display: inline-block !important;
 	clear: none !important;
 	width: 16px !important;
