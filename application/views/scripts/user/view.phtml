@@ -10,8 +10,8 @@ foreach (Default_Model_Status::$ratings as $val => $name)
 {
 	echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
 }
+echo '<th>' . $this->translate('Rated') . '</th>';
 echo '<th>' . $this->translate('Not rated') . '</th>';	
-echo '<th>' . $this->translate('Total') . '</th>';
 echo '</tr>';
 
 $stats = $this->user->getStatistics();
@@ -30,16 +30,16 @@ echo '<td><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $this->user->id,
-										'filterStatus' => 0
+										'filterStatus' => -1
 										),
-									'default', true) . '">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
+									'default', true) . '">' . $stats['rated'] . '</a></td>';
 echo '<td><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $this->user->id,
-										'filterStatus' => -1
+										'filterStatus' => 0
 										),
-									'default', true) . '">' . $stats['total'] . '</a></td>';
+									'default', true) . '">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
 echo '</tr>';
 ?>
 </table>
