@@ -17,20 +17,20 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 		foreach ($activity as $a)
 		{
 			$result .= '<tr>';
-			if (!in_array('date', $hiddenColumns)) $result .= '<td>' . $a['status']->dateUpdate . '</td>';
-			if (!in_array('user', $hiddenColumns)) $result .= '<td><a href="' . $this->view->url(array(
+			if (!in_array('date', $hiddenColumns)) $result .= '<td class="dateUpdate">' . $a['status']->dateUpdate . '</td>';
+			if (!in_array('user', $hiddenColumns)) $result .= '<td class="user"><a href="' . $this->view->url(array(
 										'controller' => 'user',
 										'action' => 'view',
 										'nickname' => $a['user']->nickname
 										),
 									'default', true) . '">' . $this->view->gravatar($a['user']). ' ' . $this->view->escape($a['user']->nickname) . '</a></td>';
-			if (!in_array('movie', $hiddenColumns)) $result .= '<td><a href="' . $this->view->url(array(
+			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie"><a href="' . $this->view->url(array(
 										'controller' => 'movie',
 										'action' => 'view',
 										'idMovie' => $a['movie']->id
 										),
 									'default', true) . '">' . $this->view->escape($a['movie']->getTitle()) . '</a></td>';
-			if (!in_array('status', $hiddenColumns)) $result .= '<td>' . $this->view->statusLinks($a['status']) . '</td>';
+			if (!in_array('status', $hiddenColumns)) $result .= '<td class="rating">' . $this->view->statusLinks($a['status']) . '</td>';
 			
 			$result .= '</tr>';
 			 

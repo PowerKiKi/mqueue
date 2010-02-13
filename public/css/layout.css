@@ -219,3 +219,25 @@ input[type='text'][id='id']
 {
 	width: 40em;
 }
+
+td
+{
+	padding-right: 0.5em;
+}
+
+td.dateUpdate,
+td.user,
+td.rating
+{
+	white-space: nowrap;
+}
+
+td.movie
+{
+	overflow: hidden;
+}
+
+td.number
+{
+	text-align: right;
+}

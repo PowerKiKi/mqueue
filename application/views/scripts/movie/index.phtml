@@ -12,8 +12,8 @@
 <?php else: ?>
 	<?php foreach ($this->paginator as $entry): ?>
 		<tr>
-			<td><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
-			<td><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+			<td class="rating"><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
+			<td class="movie"><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
 		</tr>
 	<?php endforeach ?>
 <?php endif; ?>

@@ -18,7 +18,7 @@ echo '</tr>';
 foreach ($this->users as $user)
 {
 	echo '<tr>';
-	echo '<td><a href="' . $this->url(array(
+	echo '<td class="user"><a href="' . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
 										'nickname' => $user->nickname
@@ -27,7 +27,7 @@ foreach ($this->users as $user)
 	$stats = $user->getStatistics();
 	foreach (Default_Model_Status::$ratings as $val => $name)
 	{
-		echo '<td><a href="' . $this->url(array(
+		echo '<td class="number"><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $user->id,
@@ -35,14 +35,14 @@ foreach ($this->users as $user)
 										),
 									'default', true) . '">' . $stats[$val] . '</a></td>';
 	}
-	echo '<td><a href="' . $this->url(array(
+	echo '<td class="number"><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $user->id,
 										'filterStatus' => -1
 										),
 									'default', true) . '">' . $stats['rated'] . '</a></td>';
-	echo '<td><a href="' . $this->url(array(
+	echo '<td class="number"><a href="' . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'index',
 										'filterUser' => $user->id,
