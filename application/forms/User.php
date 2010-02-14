@@ -9,7 +9,7 @@ class Default_Form_User extends Zend_Form
 
         // Add the nickname element
         $this->addElement('text', 'nickname', array(
-            'label'      => 'Nickname:',
+            'label'      => _tr('Nickname:'),
             'required'   => true,
             'validators' => array(
                 //array('validator' => 'Regex', 'options' => array("/(\d{7})/"))
@@ -18,7 +18,7 @@ class Default_Form_User extends Zend_Form
         
         // Add the email element
         $this->addElement('text', 'email', array(
-            'label'      => 'Email:',
+            'label'      => _tr('Email:'),
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
@@ -28,7 +28,7 @@ class Default_Form_User extends Zend_Form
         
         // Add the password ail element
         $this->addElement('password', 'password', array(
-            'label'      => 'Password:',
+            'label'      => _tr('Password:'),
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
@@ -39,7 +39,7 @@ class Default_Form_User extends Zend_Form
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Subscribe',
+            'label'    => _tr('Subscribe'),
         ));
 
         // And finally add some CSRF protection

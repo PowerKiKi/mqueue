@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-14 13:11+0100\n"
+"POT-Creation-Date: 2010-02-14 14:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: PowerKiKi <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
@@ -90,9 +90,31 @@ msgstr "Effacer"
 msgid "Filter"
 msgstr "Filtre"
 
+#: ../forms/Login.php:12
+#: ../forms/User.php:21
+msgid "Email:"
+msgstr "Email :"
+
+#: ../forms/Login.php:22
+#: ../forms/User.php:31
+msgid "Password:"
+msgstr "Mot de passe :"
+
 #: ../forms/Login.php:32
 msgid "Remember me"
 msgstr "Se souvenir de moi"
+
+#: ../forms/Login.php:38
+msgid "Login"
+msgstr "Se connecter"
+
+#: ../forms/User.php:12
+msgid "Nickname:"
+msgstr "Pseudo :"
+
+#: ../forms/User.php:42
+msgid "Subscribe"
+msgstr "Inscription"
 
 #: ../models/Status.php:22
 msgid "Not rated"
@@ -136,19 +158,11 @@ msgstr "Note"
 
 #: ../views/helpers/LoginState.php:12
 msgid "logged as "
-msgstr "Loggé sur "
+msgstr "connecté "
 
 #: ../views/helpers/LoginState.php:21
 msgid "Logout"
 msgstr "Se déconnecter"
-
-#: ../views/helpers/LoginState.php:28
-msgid "Subscribe"
-msgstr "Inscription"
-
-#: ../views/helpers/LoginState.php:33
-msgid "Login"
-msgstr "Se connecter"
 
 #: ../views/helpers/Navigation.php:12
 msgid "Movies"

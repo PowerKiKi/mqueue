@@ -9,7 +9,7 @@ class Default_Form_Login extends Zend_Form
        
         // Add the email element
         $this->addElement('text', 'email', array(
-            'label'      => 'Email:',
+            'label'      => _tr('Email:'),
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
@@ -19,7 +19,7 @@ class Default_Form_Login extends Zend_Form
         
         // Add the password element
         $this->addElement('password', 'password', array(
-            'label'      => 'Password:',
+            'label'      => _tr('Password:'),
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
@@ -35,7 +35,7 @@ class Default_Form_Login extends Zend_Form
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Login',
+            'label'    => _tr('Login'),
         ));
 
         // And finally add some CSRF protection

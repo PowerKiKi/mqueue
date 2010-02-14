@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-27 23:01+0100\n"
+"POT-Creation-Date: 2010-02-14 14:12+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
+"Last-Translator: PowerKiKi <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,91 +34,153 @@ msgstr ""
 "X-Poedit-SearchPath-17: ../views/scripts/status\n"
 "X-Poedit-SearchPath-18: ../views/scripts/user\n"
 
+#: ../controllers/FeedController.php:34
+#: ../controllers/FeedController.php:45
+#: ../controllers/MovieController.php:70
 #: ../controllers/UserController.php:100
+#, php-format
+msgid "Activity for %s"
+msgstr "%s의 내역"
+
+#: ../controllers/FeedController.php:52
+msgid "Overall activity"
+msgstr "전체 내역"
+
+#: ../controllers/MovieController.php:74
+msgid "Movie not found"
+msgstr "영화를 찾을 수 없습니다."
+
+#: ../controllers/UserController.php:104
 msgid "User not found"
 msgstr "사용자를 찾을 수 없습니다."
 
-#: ../forms/Filter.php:10
+#: ../forms/Filter.php:14
 msgid "<< me >>"
 msgstr "<< 내계정 >>"
 
-#: ../forms/Filter.php:17
+#: ../forms/Filter.php:23
 msgid "User :"
 msgstr "사용자 :"
 
-#: ../forms/Filter.php:23
+#: ../forms/Filter.php:27
+msgid "<< rated >>"
+msgstr "<< 평점 >>"
+
+#: ../forms/Filter.php:27
+msgid "<< no rated >>"
+msgstr "<< 등록되지 않았음 >>"
+
+#: ../forms/Filter.php:27
+msgid "<< all >>"
+msgstr "<< 전부 >>"
+
+#: ../forms/Filter.php:34
+msgid "Rating :"
+msgstr "평점:"
+
+#: ../forms/Filter.php:42
 msgid "Apply"
 msgstr "적용"
 
-#: ../forms/Filter.php:29
+#: ../forms/Filter.php:48
 msgid "Clear"
 msgstr "취소"
 
-#: ../forms/Filter.php:33
+#: ../forms/Filter.php:52
 msgid "Filter"
 msgstr "필터"
 
-#: ../models/Status.php:21
-msgid "Need"
-msgstr "볼것"
+#: ../forms/Login.php:12
+#: ../forms/User.php:21
+msgid "Email:"
+msgstr "Email:"
 
-#: ../models/Status.php:22
-msgid "Bad"
-msgstr "재미없음"
+#: ../forms/Login.php:22
+#: ../forms/User.php:31
+msgid "Password:"
+msgstr "Password:"
 
-#: ../models/Status.php:23
-msgid "Ok"
-msgstr "괜찮음"
+#: ../forms/Login.php:32
+msgid "Remember me"
+msgstr "내 정보 저장"
 
-#: ../models/Status.php:24
-msgid "Excellent"
-msgstr "재밌음"
-
-#: ../models/Status.php:25
-msgid "Favorite"
-msgstr "최고"
-
-#: ../views/helpers/LanguageSelector.php:8
-msgid "English"
-msgstr "영어"
-
-#: ../views/helpers/LanguageSelector.php:9
-msgid "Korean"
-msgstr "한국어"
-
-#: ../views/helpers/LanguageSelector.php:10
-msgid "French"
-msgstr "불어"
-
-#: ../views/helpers/LoginState.php:14
-msgid "logged as "
-msgstr "접속중"
-
-#: ../views/helpers/LoginState.php:23
-msgid "Logout"
-msgstr "접속종료"
-
-#: ../views/helpers/LoginState.php:30
-msgid "Subscribe"
-msgstr "등록"
-
-#: ../views/helpers/LoginState.php:35
+#: ../forms/Login.php:38
 msgid "Login"
 msgstr "접속"
 
-#: ../views/helpers/Navigation.php:16
+#: ../forms/User.php:12
+msgid "Nickname:"
+msgstr "이름:"
+
+#: ../forms/User.php:42
+msgid "Subscribe"
+msgstr "등록"
+
+#: ../models/Status.php:22
+msgid "Not rated"
+msgstr "평가 없음"
+
+#: ../models/Status.php:28
+msgid "Need"
+msgstr "볼것"
+
+#: ../models/Status.php:29
+msgid "Bad"
+msgstr "재미없음"
+
+#: ../models/Status.php:30
+msgid "Ok"
+msgstr "괜찮음"
+
+#: ../models/Status.php:31
+msgid "Excellent"
+msgstr "재밌음"
+
+#: ../models/Status.php:32
+msgid "Favorite"
+msgstr "최고"
+
+#: ../views/helpers/Activity.php:10
+msgid "Date"
+msgstr "날짜"
+
+#: ../views/helpers/Activity.php:11
+msgid "User"
+msgstr "사용자"
+
+#: ../views/helpers/Activity.php:12
+msgid "Movie"
+msgstr "영화"
+
+#: ../views/helpers/Activity.php:13
+msgid "Rating"
+msgstr "평점"
+
+#: ../views/helpers/LoginState.php:12
+msgid "logged as "
+msgstr "접속중"
+
+#: ../views/helpers/LoginState.php:21
+msgid "Logout"
+msgstr "접속종료"
+
+#: ../views/helpers/Navigation.php:12
 msgid "Movies"
 msgstr "영화"
 
-#: ../views/helpers/Navigation.php:21
+#: ../views/helpers/Navigation.php:17
+msgid "Add movie"
+msgstr "영화 등록"
+
+#: ../views/helpers/Navigation.php:22
 msgid "Users"
 msgstr "사용자"
 
-#: ../views/helpers/Navigation.php:26
+#: ../views/helpers/Navigation.php:27
 msgid "FAQ"
 msgstr "도움말"
 
-#: ../views/helpers/Navigation.php:31
+#: ../views/helpers/Navigation.php:32
 msgid "About"
 msgstr "소개"
 
@@ -142,7 +204,11 @@ msgstr "재밌음, 두번도 보겠어요."
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "진짜 괜찮은 영화, 정기적으로 꼭 봐줘야해요."
 
-#: ../layouts/scripts/layout.phtml:20
+#: ../layouts/scripts/layout.phtml:22
+msgid "mQueue monster !"
+msgstr "엠큐 몬스터!"
+
+#: ../layouts/scripts/layout.phtml:22
 msgid "mQueue"
 msgstr "mQueue"
 
@@ -165,103 +231,117 @@ msgid ""
 "Framework 1.9</a> and <a href=\"http://jquery.com/\">jQuery</a>\n"
 ". It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
 msgstr ""
+"이 싸이트는 개인적인 용도로 만들어 졌습니다. 이 싸이트는 PHP로 쓰여있고, \n"
+"<a href=\"http://framework.zend.com/\">Zend\n"
+"Framework 1.9</a> 와 <a href=\"http://jquery.com/\">jQuery</a>\n"
+" 등이 사용되었습니다..그리고 <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>이 사용되었습니다."
 
 #: ../views/scripts/about/index.phtml:9
 msgid ""
 "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
 "http://github.com/PowerKiKi/mqueue</a>."
 msgstr ""
+"소스 코드는 <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
+"http://github.com/PowerKiKi/mqueue</a> 에서 무료로 배포됩니다."
 
 #: ../views/scripts/faq/index.phtml:3
 msgid "How does this work ?"
-msgstr ""
+msgstr "어떻게 사용하나요?"
 
 #: ../views/scripts/faq/index.phtml:4
 msgid "To get the most of this website, you should:"
-msgstr ""
+msgstr "제대로 화면을 보시려면:"
 
 #: ../views/scripts/faq/index.phtml:6
 msgid "Create an account"
-msgstr ""
+msgstr "계정을 만듭니다."
 
 #: ../views/scripts/faq/index.phtml:9
-msgid "For Chrome, do nothing"
-msgstr ""
+msgid "For Chrome, skip to next step"
+msgstr "Chrome 사용자는 다음 단계로 바로 넘어갑니다."
 
 #: ../views/scripts/faq/index.phtml:10
 msgid "For Firefox, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">install Greasemonkey</a>"
-msgstr ""
+msgstr "Firefox 사용자는, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">Greasemonkey </a>를 설치합니다."
 
 #: ../views/scripts/faq/index.phtml:11
 msgid "For Safari, <a href=\"http://www.culater.net/software/SIMBL/SIMBL.php\">SIMBL</a> and <a href=\"http://8-p.info/greasekit/\">GreaseKit</a> should work"
-msgstr ""
+msgstr "Safari 사용자는, <a href=\"http://www.culater.net/software/SIMBL/SIMBL.php\">SIMBL</a> 과 <a href=\"http://8-p.info/greasekit/\">GreaseKit</a> 를 설치합니다."
 
 #: ../views/scripts/faq/index.phtml:12
 msgid "For IE, <a href=\"http://www.gm4ie.com\">Greasemonkey for IE</a> may hopefully help"
-msgstr ""
+msgstr "Internet Explorer사용자는 <a href=\"http://www.gm4ie.com\">Greasemonkey for IE</a> 를 설치합니다."
 
 #: ../views/scripts/faq/index.phtml:15
 msgid "Install the user script"
-msgstr ""
+msgstr "user script 를 설치합니다."
 
 #: ../views/scripts/faq/index.phtml:16
-msgid "Surf on "
-msgstr ""
+msgid "Surf on <a href=\"http://www.imdb.com/\">www.imdb.com</a> and rate movies by clicking icons"
+msgstr "<a href=\"http://www.imdb.com/\">www.imdb.com</a> 싸이트에서 영화를 검색하시고, 옆에 보이는 아이콘을 클릭해서 영화를 등록합니다."
 
 #: ../views/scripts/faq/index.phtml:20
 msgid "What is the meaning of the icons ?"
-msgstr ""
+msgstr "이 아이콘들은 무슨 뜻입니까?"
 
 #: ../views/scripts/faq/index.phtml:24
 msgid "How can I add more ratings options ?"
-msgstr ""
+msgstr "위의 아이콘 이외에 다른 평점을 줄 수 있습니까?"
 
 #: ../views/scripts/faq/index.phtml:25
 msgid "You cannot. It is meant to be a very simple, fast and efficient system. No extra bloating options."
-msgstr ""
+msgstr "아니오. 이 싸이트는 간단하고 빠른면서 효과적인 시스템을 목표로 합니다. 추가적인 복잡한 시스템을 지양합니다."
 
 #: ../views/scripts/movie/add.phtml:1
 msgid "Add a new movie"
 msgstr "새 영화 등록"
 
-#: ../views/scripts/movie/add.phtml:12
-msgid "need browser with iframe"
-msgstr ""
+#: ../views/scripts/movie/add.phtml:9
+#: ../views/scripts/movie/index.phtml:6
+msgid "Title"
+msgstr "제목"
+
+#: ../views/scripts/movie/add.phtml:13
+#, php-format
+msgid "There is no movie to show. Please read the %s to learn how to add movies."
+msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고하세요."
+
+#: ../views/scripts/movie/add.phtml:31
+#: ../views/scripts/movie/index.phtml:29
+#, php-format
+msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
+msgstr "어떻게 한번 클릭으로 www.imdb.com 에서 영화를 바로 등록하는지  %s 를 참고하세요."
 
 #: ../views/scripts/movie/index.phtml:1
 msgid "Movies list"
 msgstr "영화 목록"
 
-#: ../views/scripts/movie/index.phtml:5
-msgid "Rating"
-msgstr "평점"
-
-#: ../views/scripts/movie/index.phtml:6
-msgid "Title"
-msgstr "제목"
-
 #: ../views/scripts/movie/index.phtml:10
-#, php-format
-msgid "There is no movie to show. Please read the %s to learn how to add movies."
-msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고하세요."
+msgid "There is no movie to show."
+msgstr "표시될 영화가 없습니다."
 
-#: ../views/scripts/movie/index.phtml:28
-msgid "Add movie"
-msgstr "영화 등록"
+#: ../views/scripts/movie/view.phtml:3
+#: ../views/scripts/status/index.phtml:1
+msgid "Current status"
+msgstr "현재 상태"
+
+#: ../views/scripts/movie/view.phtml:27
+#: ../views/scripts/user/view.phtml:47
+msgid "Activity"
+msgstr "내역"
 
 #: ../views/scripts/user/index.phtml:1
 msgid "Users list"
 msgstr "사용자 목록"
 
-#: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:11
-msgid "Not rated"
-msgstr "평가 없음"
+#: ../views/scripts/user/index.phtml:2
+msgid "Overall statistics"
+msgstr "전체 내역"
 
-#: ../views/scripts/user/index.phtml:36
-#, php-format
-msgid "Total number of movie is %s"
-msgstr "등록된 영화 수는 %s입니다."
+#: ../views/scripts/user/index.phtml:13
+#: ../views/scripts/user/view.phtml:13
+msgid "Rated"
+msgstr "평점"
 
 #: ../views/scripts/user/logout.phtml:2
 msgid "You successfully log out"
@@ -271,11 +351,21 @@ msgstr "로그아웃 되었습니다."
 msgid "Create new user"
 msgstr "새 계정등록"
 
-#: ../views/scripts/user/view.phtml:2
+#: ../views/scripts/user/view.phtml:3
 msgid "Statistics"
-msgstr ""
+msgstr "상태"
 
-#: ../views/scripts/user/view.phtml:12
-msgid "Total"
-msgstr "Total"
+#~ msgid "English"
+#~ msgstr "영어"
 
+#~ msgid "Korean"
+#~ msgstr "한국어"
+
+#~ msgid "French"
+#~ msgstr "불어"
+
+#~ msgid "Total number of movie is %s"
+#~ msgstr "등록된 영화 수는 %s입니다."
+
+#~ msgid "Total"
+#~ msgstr "Total"

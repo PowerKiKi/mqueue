@@ -41,11 +41,11 @@ function scanIMDB(server)
 	var i = 0;
 	$("a[href*='title/tt'], link[rel='canonical']").each(function()
 	{
-		regexp = /www\.imdb\.com\/title\/tt(\d{7})\/$/;
+		regexp = /www\.imdb\.(com|fr|es|pt|it)\/title\/tt(\d{7})\/$/;
 		if (regexp.test(this.href))
 		{
 			var array = regexp.exec(this.href);
-			var id = array[1];
+			var id = array[2];
 			if (list[id] == null)
 			{
 				list[id] = new Array();
