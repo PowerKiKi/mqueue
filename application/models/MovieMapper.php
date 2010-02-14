@@ -22,7 +22,8 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		$select = $this->getDbTable()->select()
 			->from('movie')
 			->joinLeft('status', 'movie.id = status.idMovie AND status.idUser = ' . $idUser , array())
-			->where('status.idUser = ?', $idUser);
+			->where('status.idUser = ?', $idUser)
+			->order('title');
 			
 		if ($status >= 0 && $status <= 5)
 		{
