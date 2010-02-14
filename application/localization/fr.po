@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-01 14:09+0100\n"
+"POT-Creation-Date: 2010-02-14 13:11+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
+"Last-Translator: PowerKiKi <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,11 +34,23 @@ msgstr ""
 "X-Poedit-SearchPath-17: ../views/scripts/status\n"
 "X-Poedit-SearchPath-18: ../views/scripts/user\n"
 
-#: ../controllers/MovieController.php:72
+#: ../controllers/FeedController.php:34
+#: ../controllers/FeedController.php:45
+#: ../controllers/MovieController.php:70
+#: ../controllers/UserController.php:100
+#, php-format
+msgid "Activity for %s"
+msgstr "Activité de %s"
+
+#: ../controllers/FeedController.php:52
+msgid "Overall activity"
+msgstr "Activité générale"
+
+#: ../controllers/MovieController.php:74
 msgid "Movie not found"
 msgstr "Film introuvable"
 
-#: ../controllers/UserController.php:95
+#: ../controllers/UserController.php:104
 msgid "User not found"
 msgstr "Utilisateur introuvable"
 
@@ -51,12 +63,16 @@ msgid "User :"
 msgstr "Utilisateur :"
 
 #: ../forms/Filter.php:27
-msgid "<< all >>"
-msgstr "<< tous >>"
+msgid "<< rated >>"
+msgstr "<< noté >>"
 
 #: ../forms/Filter.php:27
-msgid "<< none >>"
-msgstr "<< aucun >>"
+msgid "<< no rated >>"
+msgstr "<< pas noté >>"
+
+#: ../forms/Filter.php:27
+msgid "<< all >>"
+msgstr "<< tous >>"
 
 #: ../forms/Filter.php:34
 msgid "Rating :"
@@ -74,37 +90,49 @@ msgstr "Effacer"
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../models/Status.php:21
+#: ../forms/Login.php:32
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+#: ../models/Status.php:22
+msgid "Not rated"
+msgstr "Pas noté"
+
+#: ../models/Status.php:28
 msgid "Need"
 msgstr "Veux voir"
 
-#: ../models/Status.php:22
+#: ../models/Status.php:29
 msgid "Bad"
 msgstr "Ennuyeux"
 
-#: ../models/Status.php:23
+#: ../models/Status.php:30
 msgid "Ok"
 msgstr "Sympa"
 
-#: ../models/Status.php:24
+#: ../models/Status.php:31
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../models/Status.php:25
+#: ../models/Status.php:32
 msgid "Favorite"
 msgstr "Favori"
 
-#: ../views/helpers/LanguageSelector.php:8
-msgid "English"
-msgstr "Anglais"
+#: ../views/helpers/Activity.php:10
+msgid "Date"
+msgstr "Date"
 
-#: ../views/helpers/LanguageSelector.php:9
-msgid "Korean"
-msgstr "Coréen"
+#: ../views/helpers/Activity.php:11
+msgid "User"
+msgstr "Utilisateur"
 
-#: ../views/helpers/LanguageSelector.php:10
-msgid "French"
-msgstr "Français"
+#: ../views/helpers/Activity.php:12
+msgid "Movie"
+msgstr "Film"
+
+#: ../views/helpers/Activity.php:13
+msgid "Rating"
+msgstr "Note"
 
 #: ../views/helpers/LoginState.php:12
 msgid "logged as "
@@ -127,14 +155,18 @@ msgid "Movies"
 msgstr "Films"
 
 #: ../views/helpers/Navigation.php:17
+msgid "Add movie"
+msgstr "Ajouter un film"
+
+#: ../views/helpers/Navigation.php:22
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: ../views/helpers/Navigation.php:22
+#: ../views/helpers/Navigation.php:27
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../views/helpers/Navigation.php:27
+#: ../views/helpers/Navigation.php:32
 msgid "About"
 msgstr "A propos"
 
@@ -158,7 +190,11 @@ msgstr "Excellent, je le regarderais volontiers deux fois"
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "Absolument génial, le genre de film mythique à regarder plein de fois"
 
-#: ../layouts/scripts/layout.phtml:20
+#: ../layouts/scripts/layout.phtml:22
+msgid "mQueue monster !"
+msgstr "le monstre mQueue !"
+
+#: ../layouts/scripts/layout.phtml:22
 msgid "mQueue"
 msgstr "mQueue"
 
@@ -201,8 +237,8 @@ msgid "Create an account"
 msgstr "Créer un compte"
 
 #: ../views/scripts/faq/index.phtml:9
-msgid "For Chrome, do nothing"
-msgstr "Pour Chrome, ne rien faire"
+msgid "For Chrome, skip to next step"
+msgstr "Pour Chrome, passer à l'étape suivante"
 
 #: ../views/scripts/faq/index.phtml:10
 msgid "For Firefox, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">install Greasemonkey</a>"
@@ -226,7 +262,7 @@ msgstr "Surfer sur <a href=\"http://www.imdb.com/\">www.imdb.com</a> et noter le
 
 #: ../views/scripts/faq/index.phtml:20
 msgid "What is the meaning of the icons ?"
-msgstr "Quelle est la signifaction des icones ?"
+msgstr "Quelle est la signification des icones ?"
 
 #: ../views/scripts/faq/index.phtml:24
 msgid "How can I add more ratings options ?"
@@ -234,55 +270,58 @@ msgstr "Comment ajouter d'autre options pour noter ?"
 
 #: ../views/scripts/faq/index.phtml:25
 msgid "You cannot. It is meant to be a very simple, fast and efficient system. No extra bloating options."
-msgstr "Ce n'est pas possible. Ce site a été conçu pour très simple, rapide et efficace. Aucune options supplémentaire n'est prévue."
+msgstr "Ce n'est pas possible. Ce site a été conçu pour être très simple, rapide et efficace. Aucune options supplémentaire n'est prévue."
 
 #: ../views/scripts/movie/add.phtml:1
 msgid "Add a new movie"
 msgstr "Ajouter un nouveau film"
 
-#: ../views/scripts/movie/add.phtml:12
-msgid "need browser with iframe"
-msgstr "besoin d'un browser avec support des iframe"
+#: ../views/scripts/movie/add.phtml:9
+#: ../views/scripts/movie/index.phtml:6
+msgid "Title"
+msgstr "Titre"
+
+#: ../views/scripts/movie/add.phtml:13
+#, php-format
+msgid "There is no movie to show. Please read the %s to learn how to add movies."
+msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
+
+#: ../views/scripts/movie/add.phtml:31
+#: ../views/scripts/movie/index.phtml:29
+#, php-format
+msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
+msgstr "Voir la %s pour savoir comment ajouter des films en un seul clique directement sur www.imdb.com !"
 
 #: ../views/scripts/movie/index.phtml:1
 msgid "Movies list"
 msgstr "Liste de films"
 
-#: ../views/scripts/movie/index.phtml:5
-#: ../views/scripts/movie/view.phtml:6
-msgid "Rating"
-msgstr "Note"
-
-#: ../views/scripts/movie/index.phtml:6
-msgid "Title"
-msgstr "Titre"
-
 #: ../views/scripts/movie/index.phtml:10
-#, php-format
-msgid "There is no movie to show. Please read the %s to learn how to add movies."
-msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
+msgid "There is no movie to show."
+msgstr "Aucun film à montrer."
 
-#: ../views/scripts/movie/index.phtml:28
-msgid "Add movie"
-msgstr "Ajouter un film"
+#: ../views/scripts/movie/view.phtml:3
+#: ../views/scripts/status/index.phtml:1
+msgid "Current status"
+msgstr "Etat actuel"
 
-#: ../views/scripts/movie/view.phtml:5
-msgid "User"
-msgstr "Utilisateur"
+#: ../views/scripts/movie/view.phtml:27
+#: ../views/scripts/user/view.phtml:47
+msgid "Activity"
+msgstr "Activité"
 
 #: ../views/scripts/user/index.phtml:1
 msgid "Users list"
 msgstr "Liste des utilisateurs"
 
-#: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:17
-msgid "Not rated"
-msgstr "Pas noté"
+#: ../views/scripts/user/index.phtml:2
+msgid "Overall statistics"
+msgstr "Statistiques générales"
 
-#: ../views/scripts/user/index.phtml:48
-#, php-format
-msgid "Total number of movie is %s"
-msgstr "Le nombre total de film est de %s"
+#: ../views/scripts/user/index.phtml:13
+#: ../views/scripts/user/view.phtml:13
+msgid "Rated"
+msgstr "Noté"
 
 #: ../views/scripts/user/logout.phtml:2
 msgid "You successfully log out"
@@ -292,16 +331,30 @@ msgstr "Vous êtes maintenant déconnecté."
 msgid "Create new user"
 msgstr "Créer un nouveau compte"
 
-#: ../views/scripts/user/view.phtml:2
+#: ../views/scripts/user/view.phtml:3
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: ../views/scripts/user/view.phtml:24
-msgid "Total"
-msgstr "Total"
+#~ msgid "English"
+#~ msgstr "Anglais"
+
+#~ msgid "Korean"
+#~ msgstr "Coréen"
+
+#~ msgid "French"
+#~ msgstr "Français"
+
+#~ msgid "need browser with iframe"
+#~ msgstr "besoin d'un browser avec support des iframe"
+
+#~ msgid "Total number of movie is %s"
+#~ msgstr "Le nombre total de film est de %s"
+
+#~ msgid "Total"
+#~ msgstr "Total"
 
 #~ msgid "Surf on "
 #~ msgstr "Surfer sur"
+
 #~ msgid "not logged in"
 #~ msgstr "pas loggé"
-

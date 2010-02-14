@@ -7,7 +7,7 @@
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="2">
-	<?php echo $this->translate('There is no movie to show. Please read the %s to learn how to add movies.', array('<a href="' . $this->url(array('controller' => 'faq')) .'">' . _tr('FAQ') . '</a>')); ?>
+	<?php echo $this->translate('There is no movie to show.'); ?>
 	</td></tr>
 <?php else: ?>
 	<?php foreach ($this->paginator as $entry): ?>
@@ -20,4 +20,15 @@
 </table>
 <?php echo $this->paginator; ?>
 
-<div class="tips"><?php echo $this->statusHelp(); ?></div>
+
+<?php if ($this->paginator->getTotalItemCount() != 0): ?>
+	<div class="tips"><?php echo $this->statusHelp(); ?></div>
+<?php else: ?>
+	<div class="tips">
+	<?php 
+		echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
+		'<a href="' . $this->url(array('controller' => 'faq'), null, true). '">' . $this->translate('FAQ') . '</a>'
+		)); 
+	?>
+	</div>
+<?php endif; ?>

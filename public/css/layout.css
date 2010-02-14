@@ -241,3 +241,36 @@ td.number
 {
 	text-align: right;
 }
+
+#filterStatus option
+{
+	padding-left: 20px;
+	background-image: url(../images/status.png);
+	background-repeat: no-repeat;
+	background-position: -999px -999px;
+}
+
+#filterStatus option[value='1']
+{
+	background-position: -16px 0px;
+}
+
+#filterStatus option[value='2']
+{
+	background-position: -16px -16px;
+}
+
+#filterStatus option[value='3']
+{
+	background-position: -16px -32px;
+}
+
+#filterStatus option[value='4']
+{
+	background-position: -16px -48px;
+}
+
+#filterStatus option[value='5']
+{
+	background-position: -16px -64px;
+}

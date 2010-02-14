@@ -28,13 +28,13 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		{
 			$select->where('status.rating = ?', $status);
 		}
-		else
+		elseif ($status == -1)
 		{
 			$select->where('status.rating <> ?', 0);
 		}
 		
 		
-		if ($status == 0)
+		if ($status == 0 || $status == -2)
 		{
 			$select->orWhere('status.rating IS NULL');
 		}

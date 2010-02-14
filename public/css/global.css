@@ -17,79 +17,80 @@
 .status_links
 {
 	display: inline !important;
+	white-space: no-wrap;
 }
 
 .status_1
 {
-	background-position: 0px -16px;
+	background-position: 0px 0px;
 }
 
 .status_1:hover
 {
-	background-position: 0px 0px;
+	background-position: -16px 0px;
 }
 
 .status_1.current
 {
-	background-position: 0px -0px;
+	background-position: -16px 0px;
 }
 
 .status_2
 {
-	background-position: -16px -16px;
+	background-position: 0px -16px;
 }
 
 .status_2:hover
 {
-	background-position: -16px 0px;
+	background-position: -16px -16px;
 }
 
 .status_2.current
 {
-	background-position: -16px 0px;
+	background-position: -16px -16px;
 }
 
 .status_3
 {
-	background-position: -32px -16px;
+	background-position: 0px -32px;
 }
 
 .status_3:hover
 {
-	background-position: -32px 0px;
+	background-position: -16px -32px;
 }
 
 .status_3.current
 {
-	background-position: -32px 0px;
+	background-position: -16px -32px;
 }
 
 .status_4
 {
-	background-position: -48px -16px;
+	background-position: 0px -48px;
 }
 
 .status_4:hover
 {
-	background-position: -48px 0px;
+	background-position: -16px -48px;
 }
 
 .status_4.current
 {
-	background-position: -48px 0px;
+	background-position: -16px -48px;
 }
 
 .status_5
 {
-	background-position: -64px -16px;
+	background-position: 0px -64px;
 }
 
 .status_5:hover
 {
-	background-position: -64px 0px;
+	background-position: -16px -64px;
 }
 
 .status_5.current
 {
-	background-position: -64px 0px;
+	background-position: -16px -64px;
 }

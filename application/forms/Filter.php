@@ -24,7 +24,7 @@ class Default_Form_Filter extends Zend_Form
 		));
 		
 		
-		$status = array(-1 => _tr('<< all >>'), 0 => _tr('<< none >>'));
+		$status = array(-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>'));
 		$status = $status + Default_Model_Status::$ratings;
 		//foreach (Default_Model_Status::$ratings)
 		//	$status[$user->id] = $user->nickname;

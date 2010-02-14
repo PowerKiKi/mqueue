@@ -44,7 +44,7 @@ class MovieController extends Zend_Controller_Action
 
 		// Get the filter for status
 		$statusFilter = -1;
-		if (isset($session->filter['filterStatus']) && (integer)$session->filter['filterStatus'] >= -1 && (integer)$session->filter['filterStatus'] <= 5)
+		if (isset($session->filter['filterStatus']) && (integer)$session->filter['filterStatus'] >= -2 && (integer)$session->filter['filterStatus'] <= 5)
 		{
 			$statusFilter = (integer)$session->filter['filterStatus'];
 		}
