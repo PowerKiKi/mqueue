@@ -274,3 +274,26 @@ td.number
 {
 	background-position: -16px -64px;
 }
+
+a.sort
+{
+	color: grey;
+}
+
+a.sort.asc,
+a.sort.desc
+{
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	padding-right: 16px;
+}
+
+a.sort.asc
+{
+	background-image: url(../images/sort_asc.png);
+}
+
+a.sort.desc
+{
+	background-image: url(../images/sort_desc.png);
+}

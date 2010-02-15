@@ -17,13 +17,23 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
         return $resultSet;
     }
     
-    public function getFilteredQuery($idUser, $status)
+    public function getFilteredQuery($idUser, $status, $sort, $sortOrder)
     {
+    	$sortable = array('title', 'rating');
+    	if (!in_array($sort, $sortable))
+    		$sort = reset($sortable);
+    	
+    	if ($sortOrder == 'desc')
+    		$sortOrder = 'DESC';
+    	else
+    		$sortOrder = 'ASC'; 
+    	
+    	
 		$select = $this->getDbTable()->select()
 			->from('movie')
 			->joinLeft('status', 'movie.id = status.idMovie AND status.idUser = ' . $idUser , array())
 			->where('status.idUser = ?', $idUser)
-			->order('title');
+			->order($sort . ' ' . $sortOrder);
 			
 		if ($status >= 0 && $status <= 5)
 		{

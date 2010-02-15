@@ -2,8 +2,8 @@
 <?php echo $this->formFilter; ?>
 <table>
 <tr>
-	<th><?php echo $this->translate('Rating'); ?></th>
-	<th><?php echo $this->translate('Title'); ?></th>
+	<th><?php echo $this->sort($this->translate('Rating'), 'rating', $this->sort, $this->sortOrder); ?></th>
+	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="2">
