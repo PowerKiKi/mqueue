@@ -297,3 +297,28 @@ a.sort.desc
 {
 	background-image: url(../images/sort_desc.png);
 }
+
+.faq dt
+{
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+.browser_chrome
+{
+	list-style-image: url(../images/browser_chrome.gif);
+}
+.browser_firefox
+{
+	list-style-image: url(../images/browser_firefox.gif);
+}
+
+.browser_safari
+{
+	list-style-image: url(../images/browser_safari.gif);
+}
+
+.browser_ie
+{
+	list-style-image: url(../images/browser_ie.gif);
+}
