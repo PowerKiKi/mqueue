@@ -92,11 +92,25 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$result = array();
 		$mapperUser = new Default_Model_UserMapper();
 		$mapperMovie = new Default_Model_MovieMapper();
+		$cacheUser = array();
+		$cacheMovie = array();
 		foreach ($records as $r)
 		{
+			if (!array_key_exists($r->idUser, $cacheUser))
+			{
+				$cacheUser[$r->idUser] = $mapperUser->find($r->idUser);
+			}
+			$user = $cacheUser[$r->idUser]; 
+			
+			if (!array_key_exists($r->idMovie, $cacheMovie))
+			{
+				$cacheMovie[$r->idMovie] = $mapperMovie->find($r->idMovie);
+			}
+			$movie = $cacheMovie[$r->idMovie];
+			
 			$result []= array(
-						'user' => $mapperUser->find($r->idUser),
-						'movie' => $mapperMovie->find($r->idMovie),
+						'user' => $user,
+						'movie' => $movie,
 						'status' => $r,
 			);
 		}	
@@ -109,7 +123,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$select = $this->getDbTable()->select()
 			->from('status')
 			->order('dateUpdate DESC')
-			->limit(200);
+			->limit(200)
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
@@ -124,7 +138,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 			->from('status')
 			->where('idMovie = ?', $movie->id)
 			->order('dateUpdate DESC')
-			->limit(200);
+			->limit(200)
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
@@ -139,7 +153,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 			->from('status')
 			->where('idUser = ?', $user->id)
 			->order('dateUpdate DESC')
-			->limit(200);
+			->limit(200)
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
