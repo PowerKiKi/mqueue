@@ -149,14 +149,19 @@ color: black;
 
 #filter-element dd
 {
-	margin-right: 4em;
+	margin-right: 2em;
 }
 
 #fieldset-filter #submit-element,
 #fieldset-filter #clear-element
 {
 	float: right;
-	margin-right: 2em;
+	margin-right: 1em;
+}
+
+#filterTitle
+{
+	width: 10em;
 }
 
 ol ol

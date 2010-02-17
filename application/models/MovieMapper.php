@@ -17,7 +17,7 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
         return $resultSet;
     }
     
-    public function getFilteredQuery($idUser, $status, $sort, $sortOrder)
+    public function getFilteredQuery($idUser, $status, $title, $sort, $sortOrder)
     {
     	$sortable = array('title', 'rating');
     	if (!in_array($sort, $sortable))
@@ -26,8 +26,8 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	if ($sortOrder == 'desc')
     		$sortOrder = 'DESC';
     	else
-    		$sortOrder = 'ASC'; 
-    	
+    		$sortOrder = 'ASC';
+
     	
 		$select = $this->getDbTable()->select()
 			->from('movie')
@@ -44,12 +44,18 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$select->where('status.rating <> ?', 0);
 		}
 		
-		
 		if ($status == 0 || $status == -2)
 		{
 			$select->orWhere('status.rating IS NULL');
 		}
 		
+		$titles = explode(' ', trim($title));
+    	foreach ($titles as $part)
+    	{
+    		if ($part = trim($part))
+    			$select->where('movie.title LIKE ?', '%' . $part . '%');
+    	}
+		echo $select;
     	return $select;
     }
 }

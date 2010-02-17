@@ -35,6 +35,11 @@ class Default_Form_Filter extends Zend_Form
 		));
 		
 		
+        // Add the filter element
+        $this->addElement('text', 'filterTitle', array(
+            'label'      => 'Title :',
+        ));
+		
 
 		// Add the submit button
 		$this->addElement('submit', 'submit', array(
@@ -49,6 +54,6 @@ class Default_Form_Filter extends Zend_Form
 		));
 		
 		
-		$this->addDisplayGroup(array('filterUser', 'filterStatus', 'submit', 'clear'), 'filter', array('legend' => _tr('Filter')));
+		$this->addDisplayGroup(array('filterUser', 'filterStatus', 'filterTitle', 'submit', 'clear'), 'filter', array('legend' => _tr('Filter')));
 	}
 }
