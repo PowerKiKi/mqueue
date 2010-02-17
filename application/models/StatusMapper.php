@@ -109,6 +109,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$select = $this->getDbTable()->select()
 			->from('status')
 			->order('dateUpdate DESC')
+			->limit(200);
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
