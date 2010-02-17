@@ -123,6 +123,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 			->from('status')
 			->where('idMovie = ?', $movie->id)
 			->order('dateUpdate DESC')
+			->limit(200);
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
@@ -137,6 +138,7 @@ class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 			->from('status')
 			->where('idUser = ?', $user->id)
 			->order('dateUpdate DESC')
+			->limit(200);
 			;
 			
 		$records = $this->getDbTable()->fetchAll($select);
