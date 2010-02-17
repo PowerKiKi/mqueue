@@ -327,3 +327,17 @@ a.sort.desc
 {
 	list-style-image: url(../images/browser_ie.gif);
 }
+
+a.imdb span
+{
+	display: none;
+}
+
+a.imdb
+{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url(../images/imdb_small.gif);
+
+}

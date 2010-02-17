@@ -24,12 +24,7 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 										'nickname' => $a['user']->nickname
 										),
 									'default', true) . '">' . $this->view->gravatar($a['user']). ' ' . $this->view->escape($a['user']->nickname) . '</a></td>';
-			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie"><a href="' . $this->view->url(array(
-										'controller' => 'movie',
-										'action' => 'view',
-										'idMovie' => $a['movie']->id
-										),
-									'default', true) . '">' . $this->view->escape($a['movie']->getTitle()) . '</a></td>';
+			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie">' . $this->view->movie($a['movie']) . '</td>';
 			if (!in_array('status', $hiddenColumns)) $result .= '<td class="rating">' . $this->view->statusLinks($a['status']) . '</td>';
 			
 			$result .= '</tr>';

@@ -13,7 +13,7 @@
 	<?php foreach ($this->paginator as $entry): ?>
 		<tr>
 			<td class="rating"><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
-			<td class="movie"><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->escape($entry->getTitle()) ?></a></td>
+			<td class="movie"><?php echo $this->movie($entry); ?></td>
 		</tr>
 	<?php endforeach ?>
 <?php endif; ?>

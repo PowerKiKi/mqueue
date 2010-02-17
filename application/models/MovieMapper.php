@@ -55,7 +55,7 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     		if ($part = trim($part))
     			$select->where('movie.title LIKE ?', '%' . $part . '%');
     	}
-		echo $select;
+    	
     	return $select;
     }
 }
