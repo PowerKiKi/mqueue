@@ -45,6 +45,14 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return $mapper->find($idUser, $this->id);
 	}
 	
+	public function setStatus($idUser, $rating)
+	{
+		$mapper = new Default_Model_StatusMapper();
+		$status = $mapper->find($idUser, $this->id);			
+		$status->rating = $rating;
+		$status->save();
+	}
+	
 	public function getActivity()
 	{
 		$mapper = new Default_Model_StatusMapper();

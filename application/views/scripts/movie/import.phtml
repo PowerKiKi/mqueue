@@ -1,4 +1,4 @@
-<h2><?php echo $this->translate('Add a new movie')?></h2>
+<h2><?php echo $this->translate('Import votes from IMDb')?></h2>
 <?php echo $this->form; ?>
 <?php if (isset($this->movies)): ?>
 	<h3>Movie found</h3>
@@ -15,7 +15,7 @@
 	<?php else: ?>
 		<?php foreach ($this->movies as $entry): ?>
 			<tr>
-				<td><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
+				<td><?php echo $this->statusLinks($entry->getStatus(Default_Model_User::getCurrent()->id))?></td>
 				<td><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->movie($entry); ?></a></td>
 			</tr>
 		<?php endforeach ?>

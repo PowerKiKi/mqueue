@@ -10,36 +10,36 @@ class MovieController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-    	$form = new Default_Form_Filter();
-    	$this->view->formFilter = $form;
+		$form = new Default_Form_Filter();
+		$this->view->formFilter = $form;
 
-    	// Initialize session
+		// Initialize session
 		$session = new Zend_Session_Namespace();
-    	if (!isset($session->filter))
-    		$session->filter = array();
-    	
-    	// If want to clear the filter do so, otherwise try to validate it
-    	if ($this->_getParam('clear', false))
-    	{
-    		$session->filter = array();
-    	}
-    	else
-    	{
-	    	$filter = array_merge($session->filter, $this->getRequest()->getParams()); 
-	    	
+		if (!isset($session->filter))
+		$session->filter = array();
+		 
+		// If want to clear the filter do so, otherwise try to validate it
+		if ($this->_getParam('clear', false))
+		{
+			$session->filter = array();
+		}
+		else
+		{
+			$filter = array_merge($session->filter, $this->getRequest()->getParams());
+
 			// Store the filter in session if it's valid
 			if ($form->isValid($filter))
 			{
 				$session->filter = $filter;
 			}
-    	}
+		}
 
-    	// Find the correct filtered user
+		// Find the correct filtered user
 		$idUser = 0;
 		if (isset($session->filter['filterUser']) && (integer)$session->filter['filterUser'] > 0)
-			$idUser = (integer)$session->filter['filterUser'];
+		$idUser = (integer)$session->filter['filterUser'];
 		elseif (isset($session->idUser))
-			$idUser = $session->idUser;
+		$idUser = $session->idUser;
 		$this->view->idUser = $idUser;
 
 		// Get the filter for status
@@ -48,13 +48,13 @@ class MovieController extends Zend_Controller_Action
 		{
 			$statusFilter = (integer)$session->filter['filterStatus'];
 		}
-		
+
 		$titleFilter = '';
 		if (isset($session->filter['filterTitle']) && trim($session->filter['filterTitle']))
 		{
 			$titleFilter = trim($session->filter['filterTitle']);
 		}
-		
+
 		// Set up the paginator
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
@@ -74,7 +74,7 @@ class MovieController extends Zend_Controller_Action
 		{
 			$this->view->movie = $mapper->find($this->getRequest()->getParam('idMovie'));
 		}
-		
+
 		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('Activity for %s', array($this->view->movie->getTitle())));
 
 		if (!$this->view->movie)
@@ -108,18 +108,72 @@ class MovieController extends Zend_Controller_Action
 				$this->view->movies = array($movie);
 				//$this->_helper->FlashMessenger('We did something in the last request');
 				//$this->view->messages = $this->_helper->FlashMessenger->getMessages();
-					
+				 
 				$session = new Zend_Session_Namespace();
 				if (isset($session->idUser))
-					$this->view->idUser = $session->idUser;
+				$this->view->idUser = $session->idUser;
 				else
-					$this->view->idUser = 0;
+				$this->view->idUser = 0;
 			}
 		}
 
 		$this->view->form = $form;
 	}
 
+	public function importAction()
+	{
+		$request = $this->getRequest();
+		$form    = new Default_Form_Import();
+		$form->setDefaults(array('favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5));
+		
+
+		if ($this->getRequest()->isPost())
+		{
+			if ($form->isValid($request->getPost()))
+			{
+				$values = $form->getValues();
+				$mapper = new Default_Model_MovieMapper();
+				$page = file_get_contents($values['url']);
+				
+				$r = '|<a href="/title/tt(\d{7})/">.*</td>\s<td.*>(\d+(\.\d)*)</td>|U';
+				preg_match_all($r, $page, $matches);
+				
+				$movies = array();
+				for ($i = 0; $i < count($matches[1]); $i++)
+				{
+					$id = $matches[1][$i];
+					$imdbRating = $matches[2][$i];
+					
+					$movie = $mapper->find($id);
+					if (!$movie)
+					{
+						$movie = $mapper->getDbTable()->createRow();
+						$movie->setId($id);
+						$movie->save();
+					}
+
+					if ($imdbRating >= $values['favoriteMinimum'])
+						$rating = Default_Model_Status::Favorite;
+					elseif ($imdbRating >= $values['excellentMinimum'])
+						$rating = Default_Model_Status::Excellent;
+					elseif ($imdbRating >= $values['okMinimum'])
+						$rating = Default_Model_Status::Ok;
+					else
+						$rating = Default_Model_Status::Bad;
+						
+					$movie->setStatus(Default_Model_User::getCurrent()->id, $rating);
+					$movies []= $movie;
+				}
+				$this->view->movies = $movies;
+			}
+		}
+
+		$this->view->form = $form;
+	}
+
+
 }
+
+
 
 

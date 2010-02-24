@@ -9,7 +9,7 @@ class Default_Form_Movie extends Zend_Form
 
         // Add the comment element
         $this->addElement('text', 'id', array(
-            'label'      => 'IMDB url or id:',
+            'label'      => 'IMDb url or id:',
             'required'   => true,
             'validators' => array(
                 array('validator' => 'Regex', 'options' => array("/(\d{7})/"))

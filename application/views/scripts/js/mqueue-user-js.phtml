@@ -3,13 +3,13 @@ header('Content-type: application/javascript');
 
 ?>
 // ==UserScript==
-// @name           mQueue - Injects buttons to rate IMDB movies
+// @name           mQueue - Injects buttons to rate IMDb movies on <?php echo $this->serverUrl() . $this->baseUrl(''); ?>
 // @namespace      mQueue
 // @include        *
 // @exclude        <?php echo $this->serverUrl() . $this->baseUrl(''); ?>*
 // ==/UserScript==
 
-// Inject script if any links to IMDB found on the current page
+// Inject script if any links to IMDb found on the current page
 if (document.evaluate('count(//a[contains(@href, "title/tt")])', document, null, XPathResult.NUMBER_TYPE, null).numberValue > 0)
 {
     var script = document.createElement('script');
