@@ -356,3 +356,10 @@ a.imdb
 	background-image: url(../images/imdb_small.gif);
 
 }
+
+#favoriteMinimum,
+#excellentMinimum,
+#okMinimum
+{
+	width: 2em;
+}
