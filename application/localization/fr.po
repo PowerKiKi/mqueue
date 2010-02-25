@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-15 23:53+0100\n"
+"POT-Creation-Date: 2010-02-25 22:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../controllers/FeedController.php:34
 #: ../controllers/FeedController.php:45
-#: ../controllers/MovieController.php:72
+#: ../controllers/MovieController.php:78
 #: ../controllers/UserController.php:100
 #, php-format
 msgid "Activity for %s"
@@ -46,7 +46,7 @@ msgstr "Activité de %s"
 msgid "Overall activity"
 msgstr "Activité générale"
 
-#: ../controllers/MovieController.php:76
+#: ../controllers/MovieController.php:82
 msgid "Movie not found"
 msgstr "Film introuvable"
 
@@ -78,17 +78,33 @@ msgstr "<< tous >>"
 msgid "Rating :"
 msgstr "Note :"
 
-#: ../forms/Filter.php:42
+#: ../forms/Filter.php:47
 msgid "Apply"
 msgstr "Appliquer"
 
-#: ../forms/Filter.php:48
+#: ../forms/Filter.php:53
 msgid "Clear"
 msgstr "Effacer"
 
-#: ../forms/Filter.php:52
+#: ../forms/Filter.php:57
 msgid "Filter"
 msgstr "Filtre"
+
+#: ../forms/Import.php:12
+msgid "IMDb \"Vote History\" page url:"
+msgstr "L'url de la page \"Vote History\" de IMDb :"
+
+#: ../forms/Import.php:21
+msgid "Minimum for favorite:"
+msgstr "Minimum pour favorit :"
+
+#: ../forms/Import.php:31
+msgid "Minimum for excellent:"
+msgstr "Minimum pour excellent :"
+
+#: ../forms/Import.php:41
+msgid "Minimum for ok:"
+msgstr "Minimum pour ok :"
 
 #: ../forms/Login.php:12
 #: ../forms/User.php:21
@@ -107,6 +123,14 @@ msgstr "Se souvenir de moi"
 #: ../forms/Login.php:38
 msgid "Login"
 msgstr "Se connecter"
+
+#: ../forms/Movie.php:12
+msgid "IMDb url or id:"
+msgstr "Url d'IMDb ou id :"
+
+#: ../forms/Movie.php:22
+msgid "Add movie"
+msgstr "Ajouter un film"
 
 #: ../forms/User.php:12
 msgid "Nickname:"
@@ -164,13 +188,18 @@ msgstr "connecté "
 msgid "Logout"
 msgstr "Se déconnecter"
 
+#: ../views/helpers/Movie.php:7
+msgid "IMDb"
+msgstr "IMDb"
+
+#: ../views/helpers/Movie.php:13
+#, php-format
+msgid "Your rating is : %s"
+msgstr "Votre note est : %s"
+
 #: ../views/helpers/Navigation.php:12
 msgid "Movies"
 msgstr "Films"
-
-#: ../views/helpers/Navigation.php:17
-msgid "Add movie"
-msgstr "Ajouter un film"
 
 #: ../views/helpers/Navigation.php:22
 msgid "Users"
@@ -209,11 +238,11 @@ msgstr "Excellent, je le regarderais volontiers deux fois"
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "Absolument génial, le genre de film mythique à regarder plein de fois"
 
-#: ../layouts/scripts/layout.phtml:22
+#: ../layouts/scripts/layout.phtml:25
 msgid "mQueue monster !"
 msgstr "le monstre mQueue !"
 
-#: ../layouts/scripts/layout.phtml:22
+#: ../layouts/scripts/layout.phtml:25
 msgid "mQueue"
 msgstr "mQueue"
 
@@ -314,18 +343,27 @@ msgid "Add a new movie"
 msgstr "Ajouter un nouveau film"
 
 #: ../views/scripts/movie/add.phtml:9
+#: ../views/scripts/movie/import.phtml:9
+#: ../views/scripts/movie/index.phtml:6
 msgid "Title"
 msgstr "Titre"
 
 #: ../views/scripts/movie/add.phtml:13
+#: ../views/scripts/movie/import.phtml:13
 #, php-format
 msgid "There is no movie to show. Please read the %s to learn how to add movies."
 msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
 
 #: ../views/scripts/movie/add.phtml:31
+#: ../views/scripts/movie/import.phtml:31
+#: ../views/scripts/movie/index.phtml:29
 #, php-format
 msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
 msgstr "Voir la %s pour savoir comment ajouter des films en un seul clique directement sur www.imdb.com !"
+
+#: ../views/scripts/movie/import.phtml:1
+msgid "Import votes from IMDb"
+msgstr "Importer les votes d'IMDb"
 
 #: ../views/scripts/movie/index.phtml:1
 msgid "Movies list"
