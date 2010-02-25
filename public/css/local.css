@@ -101,7 +101,7 @@ body
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-color: black;
+	color: black;
 	background-color: white;
 }
 
@@ -225,9 +225,24 @@ input[type='text'][id='id']
 	width: 40em;
 }
 
+table
+{
+	border-collapse:collapse;
+}
+
+tr > th
+{
+	background-color: white;
+}
+
+tr:hover
+{
+	background-color: #EFEFEF;
+}
+
 td
 {
-	padding-right: 0.5em;
+	padding-right: 1em;
 }
 
 td.dateUpdate,
