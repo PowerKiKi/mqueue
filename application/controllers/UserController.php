@@ -62,7 +62,7 @@ class UserController extends Zend_Controller_Action
 				if ($user)
 				{
 					if ($values['remember'])
-						Zend_Session::rememberMe(1 * 60 * 60 * 24 * 365); // Cookie for one year
+						Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
 					
 					$session = new Zend_Session_Namespace();
 					$session->idUser = $user->id;
