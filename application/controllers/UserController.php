@@ -97,7 +97,7 @@ class UserController extends Zend_Controller_Action
 			$this->view->user = Default_Model_User::getCurrent();
 		}
 		
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'user' => $this->view->user->nickname, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'action' => 'index', 'user' => $this->view->user->nickname, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
 		
 		if (!$this->view->user)
 		{
