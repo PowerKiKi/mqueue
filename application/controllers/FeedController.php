@@ -31,7 +31,7 @@ class FeedController extends Zend_Controller_Action
     		if ($user)
     		{
     			$this->view->activity = $mapper->getActivityForUser($user);
-    			$this->view->title = $this->view->translate('Activity for %s', array($user->nickname));
+    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($user->nickname));
     		}
     	}
     	
@@ -42,14 +42,14 @@ class FeedController extends Zend_Controller_Action
     		if ($movie)
     		{
     			$this->view->activity = $mapper->getActivityForMovie($movie);
-    			$this->view->title = $this->view->translate('Activity for %s', array($movie->getTitle()));
+    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($movie->getTitle()));
     		}
     	}
     	
     	if (!$this->view->activity)
     	{
 			$this->view->activity = $mapper->getActivity();
-			$this->view->title = $this->view->translate('Overall activity');
+			$this->view->title = $this->view->translate('mQueue - Overall activity');
     	}
     }
 

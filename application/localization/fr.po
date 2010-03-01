@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 22:51+0100\n"
+"POT-Creation-Date: 2010-03-01 22:48+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Adrien Crivelli <adrien.crivelli@gmail.com>\n"
+"Last-Translator: PowerKiKi <adrien.crivelli@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,12 +39,12 @@ msgstr ""
 #: ../controllers/MovieController.php:78
 #: ../controllers/UserController.php:100
 #, php-format
-msgid "Activity for %s"
-msgstr "Activité de %s"
+msgid "mQueue - Activity for %s"
+msgstr "mQueue - Activité de %s"
 
 #: ../controllers/FeedController.php:52
-msgid "Overall activity"
-msgstr "Activité générale"
+msgid "mQueue - Overall activity"
+msgstr "mQueue - Activité générale"
 
 #: ../controllers/MovieController.php:82
 msgid "Movie not found"
@@ -396,6 +396,10 @@ msgstr "Statistiques générales"
 msgid "Rated"
 msgstr "Noté"
 
+#: ../views/scripts/user/index.phtml:57
+msgid "Overall activity"
+msgstr "Activité générale"
+
 #: ../views/scripts/user/logout.phtml:2
 msgid "You successfully log out"
 msgstr "Vous êtes maintenant déconnecté."
@@ -410,18 +414,24 @@ msgstr "Statistiques"
 
 #~ msgid "English"
 #~ msgstr "Anglais"
+
 #~ msgid "Korean"
 #~ msgstr "Coréen"
+
 #~ msgid "French"
 #~ msgstr "Français"
+
 #~ msgid "need browser with iframe"
 #~ msgstr "besoin d'un browser avec support des iframe"
+
 #~ msgid "Total number of movie is %s"
 #~ msgstr "Le nombre total de film est de %s"
+
 #~ msgid "Total"
 #~ msgstr "Total"
+
 #~ msgid "Surf on "
 #~ msgstr "Surfer sur"
+
 #~ msgid "not logged in"
 #~ msgstr "pas loggé"
-

@@ -7,7 +7,7 @@ $entries = array();
 // each, and push the array onto the $entries array
 foreach ($this->activity as $a) {
 	$date = new Zend_Date($a['status']->dateUpdate);
-	$text = '<a href="' . $this->url(array(
+	$text = '<p><a href="' . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
 										'nickname' => $a['user']->nickname
@@ -19,7 +19,8 @@ foreach ($this->activity as $a) {
 										'idMovie' => $a['movie']->id
 										),
 									'default', true) . '">' . $this->escape($a['movie']->getTitle()) . '</a> ' .
-			$a['status']->getName(); //$this->statusLinks($a['status']);
+			$a['status']->getName() . '</p>';
+	$text .= '<p><a href="' . $a['movie']->getImdbUrl() . '">' . $a['movie']->getImdbUrl() . '</a></p>';
 			
 	$title = $a['user']->nickname . ' - ' . $a['movie']->getTitle() . ' - ' . $a['status']->getName();
 		
