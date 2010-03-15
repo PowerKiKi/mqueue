@@ -28,27 +28,23 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	else
     		$sortOrder = 'ASC';
 
-    	
+    	$allowNull = ($status == 0 || $status == -2 ? ' OR status.rating IS NULL' : '');
 		$select = $this->getDbTable()->select()
 			->from('movie')
-			->joinLeft('status', 'movie.id = status.idMovie AND status.idUser = ' . $idUser , array())
-			->where('status.idUser = ?', $idUser)
+			->joinLeft('status', '(movie.id = status.idMovie AND status.idUser = ' . $idUser . ')' . $allowNull, array())
 			->order($sort . ' ' . $sortOrder);
-			
+
+		// Filter by status
 		if ($status >= 0 && $status <= 5)
 		{
-			$select->where('status.rating = ?', $status);
+			$select->where('status.rating = ?' . $allowNull, $status);
 		}
 		elseif ($status == -1)
 		{
-			$select->where('status.rating <> ?', 0);
+			$select->where('status.rating <> ?' . $allowNull, 0);
 		}
 		
-		if ($status == 0 || $status == -2)
-		{
-			$select->orWhere('status.rating IS NULL');
-		}
-		
+		// Filter by title
 		$titles = explode(' ', trim($title));
     	foreach ($titles as $part)
     	{
