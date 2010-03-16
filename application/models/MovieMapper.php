@@ -28,7 +28,7 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	else
     		$sortOrder = 'ASC';
 
-    	$allowNull = ($status == 0 || $status == -2 ? ' OR status.rating IS NULL' : '');
+    	$allowNull = ($status == 0 || $status == -2 ? ' OR status.idUser IS NULL' : '');
 		$select = $this->getDbTable()->select()
 			->from('movie')
 			->joinLeft('status', '(movie.id = status.idMovie AND status.idUser = ' . $idUser . ')' . $allowNull, array())
