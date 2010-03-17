@@ -1,5 +1,8 @@
 <?php
 
+// Keep session data for 120 days, unless explicit destroy in code
+ini_set('session.gc_maxlifetime', 1 * 60 * 60 * 24 * 120);
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
