@@ -6,7 +6,8 @@
 	height: 16px !important;
 	margin: 0px !important;
 	padding: 0px !important;
-	background-image: url(../images/status.png) !important;
+	background-image: url("../images/status.png") !important;
+	background-color: transparent !important;
 }
 
 .status>span
