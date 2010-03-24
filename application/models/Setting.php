@@ -4,8 +4,7 @@ class Default_Model_Setting extends Default_Model_AbstractModel
 {
 	public static function get($id, $defaultValue)
 	{
-        $mapper = new Default_Model_SettingMapper();
-        $setting = $mapper->find($id, $defaultValue);
+        $setting = Default_Model_SettingMapper::find($id, $defaultValue);
         
         return $setting;
 	}

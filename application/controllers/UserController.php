@@ -10,11 +10,8 @@ class UserController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		$mapper = new Default_Model_UserMapper();
-		$this->view->users = $mapper->fetchAll();
-
-		$mapper = new Default_Model_StatusMapper();
-		$this->view->activity = $mapper->getActivity();
+		$this->view->users = Default_Model_UserMapper::fetchAll();
+		$this->view->activity = Default_Model_StatusMapper::getActivity();
 	}
 
 	public function newAction()
@@ -26,8 +23,7 @@ class UserController extends Zend_Controller_Action
 			if ($form->isValid($request->getPost()))
 			{
 				$values = $form->getValues();
-				$mapper = new Default_Model_UserMapper();
-				$user = $mapper->getDbTable()->createRow();
+				$user = Default_Model_UserMapper::getDbTable()->createRow();
 				$user->nickname = $values['nickname'];
 				$user->email = $values['email'];
 				$user->password = sha1($values['password']);
@@ -56,9 +52,8 @@ class UserController extends Zend_Controller_Action
 			{
 
 				$values = $form->getValues();
-				$mapper = new Default_Model_UserMapper();
 
-				$user = $mapper->findEmailPassword($values['email'], $values['password']);
+				$user = Default_Model_UserMapper::findEmailPassword($values['email'], $values['password']);
 				if ($user)
 				{
 					if ($values['remember'])
@@ -89,8 +84,7 @@ class UserController extends Zend_Controller_Action
 	{  
 		if ($this->getRequest()->getParam('nickname'))
 		{
-			$mapper = new Default_Model_UserMapper();
-			$this->view->user = $mapper->findNickname($this->getRequest()->getParam('nickname'));
+			$this->view->user = Default_Model_UserMapper::findNickname($this->getRequest()->getParam('nickname'));
 		}
 		else
 		{

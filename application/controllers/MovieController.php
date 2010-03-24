@@ -58,21 +58,18 @@ class MovieController extends Zend_Controller_Action
 		// Set up the paginator
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
-		$mapper = new Default_Model_MovieMapper();
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
-		$this->view->paginator = Zend_Paginator::factory($mapper->getFilteredQuery($idUser, $statusFilter, $titleFilter, $this->view->sort, $this->view->sortOrder));
+		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($idUser, $statusFilter, $titleFilter, $this->view->sort, $this->view->sortOrder));
 		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
 		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 20));
 	}
 
 	public function viewAction()
 	{
-		$mapper = new Default_Model_MovieMapper();
-
 		if ($this->getRequest()->getParam('idMovie'))
 		{
-			$this->view->movie = $mapper->find($this->getRequest()->getParam('idMovie'));
+			$this->view->movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('idMovie'));
 		}
 
 		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
@@ -82,8 +79,7 @@ class MovieController extends Zend_Controller_Action
 			throw new Exception($this->view->translate('Movie not found'));
 		}
 
-		$mapperUser = new Default_Model_UserMapper();
-		$this->view->users = $mapperUser->fetchAll();
+		$this->view->users = Default_Model_UserMapper::fetchAll();
 	}
 
 	public function addAction()
@@ -96,11 +92,10 @@ class MovieController extends Zend_Controller_Action
 			if ($form->isValid($request->getPost()))
 			{
 				$values = $form->getValues();
-				$mapper = new Default_Model_MovieMapper();
-				$movie = $mapper->find(Default_Model_Movie::extractId($values['id']));
+				$movie = Default_Model_MovieMapper::find(Default_Model_Movie::extractId($values['id']));
 				if (!$movie)
 				{
-					$movie = $mapper->getDbTable()->createRow();
+					$movie = Default_Model_MovieMapper::getDbTable()->createRow();
 					$movie->setId($values['id']);
 					$movie->save();
 				}
@@ -132,7 +127,6 @@ class MovieController extends Zend_Controller_Action
 			if ($form->isValid($request->getPost()))
 			{
 				$values = $form->getValues();
-				$mapper = new Default_Model_MovieMapper();
 				$page = file_get_contents($values['url']);
 				
 				$r = '|<a href="/title/tt(\d{7})/">.*</td>\s<td.*>(\d+(\.\d)*)</td>|U';
@@ -144,7 +138,7 @@ class MovieController extends Zend_Controller_Action
 					$id = $matches[1][$i];
 					$imdbRating = $matches[2][$i];
 					
-					$movie = $mapper->find($id);
+					$movie = Default_Model_MovieMapper::find($id);
 					if (!$movie)
 					{
 						$movie = $mapper->getDbTable()->createRow();

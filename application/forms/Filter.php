@@ -14,8 +14,7 @@ class Default_Form_Filter extends Zend_Form
 			$users = array(0 => _tr('<< me >>'));
 		}
 		
-		$mapperUser = new Default_Model_UserMapper();
-		foreach ($mapperUser->fetchAll() as $user)
+		foreach (Default_Model_UserMapper::fetchAll() as $user)
 			$users[$user->id] = $user->nickname;
 		
 		$this->addElement('select', 'filterUser', array(
@@ -26,8 +25,6 @@ class Default_Form_Filter extends Zend_Form
 		
 		$status = array(-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>'));
 		$status = $status + Default_Model_Status::$ratings;
-		//foreach (Default_Model_Status::$ratings)
-		//	$status[$user->id] = $user->nickname;
 		
 		$this->addElement('select', 'filterStatus', array(
 			'multiOptions'   => $status,

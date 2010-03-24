@@ -1,23 +1,23 @@
 <?php
 
-class Default_Model_MovieMapper extends Default_Model_AbstractMapper
+abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 {
-    public function find($id)
+    public static function find($id)
     {
 		
-        $result = $this->getDbTable()->find($id);
+        $result = self::getDbTable()->find($id);
 		
         return $result->current();
     }
 
-    public function fetchAll()
+    public static function fetchAll()
     {
-        $resultSet = $this->getDbTable()->fetchAll();
+        $resultSet = self::getDbTable()->fetchAll();
 		
         return $resultSet;
     }
     
-    public function getFilteredQuery($idUser, $status, $title, $sort, $sortOrder)
+    public static function getFilteredQuery($idUser, $status, $title, $sort, $sortOrder)
     {
     	$sortable = array('title', 'rating');
     	if (!in_array($sort, $sortable))
@@ -29,7 +29,7 @@ class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     		$sortOrder = 'ASC';
 
     	$allowNull = ($status == 0 || $status == -2 ? ' OR status.idUser IS NULL' : '');
-		$select = $this->getDbTable()->select()
+		$select = self::getDbTable()->select()
 			->from('movie')
 			->joinLeft('status', '(movie.id = status.idMovie AND status.idUser = ' . $idUser . ')' . $allowNull, array())
 			->order($sort . ' ' . $sortOrder);

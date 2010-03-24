@@ -10,8 +10,7 @@ class CssController extends Zend_Controller_Action
 
 	public function gravatarCssAction()
 	{
-		$mapper = new Default_Model_UserMapper();
-		$this->view->users = $mapper->fetchAll();
+		$this->view->users = Default_Model_UserMapper::fetchAll();
 	}
 
 

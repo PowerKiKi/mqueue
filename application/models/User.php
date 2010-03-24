@@ -7,12 +7,10 @@ class Default_Model_User extends Default_Model_AbstractModel
 	{
 		if (is_integer(self::$currentUser))
 		{
-			$mapper = new Default_Model_UserMapper();
-		
 			$session = new Zend_Session_Namespace();
 			if (isset($session->idUser))
 			{
-				self::$currentUser = $mapper->find($session->idUser);
+				self::$currentUser = Default_Model_UserMapper::find($session->idUser);
 			}
 			else
 			{
@@ -25,14 +23,12 @@ class Default_Model_User extends Default_Model_AbstractModel
 	
 	public function getStatistics()
 	{
-		$mapper = new Default_Model_StatusMapper();
-		return $mapper->getStatistics($this->id);
+		return Default_Model_StatusMapper::getStatistics($this->id);
 	}
 
 	public function getActivity()
 	{
-		$mapper = new Default_Model_StatusMapper();
-		return $mapper->getActivityForUser($this);
+		return Default_Model_StatusMapper::getActivityForUser($this);
 	}
 }
 

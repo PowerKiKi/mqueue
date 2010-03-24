@@ -23,32 +23,29 @@ class FeedController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	$mapper = new Default_Model_StatusMapper();
     	if ($this->getRequest()->getParam('user'))
     	{
-    		$mapperUser = new Default_Model_UserMapper();
-    		$user = $mapperUser->findNickname($this->getRequest()->getParam('user'));
+    		$user = Default_Model_UserMapper::findNickname($this->getRequest()->getParam('user'));
     		if ($user)
     		{
-    			$this->view->activity = $mapper->getActivityForUser($user);
+    			$this->view->activity = Default_Model_StatusMapper::getActivityForUser($user);
     			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($user->nickname));
     		}
     	}
     	
     	if ($this->getRequest()->getParam('movie'))
     	{
-    		$mapperMovie = new Default_Model_MovieMapper();
-    		$movie = $mapperMovie->find($this->getRequest()->getParam('movie'));
+    		$movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('movie'));
     		if ($movie)
     		{
-    			$this->view->activity = $mapper->getActivityForMovie($movie);
+    			$this->view->activity = Default_Model_StatusMapper::getActivityForMovie($movie);
     			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($movie->getTitle()));
     		}
     	}
     	
     	if (!$this->view->activity)
     	{
-			$this->view->activity = $mapper->getActivity();
+			$this->view->activity = Default_Model_StatusMapper::getActivity();
 			$this->view->title = $this->view->translate('mQueue - Overall activity');
     	}
     }

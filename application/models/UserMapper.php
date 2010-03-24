@@ -1,38 +1,38 @@
 <?php
 
-class Default_Model_UserMapper extends Default_Model_AbstractMapper
+abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
 {
-	public function findNickname($nickname)
+	public static function findNickname($nickname)
 	{
-		$select = $this->getDbTable()->select()
+		$select = self::getDbTable()->select()
 			->where('nickname = ?', $nickname);
 		
-		$record = $this->getDbTable()->fetchRow($select);
+		$record = self::getDbTable()->fetchRow($select);
 		
 		return $record;
 	}
 	
-	public function findEmailPassword($email, $password)
+	public static function findEmailPassword($email, $password)
 	{
-		$select = $this->getDbTable()->select()
+		$select = self::getDbTable()->select()
 			->where('email = ?', $email)
 			->where('password = SHA1(?)', $password);
 		
-		$record = $this->getDbTable()->fetchRow($select);
+		$record = self::getDbTable()->fetchRow($select);
 		
 		return $record;
 	}
 	
-    public function find($id)
+    public static function find($id)
     {
-        $result = $this->getDbTable()->find($id);
+        $result = self::getDbTable()->find($id);
 		
         return $result->current();
     }
 
-    public function fetchAll()
+    public static function fetchAll()
     {
-        $resultSet = $this->getDbTable()->fetchAll(null, 'LOWER(nickname)');
+        $resultSet = self::getDbTable()->fetchAll(null, 'LOWER(nickname)');
 		
         return $resultSet;
     }
