@@ -15,7 +15,9 @@
   
 	echo $this->headScript()	
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/local.js'))
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.4.1.min.js')); 
+			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.4.1.min.js'));
+			
+	echo $this->googleAnalytics(); 
   ?>
 </head> 
 <body>
