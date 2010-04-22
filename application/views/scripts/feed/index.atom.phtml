@@ -27,7 +27,7 @@ foreach ($this->activity as $a) {
 	$entry = array(
 		'author' => 'mQueue',
 		'title' => $title,
-		'link'=> $this->serverUrl() . $this->url(array('controller' => 'status', 'action' => 'index', 'movie' => $a['movie']->id, 'user' => $a['user']->id)),
+		'link'=> $this->serverUrl() . $this->url(array('controller' => 'status', 'action' => 'index', 'movie' => $a['movie']->id, 'user' => $a['user']->id), 'default', true),
 		'description' => $title,
 		'content' => $text,
 		'lastUpdate' => $date->getTimestamp()
