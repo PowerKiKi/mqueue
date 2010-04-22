@@ -17,7 +17,7 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 		foreach ($activity as $a)
 		{
 			$result .= '<tr>';
-			if (!in_array('date', $hiddenColumns)) $result .= '<td class="dateUpdate">' . $a['status']->dateUpdate . '</td>';
+			if (!in_array('date', $hiddenColumns)) $result .= '<td class="dateUpdate timestamp" title="' . $a['status']->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $a['status']->dateUpdate . '</td>';
 			if (!in_array('user', $hiddenColumns)) $result .= '<td class="user"><a href="' . $this->view->url(array(
 										'controller' => 'user',
 										'action' => 'view',

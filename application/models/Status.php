@@ -37,6 +37,15 @@ class Default_Model_Status extends Default_Model_AbstractModel
 			return _tr('Not rated');
 		return Default_Model_Status::$ratings[$this->rating];
 	}
+	
+	/**
+	 * Returns the date of last udpate
+	 * @return Zend_Date
+	 */
+	public function getDateUpdate()
+	{
+		return new Zend_Date($this->dateUpdate, Zend_Date::ISO_8601);
+	}
 }
 
 // Defines ratings names
