@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A movie
+ */
 class Default_Model_Movie extends Default_Model_AbstractModel
 {
 	static public function extractId($string)
@@ -11,6 +14,10 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return null;		
 	}
 	
+	/**
+	 * Returns the title, if needed fetch the title from IMDb 
+	 * @return string
+	 */
 	public function getTitle()
 	{
 		// If we didn't get the tilte yet, fetch it and save in out database
@@ -28,22 +35,42 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		return $this->title;
 	}
 	
+	/**
+	 * Sets the ID for the movie from any string containing a valid ID 
+	 * @param string $id
+	 * @return Default_Model_Movie
+	 */
 	public function setId($id)
 	{
 		$this->id = self::extractId($id);
 		return $this;
 	}
 	
+	/**
+	 * Returns the IMDb url for the movie
+	 * @return string
+	 */
 	public function getImdbUrl()
 	{
 		return "http://www.imdb.com/title/tt" . $this->id . "/";
 	}
 
+	/**
+	 * Returns the status for this movie and the specified user
+	 * @param integer $idUser
+	 * @return Default_Model_Status
+	 */
 	public function getStatus($idUser)
 	{
 		return Default_Model_StatusMapper::find($idUser, $this->id);
 	}
 	
+	/**
+	 * Set the status for the specified user
+	 * @param integer $idUser
+	 * @param integer $rating @see Default_Model_Status
+	 * @return null
+	 */
 	public function setStatus($idUser, $rating)
 	{
 		$status = Default_Model_StatusMapper::find($idUser, $this->id);			
@@ -51,6 +78,10 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		$status->save();
 	}
 	
+	/**
+	 * Returns an array of latest activities
+	 * @return array of activties
+	 */
 	public function getActivity()
 	{
 		return Default_Model_StatusMapper::getActivityForMovie($this);
