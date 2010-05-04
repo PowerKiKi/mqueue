@@ -29,9 +29,9 @@ class StatusController extends Zend_Controller_Action
 		$status = Default_Model_StatusMapper::find($session->idUser, $idMovie);
 		 
 
-		// If new rating specified, save it and create movie if needed
+		// If new rating specified and we are logged in, save it and create movie if needed
 		$rating = $this->_request->getParam('rating');
-		if (isset($rating))
+		if (isset($rating) && Default_Model_User::getCurrent())
 		{
 			$movie = Default_Model_MovieMapper::find($status->idMovie);
 			 
