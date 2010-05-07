@@ -67,29 +67,35 @@ function buildSQL($currentVersion, $targetVersion)
 }
 
 /**
- * Executes a batch of SQL command. It ran the binary 'mysql' so it must be accessible in the PATH
+ * Executes a batch of SQL commands.
  * (This is a workaround to Zend limitation to have only one command at once)
  * @param string $sql to be executed
+ * @param array $database database parameters
  * @return string the error code returned by mysql
  */
 function executeBatchSql($sql, $database)
 {
-	// Create temporary SQL file
-	$tmpfname = tempnam(sys_get_temp_dir(), 'sql');
-	$handle = fopen($tmpfname, "w");
-	fwrite($handle, $sql);
-	fclose($handle);
 
-	// Execute the SQL file through mysql.exe
-	$cmd = 'mysql -h '.$database['host'].' --user='.$database['username'].' --password='.$database['password'].' --database='.$database['dbname'].' < "'.$tmpfname.'"';
-	echo "excuting command: " . $cmd . "\n\n";
-	$out = array();
-	exec($cmd, $out ,$retval);
+    mysql_connect($database['host'], $database['username'], $database['password']);
+    mysql_select_db($database['dbname']);
+    mysql_query("SET NAMES UTF8");
 
-	// Delete the temp file
-	unlink($tmpfname);
-
-	return $retval;
+	$queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
+	foreach ($queries as $query)
+	{
+		if (strlen(trim($query)) > 0)
+		{
+			if (mysql_query($query) === false)
+			{
+				$error = mysql_error();
+				echo $error;
+				
+				return $error;	
+			}
+		}
+	}
+	
+	return '';
 }
 
 /**
