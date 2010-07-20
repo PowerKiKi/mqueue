@@ -282,6 +282,7 @@ td.number
 	background-image: url(../images/status.png);
 	background-repeat: no-repeat;
 	background-position: -999px -999px;
+	height: 16px;
 }
 
 #filterStatus option[value='1']
