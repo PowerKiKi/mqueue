@@ -111,6 +111,20 @@ body
 	padding-right: 2em;
 }
 
+#footer
+{
+	margin-top: 1em;
+	text-align: center;
+	font-size: 0.8em;
+}
+
+#footer a
+{	
+	color: grey;
+	text-decoration: none;
+}
+
+
 .loginState
 {
 	float: right;

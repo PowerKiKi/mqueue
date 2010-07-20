@@ -48,8 +48,7 @@
 		<?php echo $this->layout()->content ?>
 	</div>
 	<div id="messages"><?php if (isset($this->messages)) foreach($this->messages as $message) echo '<p>' . $message . '</p>'; ?></div>
-	<div id="footer">
-	</div>
 </div>
+<div id="footer"><?php echo $this->footer(); ?></div>
 </body>
 </html>
