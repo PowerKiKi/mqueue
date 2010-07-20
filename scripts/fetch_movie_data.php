@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This script fetch all data from IMDb and save it in our database.
+ * This script fetch data from IMDb for all movies currently in our database and save it.
  * It will overwrite existing data (update).
  */
 
