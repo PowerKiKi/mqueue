@@ -1,5 +1,5 @@
 <?php echo $this->gravatar($this->user, false); ?>
-<h2><?php echo $this->user->nickname; ?></h2>
+<h2><?php echo $this->escape($this->user->nickname); ?></h2>
 <h3><?php echo $this->translate('Statistics'); ?></h3>
 
 <table>

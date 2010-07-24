@@ -10,7 +10,7 @@ foreach ($this->activity as $a) {
 	$text = '<p><a href="' . $this->serverUrl() . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'nickname' => $a['user']->nickname
+										'id' => $a['user']->id
 										),
 									'default', true) . '">' . $this->gravatar($a['user']). ' ' . $this->escape($a['user']->nickname) . '</a> ' . 
 			'<a href="' . $this->serverUrl() . $this->url(array(
@@ -22,7 +22,7 @@ foreach ($this->activity as $a) {
 			$a['status']->getName() . '</p>';
 	$text .= '<p><a href="' . $a['movie']->getImdbUrl() . '">' . $a['movie']->getImdbUrl() . '</a></p>';
 			
-	$title = $a['user']->nickname . ' - ' . $a['movie']->getTitle() . ' - ' . $a['status']->getName();
+	$title = $this->escape($a['user']->nickname) . ' - ' . $this->escape($a['movie']->getTitle()) . ' - ' . $a['status']->getName();
 		
 	$entry = array(
 		'author' => 'mQueue',

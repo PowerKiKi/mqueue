@@ -11,9 +11,9 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 		{	
 			$result .= $this->view->translate('logged as ');
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
-				array('controller'=>'user', 'action' => 'view', 'nickname' => $user->nickname), 
+				array('controller'=>'user', 'action' => 'view', 'id' => $user->id), 
 				'default', 
-				true) . '">' . $this->view->gravatar($user) . ' ' . $user->nickname . '</a> ';
+				true) . '">' . $this->view->gravatar($user) . ' ' . $this->view->escape($user->nickname) . '</a> ';
 				
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'logout'), 

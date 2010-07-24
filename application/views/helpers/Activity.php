@@ -21,7 +21,7 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 			if (!in_array('user', $hiddenColumns)) $result .= '<td class="user"><a href="' . $this->view->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'nickname' => $a['user']->nickname
+										'id' => $a['user']->id
 										),
 									'default', true) . '">' . $this->view->gravatar($a['user']). ' ' . $this->view->escape($a['user']->nickname) . '</a></td>';
 			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie">' . $this->view->movie($a['movie']) . '</td>';

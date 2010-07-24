@@ -21,7 +21,7 @@ foreach ($this->users as $user)
 	echo '<td class="user"><a href="' . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'nickname' => $user->nickname
+										'id' => $user->id
 										),
 									'default', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a></td>';
 	$stats = $user->getStatistics();

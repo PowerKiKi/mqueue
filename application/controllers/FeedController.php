@@ -25,11 +25,11 @@ class FeedController extends Zend_Controller_Action
     {
     	if ($this->getRequest()->getParam('user'))
     	{
-    		$user = Default_Model_UserMapper::findNickname($this->getRequest()->getParam('user'));
+    		$user = Default_Model_UserMapper::find($this->getRequest()->getParam('user'));
     		if ($user)
     		{
     			$this->view->activity = Default_Model_StatusMapper::getActivityForUser($user);
-    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($user->nickname));
+    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($this->view->escape($user->nickname)));
     		}
     	}
     	
@@ -39,7 +39,7 @@ class FeedController extends Zend_Controller_Action
     		if ($movie)
     		{
     			$this->view->activity = Default_Model_StatusMapper::getActivityForMovie($movie);
-    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($movie->getTitle()));
+    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($this->view->escape($movie->getTitle())));
     		}
     	}
     	
