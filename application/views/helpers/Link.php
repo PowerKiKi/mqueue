@@ -9,7 +9,7 @@ class Default_View_Helper_Link extends Zend_View_Helper_Abstract
 		
 		if ($displayUrl)
 		{
-			$result .= ' <a href="">' . $url . '</a>';
+			$result .= ' <a href="' . $url . '">' . $url . '</a>';
 		}
 		
 		return $result;
