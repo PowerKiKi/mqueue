@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <title>mQueue</title>
-  <?php 
+  
+  <?php
+  	echo $this->headTitle('mQueue')->setSeparator(' - '); 
   	echo $this->headLink(array('rel' => 'icon',
                                   'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
                                   'PREPEND'))
