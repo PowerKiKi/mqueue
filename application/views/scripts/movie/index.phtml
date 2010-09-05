@@ -2,21 +2,25 @@
 <h2><?php echo $this->translate('Movies list'); ?></h2>
 <?php echo $this->formFilter; ?>
 <table>
-<tr>
-	<th><?php echo $this->sort($this->translate('Rating'), 'rating', $this->sort, $this->sortOrder); ?></th>
+<tr>	
+	<?php foreach ($this->users as $user): ?>
+		<th><?php echo $this->sort($this->escape($user->nickname), 'rating', $this->sort, $this->sortOrder); ?></th>
+	<?php endforeach; ?>
 	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
-	<tr><td colspan="2">
+	<tr><td colspan="<?php echo count($this->users) + 1; ?>">
 	<?php echo $this->translate('There is no movie to show.'); ?>
 	</td></tr>
 <?php else: ?>
 	<?php foreach ($this->paginator as $entry): ?>
 		<tr>
-			<td class="rating"><?php echo $this->statusLinks($entry->getStatus($this->idUser))?></td>
+			<?php foreach ($this->users as $user): ?>
+				<td class="rating"><?php echo $this->statusLinks($entry->getStatus($user->id))?></td>
+			<?php endforeach; ?>
 			<td class="movie"><?php echo $this->movie($entry); ?></td>
 		</tr>
-	<?php endforeach ?>
+	<?php endforeach; ?>
 <?php endif; ?>
 </table>
 <?php echo $this->paginator; ?>

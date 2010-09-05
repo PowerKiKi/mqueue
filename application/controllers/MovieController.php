@@ -10,57 +10,37 @@ class MovieController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		$form = new Default_Form_Filter();
+		$form = new Default_Form_Filters();
 		$this->view->formFilter = $form;
-
-		// Initialize session
-		$session = new Zend_Session_Namespace();
-		if (!isset($session->filter))
-		$session->filter = array();
 		 
 		// If want to clear the filter do so, otherwise try to validate it
 		if ($this->_getParam('clear', false))
 		{
-			$session->filter = array();
+			$filters = array();
 		}
 		else
 		{
-			$filter = array_merge($session->filter, $this->getRequest()->getParams());
-
-			// Store the filter in session if it's valid
-			if ($form->isValid($filter))
-			{
-				$session->filter = $filter;
-			}
+			$filters = $this->getRequest()->getParams();
 		}
+		$form->setDefaults($filters);
 
-		// Find the correct filtered user
-		$idUser = 0;
-		if (isset($session->filter['filterUser']) && (integer)$session->filter['filterUser'] > 0)
-		$idUser = (integer)$session->filter['filterUser'];
-		elseif (isset($session->idUser))
-		$idUser = $session->idUser;
-		$this->view->idUser = $idUser;
-
-		// Get the filter for status
-		$statusFilter = -1;
-		if (isset($session->filter['filterStatus']) && (integer)$session->filter['filterStatus'] >= -2 && (integer)$session->filter['filterStatus'] <= 5)
+		$this->view->users = array();
+		$filters = $form->getValues();
+		foreach ($filters as $key => $filter)
 		{
-			$statusFilter = (integer)$session->filter['filterStatus'];
+			if (!preg_match('/^filter\d+$/', $key))
+				continue;
+				
+			$this->view->users [$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
-
-		$titleFilter = '';
-		if (isset($session->filter['filterTitle']) && trim($session->filter['filterTitle']))
-		{
-			$titleFilter = trim($session->filter['filterTitle']);
-		}
-
+		
+		//w($filters);	
 		// Set up the paginator
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
-		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($idUser, $statusFilter, $titleFilter, $this->view->sort, $this->view->sortOrder));
+		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
 		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
 		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 20));
 	}

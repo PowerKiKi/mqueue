@@ -26,11 +26,6 @@ class Default_View_Helper_Navigation extends Zend_View_Helper_Abstract
 				'default', 
 		true) . '">' . $this->view->translate('FAQ') . '</a> ';
 		
-		$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
-		array('controller'=>'about'),
-				'default', 
-		true) . '">' . $this->view->translate('About') . '</a> ';
-		
 		return $result;
 	}
 

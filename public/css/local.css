@@ -111,6 +111,20 @@ body
 	padding-right: 2em;
 }
 
+#footer
+{
+	margin-top: 1em;
+	text-align: center;
+	font-size: 0.8em;
+}
+
+#footer a
+{	
+	color: grey;
+	text-decoration: none;
+}
+
+
 .loginState
 {
 	float: right;
@@ -122,46 +136,57 @@ body
 	margin-top: 1em;
 }
 
-#fieldset-filter
+#fieldset-filters
 {
 	border: 1px solid #E4E4E4;
 	font-size: 0.8em;
 }
 
-#filter-label,
-#fieldset-filter #submit-label,
-#fieldset-filter #clear-label
-{
-	display: none;
-}
 
-#filter-element
-{
-	margin: 0px;
-}
-
-#filter-element dd, 
-#filter-element dt 
+dl.filter dd, 
+dl.filter dt 
 {
 	display: inline;
 	margin: 0px;
 }
 
-#filter-element dd
+dl.filter dd
 {
 	margin-right: 2em;
 }
 
-#fieldset-filter #submit-element,
-#fieldset-filter #clear-element
+#fieldset-filters #submit-label,
+#fieldset-filters #clear-label
+{
+	display: none;
+}
+
+#fieldset-filters #submit-element,
+#fieldset-filters #clear-element
 {
 	float: right;
 	margin-right: 1em;
 }
 
-#filterTitle
+dl.filter input
 {
 	width: 10em;
+}
+
+#addFilter-label
+{
+	display: none;
+}
+
+#filters .filter
+{
+	margin-top: 0em;	
+}
+
+#filters .buttons
+{
+	margin-top: 0em;
+	margin-bottom: 0em;
 }
 
 ol ol
@@ -262,35 +287,36 @@ td.number
 	text-align: right;
 }
 
-#filterStatus option
+select.filterStatus option
 {
 	padding-left: 20px;
 	background-image: url(../images/status.png);
 	background-repeat: no-repeat;
 	background-position: -999px -999px;
+	height: 16px;
 }
 
-#filterStatus option[value='1']
+select.filterStatus option[value='1']
 {
 	background-position: -16px 0px;
 }
 
-#filterStatus option[value='2']
+select.filterStatus option[value='2']
 {
 	background-position: -16px -16px;
 }
 
-#filterStatus option[value='3']
+select.filterStatus option[value='3']
 {
 	background-position: -16px -32px;
 }
 
-#filterStatus option[value='4']
+select.filterStatus option[value='4']
 {
 	background-position: -16px -48px;
 }
 
-#filterStatus option[value='5']
+select.filterStatus option[value='5']
 {
 	background-position: -16px -64px;
 }

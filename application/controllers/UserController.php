@@ -82,16 +82,16 @@ class UserController extends Zend_Controller_Action
 
 	public function viewAction()
 	{  
-		if ($this->getRequest()->getParam('nickname'))
+		if ($this->getRequest()->getParam('id'))
 		{
-			$this->view->user = Default_Model_UserMapper::findNickname($this->getRequest()->getParam('nickname'));
+			$this->view->user = Default_Model_UserMapper::find($this->getRequest()->getParam('id'));
 		}
 		else
 		{
 			$this->view->user = Default_Model_User::getCurrent();
 		}
 		
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'action' => 'index', 'user' => $this->view->user->nickname, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'feed', 'action' => 'index', 'user' => $this->view->user->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
 		
 		if (!$this->view->user)
 		{

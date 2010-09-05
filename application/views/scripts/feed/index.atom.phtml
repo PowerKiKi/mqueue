@@ -7,13 +7,13 @@ $entries = array();
 // each, and push the array onto the $entries array
 foreach ($this->activity as $a) {
 	$date = new Zend_Date($a['status']->dateUpdate);
-	$text = '<p><a href="' . $this->url(array(
+	$text = '<p><a href="' . $this->serverUrl() . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'nickname' => $a['user']->nickname
+										'id' => $a['user']->id
 										),
 									'default', true) . '">' . $this->gravatar($a['user']). ' ' . $this->escape($a['user']->nickname) . '</a> ' . 
-			'<a href="' . $this->url(array(
+			'<a href="' . $this->serverUrl() . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'view',
 										'idMovie' => $a['movie']->id
@@ -22,12 +22,12 @@ foreach ($this->activity as $a) {
 			$a['status']->getName() . '</p>';
 	$text .= '<p><a href="' . $a['movie']->getImdbUrl() . '">' . $a['movie']->getImdbUrl() . '</a></p>';
 			
-	$title = $a['user']->nickname . ' - ' . $a['movie']->getTitle() . ' - ' . $a['status']->getName();
+	$title = $this->escape($a['user']->nickname) . ' - ' . $this->escape($a['movie']->getTitle()) . ' - ' . $a['status']->getName();
 		
 	$entry = array(
 		'author' => 'mQueue',
 		'title' => $title,
-		'link'=> $this->serverUrl() . $this->url(array('controller' => 'status', 'action' => 'index', 'movie' => $a['movie']->id, 'user' => $a['user']->id), 'default', true),
+		'link'=> $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'idMovie' => $a['movie']->id), 'default', true),
 		'description' => $title,
 		'content' => $text,
 		'lastUpdate' => $date->getTimestamp()

@@ -1,6 +1,6 @@
 <?php $this->headTitle($this->movie->getTitle()); ?>
-<h2><?php echo $this->movie->getTitle(); ?></h2>
-<p><a href="<?php echo $this->movie->getImdbUrl(); ?>"><?php echo $this->movie->getImdbUrl(); ?></a></p>
+<h2><?php echo $this->escape($this->movie->getTitle()); ?></h2>
+<p><?php echo $this->link($this->movie, true) ?></p>
 <h3><?php echo $this->translate('Current status'); ?></h3>
 <table>
 <tr>
@@ -16,7 +16,7 @@ foreach ($this->users as $user)
 	echo '<td><a href="' . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'nickname' => $user->nickname
+										'id' => $user->id
 										),
 									'default', true) . '">' . $this->escape($user->nickname) . '</a></td>';
 	echo '<td>' . $this->statusLinks($this->movie->getStatus($user->id)) . '</td>';

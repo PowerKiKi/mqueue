@@ -4,7 +4,7 @@ class Default_View_Helper_Movie extends Zend_View_Helper_Abstract
 {
 	public function movie(Default_Model_Movie $movie)
 	{
-		$result = '<a class="imdb" title="' . $movie->getImdbUrl() . '" href="' . $movie->getImdbUrl() . '"><span>' . $this->view->translate('IMDb') . '</span></a>';
+		$result = $this->view->link($movie);
 		
 		$user = Default_Model_User::getCurrent();
 		if ($user)

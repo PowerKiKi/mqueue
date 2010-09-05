@@ -17,7 +17,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
         return $resultSet;
     }
     
-    public static function getFilteredQuery($idUser, $status, $title, $sort, $sortOrder)
+    public static function getFilteredQuery($filters, $sort, $sortOrder)
     {
     	$sortable = array('title', 'rating');
     	if (!in_array($sort, $sortable))
@@ -28,30 +28,41 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	else
     		$sortOrder = 'ASC';
 
-    	$allowNull = ($status == 0 || $status == -2 ? ' OR status.idUser IS NULL' : '');
+    	
 		$select = self::getDbTable()->select()
 			->from('movie')
-			->joinLeft('status', '(movie.id = status.idMovie AND status.idUser = ' . $idUser . ')' . $allowNull, array())
 			->order($sort . ' ' . $sortOrder);
 
-		// Filter by status
-		if ($status >= 0 && $status <= 5)
+		$i = 0;
+		foreach ($filters as $key => $filter)
 		{
-			$select->where('status.rating = ?' . $allowNull, $status);
-		}
-		elseif ($status == -1)
-		{
-			$select->where('status.rating <> ?' . $allowNull, 0);
+			if (!preg_match('/^filter\d+$/', $key))
+				continue;
+				
+			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
+			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
+				
+			// Filter by status
+			if ($filter['status'] >= 0 && $filter['status'] <= 5)
+			{
+				$select->where('status' . $i . '.rating = ?' . $allowNull, $filter['status']);
+			}
+			elseif ($filter['status'] == -1)
+			{
+				$select->where('status' . $i . '.rating <> ?' . $allowNull, 0);
+			}
+			
+			// Filter by title
+			$titles = explode(' ', trim($filter['title']));
+	    	foreach ($titles as $part)
+	    	{
+	    		if ($part = trim($part))
+	    			$select->where('movie.title LIKE ?', '%' . $part . '%');
+	    	}
+	    	
+	    	$i++;
 		}
 		
-		// Filter by title
-		$titles = explode(' ', trim($title));
-    	foreach ($titles as $part)
-    	{
-    		if ($part = trim($part))
-    			$select->where('movie.title LIKE ?', '%' . $part . '%');
-    	}
-    	
     	return $select;
     }
 }

@@ -20,7 +20,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	 */
 	public function getTitle()
 	{
-		// If we didn't get the tilte yet, fetch it and save in out database
+		// If we didn't get the tilte yet, fetch it and save in our database
 		if (!($this->title))
 		{
 			$file = @file_get_contents($this->getImdbUrl());

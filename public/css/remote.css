@@ -23,75 +23,75 @@
 
 .status_1
 {
-	background-position: 0px 0px;
+	background-position: 0px 0px !important;
 }
 
 .status_1:hover
 {
-	background-position: -16px 0px;
+	background-position: -16px 0px !important;
 }
 
 .status_1.current
 {
-	background-position: -16px 0px;
+	background-position: -16px 0px !important;
 }
 
 .status_2
 {
-	background-position: 0px -16px;
+	background-position: 0px -16px !important;
 }
 
 .status_2:hover
 {
-	background-position: -16px -16px;
+	background-position: -16px -16px !important;
 }
 
 .status_2.current
 {
-	background-position: -16px -16px;
+	background-position: -16px -16px !important;
 }
 
 .status_3
 {
-	background-position: 0px -32px;
+	background-position: 0px -32px !important;
 }
 
 .status_3:hover
 {
-	background-position: -16px -32px;
+	background-position: -16px -32px !important;
 }
 
 .status_3.current
 {
-	background-position: -16px -32px;
+	background-position: -16px -32px !important;
 }
 
 .status_4
 {
-	background-position: 0px -48px;
+	background-position: 0px -48px !important;
 }
 
 .status_4:hover
 {
-	background-position: -16px -48px;
+	background-position: -16px -48px !important;
 }
 
 .status_4.current
 {
-	background-position: -16px -48px;
+	background-position: -16px -48px !important;
 }
 
 .status_5
 {
-	background-position: 0px -64px;
+	background-position: 0px -64px !important;
 }
 
 .status_5:hover
 {
-	background-position: -16px -64px;
+	background-position: -16px -64px !important;
 }
 
 .status_5.current
 {
-	background-position: -16px -64px;
+	background-position: -16px -64px !important;
 }
