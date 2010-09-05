@@ -7,9 +7,11 @@
   	echo $this->headLink(array('rel' => 'icon',
                                   'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
                                   'PREPEND'))
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/remote.css'))
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/local.css'))
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'))
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/remote.css'), 'all')
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/local.css'), 'all')
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/handheld.css'), 'handheld')
+  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/print.css'), 'print')
   			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'feed', 'action' => 'index', 'format' => 'atom'), null, true), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
   			;
   
