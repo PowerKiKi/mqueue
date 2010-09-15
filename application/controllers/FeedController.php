@@ -42,8 +42,8 @@ class FeedController extends Zend_Controller_Action
     			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($this->view->escape($movie->getTitle())));
     		}
     	}
-    	
-    	if (!$this->view->activity)
+		
+    	if (!isset($this->view->activity))
     	{
 			$this->view->activity = Default_Model_StatusMapper::getActivity();
 			$this->view->title = $this->view->translate('mQueue - Overall activity');
