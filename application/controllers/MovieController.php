@@ -42,7 +42,7 @@ class MovieController extends Zend_Controller_Action
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
 		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
 		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
-		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 20));
+		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 25));
 	}
 
 	public function viewAction()
