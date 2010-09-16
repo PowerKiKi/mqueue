@@ -23,7 +23,11 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
-<?php echo $this->paginator; ?>
+<?php 
+	$params = $this->formFilter->getValues();
+	unset($params['addFilter']);
+	echo $this->paginationControl($this->paginator, null, null, array('filterParams' => $params));
+?>
 
 
 <?php if ($this->paginator->getTotalItemCount() != 0): ?>

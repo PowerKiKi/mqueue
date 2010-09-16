@@ -2,13 +2,13 @@
 	<div class="paginationControl">
 	<!-- Previous page link -->
 	<?php if (isset($this->previous)): ?>
-	  <a href="<?php echo $this->serverUrl() . $this->url(array('page' => $this->previous, 'perPage' => $this->itemCountPerPage)); ?>"><?php echo _tr('« Previous'); ?></a> 
+	  <a href="<?php echo $this->serverUrl() . $this->urlParams(array_merge($this->filterParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a> 
 	<?php endif; ?>
 	 
 	<!-- Numbered page links -->
 	<?php foreach ($this->pagesInRange as $page): ?>
 	  <?php if ($page != $this->current): ?>
-	    <a href="<?php echo $this->serverUrl() . $this->url(array('page' => $page, 'perPage' => $this->itemCountPerPage)); ?>"><?php echo $page; ?></a> 
+	    <a href="<?php echo $this->serverUrl() . $this->urlParams(array_merge($this->filterParams, array('page' => $page, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo $page; ?></a> 
 	  <?php else: ?>
 	    <?php echo $page; ?> 
 	  <?php endif; ?>
@@ -16,7 +16,7 @@
 	
 	<!-- Next page link -->
 	<?php if (isset($this->next)): ?>
-	  <a href="<?php echo $this->serverUrl() . $this->url(array('page' => $this->next, 'perPage' => $this->itemCountPerPage)); ?>"><?php echo _tr('Next »'); ?></a>
+	  <a href="<?php echo $this->serverUrl() . $this->urlParams(array_merge($this->filterParams, array('page' => $this->next, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('Next »'); ?></a>
 	<?php endif; ?>
 	<!-- Current display stats -->
 	(<?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?>/<?php echo $this->totalItemCount; ?>) |
@@ -34,7 +34,7 @@
 			}
 			else
 			{
-				echo '<a href="' . $this->serverUrl() . $this->url(array('page' => $this->current, 'perPage' => $p)) . '">' . $p . '</a>';
+				echo '<a href="' . $this->serverUrl() . $this->urlParams(array_merge($this->filterParams, array('page' => $this->current, 'perPage' => $p))) . '">' . $p . '</a>';
 			}
 			
 			if ($p != end($perPage))
