@@ -1,3 +1,5 @@
+/*global $, document */
+
 /**
  * JSONp function to set and retrieve new status
  * @return
@@ -9,7 +11,7 @@ function setStatus()
 		$('.status_links_' + data.id).each(function()
 		{
 			$(this).replaceWith(data.status);
-		})
+		});
 		
 		$('.status_links_' + data.id + ' .status').click(setStatus);
 	});		
@@ -17,7 +19,7 @@ function setStatus()
 }
 
 /**
- * 	Bind ajax on all status links
+ * Bind ajax on all status links
  * @return
  */
 function bindStatus()
@@ -33,22 +35,22 @@ function bindStatus()
 function scanIMDB(server)
 {
 	var maxPerQuery = 400;	
-	var list = new Array();
-	var queries = new Array();
+	var list = [];
+	var queries = [];
 	
 	// Find every references to any movies
 	var query = '';
 	var i = 0;
 	$("a[href*='title/tt'], link[rel='canonical']").each(function()
 	{
-		regexp = /imdb\.(com|de|es|fr|it|pt)\/title\/tt(\d{7})/;
+		var regexp = /imdb\.(com|de|es|fr|it|pt)\/title\/tt(\d{7})/;
 		if (regexp.test(this.href))
 		{
 			var array = regexp.exec(this.href);
 			var id = array[2];
-			if (list[id] == null)
+			if (list[id] === undefined)
 			{
-				list[id] = new Array();
+				list[id] = [];
 				query += id + ',';
 			}
 			list[id].push(this);
@@ -60,13 +62,17 @@ function scanIMDB(server)
 				i = 0;
 			}
 		}
-	})
+	});
 	
-	if (i != 0)
+	if (i !== 0)
+	{
 		queries.push(query);
+	}
 	
-	if (queries.length == 0)
+	if (queries.length === 0)
+	{
 		return;
+	}
 	
 	// Get statuses from server per bunch of queries
 	$.each(queries, function(x, query)
@@ -77,11 +83,15 @@ function scanIMDB(server)
 			$.each(data.status, function(id, status)
 			{
 				// Add status beside main title if on the main page of movie
-				if ($("link[rel='canonical'][href*=" + id.split('_')[0] + "]").length != 0)
+				if ($("link[rel='canonical'][href*=" + id.split('_')[0] + "]").length !== 0)
+				{
 					$("#tn15title>h1").before(status);
+				}
 				// Add status on every links concerning that movie
 				else
+				{
 					$("a[href*='/title/tt" + id.split('_')[0] + "']").before(status);
+				}
 			});
 			
 			bindStatus();
