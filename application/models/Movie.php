@@ -5,6 +5,25 @@
  */
 class Default_Model_Movie extends Default_Model_AbstractModel
 {
+	/**
+	 * All known IMDb hostnames indexed by their language
+	 * @var array
+	 */
+	public static $imdbHostnames = array(
+			'en' => 'www.imdb.com',
+			'fr' => 'www.imdb.fr',
+			'de' => 'www.imdb.de',
+			'es' => 'www.imdb.es',
+			'it' => 'www.imdb.it',
+			'pt' => 'www.imdb.pt',
+			'akas' => 'akas.imdb.com',
+		);
+	
+	/**
+	 * Extract IMDb id from URL
+	 * @param string $string
+	 * @return null|string the id extracted
+	 */
 	static public function extractId($string)
 	{
 		$valid = preg_match_all("/(\d{7})/", $string, $r);
@@ -23,7 +42,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		// If we didn't get the tilte yet, fetch it and save in our database
 		if (!($this->title))
 		{
-			$file = @file_get_contents($this->getImdbUrl());
+			$file = @file_get_contents($this->getImdbUrl('en'));
 			$ok = preg_match("/<title>(.*)<\/title>/", $file, $m);
 			if ($ok != 1)
 				return '[title not available, could not fetch from IMDb]';
@@ -48,11 +67,22 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	
 	/**
 	 * Returns the IMDb url for the movie
+	 * @param string suggested language for hostname
 	 * @return string
 	 */
-	public function getImdbUrl()
+	public function getImdbUrl($lang = null)
 	{
-		return "http://www.imdb.com/title/tt" . $this->id . "/";
+		if ($lang == null)
+		{
+			$lang = Zend_Registry::get('Zend_Locale')->getLanguage();
+		}
+		
+		if (isset(Default_Model_Movie::$imdbHostnames[$lang]))
+			$hostname = Default_Model_Movie::$imdbHostnames[$lang];
+		else
+			$hostname = reset(Default_Model_Movie::$imdbHostnames);
+		
+		return 'http://' . $hostname . '/title/tt' . $this->id . '/';
 	}
 
 	/**
