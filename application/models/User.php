@@ -34,6 +34,17 @@ class Default_Model_User extends Default_Model_AbstractModel
 	}
 	
 	/**
+	 * Set the user currently logged in, or log him out
+	 * @param Default_Model_User $user
+	 */
+	public static function setCurrent(Default_Model_User $user = null)
+	{
+		$session = new Zend_Session_Namespace();
+		$session->idUser = $user ? $user->id : null;
+		self::$currentUser = null;
+	}
+	
+	/**
 	 * Returns movie ratings statistics
 	 * @return array of count of movies per ratings
 	 */

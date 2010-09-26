@@ -23,10 +23,10 @@ class StatusController extends Zend_Controller_Action
 		$idMovie = $this->_request->getParam('movie');
 
 		if ($idMovie == null)
-		throw new Exception('no movie specified.');
+			throw new Exception('no movie specified.');
 		 
-		$session = new Zend_Session_Namespace();		
-		$status = Default_Model_StatusMapper::find($session->idUser, $idMovie);
+		$user = Default_Model_User::getCurrent();		
+		$status = Default_Model_StatusMapper::find($user ? $user->id : null, $idMovie);
 		 
 
 		// If new rating specified and we are logged in, save it and create movie if needed
@@ -70,9 +70,8 @@ class StatusController extends Zend_Controller_Action
 			
 		$idMovies = explode(',', trim($this->_request->getParam('movies'), ','));
 
-		
-		$session = new Zend_Session_Namespace();
-		$statuses = Default_Model_StatusMapper::findAll($session->idUser, $idMovies);
+		$user = Default_Model_User::getCurrent();
+		$statuses = Default_Model_StatusMapper::findAll($user ? $user->id : null, $idMovies);
 		
 		$json = array();
 		foreach ($statuses as $s)

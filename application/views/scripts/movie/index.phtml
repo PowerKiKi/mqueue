@@ -16,7 +16,7 @@
 	<?php foreach ($this->paginator as $entry): ?>
 		<tr>
 			<?php foreach ($this->users as $user): ?>
-				<td class="rating"><?php echo $this->statusLinks($entry->getStatus($user->id))?></td>
+				<td class="rating"><?php echo $this->statusLinks($entry->getStatus($user))?></td>
 			<?php endforeach; ?>
 			<td class="movie"><?php echo $this->movie($entry); ?></td>
 		</tr>

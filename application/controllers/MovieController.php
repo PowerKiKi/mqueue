@@ -83,12 +83,6 @@ class MovieController extends Zend_Controller_Action
 				$this->view->movies = array($movie);
 				//$this->_helper->FlashMessenger('We did something in the last request');
 				//$this->view->messages = $this->_helper->FlashMessenger->getMessages();
-				 
-				$session = new Zend_Session_Namespace();
-				if (isset($session->idUser))
-				$this->view->idUser = $session->idUser;
-				else
-				$this->view->idUser = 0;
 			}
 		}
 

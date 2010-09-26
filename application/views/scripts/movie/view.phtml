@@ -19,7 +19,7 @@ foreach ($this->users as $user)
 										'id' => $user->id
 										),
 									'default', true) . '">' . $this->escape($user->nickname) . '</a></td>';
-	echo '<td>' . $this->statusLinks($this->movie->getStatus($user->id)) . '</td>';
+	echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
 		
 	echo '</tr>';
 }

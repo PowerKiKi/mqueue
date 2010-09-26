@@ -4,7 +4,13 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 {
     public static function find($idUser, $idMovie)
     {
-        $status = self::getDbTable()->fetchRow("idUser='$idUser' AND idMovie='$idMovie'");
+    	$status = null;
+    	
+    	// Do not hit database if we know, there won't be any result anyway
+    	if ($idUser != null)
+    	{
+        	$status = self::getDbTable()->fetchRow("idUser = '$idUser' AND idMovie = '$idMovie'");
+    	}
 		
 		if ($status == null)
 		{

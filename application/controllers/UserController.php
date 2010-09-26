@@ -29,8 +29,7 @@ class UserController extends Zend_Controller_Action
 				$user->password = sha1($values['password']);
 				$user->save();
 
-				$session = new Zend_Session_Namespace();
-				$session->idUser = $user->id;
+				Default_Model_User::setCurrent($user);
 
 				$this->_helper->FlashMessenger('new user created !');
 				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
@@ -59,9 +58,7 @@ class UserController extends Zend_Controller_Action
 					if ($values['remember'])
 						Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
 					
-					$session = new Zend_Session_Namespace();
-					$session->idUser = $user->id;
-					
+					Default_Model_User::setCurrent($user);
 
 					$this->_helper->FlashMessenger('logged in !');
 					$this->view->messages = $this->_helper->FlashMessenger->getMessages();
@@ -76,8 +73,7 @@ class UserController extends Zend_Controller_Action
 
 	public function logoutAction()
 	{
-		$session = new Zend_Session_Namespace();
-		$session->idUser = null;
+		Default_Model_User::setCurrent(null);
 	}
 
 	public function viewAction()

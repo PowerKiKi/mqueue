@@ -87,12 +87,12 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 
 	/**
 	 * Returns the status for this movie and the specified user
-	 * @param integer $idUser
+	 * @param Default_Model_User $user
 	 * @return Default_Model_Status
 	 */
-	public function getStatus($idUser)
+	public function getStatus(Default_Model_User $user = null)
 	{
-		return Default_Model_StatusMapper::find($idUser, $this->id);
+		return Default_Model_StatusMapper::find($user ? $user->id : null, $this->id);
 	}
 	
 	/**

@@ -54,18 +54,17 @@ class Default_Form_Filter extends Zend_Form_SubForm
     public function setDefaults(array $defaults)
     {
 		// Initialize session
-		$session = new Zend_Session_Namespace();
+		$user = Default_Model_User::getCurrent();
 		$name = $this->getName();
 		
 		// Find the correct filtered user, or default on current logged user
-		$idUser = 0;
 		if (isset($defaults[$name]['user']) && (integer)$defaults[$name]['user'] > 0)
 		{
 			$defaults[$name]['user'] = (integer)$defaults[$name]['user'];
 		}
-		elseif (isset($session->idUser) && (integer)$session->idUser > 0)
+		elseif ($user)
 		{
-			$defaults[$name]['user'] = (integer)$session->idUser;
+			$defaults[$name]['user'] = $user->id;
 		}
 		else
 		{

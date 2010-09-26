@@ -9,7 +9,7 @@ class Default_View_Helper_Movie extends Zend_View_Helper_Abstract
 		$user = Default_Model_User::getCurrent();
 		if ($user)
 		{
-			$status = $movie->getStatus($user->id);
+			$status = $movie->getStatus($user);
 			$title = $this->view->translate('Your rating is : %s', array($status->getName()));
 		}
 		else
