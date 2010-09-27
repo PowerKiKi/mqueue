@@ -18,7 +18,27 @@
 .status_links
 {
 	display: inline !important;
-	white-space: no-wrap;
+	white-space: nowrap;
+}
+
+.status_links>.preloader
+{
+	background-image: url("../images/loading.gif") !important;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	width: 80px !important;
+	height: 16px !important;
+	display: none;
+}
+
+.status_links.loading>.preloader
+{
+	display: inline-block !important;	
+}
+
+.status_links.loading>.status
+{
+	display: none !important;
 }
 
 .status_1

@@ -27,7 +27,7 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 			$result .= '<' . $tag . ' class="status status_' . $class . '"' . ($tag == 'a' ? ' href="' . $url . '"' : '') . ' title="' . $name . '"><span>' . $name . '</span></' . $tag . '>';
 
 		}
-		$result .= '</div>';
+		$result .= '<span class="preloader"></span></div>';
 
 		return $result;
 	}

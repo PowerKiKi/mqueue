@@ -6,6 +6,8 @@
  */
 function setStatus()
 {
+	var parent = $(this).parent();
+	parent.addClass('loading');
 	$.getJSON(this.href + '?format=json&jsoncallback=?', function(data)
 	{
 		$('.status_links_' + data.id).each(function()
@@ -13,6 +15,7 @@ function setStatus()
 			$(this).replaceWith(data.status);
 		});
 		
+		parent.removeClass('loading');		
 		$('.status_links_' + data.id + ' .status').click(setStatus);
 	});		
 	return false;
