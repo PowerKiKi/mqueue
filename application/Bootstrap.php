@@ -25,6 +25,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->addHelperPath($path, $prefix);
 
 	}
+	
+	protected function _initSession()
+	{
+		Zend_Session::setOptions(array('name' => 'mqueue'));
+	}
 
 	protected function _initLanguage()
 	{
