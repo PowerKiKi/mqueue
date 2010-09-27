@@ -34,7 +34,13 @@ class MovieController extends Zend_Controller_Action
 			$this->view->users [$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
 		
-		//w($filters);	
+		// Store perPage option in session
+		$perPage = 25;
+		$session = new Zend_Session_Namespace();
+		if (isset($session->perPage)) $perPage = $session->perPage;
+		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
+		$session->perPage = $perPage;
+		
 		// Set up the paginator
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
@@ -42,7 +48,7 @@ class MovieController extends Zend_Controller_Action
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
 		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
 		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
-		$this->view->paginator->setItemCountPerPage($this->_getParam('perPage', 25));
+		$this->view->paginator->setItemCountPerPage($perPage);
 	}
 
 	public function viewAction()
