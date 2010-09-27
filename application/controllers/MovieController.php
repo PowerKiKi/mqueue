@@ -103,7 +103,7 @@ class MovieController extends Zend_Controller_Action
 				$values = $form->getValues();
 				$page = file_get_contents($values['url']);
 				
-				$r = '|<a href="/title/tt(\d{7})/">.*</td>\s<td.*>(\d+(\.\d)*)</td>|U';
+				$r = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
 				preg_match_all($r, $page, $matches);
 				
 				$movies = array();
@@ -115,7 +115,7 @@ class MovieController extends Zend_Controller_Action
 					$movie = Default_Model_MovieMapper::find($id);
 					if (!$movie)
 					{
-						$movie = $mapper->getDbTable()->createRow();
+						$movie = Default_Model_MovieMapper::getDbTable()->createRow();
 						$movie->setId($id);
 						$movie->save();
 					}

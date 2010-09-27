@@ -12,7 +12,7 @@ class Default_Form_Import extends Zend_Form
             'label'      => _tr('IMDb "Vote History" page url:'),
             'required'   => true,
             'validators' => array(
-                array('validator' => 'Regex', 'options' => array("/mymovies\/list\?/"))
+                array('validator' => 'Regex', 'options' => array("|mymovies/list\?l=\d+|"))
                 )
         ));
         
