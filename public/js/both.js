@@ -27,7 +27,7 @@ function setStatus()
  */
 function bindStatus()
 {
-	$('.status').click(setStatus);
+	$('a.status').click(setStatus);
 }
 
 /**
