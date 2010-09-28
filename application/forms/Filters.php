@@ -63,7 +63,12 @@ class Default_Form_Filters extends Zend_Form
         {
             if (preg_match('/^filter(\d)+$/', $key, $m))
             {
-				$this->addSubForm(new Default_Form_Filter(), $key, $position++);
+            	$subform = new Default_Form_Filter();
+            	if ($position > 1)
+            	{
+            		$subform->disableTitle();
+            	}
+				$this->addSubForm($subform, $key, $position++);
 				if ($m[1] > $max)
 					$max = $m[1];
             }
@@ -73,7 +78,9 @@ class Default_Form_Filters extends Zend_Form
         
         if ((isset($defaults['addFilter']) && $defaults['addFilter'] == 1) || $max == 0)
         {
-			$this->addSubForm(new Default_Form_Filter(), 'filter' . ($max + 1), $position++);
+        	$subform = new Default_Form_Filter();
+        	$subform->disableTitle();
+			$this->addSubForm($subform, 'filter' . ($max + 1), $position++);
         }
         $defaults['addFilter'] = 0;
         

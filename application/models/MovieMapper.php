@@ -53,12 +53,15 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			}
 			
 			// Filter by title
-			$titles = explode(' ', trim($filter['title']));
-	    	foreach ($titles as $part)
-	    	{
-	    		if ($part = trim($part))
-	    			$select->where('movie.title LIKE ?', '%' . $part . '%');
-	    	}
+			if (isset($filter['title']))
+			{
+				$titles = explode(' ', trim($filter['title']));
+		    	foreach ($titles as $part)
+		    	{
+		    		if ($part = trim($part))
+		    			$select->where('movie.title LIKE ?', '%' . $part . '%');
+		    	}
+			}
 	    	
 	    	$i++;
 		}

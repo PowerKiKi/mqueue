@@ -97,5 +97,10 @@ class Default_Form_Filter extends Zend_Form_SubForm
         // set defaults, which will propagate to newly created subforms
         parent::setDefaults($defaults);
     }
+    
+    function disableTitle()
+    {
+    	$this->removeElement('title');
+    }
 	
 }
