@@ -42,8 +42,8 @@
 	<div id="header">
 		<?php echo $this->languageSelector(); ?>
 		<div id="header-logo"><h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1></div>
-		<div id="header-navigation">
-			<?php echo $this->navigation(); ?> 
+		<div id="header-navigation"><span>&nbsp;</span>
+			<?php echo $this->navigation()->menu(); ?> 
 			<?php echo $this->loginState(); ?> 
 		</div>
 	</div>

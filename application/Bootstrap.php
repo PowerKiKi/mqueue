@@ -26,6 +26,46 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 	}
 	
+	protected function _initNavigation()
+	{
+		$this->bootstrap('view');
+		$view = $this->getResource('view');
+		
+		$navigation = new Zend_Navigation(array(
+			array(
+				'label' => $view->translate('Movies'),
+				'controller'=>'movie',
+				'pages' => array(
+					array(
+						'label' => $view->translate('Add movie'),
+						'controller'=>'movie',
+						'action' => 'add'
+					),
+					array(
+						'label' => $view->translate('Import votes from IMDb'),
+						'controller'=>'movie',
+						'action' => 'import'
+					),
+				)
+			),
+			array(
+				'label' => $view->translate('Users'),
+				'controller' => 'user',
+			),
+			array(
+				'label' => $view->translate('Activity'),
+				'controller' => 'feed',
+			),
+			array(
+				'label' => $view->translate('FAQ'),
+				'controller' => 'faq',
+			),
+		
+		));
+		
+		$view->navigation($navigation);
+	}
+	
 	protected function _initSession()
 	{
 		Zend_Session::setOptions(array('name' => 'mqueue'));

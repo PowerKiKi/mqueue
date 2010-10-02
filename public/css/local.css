@@ -12,7 +12,7 @@ html
 {
 	color: grey;
 	height: 101%;
-	font-family:arial,sans-serif;
+	font-family: arial, sans-serif;
 }
 
 body
@@ -34,8 +34,8 @@ body
 	padding-bottom: 2em;
 }
 
-#header 
-{	
+#header
+{
 	background: url(../images/header.png);
 }
 
@@ -46,13 +46,13 @@ body
 
 #header h1 a
 {
-	background:url("../images/logo.png") no-repeat scroll 0 0;
-	display:block;
-	height:157px;
-	left:-36px;
-	position:relative;
-	top:-10px;
-	width:256px;
+	background: url("../images/logo.png") no-repeat scroll 0 0;
+	display: block;
+	height: 157px;
+	left: -36px;
+	position: relative;
+	top: -10px;
+	width: 256px;
 }
 
 #header h1 a span
@@ -62,36 +62,25 @@ body
 
 #header-logo
 {
-	height:135px;
-	padding: 0px;	
+	height: 135px;
+	padding: 0px;
 }
-	
+
 #header-navigation
 {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding: 5px;
-	color: white;
-	background: black;
-	/* for IE */
-	//filter: alpha(opacity =   60);
-	/* CSS3 standard */
-	opacity: 0.6;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-
-	/* Repeat the logo slightly over the links */
-	background: black url("../images/logo.png") no-repeat scroll -36px -145px;
 	
-	/* fix for IE8 so the links are always clickable */
-	position: relative;
-	z-index: 1;
+	/* Repeat the logo slightly over the links */
+	background: #163066 url("../images/logo.png") no-repeat scroll -36px -145px;
 }
 
 #header-navigation a
 {
-	padding:  5px;
-	color: white;
+	color: #afc9ff;
+	padding: 5px;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -101,8 +90,74 @@ body
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	color: black;
-	background-color: white;
+	color: #163066;
+	background-color: #afc9ff;
+}
+
+ul.navigation,
+ul.navigation li,
+ul.navigation ul
+{
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.navigation
+{
+	float: left;
+	position: relative;
+	z-index: 999;
+}
+
+ul.navigation li
+{
+	float: left;
+}
+
+ul.navigation li.hover,
+ul.navigation li:hover
+{
+	cursor: default;
+	position: relative;
+	z-index: 599;
+}
+
+ul.navigation ul
+{
+	left: 0;
+	position: absolute;
+	top: 100%;
+	visibility: hidden;
+	z-index: -999;
+	padding: 0.5em 1em 0.5em 0.5em;
+	white-space: nowrap;
+	background: #163066;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+ul.navigation ul li
+{
+	float: none;
+}
+
+ul.navigation ul li a
+{
+	display: inline-block;
+	width: 100%;
+}
+
+ul.navigation ul ul
+{
+	left: 99%;
+	top: 1px;
+}
+
+ul.navigation li:hover>ul
+{
+	visibility: visible;
 }
 
 #content
@@ -119,11 +174,10 @@ body
 }
 
 #footer a
-{	
+{
 	color: grey;
 	text-decoration: none;
 }
-
 
 .loginState
 {
@@ -136,15 +190,19 @@ body
 	margin-top: 1em;
 }
 
+#filters
+{
+	margin-bottom: 1em;
+}
+
 #fieldset-filters
 {
 	border: 1px solid #E4E4E4;
 	font-size: 0.8em;
 }
 
-
-dl.filter dd, 
-dl.filter dt 
+dl.filter dd,
+dl.filter dt
 {
 	display: inline;
 	margin: 0px;
@@ -180,7 +238,7 @@ dl.filter input
 
 #filters .filter
 {
-	margin-top: 0em;	
+	margin-top: 0em;
 }
 
 #filters .buttons
@@ -196,11 +254,11 @@ ol ol
 
 .language_selector
 {
-	float:right;
-	font-size:0.8em;
-	font-weight:bold;
-	margin-right:1em;
-	margin-top:0.5em;
+	float: right;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-right: 1em;
+	margin-top: 0.5em;
 }
 
 .language_selector a
@@ -223,10 +281,10 @@ img.gravatar.big
 .tips
 {
 	width: 80%;
-	padding:1em;
+	padding: 1em;
 	margin: 3em auto 0 auto;
 	background: #FFFFCC;
-	border:3px solid #FFCC33;
+	border: 3px solid #FFCC33;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -252,10 +310,10 @@ input[type='text'][id='id']
 
 table
 {
-	border-collapse:collapse;
+	border-collapse: collapse;
 }
 
-tr > th
+tr>th
 {
 	background-color: white;
 }
@@ -354,6 +412,7 @@ a.sort.desc
 {
 	list-style-image: url(../images/browser_chrome.gif);
 }
+
 .browser_firefox
 {
 	list-style-image: url(../images/browser_firefox.gif);
@@ -380,7 +439,6 @@ a.imdb
 	width: 16px;
 	height: 16px;
 	background-image: url(../images/imdb_small.gif);
-
 }
 
 #favoriteMinimum,

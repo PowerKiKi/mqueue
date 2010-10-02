@@ -8,8 +8,7 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 		
 		$user = Default_Model_User::getCurrent();
 		if ($user)
-		{	
-			$result .= $this->view->translate('logged as ');
+		{
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'view', 'id' => $user->id), 
 				'default', 
