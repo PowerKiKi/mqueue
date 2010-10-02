@@ -49,12 +49,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				)
 			),
 			array(
-				'label' => $view->translate('Users'),
-				'controller' => 'user',
-			),
-			array(
 				'label' => $view->translate('Activity'),
 				'controller' => 'feed',
+			),
+			array(
+				'label' => $view->translate('Users'),
+				'controller' => 'user',
 			),
 			array(
 				'label' => $view->translate('FAQ'),
