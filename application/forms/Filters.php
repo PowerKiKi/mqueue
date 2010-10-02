@@ -79,7 +79,12 @@ class Default_Form_Filters extends Zend_Form
         if ((isset($defaults['addFilter']) && $defaults['addFilter'] == 1) || $max == 0)
         {
         	$subform = new Default_Form_Filter();
-        	$subform->disableTitle();
+        	
+        	if ($max != 0)
+        	{
+        		$subform->disableTitle();
+        	}
+        	
 			$this->addSubForm($subform, 'filter' . ($max + 1), $position++);
         }
         $defaults['addFilter'] = 0;
