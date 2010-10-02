@@ -1,6 +1,5 @@
 <?php $this->headTitle(_tr('Users')); ?>
 <h2><?php echo $this->translate('Users list'); ?></h2>
-<h3><?php echo $this->translate('Overall statistics'); ?></h3>
 <table>
 <?php
 
@@ -48,6 +47,3 @@ foreach ($this->users as $user)
 }
 ?>
 </table>
-
-<h3><?php echo $this->translate('Overall activity'); ?></h3>
-<?php echo $this->activity($this->activity); ?>

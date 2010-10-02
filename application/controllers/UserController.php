@@ -11,7 +11,6 @@ class UserController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$this->view->users = Default_Model_UserMapper::fetchAll();
-		$this->view->activity = Default_Model_StatusMapper::getActivity();
 	}
 
 	public function newAction()
