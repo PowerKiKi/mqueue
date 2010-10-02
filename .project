@@ -3,6 +3,7 @@
 	<name>mqueue</name>
 	<comment></comment>
 	<projects>
+		<project>Zend</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
