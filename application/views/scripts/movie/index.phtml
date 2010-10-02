@@ -4,7 +4,7 @@
 <table>
 <tr>	
 	<?php foreach ($this->users as $user): ?>
-		<th><?php echo $this->sort($this->escape($user->nickname), 'rating', $this->sort, $this->sortOrder); ?></th>
+		<th><?php echo $this->sort($user->nickname, 'rating', $this->sort, $this->sortOrder); ?></th>
 	<?php endforeach; ?>
 	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder); ?></th>
 </tr>
