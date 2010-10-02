@@ -37,7 +37,7 @@ foreach ($this->activity as $a) {
 
 // Create the RSS array
 $rss = array(
-	'title' => $this->title,
+	'title' => 'mQueue - ' . $this->title,
 	'link' => $this->serverUrl() . $this->url(array()),
 	'charset' => 'UTF-8', 
 	'entries' => $entries

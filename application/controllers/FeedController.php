@@ -29,7 +29,7 @@ class FeedController extends Zend_Controller_Action
     		if ($user)
     		{
     			$this->view->activity = Default_Model_StatusMapper::getActivityForUser($user);
-    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($user->nickname));
+    			$this->view->title = $this->view->translate('Activity for %s', array($user->nickname));
     		}
     	}
     	
@@ -39,14 +39,14 @@ class FeedController extends Zend_Controller_Action
     		if ($movie)
     		{
     			$this->view->activity = Default_Model_StatusMapper::getActivityForMovie($movie);
-    			$this->view->title = $this->view->translate('mQueue - Activity for %s', array($movie->getTitle()));
+    			$this->view->title = $this->view->translate('Activity for %s', array($movie->getTitle()));
     		}
     	}
 		
     	if (!isset($this->view->activity))
     	{
 			$this->view->activity = Default_Model_StatusMapper::getActivity();
-			$this->view->title = $this->view->translate('mQueue - Overall activity');
+			$this->view->title = $this->view->translate('Overall activity');
     	}
     }
 
