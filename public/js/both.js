@@ -88,7 +88,8 @@ function scanIMDB(server)
 				// Add status beside main title if on the main page of movie
 				if ($("link[rel='canonical'][href*=" + id.split('_')[0] + "]").length !== 0)
 				{
-					$("#tn15title>h1").before(status);
+					$("#tn15title>h1").before(status); // Old IMDb version
+					$("div#main>div.article>h1.header").before(status); // New IMDb version
 				}
 				// Add status on every links concerning that movie
 				else
