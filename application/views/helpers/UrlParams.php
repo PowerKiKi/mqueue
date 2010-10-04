@@ -37,7 +37,7 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 					$result .= '&amp;';
 				}
 			
-				$result .= $name . '=' . $value;
+				$result .= $name . '=' . urlencode($value);
 			}
 		}
 		

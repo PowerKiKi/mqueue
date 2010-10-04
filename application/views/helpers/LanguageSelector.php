@@ -11,9 +11,11 @@ class Default_View_Helper_LanguageSelector extends Zend_View_Helper_Abstract
 			);
 		
 		$result = '<div class="language_selector">';
+		$params = $_GET;
 		foreach ($languages as $val => $name)
 		{
-			$result .= '<a class="language language_' . $val . '" href="?lang=' . $val . '" title="' . $name . '"><span>' . $name . '</span></a> ';
+			$params['lang'] = $val;
+			$result .= '<a class="language language_' . $val . '" href="' . $this->view->urlParams($params) . '" title="' . $name . '"><span>' . $name . '</span></a> ';
 		}
 		$result .= '</div>';
 
