@@ -39,15 +39,23 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	 */
 	public function getTitle()
 	{
-		// If we didn't get the tilte yet, fetch it and save in our database
+		// If we didn't get the title yet, fetch it and save in our database
 		if (!($this->title))
 		{
 			$file = @file_get_contents($this->getImdbUrl('en'));
-			$ok = preg_match("/<title>(.*)<\/title>/", $file, $m);
-			if ($ok != 1)
+
+			$document = new DOMDocument();
+			@$document->loadHTML($file);
+			$xpath = new DOMXPath($document);
+			$query = '//meta[contains(@property, "og:title")]/@content';
+
+			$entries = $xpath->evaluate($query);
+			if ($entries->length != 1)
+			{
 				return '[title not available, could not fetch from IMDb]';
+			}
 			
-			$this->title = html_entity_decode($m[1], ENT_COMPAT, 'utf-8');
+			$this->title = $entries->item(0)->value;
 			$this->save();
 		}
 		
