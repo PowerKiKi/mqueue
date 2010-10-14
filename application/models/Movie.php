@@ -42,7 +42,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		// If we didn't get the title yet, fetch it and save in our database
 		if (!($this->title))
 		{
-			$file = @file_get_contents($this->getImdbUrl('en'));
+			$file = @file_get_contents($this->getImdbUrl('akas'));
 
 			$document = new DOMDocument();
 			@$document->loadHTML($file);

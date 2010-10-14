@@ -12,12 +12,11 @@ $movies = Default_Model_MovieMapper::fetchAll();
 $count = 0;
 $total = $movies->count();
 foreach ($movies as $movie)
-{
-	
-	echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "]\t" . $movie->getImdbUrl(). "\t";
+{	
+	echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas'). "\t";
 	$movie->title = null;
 	$title = $movie->getTitle();
 	echo $title . "\n";
 }
 
-echo count($movies) . " movies updated in database\n";
+echo $total . " movies updated in database\n";
