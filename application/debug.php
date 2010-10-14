@@ -81,16 +81,22 @@ function parseObject($obj, $values=true)
  */
 function v($arr)
 {
+	$arr = func_get_args();
+	if (count($arr) == 1)
+		$arr = $arr[0];
+		
 	if (is_object($arr))
 	{
 		return v(parseObject($arr));
 	}
 	else if (is_array($arr))
 	{
-		echo '<table style="padding: 0px; border: solid 1px grey; border-collapse:collapse;">';
+		echo '<table style="padding: 0px; border: solid 2px red; border-collapse:collapse;">';
 		foreach ($arr as $key1 => $elem1)
 		{
-			echo '<tr><td style="padding: 0px; border: solid 1px grey;">'.$key1.'&nbsp;</td><td style="padding: 0px; border: solid 1px grey;">';
+			echo '<tr><td style="padding: 0px; border: solid 1px grey;"><pre>';
+            var_dump($key1);
+            echo '</pre></td><td style="padding: 0px; border: solid 1px grey;">';
 			v($elem1);
 			echo '</td></tr>';
 		}
@@ -112,7 +118,7 @@ function v($arr)
 function w($var)
 {
 	echo "\n_________________________________________________________________________________________________________________________</br>\n";
-	v($var);
+	v(func_get_args());
 	echo "\n</br>_________________________________________________________________________________________________________________________<pre>\n";
 	debug_print_backtrace();
 	echo "</pre>_________________________________________________________________________________________________________________________</br>\n";
