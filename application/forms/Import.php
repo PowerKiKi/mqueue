@@ -11,6 +11,7 @@ class Default_Form_Import extends Zend_Form
         $this->addElement('text', 'url', array(
             'label'      => _tr('IMDb "Vote History" page url:'),
             'required'   => true,
+        	'description' => _tr('eg: http://www.imdb.com/mymovies/list?l=39480251'),
             'validators' => array(
                 array('validator' => 'Regex', 'options' => array("|mymovies/list\?l=\d+|"))
                 )
