@@ -1,12 +1,17 @@
-<?php $this->headTitle(_tr('Movies')); ?>
+<?php 
+$filterParams = $this->formFilter->getValues();
+unset($filterParams['addFilter']);
+
+$this->headTitle(_tr('Movies'));
+?>
 <h2><?php echo $this->translate('Movies list'); ?></h2>
 <?php echo $this->formFilter; ?>
 <table>
 <tr>	
-	<?php foreach ($this->users as $user): ?>
-		<th><?php echo $this->sort($user->nickname, 'rating', $this->sort, $this->sortOrder); ?></th>
+	<?php $i = 0; foreach ($this->users as $user): ?>
+		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sort, $this->sortOrder, $filterParams); ?></th>
 	<?php endforeach; ?>
-	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder); ?></th>
+	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder, $filterParams); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="<?php echo count($this->users) + 1; ?>">
@@ -23,10 +28,8 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
-<?php 
-	$params = $this->formFilter->getValues();
-	unset($params['addFilter']);
-	echo $this->paginationControl($this->paginator, null, null, array('filterParams' => $params));
+<?php
+	echo $this->paginationControl($this->paginator, null, null, array('filterParams' => $filterParams));
 ?>
 
 

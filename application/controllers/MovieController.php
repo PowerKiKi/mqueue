@@ -24,6 +24,7 @@ class MovieController extends Zend_Controller_Action
 		}
 		$form->setDefaults($filters);
 
+		// Gather users selected in filters
 		$this->view->users = array();
 		$filters = $form->getValues();
 		foreach ($filters as $key => $filter)
@@ -31,7 +32,7 @@ class MovieController extends Zend_Controller_Action
 			if (!preg_match('/^filter\d+$/', $key))
 				continue;
 				
-			$this->view->users [$filter['user']]= Default_Model_UserMapper::find($filter['user']);
+			$this->view->users[$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
 		
 		// Store perPage option in session

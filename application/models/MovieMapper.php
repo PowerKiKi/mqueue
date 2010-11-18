@@ -19,9 +19,15 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     
     public static function getFilteredQuery($filters, $sort, $sortOrder)
     {
-    	$sortable = array('title', 'rating');
-    	if (!in_array($sort, $sortable))
-    		$sort = reset($sortable);
+    	// Find out what to order (only allowed 'title', 'status0', 'status1', 'status2', ...)
+    	if (preg_match('/^status\d+$/', $sort))
+    	{
+			$sort = $sort . '.rating';
+    	}
+    	else
+    	{
+    		$sort = 'title';
+    	}
     	
     	if ($sortOrder == 'desc')
     		$sortOrder = 'DESC';
