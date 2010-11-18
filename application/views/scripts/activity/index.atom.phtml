@@ -1,6 +1,6 @@
 <?php
 
-// Create array to store the RSS feed entries
+// Create array to store the RSS activity entries
 $entries = array();
 
 // Cycle through the rankings, creating an array storing
@@ -44,9 +44,9 @@ $rss = array(
 );
 
 // Import the array
-$feed = Zend_Feed::importArray($rss);
+$activity = Zend_Feed::importArray($rss);
 
-// Write the feed to a variable
-$feed->send();
+// Write the activity to a variable
+$activity->send();
 
 ?>

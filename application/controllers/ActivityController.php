@@ -1,6 +1,6 @@
 <?php
 
-class FeedController extends Zend_Controller_Action
+class ActivityController extends Zend_Controller_Action
 {
 
     public function init()

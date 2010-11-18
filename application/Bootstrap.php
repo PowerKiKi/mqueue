@@ -50,7 +50,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			),
 			array(
 				'label' => $view->translate('Activity'),
-				'controller' => 'feed',
+				'controller' => 'activity',
 			),
 			array(
 				'label' => $view->translate('Users'),
@@ -93,6 +93,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		$adapter = new Zend_Translate('gettext', APPLICATION_PATH . '/localization', $locale, array('scan' => Zend_Translate::LOCALE_FILENAME, 'disableNotices' => true));
 		Zend_Registry::set('Zend_Translate', $adapter);
+		Zend_Form::setDefaultTranslator($adapter);
 		self::$translator = $adapter;
 	}
 }

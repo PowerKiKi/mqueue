@@ -2,7 +2,7 @@
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
-class FeedControllerTest extends PHPUnit_Framework_TestCase
+class ActivityControllerTest extends PHPUnit_Framework_TestCase
 {
 
     public function setUp()

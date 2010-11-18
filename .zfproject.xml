@@ -44,7 +44,7 @@
         <controllerFile controllerName="css">
           <actionMethod actionName="gravatar.css"/>
         </controllerFile>
-        <controllerFile controllerName="feed">
+        <controllerFile controllerName="activity">
           <actionMethod actionName="index"/>
         </controllerFile>
       </controllersDirectory>
@@ -110,7 +110,7 @@
           <viewControllerScriptsDirectory forControllerName="css">
             <viewScriptFile forActionName="gravatar.css"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="feed">
+          <viewControllerScriptsDirectory forControllerName="activity">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="movie">

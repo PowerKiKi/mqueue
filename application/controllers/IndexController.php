@@ -16,7 +16,7 @@ class IndexController extends Zend_Controller_Action
     	}
     	else
     	{
-    		$this->_helper->redirector('index', 'feed');
+    		$this->_helper->redirector('index', 'activity');
     	}
     }
 
