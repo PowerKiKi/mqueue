@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 22:48+0100\n"
+"POT-Creation-Date: 2010-11-18 22:13+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: PowerKiKi <adrien.crivelli@gmail.com>\n"
+"Last-Translator: Adrien Crivelli <adrien.crivelli@ecodev.ch>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,87 +34,83 @@ msgstr ""
 "X-Poedit-SearchPath-17: ../views/scripts/status\n"
 "X-Poedit-SearchPath-18: ../views/scripts/user\n"
 
-#: ../controllers/FeedController.php:34
-#: ../controllers/FeedController.php:45
-#: ../controllers/MovieController.php:78
-#: ../controllers/UserController.php:100
+#: ../controllers/ActivityController.php:32
+#: ../controllers/ActivityController.php:42
+#, php-format
+msgid "Activity for %s"
+msgstr "Activité de %s"
+
+#: ../controllers/ActivityController.php:49
+msgid "Overall activity"
+msgstr "Activité générale"
+
+#: ../controllers/UserController.php:89
+#: ../controllers/MovieController.php:61
 #, php-format
 msgid "mQueue - Activity for %s"
 msgstr "mQueue - Activité de %s"
 
-#: ../controllers/FeedController.php:52
-msgid "mQueue - Overall activity"
-msgstr "mQueue - Activité générale"
-
-#: ../controllers/MovieController.php:82
-msgid "Movie not found"
-msgstr "Film introuvable"
-
-#: ../controllers/UserController.php:104
+#: ../controllers/UserController.php:93
 msgid "User not found"
 msgstr "Utilisateur introuvable"
 
-#: ../forms/Filter.php:14
+#: ../controllers/MovieController.php:65
+msgid "Movie not found"
+msgstr "Film introuvable"
+
+#: ../forms/Filter.php:13
 msgid "<< me >>"
 msgstr "<< moi >>"
 
-#: ../forms/Filter.php:23
+#: ../forms/Filter.php:21
 msgid "User :"
 msgstr "Utilisateur :"
 
-#: ../forms/Filter.php:27
+#: ../forms/Filter.php:25
 msgid "<< rated >>"
 msgstr "<< noté >>"
 
-#: ../forms/Filter.php:27
+#: ../forms/Filter.php:25
 msgid "<< no rated >>"
 msgstr "<< pas noté >>"
 
-#: ../forms/Filter.php:27
+#: ../forms/Filter.php:25
 msgid "<< all >>"
 msgstr "<< tous >>"
 
-#: ../forms/Filter.php:34
+#: ../forms/Filter.php:30
 msgid "Rating :"
 msgstr "Note :"
 
-#: ../forms/Filter.php:47
+#: ../forms/Filters.php:15
 msgid "Apply"
 msgstr "Appliquer"
 
-#: ../forms/Filter.php:53
+#: ../forms/Filters.php:21
 msgid "Clear"
 msgstr "Effacer"
 
-#: ../forms/Filter.php:57
+#: ../forms/Filters.php:32
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../forms/Import.php:12
-msgid "IMDb \"Vote History\" page url:"
-msgstr "L'url de la page \"Vote History\" de IMDb :"
+#: ../forms/User.php:12
+msgid "Nickname:"
+msgstr "Pseudo :"
 
-#: ../forms/Import.php:21
-msgid "Minimum for favorite:"
-msgstr "Minimum pour favorit :"
-
-#: ../forms/Import.php:31
-msgid "Minimum for excellent:"
-msgstr "Minimum pour excellent :"
-
-#: ../forms/Import.php:41
-msgid "Minimum for ok:"
-msgstr "Minimum pour ok :"
-
-#: ../forms/Login.php:12
 #: ../forms/User.php:21
+#: ../forms/Login.php:12
 msgid "Email:"
 msgstr "Email :"
 
-#: ../forms/Login.php:22
 #: ../forms/User.php:31
+#: ../forms/Login.php:22
 msgid "Password:"
 msgstr "Mot de passe :"
+
+#: ../forms/User.php:42
+msgid "Subscribe"
+msgstr "Inscription"
 
 #: ../forms/Login.php:32
 msgid "Remember me"
@@ -132,37 +128,54 @@ msgstr "Url d'IMDb ou id :"
 msgid "Add movie"
 msgstr "Ajouter un film"
 
-#: ../forms/User.php:12
-msgid "Nickname:"
-msgstr "Pseudo :"
+#: ../forms/Import.php:12
+msgid "IMDb \"Vote History\" page url:"
+msgstr "L'url de la page \"Vote History\" de IMDb :"
 
-#: ../forms/User.php:42
-msgid "Subscribe"
-msgstr "Inscription"
+#: ../forms/Import.php:14
+msgid "eg: http://www.imdb.com/mymovies/list?l=39480251"
+msgstr "exemple: http://www.imdb.com/mymovies/list?l=39480251"
 
-#: ../models/Status.php:22
+#: ../forms/Import.php:22
+msgid "Minimum for favorite:"
+msgstr "Minimum pour favorit :"
+
+#: ../forms/Import.php:32
+msgid "Minimum for excellent:"
+msgstr "Minimum pour excellent :"
+
+#: ../forms/Import.php:42
+msgid "Minimum for ok:"
+msgstr "Minimum pour ok :"
+
+#: ../models/Status.php:37
 msgid "Not rated"
 msgstr "Pas noté"
 
-#: ../models/Status.php:28
+#: ../models/Status.php:53
 msgid "Need"
 msgstr "Veux voir"
 
-#: ../models/Status.php:29
+#: ../models/Status.php:54
 msgid "Bad"
 msgstr "Ennuyeux"
 
-#: ../models/Status.php:30
+#: ../models/Status.php:55
 msgid "Ok"
 msgstr "Sympa"
 
-#: ../models/Status.php:31
+#: ../models/Status.php:56
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../models/Status.php:32
+#: ../models/Status.php:57
 msgid "Favorite"
 msgstr "Favori"
+
+#: ../views/helpers/Sort.php:11
+#, php-format
+msgid "Sort by \"%s\""
+msgstr "Trier par \"%s\""
 
 #: ../views/helpers/Activity.php:10
 msgid "Date"
@@ -180,43 +193,13 @@ msgstr "Film"
 msgid "Rating"
 msgstr "Note"
 
-#: ../views/helpers/LoginState.php:12
-msgid "logged as "
-msgstr "connecté "
+#: ../views/helpers/Footer.php:12
+msgid "about mQueue"
+msgstr "à propos de mQueue"
 
-#: ../views/helpers/LoginState.php:21
+#: ../views/helpers/LoginState.php:20
 msgid "Logout"
 msgstr "Se déconnecter"
-
-#: ../views/helpers/Movie.php:7
-msgid "IMDb"
-msgstr "IMDb"
-
-#: ../views/helpers/Movie.php:13
-#, php-format
-msgid "Your rating is : %s"
-msgstr "Votre note est : %s"
-
-#: ../views/helpers/Navigation.php:12
-msgid "Movies"
-msgstr "Films"
-
-#: ../views/helpers/Navigation.php:22
-msgid "Users"
-msgstr "Utilisateurs"
-
-#: ../views/helpers/Navigation.php:27
-msgid "FAQ"
-msgstr "FAQ"
-
-#: ../views/helpers/Navigation.php:32
-msgid "About"
-msgstr "A propos"
-
-#: ../views/helpers/Sort.php:11
-#, php-format
-msgid "Sort by \"%s\""
-msgstr "Trier par \"%s\""
 
 #: ../views/helpers/StatusHelp.php:8
 msgid "I want to see this movie"
@@ -238,11 +221,24 @@ msgstr "Excellent, je le regarderais volontiers deux fois"
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "Absolument génial, le genre de film mythique à regarder plein de fois"
 
-#: ../layouts/scripts/layout.phtml:25
+#: ../views/helpers/Link.php:8
+msgid "IMDb"
+msgstr "IMDb"
+
+#: ../views/helpers/Movie.php:13
+#, php-format
+msgid "Your rating is : %s"
+msgstr "Votre note est : %s"
+
+#: ../layouts/scripts/layout.phtml:16
+msgid "mQueue - Overall activity"
+msgstr "mQueue - Activité générale"
+
+#: ../layouts/scripts/layout.phtml:44
 msgid "mQueue monster !"
 msgstr "le monstre mQueue !"
 
-#: ../layouts/scripts/layout.phtml:25
+#: ../layouts/scripts/layout.phtml:44
 msgid "mQueue"
 msgstr "mQueue"
 
@@ -258,180 +254,199 @@ msgstr "Suivant »"
 msgid "Per page:"
 msgstr "Par page:"
 
-#: ../views/scripts/about/index.phtml:3
-msgid ""
-"This project started as a personal need. It is written in PHP and is\n"
-"an opportunity to explore <a href=\"http://framework.zend.com/\">Zend\n"
-"Framework 1.9</a> and <a href=\"http://jquery.com/\">jQuery</a>\n"
-". It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
-msgstr ""
-"Ce projet a débuté pour un besoin personnel. Il est une opportunité pour explorer <a href=\"http://framework.zend.com/\">Zend\n"
-"Framework 1.9</a> et <a href=\"http://jquery.com/\">jQuery</a>. Il utilise également <a href=\"http://www.fatcow.com/free-icons/\">les icônes de FatCow</a>."
+#: ../views/scripts/status/index.phtml:1
+#: ../views/scripts/movie/view.phtml:4
+msgid "Current status"
+msgstr "Etat actuel"
 
-#: ../views/scripts/about/index.phtml:9
-msgid ""
-"Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
-"http://github.com/PowerKiKi/mqueue</a>."
-msgstr "Le source code est librement accesible via <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+#: ../views/scripts/user/logout.phtml:3
+msgid "You successfully log out"
+msgstr "Vous êtes maintenant déconnecté."
 
-#: ../views/scripts/faq/index.phtml:3
+#: ../views/scripts/user/new.phtml:2
+msgid "Create new user"
+msgstr "Créer un nouveau compte"
+
+#: ../views/scripts/user/index.phtml:1
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: ../views/scripts/user/index.phtml:2
+msgid "Users list"
+msgstr "Liste des utilisateurs"
+
+#: ../views/scripts/user/index.phtml:13
+#: ../views/scripts/user/view.phtml:14
+msgid "Rated"
+msgstr "Noté"
+
+#: ../views/scripts/user/view.phtml:4
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../views/scripts/user/view.phtml:42
+#: ../views/scripts/movie/view.phtml:28
+msgid "Activity"
+msgstr "Activité"
+
+#: ../views/scripts/faq/index.phtml:1
+#: ../views/scripts/faq/index.phtml:2
+#: ../views/scripts/movie/index.phtml:39
+#: ../views/scripts/movie/import.phtml:14
+#: ../views/scripts/movie/import.phtml:33
+#: ../views/scripts/movie/add.phtml:14
+#: ../views/scripts/movie/add.phtml:33
+msgid "FAQ"
+msgstr "FAQ"
+
+#: ../views/scripts/faq/index.phtml:4
 msgid "How does this work ?"
 msgstr "Comment ça marche ?"
 
-#: ../views/scripts/faq/index.phtml:4
+#: ../views/scripts/faq/index.phtml:5
 msgid "To get the most of this website, you should:"
 msgstr "Pour profiter au maximum de ce site, il faut:"
 
-#: ../views/scripts/faq/index.phtml:6
+#: ../views/scripts/faq/index.phtml:7
 msgid "Create an account"
 msgstr "Créer un compte"
 
-#: ../views/scripts/faq/index.phtml:9
+#: ../views/scripts/faq/index.phtml:10
 msgid "For Chrome, skip to next step"
 msgstr "Pour Chrome, passer à l'étape suivante"
 
-#: ../views/scripts/faq/index.phtml:10
+#: ../views/scripts/faq/index.phtml:11
 msgid "For Firefox, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">install Greasemonkey</a>"
 msgstr "Pour Firefox, <a href=\"https://addons.mozilla.org/en-US/firefox/addon/748\">installer Greasemonkey</a>"
 
-#: ../views/scripts/faq/index.phtml:11
+#: ../views/scripts/faq/index.phtml:12
 msgid "For Safari, <a href=\"http://www.culater.net/software/SIMBL/SIMBL.php\">SIMBL</a> and <a href=\"http://8-p.info/greasekit/\">GreaseKit</a> should work"
 msgstr "Pour Safari, <a href=\"http://www.culater.net/software/SIMBL/SIMBL.php\">SIMBL</a> et <a href=\"http://8-p.info/greasekit/\">GreaseKit</a> devrait fonctionner"
 
-#: ../views/scripts/faq/index.phtml:12
+#: ../views/scripts/faq/index.phtml:13
 msgid "For IE, <a href=\"http://www.gm4ie.com\">Greasemonkey for IE</a> may hopefully help"
 msgstr "Pour IE, <a href=\"http://www.gm4ie.com\">Greasemonkey for IE</a> pourrait peut-être aider"
 
-#: ../views/scripts/faq/index.phtml:15
+#: ../views/scripts/faq/index.phtml:16
 msgid "Install the user script"
 msgstr "Installer le script utilisateur"
 
-#: ../views/scripts/faq/index.phtml:16
+#: ../views/scripts/faq/index.phtml:17
 msgid "Surf on <a href=\"http://www.imdb.com/\">www.imdb.com</a> and rate movies by clicking icons"
 msgstr "Surfer sur <a href=\"http://www.imdb.com/\">www.imdb.com</a> et noter les films en cliquant sur les icones"
 
-#: ../views/scripts/faq/index.phtml:20
+#: ../views/scripts/faq/index.phtml:21
 msgid "What is the meaning of the icons ?"
 msgstr "Quelle est la signification des icones ?"
 
-#: ../views/scripts/faq/index.phtml:23
+#: ../views/scripts/faq/index.phtml:24
 msgid "What happens if I click on others' icons ?"
 msgstr "Qu'est-ce qu'il se passe si je clique sur les icônes des autres personnes ?"
 
-#: ../views/scripts/faq/index.phtml:24
+#: ../views/scripts/faq/index.phtml:25
 msgid "Clicking on any icons you see will *always* vote for you. Never for someone else. So if you click on icons in someone else list, you will not immediately see the result, but you actually vote for yourself."
 msgstr "Cliquer sur n'importe quelle icônes votera *toujours* pour vous-même. Jamais pour quelqu'un d'autre. Donc en cliquant sur une icône dans la liste de quelqu'un d'autre, vous ne verrez pas de résultat immédiat, mais le vote sera bien comptabilisé pour vous-même."
 
-#: ../views/scripts/faq/index.phtml:26
+#: ../views/scripts/faq/index.phtml:27
 msgid "How can I add more ratings options ?"
 msgstr "Comment ajouter d'autre options pour noter ?"
 
-#: ../views/scripts/faq/index.phtml:27
+#: ../views/scripts/faq/index.phtml:28
 msgid "You cannot. It is meant to be a very simple, fast and efficient system. No extra bloating options."
 msgstr "Ce n'est pas possible. Ce site a été conçu pour être très simple, rapide et efficace. Aucune options supplémentaire n'est prévue."
 
-#: ../views/scripts/faq/index.phtml:29
+#: ../views/scripts/faq/index.phtml:30
 msgid "How to add a picture to my account ?"
 msgstr "Comment ajouter une photo à mon profil ?"
 
-#: ../views/scripts/faq/index.phtml:30
+#: ../views/scripts/faq/index.phtml:31
 msgid "Sign up for <a href=\"http://www.gravatar.com\">www.gravatar.com</a> with the same email address and your picture will show up here."
 msgstr "S'inscrire sur <a href=\"http://www.gravatar.com\">www.gravatar.com</a> avec le même email et la photo apparaitrera ici."
 
-#: ../views/scripts/movie/add.phtml:1
-msgid "Add a new movie"
-msgstr "Ajouter un nouveau film"
+#: ../views/scripts/movie/index.phtml:1
+msgid "Movies"
+msgstr "Films"
 
-#: ../views/scripts/movie/add.phtml:9
-#: ../views/scripts/movie/import.phtml:9
-#: ../views/scripts/movie/index.phtml:6
+#: ../views/scripts/movie/index.phtml:2
+msgid "Movies list"
+msgstr "Liste de films"
+
+#: ../views/scripts/movie/index.phtml:9
+#: ../views/scripts/movie/import.phtml:10
+#: ../views/scripts/movie/add.phtml:10
 msgid "Title"
 msgstr "Titre"
 
-#: ../views/scripts/movie/add.phtml:13
-#: ../views/scripts/movie/import.phtml:13
-#, php-format
-msgid "There is no movie to show. Please read the %s to learn how to add movies."
-msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
+#: ../views/scripts/movie/index.phtml:13
+msgid "There is no movie to show."
+msgstr "Aucun film à montrer."
 
-#: ../views/scripts/movie/add.phtml:31
-#: ../views/scripts/movie/import.phtml:31
-#: ../views/scripts/movie/index.phtml:29
+#: ../views/scripts/movie/index.phtml:38
+#: ../views/scripts/movie/import.phtml:32
+#: ../views/scripts/movie/add.phtml:32
 #, php-format
 msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
 msgstr "Voir la %s pour savoir comment ajouter des films en un seul clique directement sur www.imdb.com !"
 
 #: ../views/scripts/movie/import.phtml:1
+msgid "Import"
+msgstr "Import"
+
+#: ../views/scripts/movie/import.phtml:2
 msgid "Import votes from IMDb"
 msgstr "Importer les votes d'IMDb"
 
-#: ../views/scripts/movie/index.phtml:1
-msgid "Movies list"
-msgstr "Liste de films"
+#: ../views/scripts/movie/import.phtml:5
+#: ../views/scripts/movie/add.phtml:5
+msgid "Movie found"
+msgstr "Film trouvé"
 
-#: ../views/scripts/movie/index.phtml:10
-msgid "There is no movie to show."
-msgstr "Aucun film à montrer."
+#: ../views/scripts/movie/import.phtml:14
+#: ../views/scripts/movie/add.phtml:14
+#, php-format
+msgid "There is no movie to show. Please read the %s to learn how to add movies."
+msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
 
-#: ../views/scripts/movie/view.phtml:3
-#: ../views/scripts/status/index.phtml:1
-msgid "Current status"
-msgstr "Etat actuel"
+#: ../views/scripts/movie/add.phtml:2
+msgid "Add a new movie"
+msgstr "Ajouter un nouveau film"
 
-#: ../views/scripts/movie/view.phtml:27
-#: ../views/scripts/user/view.phtml:47
-msgid "Activity"
-msgstr "Activité"
+#: ../views/scripts/about/index.phtml:1
+msgid "About"
+msgstr "A propos"
 
-#: ../views/scripts/user/index.phtml:1
-msgid "Users list"
-msgstr "Liste des utilisateurs"
+#: ../views/scripts/about/index.phtml:2
+msgid "About mQueue"
+msgstr "A propos de mQueue"
 
-#: ../views/scripts/user/index.phtml:2
-msgid "Overall statistics"
-msgstr "Statistiques générales"
+#: ../views/scripts/about/index.phtml:3
+msgid "This project started as a personal need. It is written in PHP and is an opportunity to explore <a href=\"http://framework.zend.com/\">Zend Framework</a> and <a href=\"http://jquery.com/\">jQuery</a>. It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
+msgstr ""
+"Ce projet a débuté pour un besoin personnel. Il est une opportunité pour explorer <a href=\"http://framework.zend.com/\">Zend\n"
+"Framework</a> et <a href=\"http://jquery.com/\">jQuery</a>. Il utilise également <a href=\"http://www.fatcow.com/free-icons/\">les icônes de FatCow</a>."
 
-#: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:13
-msgid "Rated"
-msgstr "Noté"
+#: ../views/scripts/about/index.phtml:5
+msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+msgstr "Le source code est librement accessible via <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
 
-#: ../views/scripts/user/index.phtml:57
-msgid "Overall activity"
-msgstr "Activité générale"
-
-#: ../views/scripts/user/logout.phtml:2
-msgid "You successfully log out"
-msgstr "Vous êtes maintenant déconnecté."
-
-#: ../views/scripts/user/new.phtml:1
-msgid "Create new user"
-msgstr "Créer un nouveau compte"
-
-#: ../views/scripts/user/view.phtml:3
-msgid "Statistics"
-msgstr "Statistiques"
-
+#~ msgid "logged as "
+#~ msgstr "connecté "
+#~ msgid "Overall statistics"
+#~ msgstr "Statistiques générales"
 #~ msgid "English"
 #~ msgstr "Anglais"
-
 #~ msgid "Korean"
 #~ msgstr "Coréen"
-
 #~ msgid "French"
 #~ msgstr "Français"
-
 #~ msgid "need browser with iframe"
 #~ msgstr "besoin d'un browser avec support des iframe"
-
 #~ msgid "Total number of movie is %s"
 #~ msgstr "Le nombre total de film est de %s"
-
 #~ msgid "Total"
 #~ msgstr "Total"
-
 #~ msgid "Surf on "
 #~ msgstr "Surfer sur"
-
 #~ msgid "not logged in"
 #~ msgstr "pas loggé"
+
