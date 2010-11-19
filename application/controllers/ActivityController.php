@@ -23,6 +23,7 @@ class ActivityController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	
     	// By default we show overall activity
     	$item = null;
     	$this->view->title = $this->view->translate('Overall activity');
@@ -53,6 +54,12 @@ class ActivityController extends Zend_Controller_Action
 		if (isset($session->perPage)) $perPage = $session->perPage;
 		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
 		$session->perPage = $perPage;
+		
+		// Always send much more data via Atom feed
+		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
+		{
+			$perPage = 200;
+		}
 		
 		$this->view->activity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($item));
 		$this->view->activity->setCurrentPageNumber($this->_getParam('page'));
