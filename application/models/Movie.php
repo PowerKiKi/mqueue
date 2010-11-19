@@ -115,15 +115,6 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		$status->rating = $rating;
 		$status->save();
 	}
-	
-	/**
-	 * Returns an array of latest activities
-	 * @return array of activties
-	 */
-	public function getActivity()
-	{
-		return Default_Model_StatusMapper::getActivityForMovie($this);
-	}
 }
 
 ?>

@@ -52,15 +52,6 @@ class Default_Model_User extends Default_Model_AbstractModel
 	{
 		return Default_Model_StatusMapper::getStatistics($this->id);
 	}
-
-	/**
-	 * Returns latest activities
-	 * @return array of activity
-	 */
-	public function getActivity()
-	{
-		return Default_Model_StatusMapper::getActivityForUser($this);
-	}
 }
 
 ?>

@@ -5,29 +5,46 @@ $entries = array();
 
 // Cycle through the rankings, creating an array storing
 // each, and push the array onto the $entries array
-foreach ($this->activity as $a) {
-	$date = new Zend_Date($a['status']->dateUpdate);
+		
+$cacheUser = array();
+$cacheMovie = array();
+foreach ($this->activity as $status)
+{	
+	if (!array_key_exists($status->idUser, $cacheUser))
+	{
+		$cacheUser[$status->idUser] = Default_Model_UserMapper::find($status->idUser);
+	}
+	$user = $cacheUser[$status->idUser]; 
+	
+	if (!array_key_exists($status->idMovie, $cacheMovie))
+	{
+		$cacheMovie[$status->idMovie] = Default_Model_MovieMapper::find($status->idMovie);
+	}
+	$movie = $cacheMovie[$status->idMovie];
+
+	
+	$date = new Zend_Date($status->dateUpdate);
 	$text = '<p><a href="' . $this->serverUrl() . $this->url(array(
 										'controller' => 'user',
 										'action' => 'view',
-										'id' => $a['user']->id
+										'id' => $user->id
 										),
-									'default', true) . '">' . $this->gravatar($a['user']). ' ' . $this->escape($a['user']->nickname) . '</a> ' . 
+									'default', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a> ' . 
 			'<a href="' . $this->serverUrl() . $this->url(array(
 										'controller' => 'movie',
 										'action' => 'view',
-										'idMovie' => $a['movie']->id
+										'idMovie' => $movie->id
 										),
-									'default', true) . '">' . $this->escape($a['movie']->getTitle()) . '</a> ' .
-			$a['status']->getName() . '</p>';
-	$text .= '<p><a href="' . $a['movie']->getImdbUrl() . '">' . $a['movie']->getImdbUrl() . '</a></p>';
+									'default', true) . '">' . $this->escape($movie->getTitle()) . '</a> ' .
+			$status->getName() . '</p>';
+	$text .= '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
 			
-	$title = $this->escape($a['user']->nickname) . ' - ' . $this->escape($a['movie']->getTitle()) . ' - ' . $a['status']->getName();
+	$title = $this->escape($user->nickname) . ' - ' . $this->escape($movie->getTitle()) . ' - ' . $status->getName();
 		
 	$entry = array(
 		'author' => 'mQueue',
 		'title' => $title,
-		'link'=> $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'idMovie' => $a['movie']->id), 'default', true),
+		'link'=> $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'idMovie' => $movie->id), 'default', true),
 		'description' => $title,
 		'content' => $text,
 		'lastUpdate' => $date->getTimestamp()

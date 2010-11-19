@@ -85,14 +85,24 @@ class UserController extends Zend_Controller_Action
 		{
 			$this->view->user = Default_Model_User::getCurrent();
 		}
-		
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->view->user->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
-		
+	
 		if (!$this->view->user)
 		{
 			throw new Exception($this->view->translate('User not found'));
 		}
 		
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->view->user->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
+		
+		// Store perPage option in session
+		$perPage = 25;
+		$session = new Zend_Session_Namespace();
+		if (isset($session->perPage)) $perPage = $session->perPage;
+		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
+		$session->perPage = $perPage;
+		
+		$this->view->userActivity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($this->view->user));
+		$this->view->userActivity->setCurrentPageNumber($this->_getParam('page'));
+		$this->view->userActivity->setItemCountPerPage($perPage);
 	}
 }
 

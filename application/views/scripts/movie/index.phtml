@@ -31,7 +31,7 @@ $this->headTitle(_tr('Movies'));
 <?php endif; ?>
 </table>
 <?php
-	echo $this->paginationControl($this->paginator, null, null, array('filterParams' => $permanentParams));
+	echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $permanentParams));
 ?>
 
 

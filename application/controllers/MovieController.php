@@ -43,8 +43,6 @@ class MovieController extends Zend_Controller_Action
 		$session->perPage = $perPage;
 		
 		// Set up the paginator
-		Zend_Paginator::setDefaultScrollingStyle('Elastic');
-		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
 		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
@@ -59,14 +57,25 @@ class MovieController extends Zend_Controller_Action
 			$this->view->movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('idMovie'));
 		}
 
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
-
 		if (!$this->view->movie)
 		{
 			throw new Exception($this->view->translate('Movie not found'));
 		}
 
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
 		$this->view->users = Default_Model_UserMapper::fetchAll();
+		
+		
+		// Store perPage option in session
+		$perPage = 25;
+		$session = new Zend_Session_Namespace();
+		if (isset($session->perPage)) $perPage = $session->perPage;
+		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
+		$session->perPage = $perPage;
+		
+		$this->view->movieActivity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($this->view->movie));
+		$this->view->movieActivity->setCurrentPageNumber($this->_getParam('page'));
+		$this->view->movieActivity->setItemCountPerPage($perPage);
 	}
 
 	public function addAction()

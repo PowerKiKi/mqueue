@@ -40,4 +40,7 @@ echo '</tr>';
 </table>
 
 <h3><?php echo $this->translate('Activity'); ?></h3>
-<?php echo $this->activity($this->user->getActivity(), array('user')); ?>
+<?php 
+echo $this->activity($this->userActivity, array('user'));
+echo $this->paginationControl($this->userActivity);
+ ?>

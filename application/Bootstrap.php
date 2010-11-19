@@ -96,6 +96,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		Zend_Form::setDefaultTranslator($adapter);
 		self::$translator = $adapter;
 	}
+	
+	protected function _initPagination()
+	{
+		Zend_Paginator::setDefaultScrollingStyle('Elastic');
+		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
+	}
 }
 
 /**

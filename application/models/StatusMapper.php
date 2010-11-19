@@ -92,78 +92,27 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		
 		return $result;
 	}
-
-	private static function prepareActivity($records)
+		
+	/**
+	 * Returns the query to get activity for either the whole system, or a specific user, or a specific movie
+	 * @param Default_Model_User|Default_Model_Movie|null $item
+	 */
+	public static function getActivityQuery($item = null)
 	{
-		$result = array();
-		$cacheUser = array();
-		$cacheMovie = array();
-		foreach ($records as $r)
+		$select = self::getDbTable()->select()
+			->from('status')
+			->order('dateUpdate DESC');
+			
+		if ($item instanceof Default_Model_User)
 		{
-			if (!array_key_exists($r->idUser, $cacheUser))
-			{
-				$cacheUser[$r->idUser] = Default_Model_UserMapper::find($r->idUser);
-			}
-			$user = $cacheUser[$r->idUser]; 
+			$select->where('idUser = ?', $item->id);
+		}
+		elseif ($item instanceof Default_Model_Movie)
+		{
+			$select->where('idMovie = ?', $item->id);
+		}
 			
-			if (!array_key_exists($r->idMovie, $cacheMovie))
-			{
-				$cacheMovie[$r->idMovie] = Default_Model_MovieMapper::find($r->idMovie);
-			}
-			$movie = $cacheMovie[$r->idMovie];
-			
-			$result []= array(
-						'user' => $user,
-						'movie' => $movie,
-						'status' => $r,
-			);
-		}	
-
-		return $result;
-	}
-
-	public static function getActivity()
-	{
-		$select = self::getDbTable()->select()
-			->from('status')
-			->order('dateUpdate DESC')
-			->limit(200)
-			;
-			
-		$records = self::getDbTable()->fetchAll($select);
-		$result = Default_Model_StatusMapper::prepareActivity($records);
-		
-		return $result;
-	}
-
-	public static function getActivityForMovie(Default_Model_Movie $movie)
-	{
-		$select = self::getDbTable()->select()
-			->from('status')
-			->where('idMovie = ?', $movie->id)
-			->order('dateUpdate DESC')
-			->limit(200)
-			;
-			
-		$records = self::getDbTable()->fetchAll($select);
-		$result = Default_Model_StatusMapper::prepareActivity($records);
-		
-		return $result;
-	}
-	
-	public static function getActivityForUser(Default_Model_User $user)
-	{
-		$select = self::getDbTable()->select()
-			->from('status')
-			->where('idUser = ?', $user->id)
-			->order('dateUpdate DESC')
-			->limit(200)
-			;
-			
-		$records = self::getDbTable()->fetchAll($select);
-		$result = Default_Model_StatusMapper::prepareActivity($records);
-		
-		return $result;
+		return $select;
 	}
 }
 

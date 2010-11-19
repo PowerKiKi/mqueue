@@ -23,31 +23,40 @@ class ActivityController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	// By default we show overall activity
+    	$item = null;
+    	$this->view->title = $this->view->translate('Overall activity');
+    	
+    	// Try to show user's actitvity
     	if ($this->getRequest()->getParam('user'))
     	{
-    		$user = Default_Model_UserMapper::find($this->getRequest()->getParam('user'));
-    		if ($user)
+    		$item = Default_Model_UserMapper::find($this->getRequest()->getParam('user'));
+    		if ($item)
     		{
-    			$this->view->activity = Default_Model_StatusMapper::getActivityForUser($user);
-    			$this->view->title = $this->view->translate('Activity for %s', array($user->nickname));
+    			$this->view->title = $this->view->translate('Activity for %s', array($item->nickname));
     		}
     	}
-    	
+
+    	// Try to show movie's actitvity
     	if ($this->getRequest()->getParam('movie'))
     	{
-    		$movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('movie'));
-    		if ($movie)
+    		$item = Default_Model_MovieMapper::find($this->getRequest()->getParam('movie'));
+    		if ($item)
     		{
-    			$this->view->activity = Default_Model_StatusMapper::getActivityForMovie($movie);
-    			$this->view->title = $this->view->translate('Activity for %s', array($movie->getTitle()));
+    			$this->view->title = $this->view->translate('Activity for %s', array($item->getTitle()));
     		}
     	}
 		
-    	if (!isset($this->view->activity))
-    	{
-			$this->view->activity = Default_Model_StatusMapper::getActivity();
-			$this->view->title = $this->view->translate('Overall activity');
-    	}
+		// Store perPage option in session
+		$perPage = 25;
+		$session = new Zend_Session_Namespace();
+		if (isset($session->perPage)) $perPage = $session->perPage;
+		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
+		$session->perPage = $perPage;
+		
+		$this->view->activity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($item));
+		$this->view->activity->setCurrentPageNumber($this->_getParam('page'));
+		$this->view->activity->setItemCountPerPage($perPage);
     }
 
 }
