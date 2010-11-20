@@ -428,7 +428,7 @@ a.sort.desc
 	list-style-image: url(../images/browser_ie.gif);
 }
 
-a.imdb span
+a.imdb.hideUrl span
 {
 	display: none;
 }
@@ -436,9 +436,10 @@ a.imdb span
 a.imdb
 {
 	display: inline-block;
-	width: 16px;
-	height: 16px;
+	min-height: 16px;
+	padding-left: 16px;
 	background-image: url(../images/imdb_small.gif);
+	background-repeat:no-repeat;
 }
 
 #favoriteMinimum,
