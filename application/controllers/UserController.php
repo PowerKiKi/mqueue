@@ -30,8 +30,7 @@ class UserController extends Zend_Controller_Action
 
 				Default_Model_User::setCurrent($user);
 
-				$this->_helper->FlashMessenger('new user created !');
-				$this->view->messages = $this->_helper->FlashMessenger->getMessages();
+				$this->_helper->FlashMessenger('Subscription complete.');
 				 
 				return $this->_helper->redirector('index', 'movie');
 			}
@@ -59,10 +58,13 @@ class UserController extends Zend_Controller_Action
 					
 					Default_Model_User::setCurrent($user);
 
-					$this->_helper->FlashMessenger('logged in !');
-					$this->view->messages = $this->_helper->FlashMessenger->getMessages();
+					$this->_helper->FlashMessenger('Logged in.');
 
 					return $this->_helper->redirector('index', 'movie');
+				}
+				else 
+				{
+					$this->_helper->FlashMessenger(array('error' => 'Login failed.'));
 				}
 			}
 		}

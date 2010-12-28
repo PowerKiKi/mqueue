@@ -48,7 +48,8 @@
 		</div>
 	</div>
 	<div id="content">
-		<?php echo $this->layout()->content ?>
+		<?php echo $this->flashMessenger(); ?>
+		<?php echo $this->layout()->content; ?>
 	</div>
 	<div id="messages"><?php if (isset($this->messages)) foreach($this->messages as $message) echo '<p>' . $message . '</p>'; ?></div>
 </div>

@@ -94,11 +94,10 @@ class MovieController extends Zend_Controller_Action
 					$movie = Default_Model_MovieMapper::getDbTable()->createRow();
 					$movie->setId($values['id']);
 					$movie->save();
+					$this->_helper->FlashMessenger(_tr('A movie was added.'));					
 				}
 
 				$this->view->movies = array($movie);
-				//$this->_helper->FlashMessenger('We did something in the last request');
-				//$this->view->messages = $this->_helper->FlashMessenger->getMessages();
 			}
 		}
 
@@ -107,57 +106,71 @@ class MovieController extends Zend_Controller_Action
 
 	public function importAction()
 	{
+		$this->_helper->FlashMessenger(array('notice' => _tr('You must be logged in.')));
+		$this->_helper->FlashMessenger(array('warning' => _tr('You must be logged in.')));
+		$this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
+		
 		$request = $this->getRequest();
 		$form    = new Default_Form_Import();
 		$form->setDefaults(array('favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5));
-		
+		$this->view->form = $form;
 
-		if ($this->getRequest()->isPost())
+		if ($this->getRequest()->isPost() && $form->isValid($request->getPost()))
 		{
-			if ($form->isValid($request->getPost()))
+			if (Default_Model_User::getCurrent() == null)
 			{
-				$values = $form->getValues();
-				$page = file_get_contents($values['url']);
+				$this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
+				return;
+			}
+			
+			$values = $form->getValues();
+			$page = file_get_contents($values['url']);
+			
+			$r = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
+			preg_match_all($r, $page, $matches);
+			
+			$movies = array();
+			for ($i = 0; $i < count($matches[1]); $i++)
+			{
+				$id = $matches[1][$i];
+				$imdbRating = $matches[2][$i];
 				
-				$r = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
-				preg_match_all($r, $page, $matches);
-				
-				$movies = array();
-				for ($i = 0; $i < count($matches[1]); $i++)
+				$movie = Default_Model_MovieMapper::find($id);
+				if (!$movie)
 				{
-					$id = $matches[1][$i];
-					$imdbRating = $matches[2][$i];
-					
-					$movie = Default_Model_MovieMapper::find($id);
-					if (!$movie)
-					{
-						$movie = Default_Model_MovieMapper::getDbTable()->createRow();
-						$movie->setId($id);
-						$movie->save();
-					}
-
-					if ($imdbRating >= $values['favoriteMinimum'])
-						$rating = Default_Model_Status::Favorite;
-					elseif ($imdbRating >= $values['excellentMinimum'])
-						$rating = Default_Model_Status::Excellent;
-					elseif ($imdbRating >= $values['okMinimum'])
-						$rating = Default_Model_Status::Ok;
-					else
-						$rating = Default_Model_Status::Bad;
-						
-					$movie->setStatus(Default_Model_User::getCurrent()->id, $rating);
-					$movies []= $movie;
+					$movie = Default_Model_MovieMapper::getDbTable()->createRow();
+					$movie->setId($id);
+					$movie->save();
 				}
+
+				if ($imdbRating >= $values['favoriteMinimum'])
+					$rating = Default_Model_Status::Favorite;
+				elseif ($imdbRating >= $values['excellentMinimum'])
+					$rating = Default_Model_Status::Excellent;
+				elseif ($imdbRating >= $values['okMinimum'])
+					$rating = Default_Model_Status::Ok;
+				else
+					$rating = Default_Model_Status::Bad;
+					
+				$movie->setStatus(Default_Model_User::getCurrent()->id, $rating);
+				$movies []= $movie;
+			}
+
+			$count = count($movies);
+			if ($count)
+			{
+				$this->_helper->FlashMessenger(_tr('Movies imported.'));
 				$this->view->movies = $movies;
+			}	
+			else
+			{
+				$this->_helper->FlashMessenger(array('warning' => _tr('No movies found for import.')));
 			}
 		}
-
-		$this->view->form = $form;
+		
 	}
 
 
 }
-
-
 
 
