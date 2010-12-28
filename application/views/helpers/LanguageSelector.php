@@ -2,6 +2,10 @@
 
 class Default_View_Helper_LanguageSelector extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Return a <div> to select language.
+	 * @return string
+	 */
 	public function languageSelector()
 	{
 		$languages = array(

@@ -5,7 +5,6 @@ class ActivityController extends Zend_Controller_Action
 
     public function init()
     {
-
 		// Init the Context Switch Action helper
 		$contextSwitch = $this->_helper->contextSwitch();
 
@@ -17,8 +16,7 @@ class ActivityController extends Zend_Controller_Action
 					'suffix'  => 'rss'),
 			));
 			
-		$contextSwitch->addActionContext('index', 'atom')
-		->initContext();
+		$contextSwitch->addActionContext('index', 'atom')->initContext();
     }
 
     public function indexAction()

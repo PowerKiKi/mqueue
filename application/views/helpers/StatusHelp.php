@@ -2,6 +2,10 @@
 
 class Default_View_Helper_StatusHelp extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Returns some help text about statuses for end-user
+	 * @return string
+	 */
 	public function statusHelp()
 	{
 		$result = '<ul class="statusHelp">';

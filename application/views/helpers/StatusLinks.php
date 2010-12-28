@@ -2,6 +2,11 @@
 
 class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Returns the set of links to display a status (the icons used to rate movies)
+	 * @param Default_Model_Status $status
+	 * @return string
+	 */
 	public function statusLinks(Default_Model_Status $status)
 	{
 		$result = '<div class="status_links status_links_' . $status->getUniqueId() .'">';

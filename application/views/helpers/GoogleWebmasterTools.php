@@ -2,6 +2,11 @@
 
 class Default_View_Helper_GoogleWebmasterTools extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Return a meta to be used for Google Webmaster Tools
+	 * @param string $verificationCode
+	 * @return string
+	 */
 	public function googleWebmasterTools($verificationCode = null)
 	{
 		if (!is_string($verificationCode))

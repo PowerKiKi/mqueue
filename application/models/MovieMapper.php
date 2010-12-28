@@ -2,14 +2,22 @@
 
 abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 {
+	/**
+	 * Returns a movie by its ID
+	 * @param integer $id
+	 * @return Default_Model_Movie|null
+	 */
     public static function find($id)
     {
-		
         $result = self::getDbTable()->find($id);
 		
         return $result->current();
     }
 
+    /**
+     * Returns all movies
+     * @return Default_Model_Movie[]
+     */
     public static function fetchAll()
     {
         $resultSet = self::getDbTable()->fetchAll();
@@ -17,7 +25,14 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
         return $resultSet;
     }
     
-    public static function getFilteredQuery($filters, $sort, $sortOrder)
+    /**
+     * Returns a query filtered according to parameters. This query may be used with paginator.
+     * @param array $filters
+     * @param string $sort defines the column to sort with
+     * @param string $sortOrder defines the order of the sort ("desc" or "asc")
+     * @return Zend_Db_Table_Select
+     */
+    public static function getFilteredQuery(array $filters, $sort, $sortOrder)
     {
     	// Find out what to order (only allowed 'title', 'status0', 'status1', 'status2', ...)
     	if (preg_match('/^status\d+$/', $sort))

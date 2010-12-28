@@ -3,9 +3,9 @@
 class Default_Model_User extends Default_Model_AbstractModel
 {
 	/**
-	 * The current user logged in
+	 * The current user logged in.
 	 * -1 before initialization
-	 * null if not user logged in
+	 * null if no user logged in
 	 * Default_Model_User if logged in
 	 * @var -1|null|Default_Model_User 
 	 */
@@ -41,7 +41,7 @@ class Default_Model_User extends Default_Model_AbstractModel
 	{
 		$session = new Zend_Session_Namespace();
 		$session->idUser = $user ? $user->id : null;
-		self::$currentUser = null;
+		self::$currentUser = $user;
 	}
 	
 	/**

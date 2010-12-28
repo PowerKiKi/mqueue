@@ -2,9 +2,14 @@
 
 class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Returns the current page URL with specified GET parameters.
+	 * @param array $params
+	 * @return string
+	 */
 	public function urlParams(array $params)
 	{
-		return $this->view->url() . '?' . $this->flatten($params);
+		return $this->view->serverUrl() . $this->view->url() . '?' . $this->flatten($params);
 	}
 	
 	/**

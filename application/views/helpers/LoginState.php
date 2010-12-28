@@ -2,6 +2,10 @@
 
 class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Returns a string displaying the login state of the user and buttons to login/off
+	 * @return string
+	 */
 	public function loginState()
 	{
 		$result = '<div class="loginState">';
