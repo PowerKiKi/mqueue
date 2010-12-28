@@ -106,10 +106,6 @@ class MovieController extends Zend_Controller_Action
 
 	public function importAction()
 	{
-		$this->_helper->FlashMessenger(array('notice' => _tr('You must be logged in.')));
-		$this->_helper->FlashMessenger(array('warning' => _tr('You must be logged in.')));
-		$this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
-		
 		$request = $this->getRequest();
 		$form    = new Default_Form_Import();
 		$form->setDefaults(array('favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5));
