@@ -1,8 +1,8 @@
 <?php
-require_once('../public/index.php');
+require_once(dirname(__FILE__) . '/../public/index.php');
 
 $settingName = 'databaseVersion'; // This is the setting name used in the database to store the version information
-$sqlPath = 'sql/'; // This is the path where all SQL patches resides
+$sqlPath = dirname(__FILE__) . '/sql/'; // This is the path where all SQL patches resides
 
 /**
  * Returns the last version available in SQL file
@@ -38,7 +38,7 @@ function buildSQL($currentVersion, $targetVersion)
 	global $sqlPath;
 
 	if ($currentVersion > $targetVersion)
-	throw new Exception('Cannot downgrade versions. Target version must be higher than current version');
+		throw new Exception('Cannot downgrade versions. Target version must be higher than current version');
 
 	$sql = "START TRANSACTION;\n";
 
@@ -128,7 +128,7 @@ function doUpdate($database)
 
 	if ($currentVersion == $targetVersion)
 	{
-		echo "already up-to-date";
+		echo "already up-to-date\n";
 		return;
 	}
 
@@ -152,7 +152,6 @@ $bootstrap->bootstrap('db');
 $dbAdapter = $bootstrap->getResource('db');
 $options = $bootstrap->getOption('resources');
 
-//w($options['db']['params']);
 doUpdate($options['db']['params']);
 
 ?>

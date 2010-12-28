@@ -1,5 +1,5 @@
 <?php
-require_once('../public/index.php');
+require_once(dirname(__FILE__) . '/../public/index.php');
 
 try
 {
