@@ -1,0 +1,26 @@
+h1. mQueue
+
+h2. About
+
+mQueue is a website to keep track of movies you want to watch and rate the one you watched.
+
+h2. Requirements
+
+* PHP 5.3+
+* Apache 2+
+* MySQL 5.1+
+* Zend Framwork 1.10+
+
+h2. Installation
+
+# Create a database and a user in MySQL (eg: "mqueue")
+# Download latest version: https://github.com/PowerKiKi/mqueue/zipball/master and unzip it
+# In application/configs/, copy application.sample.ini to application.ini and edit database configuration
+# Run @php scripts/update_database.php@
+# Open mQueue in your browser (something similar to http://mqueue/ or http://localhost/mqueue/public/)
+
+h2. Upgrade
+
+# Download latest version: https://github.com/PowerKiKi/mqueue/zipball/master and unzip it
+# Run @php scripts/update_database.php@
+
