@@ -52,9 +52,9 @@ class MovieController extends Zend_Controller_Action
 
 	public function viewAction()
 	{
-		if ($this->getRequest()->getParam('idMovie'))
+		if ($this->getRequest()->getParam('id'))
 		{
-			$this->view->movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('idMovie'));
+			$this->view->movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('id'));
 		}
 
 		if (!$this->view->movie)

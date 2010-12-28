@@ -17,7 +17,7 @@
 		<?php foreach ($this->movies as $entry): ?>
 			<tr>
 				<td><?php echo $this->statusLinks($entry->getStatus(Default_Model_User::getCurrent())); ?></td>
-				<td><a href="<?php echo $this->url(array('action' => 'view', 'idMovie' => $entry->id)); ?>"><?php echo $this->movie($entry); ?></a></td>
+				<td><a href="<?php echo $this->url(array('action' => 'view', 'id' => $entry->id)); ?>"><?php echo $this->movie($entry); ?></a></td>
 			</tr>
 		<?php endforeach ?>
 	<?php endif; ?>
