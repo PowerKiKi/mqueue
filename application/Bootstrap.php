@@ -130,6 +130,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		);
 		
 		// For backward compatibility with RSS readers we keep the old route
+		$router->addRoute('activityOld',
+			new Zend_Controller_Router_Route('activity/index/*', array('controller' => 'activity', 'action' => 'index'))
+		);
 		$router->addRoute('activityMovieOld',
 			new Zend_Controller_Router_Route('activity/index/movie/:movie/*', array('controller' => 'activity', 'action' => 'index'))
 		);
