@@ -62,7 +62,7 @@ class MovieController extends Zend_Controller_Action
 			throw new Exception($this->view->translate('Movie not found'));
 		}
 
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), null, true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
+		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), 'activityMovie', true), 'application/rss+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
 		$this->view->users = Default_Model_UserMapper::fetchAll();
 		
 		

@@ -35,32 +35,37 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			array(
 				'label' => $view->translate('Movies'),
 				'controller'=>'movie',
+				'route' => 'default',
 				'pages' => array(
 					array(
 						'label' => $view->translate('Add movie'),
 						'controller'=>'movie',
-						'action' => 'add'
+						'action' => 'add',
+						'route' => 'default',
 					),
 					array(
 						'label' => $view->translate('Import votes from IMDb'),
 						'controller'=>'movie',
-						'action' => 'import'
+						'action' => 'import',
+						'route' => 'default',
 					),
 				)
 			),
 			array(
 				'label' => $view->translate('Activity'),
-				'controller' => 'activity',
+				'controller' => 'activity',				
+				'route' => 'default',
 			),
 			array(
 				'label' => $view->translate('Users'),
 				'controller' => 'user',
+				'route' => 'default',
 			),
 			array(
 				'label' => $view->translate('FAQ'),
 				'controller' => 'faq',
+				'route' => 'default',
 			),
-		
 		));
 		
 		$view->navigation($navigation);
@@ -101,6 +106,37 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
+	}
+	
+	protected function _initRoutes()
+	{
+		$front  = Zend_Controller_Front::getInstance();
+		$router = $front->getRouter();
+		
+		// A route for single id (typically view a single movie/user)
+		$router->addRoute('singleid',
+			new Zend_Controller_Router_Route(':controller/:action/:id', array('action' => 'view'))
+		);
+		
+		// A route for activities
+		$router->addRoute('activity',
+			new Zend_Controller_Router_Route('activity/*', array('controller' => 'activity', 'action' => 'index'))
+		);
+		$router->addRoute('activityMovie',
+			new Zend_Controller_Router_Route('activity/movie/:movie/*', array('controller' => 'activity', 'action' => 'index'))
+		);
+		$router->addRoute('activityUser',
+			new Zend_Controller_Router_Route('activity/user/:user/*', array('controller' => 'activity', 'action' => 'index'))
+		);
+		
+		// For backward compatibility with RSS readers we keep the old route
+		$router->addRoute('activityMovieOld',
+			new Zend_Controller_Router_Route('activity/index/movie/:movie/*', array('controller' => 'activity', 'action' => 'index'))
+		);
+		$router->addRoute('activityUserOld',
+			new Zend_Controller_Router_Route('activity/index/user/:user/*', array('controller' => 'activity', 'action' => 'index'))
+		);
+		
 	}
 }
 

@@ -1,8 +1,7 @@
 <?php echo $this->doctype() ?>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>  
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
   <?php
   	echo $this->headTitle('mQueue')->setSeparator(' - '); 
   	echo $this->headLink(array('rel' => 'icon',
@@ -13,8 +12,8 @@
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/handheld.css'), 'handheld')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/print.css'), 'print')
-  			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'format' => 'atom'), null, true), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
-  			;
+  			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'format' => 'atom'), 'activity', true), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+  			. "\n";
   
   	// Set localization file for timeago
 	$lang = Zend_Registry::get('Zend_Locale')->getLanguage();

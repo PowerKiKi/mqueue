@@ -21,7 +21,7 @@ class Default_View_Helper_Movie extends Zend_View_Helper_Abstract
 			$title = $this->view->translate('Your are not logged in');
 		}
 		
-		$movieUrl = $this->view->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), null, true);
+		$movieUrl = $this->view->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true);
 		$result .= ' <a title="' . $title . '" href="' . $movieUrl . '">' . $this->view->escape($movie->getTitle()) . '</a>';
 
 		return $result;

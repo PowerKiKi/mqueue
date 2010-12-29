@@ -23,7 +23,7 @@ foreach ($this->users as $user)
 										'action' => 'view',
 										'id' => $user->id
 										),
-									'default', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a></td>';
+									'singleid', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a></td>';
 	$stats = $user->getStatistics();
 	foreach (Default_Model_Status::$ratings as $val => $name)
 	{

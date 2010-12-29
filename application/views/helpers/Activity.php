@@ -43,7 +43,7 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 										'action' => 'view',
 										'id' => $user->id
 										),
-									'default', true) . '">' . $this->view->gravatar($user). ' ' . $this->view->escape($user->nickname) . '</a></td>';
+									'singleid', true) . '">' . $this->view->gravatar($user). ' ' . $this->view->escape($user->nickname) . '</a></td>';
 			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
 			if (!in_array('status', $hiddenColumns)) $result .= '<td class="rating">' . $this->view->statusLinks($status) . '</td>';
 			

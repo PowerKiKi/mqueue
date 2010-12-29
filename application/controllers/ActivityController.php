@@ -21,7 +21,6 @@ class ActivityController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	
     	// By default we show overall activity
     	$item = null;
     	$this->view->title = $this->view->translate('Overall activity');

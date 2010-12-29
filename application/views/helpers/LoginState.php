@@ -15,7 +15,7 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 		{
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 				array('controller'=>'user', 'action' => 'view', 'id' => $user->id), 
-				'default', 
+				'singleid', 
 				true) . '">' . $this->view->gravatar($user) . ' ' . $this->view->escape($user->nickname) . '</a> ';
 				
 			$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
