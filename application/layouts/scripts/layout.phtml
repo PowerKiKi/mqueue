@@ -12,7 +12,7 @@
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/handheld.css'), 'handheld')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/print.css'), 'print')
-  			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'format' => 'atom'), 'activity', true), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+  			->appendAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'format' => 'atom'), 'activity', true), 'application/atom+xml', $this->translate('mQueue - Overall activity'))
   			. "\n";
   
   	// Set localization file for timeago
