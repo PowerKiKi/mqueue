@@ -26,7 +26,7 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 														'movie' => $status->idMovie,
 														'rating' => ($val == $status->rating && $user && $user->id == $status->idUser) ? 0 : $val
 			),
-													'default', 
+													'status', 
 			true);
 			
 			$result .= '<' . $tag . ' class="status status_' . $class . '"' . ($tag == 'a' ? ' href="' . $url . '"' : '') . ' title="' . $name . '"><span>' . $name . '</span></' . $tag . '>';

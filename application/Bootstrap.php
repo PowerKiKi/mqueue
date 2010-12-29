@@ -137,6 +137,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			new Zend_Controller_Router_Route('activity/index/user/:user/*', array('controller' => 'activity', 'action' => 'index'))
 		);
 		
+		// Routes to define and view statuses
+		$router->addRoute('status',
+			new Zend_Controller_Router_Route('status/:movie/:rating', array('controller' => 'status', 'action' => 'index'))
+		);
+		$router->addRoute('statusView',
+			new Zend_Controller_Router_Route('status/:movie', array('controller' => 'status', 'action' => 'index'))
+		);
+		
+		
+		
 	}
 }
 
