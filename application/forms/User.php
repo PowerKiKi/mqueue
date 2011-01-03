@@ -11,8 +11,9 @@ class Default_Form_User extends Zend_Form
         $this->addElement('text', 'nickname', array(
             'label'      => _tr('Nickname:'),
             'required'   => true,
+        	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
-                //array('validator' => 'Regex', 'options' => array("/(\d{7})/"))
+        		array('validator' =>  new Zend_Validate_Db_NoRecordExists(array('table' => 'user', 'field' => 'nickname'))),
                 )
         ));
         
@@ -22,7 +23,8 @@ class Default_Form_User extends Zend_Form
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
-                array('validator' => 'emailAddress')
+                array('validator' => 'emailAddress'),
+                array('validator' =>  new Zend_Validate_Db_NoRecordExists(array('table' => 'user', 'field' => 'email'))),
                 )
         ));
         
@@ -30,7 +32,6 @@ class Default_Form_User extends Zend_Form
         $this->addElement('password', 'password', array(
             'label'      => _tr('Password:'),
             'required'   => true,
-        	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
                 //array('validator' => 'emailAddress')
                 )
@@ -43,8 +44,9 @@ class Default_Form_User extends Zend_Form
         ));
 
         // And finally add some CSRF protection
-      //  $this->addElement('hash', 'csrf', array(
-     //       'ignore' => true,
-     //   ));
+		$this->addElement('hash', 'csrf', array(
+			'ignore' => true,
+			'decorators' => array('ViewHelper'),
+		));
     }
 }
