@@ -60,6 +60,17 @@ body
 	display: none;
 }
 
+#header .tagline
+{
+	color: white;
+	font-size: 1.2em;
+	font-weight: bold;
+	left: 250px;
+	opacity: 0.8;
+	position: relative;
+	top: -70px;
+}
+
 #header-logo
 {
 	height: 135px;
