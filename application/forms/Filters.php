@@ -92,4 +92,15 @@ class Default_Form_Filters extends Zend_Form
         // set defaults, which will propagate to newly created subforms
         parent::setDefaults($defaults);
     }
+    
+    public function getValuesText()
+    {
+    	$text = array();
+    	foreach ($this->getSubForms() as $subForm)
+    	{
+    		$text []= $subForm->getValuesText();
+    	}
+    	
+    	return join(' + ', $text);
+    }
 }

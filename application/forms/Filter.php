@@ -34,7 +34,7 @@ class Default_Form_Filter extends Zend_Form_SubForm
 		
         // Add the filter element
         $this->addElement('text', 'title', array(
-            'label'      => 'Title :',
+            'label'      => _tr('Title :'),
         ));
 		
 
@@ -101,6 +101,24 @@ class Default_Form_Filter extends Zend_Form_SubForm
     function disableTitle()
     {
     	$this->removeElement('title');
+    }
+
+    
+    public function getValuesText()
+    {
+    	$text = '';
+    	$values = $this->getValues();
+    	$values = $values[$this->getName()];
+    	
+    	if (@$values['title'])
+    		$text = _tr('title') . ':"' . $values['title'] .'" + ';
+    	
+    	$users = $this->getElement('user')->getMultiOptions();
+    	$statuses = $this->getElement('status')->getMultiOptions();
+    	
+    	$text .= $users[$values['user']] . ':' . $statuses[$values['status']];
+    		
+    	return $text;
     }
 	
 }

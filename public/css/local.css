@@ -195,10 +195,14 @@ ul.navigation li:hover>ul
 	float: right;
 }
 
-.paginationControl
+.paginationControl,
+.alternateFormats
 {
 	font-size: 0.8em;
-	margin-top: 1em;
+}
+.alternateFormats
+{
+	float: right;
 }
 
 #filters

@@ -1,9 +1,4 @@
 <?php 
-$permanentParams = $this->formFilter->getValues();
-unset($permanentParams['addFilter']);
-if ($this->sort) $permanentParams['sort'] = $this->sort;
-if ($this->sortOrder) $permanentParams['sortOrder'] = $this->sortOrder;
-
 $this->headTitle(_tr('Movies'));
 ?>
 <h2><?php echo $this->translate('Movies list'); ?></h2>
@@ -11,9 +6,9 @@ $this->headTitle(_tr('Movies'));
 <table>
 <tr>	
 	<?php $i = 0; foreach ($this->users as $user): ?>
-		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sort, $this->sortOrder, $permanentParams); ?></th>
+		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sort, $this->sortOrder, $this->permanentParams); ?></th>
 	<?php endforeach; ?>
-	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder, $permanentParams); ?></th>
+	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder, $this->permanentParams); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="<?php echo count($this->users) + 1; ?>">
@@ -30,10 +25,10 @@ $this->headTitle(_tr('Movies'));
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
+<p class="alternateFormats"><?php echo $this->translate('Also available in:') ?> <a class="atom" href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('format' => 'atom'))); ?>">Atom</a> | <a class="csv" href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('format' => 'csv'))); ?>">CSV</a></p>
 <?php
-	echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $permanentParams));
+	echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $this->permanentParams));
 ?>
-
 
 <?php if ($this->paginator->getTotalItemCount() != 0): ?>
 	<div class="tips"><?php echo $this->statusHelp(); ?></div>

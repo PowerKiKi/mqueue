@@ -10,10 +10,7 @@ class ActivityController extends Zend_Controller_Action
 
 		// Add the new context
 		$contextSwitch->setContexts(array(
-				'atom' => array(
-					'suffix'  => 'atom'),
-				'rss' => array(
-					'suffix'  => 'rss'),
+				'atom' => array('suffix'  => 'atom')
 			));
 			
 		$contextSwitch->addActionContext('index', 'atom')->initContext();

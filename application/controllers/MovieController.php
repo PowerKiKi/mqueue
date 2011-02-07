@@ -5,7 +5,16 @@ class MovieController extends Zend_Controller_Action
 
 	public function init()
 	{
-		/* Initialize action controller here */
+		// Init the Context Switch Action helper
+		$contextSwitch = $this->_helper->contextSwitch();
+
+		// Add the new context
+		$contextSwitch->setContexts(array(
+				'csv' => array('suffix'  => 'csv'),
+				'atom' => array('suffix'  => 'atom'),
+			));
+			
+		$contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'atom')->initContext();
 	}
 
 	public function indexAction()
@@ -42,11 +51,30 @@ class MovieController extends Zend_Controller_Action
 		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
 		$session->perPage = $perPage;
 		
-		// Set up the paginator
+		
+		// Defines variables for the view
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
+		
+		// If we ouput atom, we force sorting by date
+		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
+		{
+			// TODO allow sorting by date of all statuses (use MAX(status0.dateUpdate))
+		}
+		$this->view->permanentParams = $form->getValues();
+		unset($this->view->permanentParams['addFilter']);
+		if ($this->view->sort) $this->view->permanentParams['sort'] = $this->view->sort;
+		if ($this->view->sortOrder) $this->view->permanentParams['sortOrder'] = $this->view->sortOrder;
+		
+		
+		// Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering) 
 		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
-		$this->view->paginator->setCurrentPageNumber($this->_getParam('page'));
+		switch ($this->_helper->contextSwitch()->getCurrentContext())
+		{
+			case 'csv': $perPage = 0; break;
+			case 'atom': $perPage = 200; break;
+			case null: $this->view->paginator->setCurrentPageNumber($this->_getParam('page')); break;
+		}
 		$this->view->paginator->setItemCountPerPage($perPage);
 	}
 

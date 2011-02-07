@@ -2,13 +2,17 @@
 
 class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 {
+	private $escapeParams = null;
+	
 	/**
 	 * Returns the current page URL with specified GET parameters.
 	 * @param array $params
+	 * @param boolean $escapeParams if false '&' characters will not be escaped
 	 * @return string
 	 */
-	public function urlParams(array $params)
+	public function urlParams(array $params, $escapeParams = true)
 	{
+		$this->escapeParams = $escapeParams;
 		return $this->view->serverUrl() . $this->view->url() . '?' . $this->flatten($params);
 	}
 	
@@ -39,7 +43,7 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 			{
 				if ($result)
 				{
-					$result .= '&amp;';
+					$result .= $this->escapeParams ? '&amp;' : '&';
 				}
 			
 				$result .= $name . '=' . urlencode($value);

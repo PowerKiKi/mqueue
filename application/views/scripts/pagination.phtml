@@ -5,7 +5,7 @@ if (!is_array($this->permanentParams))
 }
 
 if ($this->pageCount): ?>
-	<div class="paginationControl">
+	<p class="paginationControl">
 	<!-- Previous page link -->
 	<?php if (isset($this->previous)): ?>
 	  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a> 
@@ -50,5 +50,5 @@ if ($this->pageCount): ?>
 		}
 	?>
 	</span>
-	</div>
+	</p>
 <?php endif; ?>
