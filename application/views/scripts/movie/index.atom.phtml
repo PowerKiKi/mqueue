@@ -10,20 +10,6 @@ $cacheUser = array();
 $cacheMovie = array();
 foreach ($this->paginator as $movie)
 {	
-	/*
-	if (!array_key_exists($status->idUser, $cacheUser))
-	{
-		$cacheUser[$status->idUser] = Default_Model_UserMapper::find($status->idUser);
-	}
-	$user = $cacheUser[$status->idUser]; 
-	
-	if (!array_key_exists($status->idMovie, $cacheMovie))
-	{
-		$cacheMovie[$status->idMovie] = Default_Model_MovieMapper::find($status->idMovie);
-	}
-	$movie = $cacheMovie[$status->idMovie];
-*/
-	
 	$date = new Zend_Date($movie->dateUpdate);
 	$text = '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
 	
@@ -36,16 +22,10 @@ foreach ($this->paginator as $movie)
 											'id' => $user->id
 											),
 										'singleid', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a> ' . 
-				'<a href="' . $this->serverUrl() . $this->url(array(
-											'controller' => 'movie',
-											'action' => 'view',
-											'id' => $movie->id
-											),
-										'singleid', true) . '">' . $this->escape($movie->getTitle()) . '</a> ' .
 				$status->getName() . '</p>';
 	}
 			
-	$title = $this->escape($movie->getTitle());
+	$title = $movie->getTitle();
 		
 	$entry = array(
 		'author' => 'mQueue',
@@ -72,4 +52,3 @@ $activity = Zend_Feed::importArray($rss);
 // Write the activity to a variable
 $activity->send();
 
-?>
