@@ -34,12 +34,12 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
      */
     public static function getFilteredQuery(array $filters, $sort, $sortOrder)
     {
-    	// Find out what to order (only allowed 'title', 'status0', 'status1', 'status2', ...)
+    	// Find out what to order (only allowed 'title', 'date', 'status0', 'status1', 'status2', ...)
     	if (preg_match('/^status\d+$/', $sort))
     	{
 			$sort = $sort . '.rating';
     	}
-    	else
+    	elseif ($sort != 'date')
     	{
     		$sort = 'title';
     	}
@@ -50,11 +50,12 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     		$sortOrder = 'ASC';
 
     	
-		$select = self::getDbTable()->select()
+		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('movie')
 			->order($sort . ' ' . $sortOrder);
 
 		$i = 0;
+		$maxDate = '';
 		foreach ($filters as $key => $filter)
 		{
 			if (!preg_match('/^filter\d+$/', $key))
@@ -83,9 +84,16 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		    			$select->where('movie.title LIKE ?', '%' . $part . '%');
 		    	}
 			}
+			
+			if ($maxDate)
+				$maxDate = 'IF(`status' . $i . '`.`dateUpdate` > ' . $maxDate . ', `status' . $i . '`.`dateUpdate` , ' . $maxDate . ')';
+			else
+				$maxDate = '`status' . $i . '`.`dateUpdate`';
 	    	
 	    	$i++;
 		}
+		
+		$select->columns(array('date' => $maxDate));
 		
     	return $select;
     }

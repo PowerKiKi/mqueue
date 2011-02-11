@@ -2,7 +2,6 @@
 
 class MovieController extends Zend_Controller_Action
 {
-
 	public function init()
 	{
 		// Init the Context Switch Action helper
@@ -59,7 +58,8 @@ class MovieController extends Zend_Controller_Action
 		// If we ouput atom, we force sorting by date
 		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
 		{
-			// TODO allow sorting by date of all statuses (use MAX(status0.dateUpdate))
+			$this->view->sort = 'date';
+			$this->view->sortOrder = 'desc';
 		}
 		$this->view->permanentParams = $form->getValues();
 		unset($this->view->permanentParams['addFilter']);
