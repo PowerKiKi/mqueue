@@ -93,7 +93,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 	    	$i++;
 		}
 		
-		$select->columns(array('date' => $maxDate));
+		$select->columns(array('date' => new Zend_Db_Expr($maxDate)));
 		
     	return $select;
     }
