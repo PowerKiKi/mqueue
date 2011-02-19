@@ -19,7 +19,10 @@ class Default_Form_Filter extends Zend_Form_SubForm
 		$this->addElement('select', 'user', array(
 			'multiOptions'   => $users,
 			'label'	=> _tr('User :'),
-			'class' => 'filterUser'
+			'class' => 'filterUser',
+            'validators' => array(
+        		array('validator' =>  new Zend_Validate_Db_RecordExists(array('table' => 'user', 'field' => 'id'))),
+                ),
 		));
 		
 		$status = array(-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>'));

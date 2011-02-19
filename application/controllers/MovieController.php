@@ -20,17 +20,30 @@ class MovieController extends Zend_Controller_Action
 	{
 		$form = new Default_Form_Filters();
 		$this->view->formFilter = $form;
-		 
-		// If want to clear the filter do so, otherwise try to validate it
-		if ($this->_getParam('clear', false))
+
+		// Detect if at least one filter was submitted
+		$submitted = false;
+		foreach ($this->getRequest()->getParams() as $key => $filter)
 		{
-			$filters = array();
+			if (preg_match('/^filter\d+$/', $key))
+			{
+				$submitted = true;
+			}
 		}
+		
+		// If was submitted and do not want to clear, try to validate values
+		if ($submitted && !$this->_getParam('clear', false))
+		{
+			if (!$form->isValid($this->getRequest()->getParams()))
+			{
+				$form->setDefaults(array());
+			}
+		}
+		// Otherwise clear the filter
 		else
 		{
-			$filters = $this->getRequest()->getParams();
+			$form->setDefaults(array());
 		}
-		$form->setDefaults($filters);
 
 		// Gather users selected in filters
 		$this->view->users = array();

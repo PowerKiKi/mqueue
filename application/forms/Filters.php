@@ -48,6 +48,15 @@ class Default_Form_Filters extends Zend_Form
 				));
 	}
 	
+	/**
+	 * Overrides isValid to dynamically generate subforms which will be used for validation
+	 * @param array $data
+	 */
+	public function isValid($data)
+	{
+		$this->setDefaults($data);
+		return parent::isValid($data);
+	}
 
     /**
      * Override setDefaults to dynamically generate subforms
@@ -90,7 +99,7 @@ class Default_Form_Filters extends Zend_Form
         $defaults['addFilter'] = 0;
         
         // set defaults, which will propagate to newly created subforms
-        parent::setDefaults($defaults);
+        return parent::setDefaults($defaults);
     }
     
     public function getValuesText()
