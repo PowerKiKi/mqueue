@@ -40,6 +40,16 @@ class MovieController extends Zend_Controller_Action
 				$form->setDefaults(array());
 			}
 		}
+		// If we submitted a quicksearch, set default values to search with any status
+		elseif ($this->_getParam('search'))
+		{
+			$form->setDefaults(array(
+				'filter1' => array(
+					'status' => -2,
+					'title' => $this->_getParam('search'),
+				)
+			));
+		}
 		// Otherwise clear the filter
 		else
 		{
@@ -212,5 +222,3 @@ class MovieController extends Zend_Controller_Action
 
 
 }
-
-

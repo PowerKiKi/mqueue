@@ -29,9 +29,6 @@
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/both.js'))
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.4.2.min.js'));
 			
-			
-			
-			
 	echo $this->googleAnalytics();
 	echo $this->googleWebmasterTools(); 
   ?>
@@ -44,6 +41,7 @@
 			<h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1>
 			<span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
 		</div>
+		<?php echo new Default_Form_QuickSearch(); ?>
 		<div id="header-navigation"><span>&nbsp;</span>
 			<?php echo $this->navigation()->menu(); ?> 
 			<?php echo $this->loginState(); ?> 
