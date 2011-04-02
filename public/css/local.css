@@ -267,6 +267,7 @@ ol ol
 	list-style-type: lower-alpha;
 }
 
+#quickSearch,
 .language_selector
 {
 	float: right;
@@ -274,6 +275,7 @@ ol ol
 	font-weight: bold;
 	margin-right: 1em;
 	margin-top: 0.5em;
+	clear: both;
 }
 
 .language_selector a
@@ -501,18 +503,11 @@ div.flashmessenger.error
 	text-align: left;
 }
 
-#quickSearch
-{
-    position: absolute;
-    right: 14.5em;
-    top: 8em;
-}
-
-
 #quickSearch #search
 {
     opacity: 0.8;
 	width: 10em;
+	border: 2px solid #0055FF;
 }
 
 #quickSearch #search:hover,
@@ -521,7 +516,7 @@ div.flashmessenger.error
 	opacity: 1;
 }
 
-#quickSearch #submit
+#quickSearch #searchSubmit
 {
 	display: none;
 }

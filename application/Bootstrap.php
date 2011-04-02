@@ -18,7 +18,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		$this->bootstrap('view');
 		$view = $this->getResource('view');
-		$view->doctype('XHTML1_STRICT');
+		$view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
 
 		$path = dirname(__FILE__) . '/views/helpers';
 		$prefix = 'Default_View_Helper_';

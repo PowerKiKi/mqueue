@@ -13,18 +13,19 @@ class Default_Form_QuickSearch extends Zend_Form
     	
         // Add the comment element
         $this->addElement('text', 'search', array(
-        	'placeholder' => _tr('movie title...'),
+        	'placeholder' => _tr('search movie…'),
         	'decorators' => array('ViewHelper')
         ));
 
         // Add the submit button
-        $this->addElement('submit', 'submit', array(
+        $this->addElement('submit', 'searchSubmit', array(
             'label'    => _tr('Search'),
         	'decorators' => array('ViewHelper'),
         ));
         
         
 		$this->addDecorator('FormElements')
+			->addDecorator('HtmlTag', array('tag' => 'div'))
 			->addDecorator('Form');
     }
 }
