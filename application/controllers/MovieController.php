@@ -90,6 +90,8 @@ class MovieController extends Zend_Controller_Action
 			case null: $this->view->paginator->setCurrentPageNumber($this->_getParam('page')); break;
 		}
 		$this->view->paginator->setItemCountPerPage($perPage);
+		
+		$this->view->headLink()->appendAlternate($this->view->urlParams(array_merge($this->view->permanentParams, array('format' => 'atom'))), 'application/atom+xml', 'mQueue - ' . $form->getValuesText());
 	}
 
 	public function viewAction()
