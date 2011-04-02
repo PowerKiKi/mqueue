@@ -19,9 +19,10 @@ class Default_Form_Filter extends Zend_Form_SubForm
 		$this->addElement('select', 'user', array(
 			'multiOptions'   => $users,
 			'label'	=> _tr('User :'),
+			'required' => true,
 			'class' => 'filterUser',
             'validators' => array(
-        		array('validator' =>  new Zend_Validate_Db_RecordExists(array('table' => 'user', 'field' => 'id'))),
+        		array('validator' =>  new Default_Form_Validate_User()),
                 ),
 		));
 		
@@ -31,6 +32,7 @@ class Default_Form_Filter extends Zend_Form_SubForm
 		$this->addElement('select', 'status', array(
 			'multiOptions'   => $status,
 			'label'	=> _tr('Rating :'),
+			'required' => true,
 			'class' => 'filterStatus',
 		));
 		
@@ -106,7 +108,26 @@ class Default_Form_Filter extends Zend_Form_SubForm
     	$this->removeElement('title');
     }
 
+    /**
+     * Override getValues() to replace special '0' value with current user
+     * @return array values
+     */
+    public function getValues($suppressArrayNotation = false)
+    {
+    	$values = parent::getValues($suppressArrayNotation);
+    	
+    	if ($values['user'] == '0')
+    	{
+    		$values['user'] = Default_Model_User::getCurrent()->id;
+    	}
+    	
+    	return $values;
+    }
     
+    /**
+     * Returns values as readable text for end-user
+     * @return string 
+     */
     public function getValuesText()
     {
     	$text = '';

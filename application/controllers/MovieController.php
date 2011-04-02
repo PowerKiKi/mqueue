@@ -36,6 +36,7 @@ class MovieController extends Zend_Controller_Action
 		{
 			if (!$form->isValid($this->getRequest()->getParams()))
 			{
+				$this->_helper->FlashMessenger(array('warning' => _tr('Filter is invalid.')));
 				$form->setDefaults(array());
 			}
 		}
