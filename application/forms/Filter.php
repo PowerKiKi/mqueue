@@ -131,8 +131,7 @@ class Default_Form_Filter extends Zend_Form_SubForm
     public function getValuesText()
     {
     	$text = '';
-    	$values = $this->getValues();
-    	$values = $values[$this->getName()];
+    	$values = $this->getValues(true);
     	
     	if (@$values['title'])
     		$text = _tr('title') . ':"' . $values['title'] .'" + ';
