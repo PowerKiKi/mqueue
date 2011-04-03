@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 22:13+0100\n"
+"POT-Creation-Date: 2011-04-03 13:15+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien.crivelli@ecodev.ch>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,83 +35,59 @@ msgstr ""
 "X-Poedit-SearchPath-17: ../views/scripts/status\n"
 "X-Poedit-SearchPath-18: ../views/scripts/user\n"
 
-#: ../controllers/ActivityController.php:32
-#: ../controllers/ActivityController.php:42
-#, php-format
-msgid "Activity for %s"
-msgstr "Activité de %s"
-
-#: ../controllers/ActivityController.php:49
+#: ../controllers/ActivityController.php:23
 msgid "Overall activity"
 msgstr "Activité générale"
 
-#: ../controllers/UserController.php:89
-#: ../controllers/MovieController.php:61
+#: ../controllers/ActivityController.php:31
+#: ../controllers/ActivityController.php:41
 #, php-format
-msgid "mQueue - Activity for %s"
-msgstr "mQueue - Activité de %s"
+msgid "Activity for %s"
+msgstr "Activité de %s"
 
 #: ../controllers/UserController.php:93
 msgid "User not found"
 msgstr "Utilisateur introuvable"
 
-#: ../controllers/MovieController.php:65
+#: ../controllers/UserController.php:96
+#: ../controllers/MovieController.php:120
+#, php-format
+msgid "mQueue - Activity for %s"
+msgstr "mQueue - Activité de %s"
+
+#: ../controllers/MovieController.php:39
+msgid "Filter is invalid."
+msgstr "Filtre de recherche invalide."
+
+#: ../controllers/MovieController.php:117
 msgid "Movie not found"
 msgstr "Film introuvable"
 
-#: ../forms/Filter.php:13
-msgid "<< me >>"
-msgstr "<< moi >>"
+#: ../controllers/MovieController.php:152
+msgid "A movie was added."
+msgstr "Un film a été ajouté."
 
-#: ../forms/Filter.php:21
-msgid "User :"
-msgstr "Utilisateur :"
+#: ../controllers/MovieController.php:173
+msgid "You must be logged in."
+msgstr "Vous devez être loggé."
 
-#: ../forms/Filter.php:25
-msgid "<< rated >>"
-msgstr "<< noté >>"
+#: ../controllers/MovieController.php:213
+msgid "Movies imported."
+msgstr "Films importés."
 
-#: ../forms/Filter.php:25
-msgid "<< no rated >>"
-msgstr "<< pas noté >>"
+#: ../controllers/MovieController.php:218
+msgid "No movies found for import."
+msgstr "Aucun films trouvés pour l'import."
 
-#: ../forms/Filter.php:25
-msgid "<< all >>"
-msgstr "<< tous >>"
-
-#: ../forms/Filter.php:30
-msgid "Rating :"
-msgstr "Note :"
-
-#: ../forms/Filters.php:15
-msgid "Apply"
-msgstr "Appliquer"
-
-#: ../forms/Filters.php:21
-msgid "Clear"
-msgstr "Effacer"
-
-#: ../forms/Filters.php:32
-msgid "Filter"
-msgstr "Filtre"
-
-#: ../forms/User.php:12
-msgid "Nickname:"
-msgstr "Pseudo :"
-
-#: ../forms/User.php:21
 #: ../forms/Login.php:12
+#: ../forms/User.php:22
 msgid "Email:"
 msgstr "Email :"
 
-#: ../forms/User.php:31
 #: ../forms/Login.php:22
+#: ../forms/User.php:33
 msgid "Password:"
 msgstr "Mot de passe :"
-
-#: ../forms/User.php:42
-msgid "Subscribe"
-msgstr "Inscription"
 
 #: ../forms/Login.php:32
 msgid "Remember me"
@@ -119,6 +96,14 @@ msgstr "Se souvenir de moi"
 #: ../forms/Login.php:38
 msgid "Login"
 msgstr "Se connecter"
+
+#: ../forms/User.php:12
+msgid "Nickname:"
+msgstr "Pseudo :"
+
+#: ../forms/User.php:43
+msgid "Subscribe"
+msgstr "Inscription"
 
 #: ../forms/Movie.php:12
 msgid "IMDb url or id:"
@@ -148,6 +133,58 @@ msgstr "Minimum pour excellent :"
 msgid "Minimum for ok:"
 msgstr "Minimum pour ok :"
 
+#: ../forms/Filter.php:13
+msgid "<< me >>"
+msgstr "<< moi >>"
+
+#: ../forms/Filter.php:21
+msgid "User :"
+msgstr "Utilisateur :"
+
+#: ../forms/Filter.php:29
+msgid "<< rated >>"
+msgstr "<< noté >>"
+
+#: ../forms/Filter.php:29
+msgid "<< no rated >>"
+msgstr "<< pas noté >>"
+
+#: ../forms/Filter.php:29
+msgid "<< all >>"
+msgstr "<< tous >>"
+
+#: ../forms/Filter.php:34
+msgid "Rating :"
+msgstr "Note :"
+
+#: ../forms/Filter.php:42
+msgid "Title :"
+msgstr "Titre :"
+
+#: ../forms/Filter.php:86
+msgid "title"
+msgstr "titre"
+
+#: ../forms/Filters.php:15
+msgid "Apply"
+msgstr "Appliquer"
+
+#: ../forms/Filters.php:21
+msgid "Clear"
+msgstr "Effacer"
+
+#: ../forms/Filters.php:32
+msgid "Filter"
+msgstr "Filtre"
+
+#: ../forms/QuickSearch.php:16
+msgid "search movie…"
+msgstr "chercher un film..."
+
+#: ../forms/QuickSearch.php:22
+msgid "Search"
+msgstr "Chercher"
+
 #: ../models/Status.php:37
 msgid "Not rated"
 msgstr "Pas noté"
@@ -172,130 +209,116 @@ msgstr "Excellent"
 msgid "Favorite"
 msgstr "Favori"
 
-#: ../views/helpers/Sort.php:11
-#, php-format
-msgid "Sort by \"%s\""
-msgstr "Trier par \"%s\""
-
-#: ../views/helpers/Activity.php:10
-msgid "Date"
-msgstr "Date"
-
-#: ../views/helpers/Activity.php:11
-msgid "User"
-msgstr "Utilisateur"
-
-#: ../views/helpers/Activity.php:12
-msgid "Movie"
-msgstr "Film"
-
-#: ../views/helpers/Activity.php:13
-msgid "Rating"
-msgstr "Note"
-
-#: ../views/helpers/Footer.php:12
-msgid "about mQueue"
-msgstr "à propos de mQueue"
-
-#: ../views/helpers/LoginState.php:20
-msgid "Logout"
-msgstr "Se déconnecter"
-
-#: ../views/helpers/StatusHelp.php:8
+#: ../views/helpers/StatusHelp.php:12
 msgid "I want to see this movie"
 msgstr "Je veux voir ce film"
 
-#: ../views/helpers/StatusHelp.php:9
+#: ../views/helpers/StatusHelp.php:13
 msgid "Boring movie, I wasted my time"
 msgstr "Ennuyeux, j'ai perdu mon temps"
 
-#: ../views/helpers/StatusHelp.php:10
+#: ../views/helpers/StatusHelp.php:14
 msgid "Enjoyable movie (most movies)"
 msgstr "Sympa (la plupart des films)"
 
-#: ../views/helpers/StatusHelp.php:11
+#: ../views/helpers/StatusHelp.php:15
 msgid "Excellent, I would watch it twice"
 msgstr "Excellent, je le regarderais volontiers deux fois"
 
-#: ../views/helpers/StatusHelp.php:12
+#: ../views/helpers/StatusHelp.php:16
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "Absolument génial, le genre de film mythique à regarder plein de fois"
 
-#: ../views/helpers/Link.php:8
-msgid "IMDb"
-msgstr "IMDb"
+#: ../views/helpers/Footer.php:16
+msgid "about mQueue"
+msgstr "à propos de mQueue"
 
-#: ../views/helpers/Movie.php:13
+#: ../views/helpers/LoginState.php:24
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: ../views/helpers/Movie.php:17
 #, php-format
 msgid "Your rating is : %s"
 msgstr "Votre note est : %s"
 
-#: ../layouts/scripts/layout.phtml:16
+#: ../views/helpers/Movie.php:21
+msgid "Your are not logged in"
+msgstr "Vous n'êtes pas loggé"
+
+#: ../views/helpers/Sort.php:22
+#, php-format
+msgid "Sort by \"%s\""
+msgstr "Trier par \"%s\""
+
+#: ../views/helpers/Activity.php:16
+msgid "Date"
+msgstr "Date"
+
+#: ../views/helpers/Activity.php:17
+msgid "User"
+msgstr "Utilisateur"
+
+#: ../views/helpers/Activity.php:18
+msgid "Movie"
+msgstr "Film"
+
+#: ../views/helpers/Activity.php:19
+msgid "Rating"
+msgstr "Note"
+
+#: ../layouts/scripts/layout.phtml:15
 msgid "mQueue - Overall activity"
 msgstr "mQueue - Activité générale"
 
-#: ../layouts/scripts/layout.phtml:44
+#: ../layouts/scripts/layout.phtml:42
 msgid "mQueue monster !"
 msgstr "le monstre mQueue !"
 
-#: ../layouts/scripts/layout.phtml:44
+#: ../layouts/scripts/layout.phtml:42
 msgid "mQueue"
 msgstr "mQueue"
 
-#: ../views/scripts/pagination.phtml:5
+#: ../layouts/scripts/layout.phtml:43
+msgid "never forget movies you want to watch"
+msgstr "n'oubliez plus de voir les bons films"
+
+#: ../views/scripts/pagination.phtml:11
 msgid "« Previous"
 msgstr "« Précédant"
 
-#: ../views/scripts/pagination.phtml:19
+#: ../views/scripts/pagination.phtml:25
 msgid "Next »"
 msgstr "Suivant »"
 
-#: ../views/scripts/pagination.phtml:27
+#: ../views/scripts/pagination.phtml:33
 msgid "Per page:"
 msgstr "Par page:"
 
 #: ../views/scripts/status/index.phtml:1
-#: ../views/scripts/movie/view.phtml:4
 msgid "Current status"
 msgstr "Etat actuel"
 
-#: ../views/scripts/user/logout.phtml:3
-msgid "You successfully log out"
-msgstr "Vous êtes maintenant déconnecté."
+#: ../views/scripts/about/index.phtml:1
+msgid "About"
+msgstr "A propos"
 
-#: ../views/scripts/user/new.phtml:2
-msgid "Create new user"
-msgstr "Créer un nouveau compte"
+#: ../views/scripts/about/index.phtml:2
+msgid "About mQueue"
+msgstr "A propos de mQueue"
 
-#: ../views/scripts/user/index.phtml:1
-msgid "Users"
-msgstr "Utilisateurs"
+#: ../views/scripts/about/index.phtml:3
+msgid "This project started as a personal need. It is written in PHP and is an opportunity to explore <a href=\"http://framework.zend.com/\">Zend Framework</a> and <a href=\"http://jquery.com/\">jQuery</a>. It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
+msgstr ""
+"Ce projet a débuté pour un besoin personnel. Il est une opportunité pour explorer <a href=\"http://framework.zend.com/\">Zend\n"
+"Framework</a> et <a href=\"http://jquery.com/\">jQuery</a>. Il utilise également <a href=\"http://www.fatcow.com/free-icons/\">les icônes de FatCow</a>."
 
-#: ../views/scripts/user/index.phtml:2
-msgid "Users list"
-msgstr "Liste des utilisateurs"
-
-#: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:14
-msgid "Rated"
-msgstr "Noté"
-
-#: ../views/scripts/user/view.phtml:4
-msgid "Statistics"
-msgstr "Statistiques"
-
-#: ../views/scripts/user/view.phtml:42
-#: ../views/scripts/movie/view.phtml:28
-msgid "Activity"
-msgstr "Activité"
+#: ../views/scripts/about/index.phtml:5
+msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+msgstr "Le source code est librement accessible via <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
 
 #: ../views/scripts/faq/index.phtml:1
 #: ../views/scripts/faq/index.phtml:2
-#: ../views/scripts/movie/index.phtml:39
-#: ../views/scripts/movie/import.phtml:14
-#: ../views/scripts/movie/import.phtml:33
-#: ../views/scripts/movie/add.phtml:14
-#: ../views/scripts/movie/add.phtml:33
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -363,30 +386,39 @@ msgstr "Comment ajouter une photo à mon profil ?"
 msgid "Sign up for <a href=\"http://www.gravatar.com\">www.gravatar.com</a> with the same email address and your picture will show up here."
 msgstr "S'inscrire sur <a href=\"http://www.gravatar.com\">www.gravatar.com</a> avec le même email et la photo apparaitrera ici."
 
-#: ../views/scripts/movie/index.phtml:1
+#: ../views/scripts/movie/index.phtml:2
+#: ../views/scripts/movie/index.csv.phtml:4
 msgid "Movies"
 msgstr "Films"
 
-#: ../views/scripts/movie/index.phtml:2
+#: ../views/scripts/movie/index.phtml:4
 msgid "Movies list"
 msgstr "Liste de films"
 
-#: ../views/scripts/movie/index.phtml:9
-#: ../views/scripts/movie/import.phtml:10
+#: ../views/scripts/movie/index.phtml:11
+#: ../views/scripts/movie/index.csv.phtml:18
 #: ../views/scripts/movie/add.phtml:10
 msgid "Title"
 msgstr "Titre"
 
-#: ../views/scripts/movie/index.phtml:13
+#: ../views/scripts/movie/index.phtml:15
 msgid "There is no movie to show."
 msgstr "Aucun film à montrer."
 
+#: ../views/scripts/movie/index.phtml:28
+msgid "Also available in:"
+msgstr "Aussi disponible :"
+
 #: ../views/scripts/movie/index.phtml:38
-#: ../views/scripts/movie/import.phtml:32
+#: ../views/scripts/movie/import.phtml:7
 #: ../views/scripts/movie/add.phtml:32
 #, php-format
 msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
 msgstr "Voir la %s pour savoir comment ajouter des films en un seul clique directement sur www.imdb.com !"
+
+#: ../views/scripts/movie/index.csv.phtml:19
+msgid "Link"
+msgstr "Lien"
 
 #: ../views/scripts/movie/import.phtml:1
 msgid "Import"
@@ -396,39 +428,56 @@ msgstr "Import"
 msgid "Import votes from IMDb"
 msgstr "Importer les votes d'IMDb"
 
-#: ../views/scripts/movie/import.phtml:5
-#: ../views/scripts/movie/add.phtml:5
-msgid "Movie found"
-msgstr "Film trouvé"
-
-#: ../views/scripts/movie/import.phtml:14
-#: ../views/scripts/movie/add.phtml:14
+#: ../views/scripts/movie/import.phtml:13
 #, php-format
-msgid "There is no movie to show. Please read the %s to learn how to add movies."
-msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
+msgid "%1$s movies were imported successfuly. For details, see <a href=\"%2$s\">your recent activity</a>."
+msgstr "%1$s films ont été importés avec succès. Pour le détail, voir <a href=\"%2$s\">votre activité</a>."
 
 #: ../views/scripts/movie/add.phtml:2
 msgid "Add a new movie"
 msgstr "Ajouter un nouveau film"
 
-#: ../views/scripts/about/index.phtml:1
-msgid "About"
-msgstr "A propos"
+#: ../views/scripts/movie/add.phtml:5
+msgid "Movie found"
+msgstr "Film trouvé"
 
-#: ../views/scripts/about/index.phtml:2
-msgid "About mQueue"
-msgstr "A propos de mQueue"
+#: ../views/scripts/movie/add.phtml:14
+#, php-format
+msgid "There is no movie to show. Please read the %s to learn how to add movies."
+msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
 
-#: ../views/scripts/about/index.phtml:3
-msgid "This project started as a personal need. It is written in PHP and is an opportunity to explore <a href=\"http://framework.zend.com/\">Zend Framework</a> and <a href=\"http://jquery.com/\">jQuery</a>. It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
-msgstr ""
-"Ce projet a débuté pour un besoin personnel. Il est une opportunité pour explorer <a href=\"http://framework.zend.com/\">Zend\n"
-"Framework</a> et <a href=\"http://jquery.com/\">jQuery</a>. Il utilise également <a href=\"http://www.fatcow.com/free-icons/\">les icônes de FatCow</a>."
+#: ../views/scripts/movie/view.phtml:28
+#: ../views/scripts/user/view.phtml:42
+msgid "Activity"
+msgstr "Activité"
 
-#: ../views/scripts/about/index.phtml:5
-msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
-msgstr "Le source code est librement accessible via <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+#: ../views/scripts/user/index.phtml:1
+msgid "Users"
+msgstr "Utilisateurs"
 
+#: ../views/scripts/user/index.phtml:2
+msgid "Users list"
+msgstr "Liste des utilisateurs"
+
+#: ../views/scripts/user/index.phtml:13
+#: ../views/scripts/user/view.phtml:14
+msgid "Rated"
+msgstr "Noté"
+
+#: ../views/scripts/user/new.phtml:2
+msgid "Create new user"
+msgstr "Créer un nouveau compte"
+
+#: ../views/scripts/user/view.phtml:4
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../views/scripts/user/logout.phtml:3
+msgid "You successfully log out"
+msgstr "Vous êtes maintenant déconnecté."
+
+#~ msgid "IMDb"
+#~ msgstr "IMDb"
 #~ msgid "logged as "
 #~ msgstr "connecté "
 #~ msgid "Overall statistics"
@@ -447,6 +496,4 @@ msgstr "Le source code est librement accessible via <a href=\"http://github.com/
 #~ msgstr "Total"
 #~ msgid "Surf on "
 #~ msgstr "Surfer sur"
-#~ msgid "not logged in"
-#~ msgstr "pas loggé"
 
