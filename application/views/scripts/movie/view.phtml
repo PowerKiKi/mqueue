@@ -26,6 +26,6 @@ foreach ($this->users as $user)
 ?>
 </table>
 <h3><?php echo $this->translate('Activity'); ?></h3>
-<?php
-echo $this->activity($this->movieActivity, array('movie'));
-?>
+<?php echo $this->activity($this->movieActivity, array('movie')); ?>
+<p class="alternateFormats"><?php echo $this->translate('Also available in:') ?> <a class="atom" href="<?php echo $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id, 'format' => 'atom'), 'activityMovie', true); ?>">Atom</a></p>
+<?php echo $this->paginationControl($this->movieActivity); ?>
