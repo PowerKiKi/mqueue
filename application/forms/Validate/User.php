@@ -26,6 +26,6 @@ class Default_Form_Validate_User extends Zend_Validate_Db_RecordExists
      */
     public function isValid($value)
     {
-    	return ($value === '0') || parent::isValid($value);
+    	return ($value == 0) || parent::isValid($value);
     }
 }

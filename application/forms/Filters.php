@@ -49,26 +49,59 @@ class Default_Form_Filters extends Zend_Form
 	}
 	
 	/**
-	 * Overrides isValid to dynamically generate subforms which will be used for validation
+	 * Overrides isValid to dynamically generate subforms which will be used for validation.
 	 * @param array $data
 	 */
 	public function isValid($data)
 	{
-		$this->setDefaults($data);
+		$data = $this->createSubForms($data);
 		return parent::isValid($data);
 	}
 
     /**
-     * Override setDefaults to dynamically generate subforms
-     * Will add a subform per filter.
+     * Override setDefaults to dynamically generate subforms.
      * @param array $defaults
      */
     public function setDefaults(array $defaults)
     {
-        $keys = array_keys($defaults);
-        $position = 1;
+    	$defaults = $this->createSubForms($defaults);
+    	
+        // set defaults, which will propagate to newly created subforms
+        return parent::setDefaults($defaults);
+    }
+    
+    /**
+     * Create actual filter as subforms according to filter values given.
+     * It will at least create one subform. It may add a default subform 
+     * if 'addFilter_x' value is given.
+     * @param array $defaults values of form
+     * @return array $defaults modified values with additionnal filter
+     */
+    private function createSubForms(array $defaults)
+    {
+        // Find out the highest filter number
         $max = 0;
-        foreach ($keys as $key)
+        foreach (array_keys($defaults) as $key)
+        {
+            if (preg_match('/^filter(\d)+$/', $key, $m))
+            {
+				if ($m[1] > $max)
+					$max = $m[1];
+            }
+        }
+        
+    	// If we specifically asked to add a filter or if there is none, then add a new filter with default value
+        if ((isset($defaults['addFilter_x'])) || $max == 0)
+        {
+        	$defaults['filter' . ($max + 1)] = array(
+				'user' => Default_Model_User::getCurrent() ? 0 : Default_Model_UserMapper::fetchAll()->current()->id,
+				'status' => -1,
+        	);
+        }
+        
+        // Create all filters
+        $position = 1;
+        foreach (array_keys($defaults) as $key)
         {
             if (preg_match('/^filter(\d)+$/', $key, $m))
             {
@@ -78,30 +111,16 @@ class Default_Form_Filters extends Zend_Form
             		$subform->disableTitle();
             	}
 				$this->addSubForm($subform, $key, $position++);
-				if ($m[1] > $max)
-					$max = $m[1];
             }
         }
         
-        $image = $this->getElement('addFilter');
-        
-        if ((isset($defaults['addFilter']) && $defaults['addFilter'] == 1) || $max == 0)
-        {
-        	$subform = new Default_Form_Filter();
-        	
-        	if ($max != 0)
-        	{
-        		$subform->disableTitle();
-        	}
-        	
-			$this->addSubForm($subform, 'filter' . ($max + 1), $position++);
-        }
-        $defaults['addFilter'] = 0;
-        
-        // set defaults, which will propagate to newly created subforms
-        return parent::setDefaults($defaults);
+        return $defaults;
     }
     
+    /**
+     * Returns values as readable text for end-user
+     * @return string 
+     */
     public function getValuesText()
     {
     	$text = array();

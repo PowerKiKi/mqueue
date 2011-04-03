@@ -45,6 +45,7 @@ class MovieController extends Zend_Controller_Action
 		{
 			$form->setDefaults(array(
 				'filter1' => array(
+					'user' => Default_Model_User::getCurrent() ? 0 : Default_Model_UserMapper::fetchAll()->current()->id,
 					'status' => -2,
 					'title' => $this->_getParam('search'),
 				)

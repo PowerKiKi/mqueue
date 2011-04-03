@@ -48,61 +48,10 @@ class Default_Form_Filter extends Zend_Form_SubForm
 				array(array('row' => 'HtmlTag'), array('tag' => 'dl', 'class' => 'filter')),				
 				));
 	}
-	
-
-    /**
-     * Override setDefaults to dynamically generate subforms
-     * Will add a subform per day that is present in the defaults data.
-     * (Be sure to provide a day key, even if no tasks exist.
-     * @param array $defaults
-     */
-    public function setDefaults(array $defaults)
-    {
-		// Initialize session
-		$user = Default_Model_User::getCurrent();
-		$name = $this->getName();
-		
-		// Find the correct filtered user, or default on current logged user
-		if (isset($defaults[$name]['user']) && (integer)$defaults[$name]['user'] > 0)
-		{
-			$defaults[$name]['user'] = (integer)$defaults[$name]['user'];
-		}
-		elseif ($user)
-		{
-			$defaults[$name]['user'] = $user->id;
-		}
-		else
-		{
-			$users = Default_Model_UserMapper::fetchAll();
-			$firstUser = $users->current();
-			$defaults[$name]['user'] = (integer)$firstUser->id;
-		}
-		
-
-		// Get the filter for status, or default on all rated movies
-		if (isset($defaults[$name]['status']) && (integer)$defaults[$name]['status'] >= -2 && (integer)$defaults[$name]['status'] <= 5)
-		{
-			$defaults[$name]['status'] = (integer)$defaults[$name]['status'];
-		}
-		else
-		{
-			$defaults[$name]['status'] = -1;
-		}
-		
-
-		if (isset($defaults[$name]['title']) && trim($defaults[$name]['title']))
-		{
-			$defaults[$name]['title'] = trim($defaults[$name]['title']);
-		}
-		else
-		{
-			$defaults[$name]['title'] = '';
-		}
-        
-        // set defaults, which will propagate to newly created subforms
-        parent::setDefaults($defaults);
-    }
     
+	/**
+	 * Disable title element
+	 */
     function disableTitle()
     {
     	$this->removeElement('title');
