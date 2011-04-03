@@ -56,6 +56,8 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 			}
 			
 			$this->title = $entries->item(0)->value;
+			
+			$this->setReadOnly(false); // If the movie is coming from a joined query, we need to set non-readonly before saving
 			$this->save();
 		}
 		
