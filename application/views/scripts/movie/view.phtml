@@ -18,7 +18,7 @@ foreach ($this->users as $user)
 										'action' => 'view',
 										'id' => $user->id
 										),
-									'singleid', true) . '">' . $this->escape($user->nickname) . '</a></td>';
+									'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
 	echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
 		
 	echo '</tr>';
