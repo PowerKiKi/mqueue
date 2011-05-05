@@ -19,4 +19,3 @@ class Default_View_Helper_StatusHelp extends Zend_View_Helper_Abstract
 		return $result;
 	}
 }
-?>

@@ -25,4 +25,3 @@ class Default_View_Helper_Sort extends Zend_View_Helper_Abstract
 	}
 }
 
-?>

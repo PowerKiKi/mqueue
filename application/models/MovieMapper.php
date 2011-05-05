@@ -98,5 +98,3 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	return $select;
     }
 }
-
-?>

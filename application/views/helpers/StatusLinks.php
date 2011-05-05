@@ -38,4 +38,3 @@ class Default_View_Helper_StatusLinks extends Zend_View_Helper_Abstract
 	}
 }
 
-?>

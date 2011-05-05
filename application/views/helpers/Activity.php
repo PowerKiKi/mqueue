@@ -54,4 +54,3 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 	}
 
 }
-?>

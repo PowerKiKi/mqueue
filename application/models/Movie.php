@@ -118,5 +118,3 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		$status->save();
 	}
 }
-
-?>

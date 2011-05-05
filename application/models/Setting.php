@@ -31,5 +31,3 @@ class Default_Model_Setting extends Default_Model_AbstractModel
 		$setting->save();
 	}
 }
-
-?>

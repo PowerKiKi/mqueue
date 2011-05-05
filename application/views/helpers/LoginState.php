@@ -40,4 +40,3 @@ class Default_View_Helper_LoginState extends Zend_View_Helper_Abstract
 	}
 
 }
-?>

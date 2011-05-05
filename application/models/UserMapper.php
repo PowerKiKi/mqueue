@@ -42,5 +42,3 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
         return $resultSet;
     }
 }
-
-?>

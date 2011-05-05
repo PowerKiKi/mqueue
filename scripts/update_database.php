@@ -154,4 +154,3 @@ $options = $bootstrap->getOption('resources');
 
 doUpdate($options['db']['params']);
 
-?>

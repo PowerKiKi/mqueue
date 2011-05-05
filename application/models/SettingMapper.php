@@ -22,5 +22,3 @@ abstract class Default_Model_SettingMapper extends Default_Model_AbstractMapper
 		return $result;
 	}
 }
-
-?>

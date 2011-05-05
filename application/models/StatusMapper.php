@@ -127,5 +127,3 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		return $select;
 	}
 }
-
-?>

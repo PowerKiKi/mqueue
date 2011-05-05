@@ -27,4 +27,3 @@ class Default_View_Helper_LanguageSelector extends Zend_View_Helper_Abstract
 	}
 }
 
-?>

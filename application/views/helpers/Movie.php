@@ -28,4 +28,3 @@ class Default_View_Helper_Movie extends Zend_View_Helper_Abstract
 	}
 }
 
-?>

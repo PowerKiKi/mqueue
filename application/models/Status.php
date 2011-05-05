@@ -55,4 +55,3 @@ Default_Model_Status::$ratings = array(
 		 Default_Model_Status::Ok => _tr('Ok'),
 		 Default_Model_Status::Excellent => _tr('Excellent'),
 		 Default_Model_Status::Favorite => _tr('Favorite'));
-?>

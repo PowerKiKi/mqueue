@@ -23,4 +23,3 @@ class Default_View_Helper_Gravatar extends Zend_View_Helper_Abstract
 	}
 
 }
-?>
