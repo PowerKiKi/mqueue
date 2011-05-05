@@ -83,7 +83,7 @@ class Default_Form_Filters extends Zend_Form
         $max = 0;
         foreach (array_keys($defaults) as $key)
         {
-            if (preg_match('/^filter(\d)+$/', $key, $m))
+            if (preg_match('/^filter(\d+)$/', $key, $m))
             {
 				if ($m[1] > $max)
 					$max = $m[1];
@@ -103,7 +103,7 @@ class Default_Form_Filters extends Zend_Form
         $position = 1;
         foreach (array_keys($defaults) as $key)
         {
-            if (preg_match('/^filter(\d)+$/', $key, $m))
+            if (preg_match('/^filter(\d+)$/', $key, $m))
             {
             	$subform = new Default_Form_Filter();
             	if ($position > 1)
