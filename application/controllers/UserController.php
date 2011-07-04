@@ -68,6 +68,10 @@ class UserController extends Zend_Controller_Action
 				}
 			}
 		}
+		else
+		{
+			$form->setDefaults(array('remember' => true));
+		}
 
 		$this->view->form = $form;
 	}
