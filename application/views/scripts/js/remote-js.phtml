@@ -6,10 +6,10 @@ echo "var server = '" . $this->serverUrl() . $this->baseUrl('') . "';\n\n";
 require_once(APPLICATION_PATH . '/../public/js/jquery-1.6.min.js');
 require_once(APPLICATION_PATH . '/../public/js/both.js');
 ?>
-/*global $, document, scanIMDB */
+/*global $, document, injectStatus */
 
 $(document).ready(function()
 {
 	$("head").append('<link href="' + server + 'css/both.css" media="screen" rel="stylesheet" type="text/css" />');
-	scanIMDB(server);
+	mqueue.monitorLinks(server);
 });
