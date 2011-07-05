@@ -13,13 +13,13 @@ var mqueue = (function () {
 		parent.addClass('loading');
 		$.getJSON(this.href + '?format=json&jsoncallback=?', function(data)
 		{
-			$('.status_links_' + data.id).each(function()
+			$('.mqueue_status_links_' + data.id).each(function()
 			{
 				$(this).replaceWith(data.status);
 			});
 
 			parent.removeClass('loading');		
-			$('.status_links_' + data.id + ' .status').click(setStatus);
+			$('.mqueue_status_links_' + data.id + ' .mqueue_status').click(setStatus);
 		});		
 		return false;
 	}
@@ -31,7 +31,7 @@ var mqueue = (function () {
 	//var bindStatus = function ()
 	function bindStatus()
 	{
-		$('a.status').click(setStatus);
+		$('a.mqueue_status').click(setStatus);
 	}
 
 	/**

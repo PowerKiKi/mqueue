@@ -26,13 +26,13 @@ img.gravatar
 	display: none;
 }
 
-.status
+.mqueue_status
 {
 	display: none !important;
 }
 
-.status.current,
-.status.current>span
+.mqueue_status.current,
+.mqueue_status.current>span
 {
 	display: inline !important;
 }
