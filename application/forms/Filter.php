@@ -24,6 +24,9 @@ class Default_Form_Filter extends Zend_Form_SubForm
             'validators' => array(
         		array('validator' =>  new Default_Form_Validate_User()),
                 ),
+			'filters' => array(
+				array('int')
+			)
 		));
 		
 		$status = array(-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>'));
@@ -34,12 +37,18 @@ class Default_Form_Filter extends Zend_Form_SubForm
 			'label'	=> _tr('Rating :'),
 			'required' => true,
 			'class' => 'filterStatus',
+			'filters' => array(
+				array('int')
+			)
 		));
 		
 		
         // Add the filter element
         $this->addElement('text', 'title', array(
             'label'      => _tr('Title :'),
+			'filters' => array(
+				array('stringTrim')
+			)
         ));
 		
 

@@ -22,9 +22,6 @@ class Default_Form_Login extends Zend_Form
             'label'      => _tr('Password:'),
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
-            'validators' => array(
-            //    array('validator' => 'emailAddress')
-                )
         ));
 		
 		// Checkbox to remember user
