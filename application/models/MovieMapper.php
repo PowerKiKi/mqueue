@@ -86,7 +86,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			}
 			
 			if ($maxDate)
-				$maxDate = 'IF(`status' . $i . '`.`dateUpdate` > ' . $maxDate . ', `status' . $i . '`.`dateUpdate` , ' . $maxDate . ')';
+				$maxDate = 'IF(`status' . $i . '`.`dateUpdate` IS NULL OR `status' . $i . '`.`dateUpdate` < ' . $maxDate . ', ' . $maxDate . ', `status' . $i . '`.`dateUpdate`)';
 			else
 				$maxDate = '`status' . $i . '`.`dateUpdate`';
 	    	
