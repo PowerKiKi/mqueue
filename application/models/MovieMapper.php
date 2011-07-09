@@ -56,10 +56,14 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 
 		$i = 0;
 		$maxDate = '';
+		$filtersDone = array();
 		foreach ($filters as $key => $filter)
 		{
-			if (!preg_match('/^filter\d+$/', $key))
+			$filterUniqueId = $filter['user'] . $filter['status'];
+			if (!preg_match('/^filter\d+$/', $key) || in_array($filterUniqueId, $filtersDone))
 				continue;
+			
+			$filtersDone []= $filterUniqueId;
 				
 			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
 			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
@@ -80,7 +84,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 				$titles = explode(' ', trim($filter['title']));
 		    	foreach ($titles as $part)
 		    	{
-		    		if ($part = trim($part))
+		    		if ($part)
 		    			$select->where('movie.title LIKE ?', '%' . $part . '%');
 		    	}
 			}
