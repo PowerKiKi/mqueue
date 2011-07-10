@@ -15,9 +15,10 @@ class Default_View_Helper_AlternateFormats extends Zend_View_Helper_Abstract
 	);
 	
 	/**
-	 * Returns an HTML table of activities
-	 * @param array formats
-	 * @return string
+	 * Returns a string of HTML links for end-user, and also append 'alternate' links to HTML header
+	 * @param array $formats
+	 * @param string $title
+	 * @return string 
 	 */
 	public function alternateFormats(array $formats, $title = null)
 	{

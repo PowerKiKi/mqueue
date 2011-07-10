@@ -7,7 +7,7 @@ class Default_Model_User extends Default_Model_AbstractModel
 	 * -1 before initialization
 	 * null if no user logged in
 	 * Default_Model_User if logged in
-	 * @var -1|null|Default_Model_User 
+	 * @var Default_Model_User $currentUser
 	 */
 	private static $currentUser = -1;
 	

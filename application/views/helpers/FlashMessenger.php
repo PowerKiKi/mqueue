@@ -51,13 +51,13 @@
 class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
 {
     /**
-     * @var Zend_Controller_Action_Helper_FlashMessenger
+     * @var Zend_Controller_Action_Helper_FlashMessenger $_flashMessenger
      */
     private $_flashMessenger = null;
     
     /**
      * If the flashmessenger is postoned it will do nothing on first call.
-     * @var unknown_type
+     * @var boolean $isPostponed
      */
     private $isPostponed = false;
 
@@ -71,7 +71,7 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
     
     /**
      * Render the flash messages
-     * @return string flash messages formatted as <div>
+     * @return string flash messages formatted as div
      */
     public function __toString()
     {

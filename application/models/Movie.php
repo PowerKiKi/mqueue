@@ -7,7 +7,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 {
 	/**
 	 * All known IMDb hostnames indexed by their language
-	 * @var array
+	 * @var array $imdbHostnames
 	 */
 	public static $imdbHostnames = array(
 			'en' => 'www.imdb.com',
@@ -77,7 +77,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	
 	/**
 	 * Returns the IMDb url for the movie
-	 * @param string suggested language for hostname
+	 * @param string $lang suggested language for hostname
 	 * @return string
 	 */
 	public function getImdbUrl($lang = null)

@@ -14,7 +14,7 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	
 	/**
 	 * array of ratings names indexed by the rating value
-	 * @var array
+	 * @var array $ratings
 	 */
 	public static $ratings = null; 
 		 
