@@ -10,13 +10,16 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 	 */
 	public function activity(Zend_Paginator $activity, $hiddenColumns = array())
 	{
+		$columns = array('date', 'user', 'movie', 'status');
+		$columns = array_diff($columns, $hiddenColumns);
+		
 		$result = '<table class="activity">';
 		
 		$result .= '<tr>';
-		if (!in_array('date', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Date') . '</th>';
-		if (!in_array('user', $hiddenColumns)) $result .= '<th>' . $this->view->translate('User') . '</th>';
-		if (!in_array('movie', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Movie') . '</th>';
-		if (!in_array('status', $hiddenColumns)) $result .= '<th>' . $this->view->translate('Rating') . '</th>';
+		if (in_array('date', $columns)) $result .= '<th>' . $this->view->translate('Date') . '</th>';
+		if (in_array('user', $columns)) $result .= '<th>' . $this->view->translate('User') . '</th>';
+		if (in_array('movie', $columns)) $result .= '<th>' . $this->view->translate('Movie') . '</th>';
+		if (in_array('status', $columns)) $result .= '<th>' . $this->view->translate('Rating') . '</th>';
 		$result .= '</tr>';
 		
 		$cacheUser = array();
@@ -37,17 +40,22 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 			
 			
 			$result .= '<tr>';
-			if (!in_array('date', $hiddenColumns)) $result .= '<td class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</td>';
-			if (!in_array('user', $hiddenColumns)) $result .= '<td class="user"><a href="' . $this->view->url(array(
+			if (in_array('date', $columns)) $result .= '<td class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</td>';
+			if (in_array('user', $columns)) $result .= '<td class="user"><a href="' . $this->view->url(array(
 										'controller' => 'user',
 										'action' => 'view',
 										'id' => $user->id
 										),
 									'singleid', true) . '">' . $this->view->gravatar($user). ' ' . $this->view->escape($user->nickname) . '</a></td>';
-			if (!in_array('movie', $hiddenColumns)) $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
-			if (!in_array('status', $hiddenColumns)) $result .= '<td class="rating">' . $this->view->statusLinks($status) . '</td>';
+			if (in_array('movie', $columns)) $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
+			if (in_array('status', $columns)) $result .= '<td class="rating">' . $this->view->statusLinks($status) . '</td>';
 			
 			$result .= '</tr>';
+		}
+		
+		if ($activity->getTotalItemCount() == 0)
+		{
+			$result .= '<tr><td colspan="' . count($columns) . '">' . $this->view->translate('There is no activity to show.') . '</td></tr>';
 		}
 		
 		return $result . '</table>';
