@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-09 20:32-0500\n"
+"POT-Creation-Date: 2011-07-09 22:32-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien@ecodev.ch>\n"
 "Language-Team: \n"
@@ -39,29 +39,23 @@ msgstr ""
 msgid "Filter is invalid."
 msgstr "Filtre de recherche invalide."
 
-#: ../controllers/MovieController.php:117
+#: ../controllers/MovieController.php:116
 msgid "Movie not found"
 msgstr "Film introuvable"
 
-#: ../controllers/MovieController.php:120
-#: ../controllers/UserController.php:100
-#, php-format
-msgid "mQueue - Activity for %s"
-msgstr "mQueue - Activité de %s"
-
-#: ../controllers/MovieController.php:152
+#: ../controllers/MovieController.php:150
 msgid "A movie was added."
 msgstr "Un film a été ajouté."
 
-#: ../controllers/MovieController.php:173
+#: ../controllers/MovieController.php:171
 msgid "You must be logged in."
 msgstr "Vous devez être loggé."
 
-#: ../controllers/MovieController.php:213
+#: ../controllers/MovieController.php:211
 msgid "Movies imported."
 msgstr "Films importés."
 
-#: ../controllers/MovieController.php:218
+#: ../controllers/MovieController.php:216
 msgid "No movies found for import."
 msgstr "Aucun films trouvés pour l'import."
 
@@ -229,6 +223,10 @@ msgstr "Excellent, je le regarderais volontiers deux fois"
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "Absolument génial, le genre de film mythique à regarder plein de fois"
 
+#: ../views/helpers/AlternateFormats.php:41
+msgid "Also available in:"
+msgstr "Aussi disponible :"
+
 #: ../views/helpers/Activity.php:19
 msgid "Date"
 msgstr "Date"
@@ -346,14 +344,9 @@ msgstr "Statistiques"
 msgid "Activity"
 msgstr "Activité"
 
-#: ../views/scripts/user/view.phtml:44
-#: ../views/scripts/activity/index.phtml:4
-msgid "Also available in:"
-msgstr "Aussi disponible :"
-
 #: ../views/scripts/faq/index.phtml:1
 #: ../views/scripts/faq/index.phtml:2
-#: ../views/scripts/movie/index.phtml:39
+#: ../views/scripts/movie/index.phtml:42
 #: ../views/scripts/movie/import.phtml:8
 #: ../views/scripts/movie/add.phtml:14
 #: ../views/scripts/movie/add.phtml:33
@@ -451,7 +444,7 @@ msgstr "Titre"
 msgid "There is no movie to show."
 msgstr "Aucun film à montrer."
 
-#: ../views/scripts/movie/index.phtml:38
+#: ../views/scripts/movie/index.phtml:41
 #: ../views/scripts/movie/import.phtml:7
 #: ../views/scripts/movie/add.phtml:32
 #, php-format
@@ -492,6 +485,9 @@ msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter 
 #: ../views/scripts/status/index.phtml:1
 msgid "Current status"
 msgstr "Etat actuel"
+
+#~ msgid "mQueue - Activity for %s"
+#~ msgstr "mQueue - Activité de %s"
 
 #~ msgid "IMDb"
 #~ msgstr "IMDb"

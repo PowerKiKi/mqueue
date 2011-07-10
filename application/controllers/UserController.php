@@ -97,8 +97,6 @@ class UserController extends Zend_Controller_Action
 			throw new Exception($this->view->translate('User not found'));
 		}
 		
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->view->user->id, 'format' => 'atom'), 'activityUser', true), 'application/atom+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->user->nickname)));
-		
 		// Store perPage option in session
 		$perPage = 25;
 		$session = new Zend_Session_Namespace();

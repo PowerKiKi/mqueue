@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-09 20:08-0500\n"
+"POT-Creation-Date: 2011-07-09 22:33-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien@ecodev.ch>\n"
 "Language-Team: \n"
@@ -39,29 +39,23 @@ msgstr ""
 msgid "Filter is invalid."
 msgstr "잘못된 필터입니다."
 
-#: ../controllers/MovieController.php:117
+#: ../controllers/MovieController.php:116
 msgid "Movie not found"
 msgstr "영화를 찾을 수 없습니다."
 
-#: ../controllers/MovieController.php:120
-#: ../controllers/UserController.php:100
-#, php-format
-msgid "mQueue - Activity for %s"
-msgstr "mQueue - %s의 활동"
-
-#: ../controllers/MovieController.php:152
+#: ../controllers/MovieController.php:150
 msgid "A movie was added."
 msgstr "영화가 추가되었습니다."
 
-#: ../controllers/MovieController.php:173
+#: ../controllers/MovieController.php:171
 msgid "You must be logged in."
 msgstr "로그인 하셔야합니다."
 
-#: ../controllers/MovieController.php:213
+#: ../controllers/MovieController.php:211
 msgid "Movies imported."
 msgstr "영화 목록"
 
-#: ../controllers/MovieController.php:218
+#: ../controllers/MovieController.php:216
 msgid "No movies found for import."
 msgstr "가져올 영화를 찾지 못했습니다."
 
@@ -229,6 +223,10 @@ msgstr "재밌음, 두번도 보겠어요."
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "진짜 괜찮은 영화, 정기적으로 꼭 봐줘야해요."
 
+#: ../views/helpers/AlternateFormats.php:41
+msgid "Also available in:"
+msgstr "지원 가능한 형식:"
+
 #: ../views/helpers/Activity.php:19
 msgid "Date"
 msgstr "날짜"
@@ -350,14 +348,9 @@ msgstr "상태"
 msgid "Activity"
 msgstr "내역"
 
-#: ../views/scripts/user/view.phtml:44
-#: ../views/scripts/activity/index.phtml:4
-msgid "Also available in:"
-msgstr "지원 가능한 형식:"
-
 #: ../views/scripts/faq/index.phtml:1
 #: ../views/scripts/faq/index.phtml:2
-#: ../views/scripts/movie/index.phtml:39
+#: ../views/scripts/movie/index.phtml:42
 #: ../views/scripts/movie/import.phtml:8
 #: ../views/scripts/movie/add.phtml:14
 #: ../views/scripts/movie/add.phtml:33
@@ -455,7 +448,7 @@ msgstr "제목"
 msgid "There is no movie to show."
 msgstr "표시될 영화가 없습니다."
 
-#: ../views/scripts/movie/index.phtml:38
+#: ../views/scripts/movie/index.phtml:41
 #: ../views/scripts/movie/import.phtml:7
 #: ../views/scripts/movie/add.phtml:32
 #, php-format
@@ -496,6 +489,9 @@ msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고�
 #: ../views/scripts/status/index.phtml:1
 msgid "Current status"
 msgstr "현재 상태"
+
+#~ msgid "mQueue - Activity for %s"
+#~ msgstr "mQueue - %s의 활동"
 
 #~ msgid "IMDb"
 #~ msgstr "IMDb"

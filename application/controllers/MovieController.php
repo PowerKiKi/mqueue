@@ -87,6 +87,7 @@ class MovieController extends Zend_Controller_Action
 			$this->view->sortOrder = 'desc';
 		}
 		$this->view->permanentParams = $form->getValues();
+		$this->view->filterName = $form->getValuesText();
 		unset($this->view->permanentParams['addFilter']);
 		if ($this->view->sort) $this->view->permanentParams['sort'] = $this->view->sort;
 		if ($this->view->sortOrder) $this->view->permanentParams['sortOrder'] = $this->view->sortOrder;
@@ -101,8 +102,6 @@ class MovieController extends Zend_Controller_Action
 			case null: $this->view->paginator->setCurrentPageNumber($this->_getParam('page')); break;
 		}
 		$this->view->paginator->setItemCountPerPage($perPage);
-		
-		$this->view->headLink()->appendAlternate($this->view->urlParams(array_merge($this->view->permanentParams, array('format' => 'atom'))), 'application/atom+xml', 'mQueue - ' . $form->getValuesText());
 	}
 
 	public function viewAction()
@@ -117,7 +116,6 @@ class MovieController extends Zend_Controller_Action
 			throw new Exception($this->view->translate('Movie not found'));
 		}
 
-		$this->view->headLink()->appendAlternate($this->view->serverUrl() . $this->view->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->view->movie->id, 'format' => 'atom'), 'activityMovie', true), 'application/atom+xml', $this->view->translate('mQueue - Activity for %s', array($this->view->movie->getTitle())));
 		$this->view->users = Default_Model_UserMapper::fetchAll();
 		
 		

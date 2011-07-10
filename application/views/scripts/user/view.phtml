@@ -41,5 +41,8 @@ echo '</tr>';
 
 <h3><?php echo $this->translate('Activity'); ?></h3>
 <?php echo $this->activity($this->userActivity, array('user')); ?>
-<p class="alternateFormats"><?php echo $this->translate('Also available in:') ?> <a class="atom" href="<?php echo $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->user->id, 'format' => 'atom'), 'activityUser', true); ?>">Atom</a></p>
+
+<?php echo $this->alternateFormats(array(
+	'atom' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->user->id), 'activityUser', true),
+	), 'mQueue - ' . $this->translate('Activity for %s', array($this->user->nickname))); ?>
 <?php echo $this->paginationControl($this->userActivity); ?>

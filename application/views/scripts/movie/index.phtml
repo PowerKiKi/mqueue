@@ -25,7 +25,10 @@ $this->headTitle(_tr('Movies'));
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
-<p class="alternateFormats"><?php echo $this->translate('Also available in:') ?> <a class="atom" href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('format' => 'atom'))); ?>">Atom</a> | <a class="csv" href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('format' => 'csv'))); ?>">CSV</a></p>
+<?php echo $this->alternateFormats(array(
+	'atom' => $this->urlParams($this->permanentParams, false),
+	'csv' => $this->urlParams($this->permanentParams, false),
+	), 'mQueue - ' . $this->filterName); ?>
 <?php
 	echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $this->permanentParams));
 ?>
