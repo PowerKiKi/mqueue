@@ -353,7 +353,7 @@ msgstr "내역"
 #: ../views/scripts/user/view.phtml:44
 #: ../views/scripts/activity/index.phtml:4
 msgid "Also available in:"
-msgstr "지원 가능한 형식"
+msgstr "지원 가능한 형식:"
 
 #: ../views/scripts/faq/index.phtml:1
 #: ../views/scripts/faq/index.phtml:2
