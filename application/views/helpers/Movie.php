@@ -18,7 +18,7 @@ class Default_View_Helper_Movie extends Zend_View_Helper_Abstract
 		}
 		else
 		{
-			$title = $this->view->translate('Your are not logged in');
+			$title = $this->view->translate('You are not logged in');
 		}
 		
 		$movieUrl = $this->view->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true);
