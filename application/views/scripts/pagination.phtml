@@ -3,52 +3,51 @@ if (!is_array($this->permanentParams))
 {
 	$this->permanentParams = array();
 }
+?>
 
-if ($this->pageCount): ?>
-	<p class="paginationControl">
-	<!-- Previous page link -->
-	<?php if (isset($this->previous)): ?>
-	  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a> 
-	<?php endif; ?>
-	 
-	<!-- Numbered page links -->
-	<?php foreach ($this->pagesInRange as $page): ?>
-	  <?php if ($page != $this->current): ?>
-	    <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $page, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo $page; ?></a> 
-	  <?php else: ?>
-	    <?php echo $page; ?> 
-	  <?php endif; ?>
-	<?php endforeach; ?>
-	
-	<!-- Next page link -->
-	<?php if (isset($this->next)): ?>
-	  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->next, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('Next »'); ?></a>
-	<?php endif; ?>
-	<!-- Current display stats -->
-	(<?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?>/<?php echo $this->totalItemCount; ?>) |
-	
-	<!-- Count per page links -->
-	<span>
-	<?php
-		echo _tr('Per page:') . ' ';
-		$perPage = array(25, 50, 100, 200);
-		foreach ($perPage as $p)
-		{
-			if ($this->itemCountPerPage == $p)
-			{
-				echo $p;
-			}
-			else
-			{
-				echo '<a href="' . $this->urlParams(array_merge($this->permanentParams, array('page' => $this->current, 'perPage' => $p))) . '">' . $p . '</a>';
-			}
-			
-			if ($p != end($perPage))
-			{
-				echo ', '; 
-			}
-		}
-	?>
-	</span>
-	</p>
+<p class="paginationControl">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a> 
 <?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+	<a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $page, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo $page; ?></a> 
+  <?php else: ?>
+	<?php echo $page; ?> 
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->next, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('Next »'); ?></a>
+<?php endif; ?>
+<!-- Current display stats -->
+(<?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?>/<?php echo $this->totalItemCount; ?>) |
+
+<!-- Count per page links -->
+<span>
+<?php
+	echo _tr('Per page:') . ' ';
+	$perPage = array(25, 50, 100, 200);
+	foreach ($perPage as $p)
+	{
+		if ($this->itemCountPerPage == $p)
+		{
+			echo $p;
+		}
+		else
+		{
+			echo '<a href="' . $this->urlParams(array_merge($this->permanentParams, array('page' => $this->current, 'perPage' => $p))) . '">' . $p . '</a>';
+		}
+
+		if ($p != end($perPage))
+		{
+			echo ', '; 
+		}
+	}
+?>
+</span>
+</p>
