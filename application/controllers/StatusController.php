@@ -68,7 +68,13 @@ class StatusController extends Zend_Controller_Action
 			$this->view->jsonCallback = $jsonCallback;
 		}
 
-		$idMovies = explode(',', trim($this->_request->getParam('movies'), ','));
+		$idMovies = array();
+		foreach (explode(',', trim($this->_request->getParam('movies'), ',')) as $idMovie)
+		{
+			$idMovie = Default_Model_Movie::extractId($idMovie);
+			if ($idMovie)
+				$idMovies[] = $idMovie;
+		}
 
 		$statuses = Default_Model_StatusMapper::findAll($idMovies, Default_Model_User::getCurrent());
 
