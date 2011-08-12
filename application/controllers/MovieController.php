@@ -201,7 +201,7 @@ class MovieController extends Zend_Controller_Action
 				else
 					$rating = Default_Model_Status::Bad;
 					
-				$movie->setStatus(Default_Model_User::getCurrent()->id, $rating);
+				$movie->setStatus(Default_Model_User::getCurrent(), $rating);
 				$movies []= $movie;
 			}
 

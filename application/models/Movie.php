@@ -102,18 +102,18 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	 */
 	public function getStatus(Default_Model_User $user = null)
 	{
-		return Default_Model_StatusMapper::find($user ? $user->id : null, $this->id);
+		return Default_Model_StatusMapper::find($this->id, $user);
 	}
 	
 	/**
 	 * Set the status for the specified user
-	 * @param integer $idUser
+	 * @param Default_Model_User $user
 	 * @param integer $rating @see Default_Model_Status
 	 * @return null
 	 */
-	public function setStatus($idUser, $rating)
+	public function setStatus(Default_Model_User $user, $rating)
 	{
-		$status = Default_Model_StatusMapper::find($idUser, $this->id);			
+		$status = Default_Model_StatusMapper::find($this->id, $user);
 		$status->rating = $rating;
 		$status->save();
 	}

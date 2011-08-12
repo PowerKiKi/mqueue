@@ -50,6 +50,6 @@ class Default_Model_User extends Default_Model_AbstractModel
 	 */
 	public function getStatistics()
 	{
-		return Default_Model_StatusMapper::getStatistics($this->id);
+		return Default_Model_StatusMapper::getStatistics($this);
 	}
 }

@@ -1,6 +1,8 @@
 <?php
 require_once(dirname(__FILE__) . '/../public/index.php');
 
+$db = Zend_Registry::get('db');
+$db->beginTransaction();
 try
 {
 	// Insert users
@@ -31,29 +33,19 @@ try
 	$movie3->setId('0096446');
 	$movie3->save();
 
-
+	
 	// Insert statuses
-	$status = Default_Model_StatusMapper::find($user1->id, $movie1->id);
-	$status->rating = 5;
-	$status->save();
-
-	$status = Default_Model_StatusMapper::find($user1->id, $movie2->id);
-	$status->rating = 4;
-	$status->save();
-
-	$status = Default_Model_StatusMapper::find($user1->id, $movie3->id);
-	$status->rating = 3;
-	$status->save();
-
-	$status = Default_Model_StatusMapper::find($user2->id, $movie1->id);
-	$status->rating = 2;
-	$status->save();
-
-	$status = Default_Model_StatusMapper::find($user2->id, $movie2->id);
-	$status->rating = 1;
-	$status->save();
+	$movie1->setStatus($user1, Default_Model_Status::Favorite);
+	$movie2->setStatus($user1, Default_Model_Status::Excellent);
+	$movie3->setStatus($user1, Default_Model_Status::Ok);
+	$movie1->setStatus($user2, Default_Model_Status::Bad);
+	$movie2->setStatus($user2, Default_Model_Status::Need);
+	
+	$db->commit();
 }
 catch (Exception $e)
 {
-	echo $e->getMessage();
+	$db->rollBack();
+	echo $e->getMessage() . PHP_EOL;
+	echo 'test data insertion cancelled' . PHP_EOL;
 }

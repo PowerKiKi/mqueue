@@ -4,49 +4,43 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 {
 	/**
 	 * Find a status by its user and movie. If not found it will be created (but not saved).
-	 * @param integer $idUser
-	 * @param string $idMovie
+	 * @param integer $idMovie
+	 * @param Default_Model_User|null $user
 	 * @return Default_Model_Status
 	 */
-    public static function find($idUser, $idMovie)
+    public static function find($idMovie, Default_Model_User $user = null)
     {
-    	$status = null;
-    	
-    	// Do not hit database if we know there won't be any result anyway
-    	if ($idUser != null)
-    	{
-        	$status = self::getDbTable()->fetchRow("idUser = '$idUser' AND idMovie = '$idMovie'");
-    	}
+    	$statuses = self::findAll(array($idMovie), $user);
 		
-		if ($status == null)
-		{
-			$status = self::getDbTable()->createRow();
-			$status->idUser = $idUser;
-			$status->idMovie = $idMovie;
-        }
-		
-		return $status;
+		return reset($statuses);
     }
     
     /**
      * Returns an array of Status containing all statuses for specified ids
-     * (if they don't exist in database, they will be created with default values)
+     * (if they don't exist in database, they will be created with default values but not saved)
      * 
-     * @param $idUser
-     * @param $idMovies
+     * @param array $idMovies
+	 * @param Default_Model_User|null $user
      * @return array of Default_Model_Status
      */
-    public static function findAll($idUser, array $idMovies)
+    public static function findAll(array $idMovies, Default_Model_User $user = null)
     {
-    	$query = "idMovie='" . join("' OR idMovie='", $idMovies) . "'";
-    	$query = "idUser='$idUser' AND ($query)";
-    	$records = self::getDbTable()->fetchAll($query);
-    	
     	$statuses = array();
-    	foreach($records as $record)
-    	{
-			$statuses[$record->idMovie] = $record;
-    	}
+		
+		// Do not hit database if we know there won't be any result anyway
+		if ($user)
+		{
+			$select = self::getDbTable()->select()
+					->where('idUser = ?', $user->id)
+					->where('idMovie IN (?)', $idMovies);
+
+			$records = self::getDbTable()->fetchAll($select);
+
+			foreach($records as $record)
+			{
+				$statuses[$record->idMovie] = $record;
+			}
+		}
     	
     	// Fill non existing statuses in databases
     	foreach ($idMovies as $id)
@@ -54,7 +48,7 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
     		if (!array_key_exists($id, $statuses))
     		{
 				$status = self::getDbTable()->createRow();
-				$status->idUser = $idUser;
+				if ($user) $status->idUser = $user->id;
 				$status->idMovie = $id;
     			$statuses[$status->idMovie] = $status;
     		}
@@ -65,10 +59,10 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 	
     /**
      * Build statistic for the given user.
-     * @param integer $idUser
+     * @param Default_Model_User $user
      * @return array statistics
      */
-	public static function getStatistics($idUser)
+	public static function getStatistics(Default_Model_User $user)
 	{
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('status', 
@@ -76,7 +70,7 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 				'rating' => 'IFNULL(rating, 0 )',
 				'count' => 'count(IFNULL(rating, 0))'))
 			->joinRight('movie', 
-				'movie.id = status.idMovie AND status.idUser = '.$idUser, 
+				'movie.id = status.idMovie AND status.idUser = ' . $user->id,
 				array())
 			->group('IFNULL(rating, 0)')
 			;

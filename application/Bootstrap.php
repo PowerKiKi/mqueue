@@ -146,10 +146,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		);
 		$router->addRoute('statusView',
 			new Zend_Controller_Router_Route('status/:movie', array('controller' => 'status', 'action' => 'index'))
-		);
-		
-		
-		
+		);	
+	}
+	
+	/**
+	 * Add the Zend_Db_Adapter to the registry if we need to call it outside of the modules.
+	 * @return Zend_Db_Adapter
+	 */
+	protected function _initMyDb()
+	{
+		$db = $this->getPluginResource('db')->getDbAdapter();
+		Zend_Registry::set('db', $db);
+
+		return $db;
 	}
 }
 

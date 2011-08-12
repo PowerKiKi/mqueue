@@ -53,6 +53,10 @@ abstract class Default_Model_AbstractMapper
 {
     private static $dbTables = array();
  
+	/**
+	 * Returns the DbTable for the model mapper calling this method
+	 * @return Zend_Db_Table_Abstract
+	 */
     public static function getDbTable()
     {
     	$className = get_called_class();
