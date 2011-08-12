@@ -12,12 +12,18 @@ class MovieController extends Zend_Controller_Action
 				'csv' => array('suffix'  => 'csv'),
 				'atom' => array('suffix'  => 'atom'),
 			));
-			
+
 		$contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'atom')->initContext();
 	}
 
 	public function indexAction()
 	{
+		// Check there is at least one user, otherwise the whole page will crash
+		if (!Default_Model_User::getCurrent() && !Default_Model_UserMapper::getDbTable()->fetchRow())
+		{
+			throw new Exception('At least one user must exist to access this page');
+		}
+
 		$form = new Default_Form_Filters();
 		$this->view->formFilter = $form;
 
@@ -30,7 +36,7 @@ class MovieController extends Zend_Controller_Action
 				$submitted = true;
 			}
 		}
-		
+
 		// If was submitted and do not want to clear, try to validate values
 		if ($submitted && !$this->_getParam('clear', false))
 		{
@@ -64,22 +70,22 @@ class MovieController extends Zend_Controller_Action
 		{
 			if (!preg_match('/^filter\d+$/', $key))
 				continue;
-				
+
 			$this->view->users[$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
-		
+
 		// Store perPage option in session
 		$perPage = 25;
 		$session = new Zend_Session_Namespace();
 		if (isset($session->perPage)) $perPage = $session->perPage;
 		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
 		$session->perPage = $perPage;
-		
-		
+
+
 		// Defines variables for the view
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
-		
+
 		// If we ouput atom, we force sorting by date
 		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
 		{
@@ -91,9 +97,9 @@ class MovieController extends Zend_Controller_Action
 		unset($this->view->permanentParams['addFilter']);
 		if ($this->view->sort) $this->view->permanentParams['sort'] = $this->view->sort;
 		if ($this->view->sortOrder) $this->view->permanentParams['sortOrder'] = $this->view->sortOrder;
-		
-		
-		// Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering) 
+
+
+		// Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering)
 		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
 		switch ($this->_helper->contextSwitch()->getCurrentContext())
 		{
@@ -117,15 +123,15 @@ class MovieController extends Zend_Controller_Action
 		}
 
 		$this->view->users = Default_Model_UserMapper::fetchAll();
-		
-		
+
+
 		// Store perPage option in session
 		$perPage = 25;
 		$session = new Zend_Session_Namespace();
 		if (isset($session->perPage)) $perPage = $session->perPage;
 		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
 		$session->perPage = $perPage;
-		
+
 		$this->view->movieActivity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($this->view->movie));
 		$this->view->movieActivity->setCurrentPageNumber($this->_getParam('page'));
 		$this->view->movieActivity->setItemCountPerPage($perPage);
@@ -147,7 +153,7 @@ class MovieController extends Zend_Controller_Action
 					$movie = Default_Model_MovieMapper::getDbTable()->createRow();
 					$movie->setId($values['id']);
 					$movie->save();
-					$this->_helper->FlashMessenger(_tr('A movie was added.'));					
+					$this->_helper->FlashMessenger(_tr('A movie was added.'));
 				}
 
 				$this->view->movies = array($movie);
@@ -171,19 +177,19 @@ class MovieController extends Zend_Controller_Action
 				$this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
 				return;
 			}
-			
+
 			$values = $form->getValues();
 			$page = file_get_contents($values['url']);
-			
+
 			$r = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
 			preg_match_all($r, $page, $matches);
-			
+
 			$movies = array();
 			for ($i = 0; $i < count($matches[1]); $i++)
 			{
 				$id = $matches[1][$i];
 				$imdbRating = $matches[2][$i];
-				
+
 				$movie = Default_Model_MovieMapper::find($id);
 				if (!$movie)
 				{
@@ -200,7 +206,7 @@ class MovieController extends Zend_Controller_Action
 					$rating = Default_Model_Status::Ok;
 				else
 					$rating = Default_Model_Status::Bad;
-					
+
 				$movie->setStatus(Default_Model_User::getCurrent(), $rating);
 				$movies []= $movie;
 			}
@@ -210,13 +216,13 @@ class MovieController extends Zend_Controller_Action
 			{
 				$this->_helper->FlashMessenger(_tr('Movies imported.'));
 				$this->view->movies = $movies;
-			}	
+			}
 			else
 			{
 				$this->_helper->FlashMessenger(array('warning' => _tr('No movies found for import.')));
 			}
 		}
-		
+
 	}
 
 
