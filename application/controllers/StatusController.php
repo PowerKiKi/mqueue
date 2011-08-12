@@ -12,42 +12,43 @@ class StatusController extends Zend_Controller_Action
 	}
 
 	public function indexAction()
-	{			
+	{
 		$jsonCallback = $this->_request->getParam('jsoncallback');
 		if ($jsonCallback)
 		{
 			$this->_helper->layout->setLayout('jsonp');
 			$this->view->jsonCallback = $jsonCallback;
 		}
-		
-		$idMovie = $this->_request->getParam('movie');
+
+		$idMovie = Default_Model_Movie::extractId($this->_request->getParam('movie'));
 
 		if ($idMovie == null)
-			throw new Exception('no movie specified.');
-		 
-		$status = Default_Model_StatusMapper::find($idMovie, Default_Model_User::getCurrent());
-		 
+			throw new Exception('no valid movie specified.');
 
-		// If new rating specified and we are logged in, save it and create movie if needed
+
+		// If new rating is specified and we are logged in, save it and create movie if needed
 		$rating = $this->_request->getParam('rating');
 		if (isset($rating) && Default_Model_User::getCurrent())
 		{
-			$movie = Default_Model_MovieMapper::find($status->idMovie);
-			 
+			$movie = Default_Model_MovieMapper::find($idMovie);
+
 			if ($movie == null)
 			{
 				$movie = Default_Model_MovieMapper::getDbTable()->createRow();
-				$movie->id = $status->idMovie;
+				$movie->setId($idMovie);
 				$movie->save();
 			}
-			$status->rating = $rating;
-			$status->save();
+			$status = $movie->setStatus(Default_Model_User::getCurrent(), $rating);
+		}
+		else
+		{
+			$status = Default_Model_StatusMapper::find($idMovie, Default_Model_User::getCurrent());
 		}
 
-		
+
 		if (!$jsonCallback)
 		{
-			$this->view->status = $status;	
+			$this->view->status = $status;
 		}
 		else
 		{
@@ -66,18 +67,18 @@ class StatusController extends Zend_Controller_Action
 			$this->_helper->layout->setLayout('jsonp');
 			$this->view->jsonCallback = $jsonCallback;
 		}
-			
+
 		$idMovies = explode(',', trim($this->_request->getParam('movies'), ','));
 
 		$statuses = Default_Model_StatusMapper::findAll($idMovies, Default_Model_User::getCurrent());
-		
+
 		$json = array();
 		foreach ($statuses as $s)
 		{
 			$html = $this->view->statusLinks($s);
 			$json[$s->getUniqueId()] = $html;
 		}
-		
+
 		$this->view->status = $json;
 	}
 }

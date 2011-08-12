@@ -18,7 +18,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 			'pt' => 'www.imdb.pt',
 			'akas' => 'akas.imdb.com',
 		);
-	
+
 	/**
 	 * Extract IMDb id from URL
 	 * @param string $string
@@ -29,12 +29,12 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		$valid = preg_match_all("/(\d{7})/", $string, $r);
 		if (isset($r[1][0]))
 			return $r[1][0];
-			
-		return null;		
+
+		return null;
 	}
-	
+
 	/**
-	 * Returns the title, if needed fetch the title from IMDb 
+	 * Returns the title, if needed fetch the title from IMDb
 	 * @return string
 	 */
 	public function getTitle()
@@ -54,27 +54,33 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 			{
 				return '[title not available, could not fetch from IMDb]';
 			}
-			
+
 			$this->title = $entries->item(0)->value;
-			
+
 			$this->setReadOnly(false); // If the movie is coming from a joined query, we need to set non-readonly before saving
 			$this->save();
 		}
-		
+
 		return $this->title;
 	}
-	
+
 	/**
-	 * Sets the ID for the movie from any string containing a valid ID 
+	 * Sets the ID for the movie from any string containing a valid ID
 	 * @param string $id
 	 * @return Default_Model_Movie
 	 */
 	public function setId($id)
 	{
-		$this->id = self::extractId($id);
+		$extractedId = self::extractId($id);
+		if (!$extractedId)
+		{
+			throw new Exception(sprintf('Invalid Id for movie. Given "%1$s", extracted "%2$s"', $id, $extractedId));
+		}
+
+		$this->id = $extractedId;
 		return $this;
 	}
-	
+
 	/**
 	 * Returns the IMDb url for the movie
 	 * @param string $lang suggested language for hostname
@@ -86,12 +92,12 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		{
 			$lang = Zend_Registry::get('Zend_Locale')->getLanguage();
 		}
-		
+
 		if (isset(Default_Model_Movie::$imdbHostnames[$lang]))
 			$hostname = Default_Model_Movie::$imdbHostnames[$lang];
 		else
 			$hostname = reset(Default_Model_Movie::$imdbHostnames);
-		
+
 		return 'http://' . $hostname . '/title/tt' . $this->id . '/';
 	}
 
@@ -104,17 +110,19 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	{
 		return Default_Model_StatusMapper::find($this->id, $user);
 	}
-	
+
 	/**
 	 * Set the status for the specified user
 	 * @param Default_Model_User $user
 	 * @param integer $rating @see Default_Model_Status
-	 * @return null
+	 * @return Default_Model_Status
 	 */
 	public function setStatus(Default_Model_User $user, $rating)
 	{
 		$status = Default_Model_StatusMapper::find($this->id, $user);
 		$status->rating = $rating;
 		$status->save();
+
+		return $status;
 	}
 }
