@@ -2,7 +2,7 @@
 
 class Default_View_Helper_AlternateFormats extends Zend_View_Helper_Abstract
 {
-	
+
 	protected static $supportedFormats = array(
 		'atom' => array(
 			'name' => 'Atom',
@@ -13,12 +13,12 @@ class Default_View_Helper_AlternateFormats extends Zend_View_Helper_Abstract
 			//'mime' => 'text/csv',
 		),
 	);
-	
+
 	/**
 	 * Returns a string of HTML links for end-user, and also append 'alternate' links to HTML header
 	 * @param array $formats
 	 * @param string $title
-	 * @return string 
+	 * @return string
 	 */
 	public function alternateFormats(array $formats, $title = null)
 	{
@@ -31,16 +31,16 @@ class Default_View_Helper_AlternateFormats extends Zend_View_Helper_Abstract
 			else
 				$url .= '&';
 			$url .= 'format=' . $format . '&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage();
-			
+
 			$formatLinks []= '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';
 			if ($title && isset(self::$supportedFormats[$format]['mime']))
 			{
 				$this->view->headLink()->appendAlternate($url, self::$supportedFormats[$format]['mime'], $title);
 			}
 		}
-		
+
 		$result = '<p class="alternateFormats">' . $this->view->translate('Also available in:') . ' ' . join(' | ', $formatLinks) . '</p>';
-		
+
 		return $result;
 	}
 }

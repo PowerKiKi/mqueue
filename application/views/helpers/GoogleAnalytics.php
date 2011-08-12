@@ -17,13 +17,13 @@ class Default_View_Helper_GoogleAnalytics extends Zend_View_Helper_Abstract
 				$trackingCode = $application->getOption('googleAnalyticsTrackingCode', null);
 			}
 		}
-		
+
 		$trackingCode = trim($trackingCode);
 		if (!is_string($trackingCode) || empty($trackingCode))
 		{
 			return '';
 		}
-		
+
 		$result = <<<STRING
 <script type="text/javascript">
 

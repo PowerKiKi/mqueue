@@ -5,14 +5,14 @@ $entries = array();
 
 // Cycle through the rankings, creating an array storing
 // each, and push the array onto the $entries array
-		
+
 $cacheUser = array();
 $cacheMovie = array();
 foreach ($this->paginator as $movie)
-{	
+{
 	$date = new Zend_Date($movie->dateUpdate);
 	$text = '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
-	
+
 	foreach ($this->users as $user)
 	{
 		$status = $movie->getStatus($user);
@@ -21,12 +21,12 @@ foreach ($this->paginator as $movie)
 											'action' => 'view',
 											'id' => $user->id
 											),
-										'singleid', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a> ' . 
+										'singleid', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a> ' .
 				$status->getName() . '</p>';
 	}
-			
+
 	$title = $movie->getTitle();
-		
+
 	$entry = array(
 		'author' => 'mQueue',
 		'title' => $title,
@@ -42,7 +42,7 @@ foreach ($this->paginator as $movie)
 $rss = array(
 	'title' => 'mQueue - ' . $this->formFilter->getValuesText(),
 	'link' => $this->urlParams($this->permanentParams),
-	'charset' => 'UTF-8', 
+	'charset' => 'UTF-8',
 	'entries' => $entries
 );
 

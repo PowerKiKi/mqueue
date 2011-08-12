@@ -3,7 +3,7 @@
 class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 {
 	private $escapeParams = null;
-	
+
 	/**
 	 * Returns the current page URL with specified GET parameters.
 	 * @param array $params
@@ -15,7 +15,7 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 		$this->escapeParams = $escapeParams;
 		return $this->view->serverUrl() . $this->view->url() . '?' . $this->flatten($params);
 	}
-	
+
 	/**
 	 * Flatten a recursive array in GET parameters (same as HTML form send GET request)
 	 * @param array $params
@@ -34,7 +34,7 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 			{
 				$name = $key;
 			}
-			
+
 			if (is_array($value))
 			{
 				$result = $this->flatten($value, $result, $name);
@@ -45,11 +45,11 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
 				{
 					$result .= $this->escapeParams ? '&amp;' : '&';
 				}
-			
+
 				$result .= $name . '=' . urlencode($value);
 			}
 		}
-		
+
 		return $result;
 	}
 

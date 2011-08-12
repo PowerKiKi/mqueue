@@ -18,13 +18,13 @@ foreach ($this->users as $user)
 $header[] = $this->translate('Title');
 $header[] = $this->translate('Link');
 fputcsv($out, $header);
- 
+
 foreach ($this->paginator as $entry)
 {
 	$data = array();
 	foreach ($this->users as $user)
 	{
-		$data[] = $entry->getStatus($user)->getName(); 
+		$data[] = $entry->getStatus($user)->getName();
 	}
 	$data[]= $entry->getTitle();
 	$data[]= $entry->getImdbUrl();

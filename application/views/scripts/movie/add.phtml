@@ -3,7 +3,7 @@
 <?php echo $this->form; ?>
 <?php if (isset($this->movies)): ?>
 	<h3><?php echo $this->translate('Movie found'); ?></h3>
-		
+
 	<table>
 	<tr>
 		<th><?php echo $this->translate('Rating'); ?></th>
@@ -22,16 +22,16 @@
 		<?php endforeach ?>
 	<?php endif; ?>
 	</table>
-	
+
 	<div class="tips"><?php echo $this->statusHelp(); ?></div>
-	
+
 <?php else: ?>
 
 <div class="tips">
-<?php 
+<?php
 	echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
 	'<a href="' . $this->url(array('controller' => 'faq'), null, true). '">' . $this->translate('FAQ') . '</a>'
-	)); 
+	));
 ?>
 </div>
 <?php endif; ?>

@@ -11,13 +11,13 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	const Ok = 3;
 	const Excellent = 4;
 	const Favorite = 5;
-	
+
 	/**
 	 * array of ratings names indexed by the rating value
 	 * @var array $ratings
 	 */
-	public static $ratings = null; 
-		 
+	public static $ratings = null;
+
 	/**
 	 * Returns the unique ID for this status to be used in HTML
 	 * @return string
@@ -26,7 +26,7 @@ class Default_Model_Status extends Default_Model_AbstractModel
 	{
 		return $this->idMovie . '_' . $this->idUser;
 	}
-	
+
 	/**
 	 * Returns the name
 	 * @return string
@@ -37,7 +37,7 @@ class Default_Model_Status extends Default_Model_AbstractModel
 			return _tr('Not rated');
 		return Default_Model_Status::$ratings[$this->rating];
 	}
-	
+
 	/**
 	 * Returns the date of last udpate
 	 * @return Zend_Date

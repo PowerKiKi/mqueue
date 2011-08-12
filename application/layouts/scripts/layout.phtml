@@ -1,9 +1,9 @@
 <?php echo $this->doctype() ?>
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head>  
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <?php
-  	echo $this->headTitle('mQueue')->setSeparator(' - '); 
+  	echo $this->headTitle('mQueue')->setSeparator(' - ');
   	echo $this->headLink(array('rel' => 'icon',
                                   'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
                                   'PREPEND'))
@@ -14,7 +14,7 @@
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/print.css'), 'print')
   			->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=atom&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/atom+xml', $this->translate('mQueue - Overall activity'))
   			. "\n";
-  
+
   	// Set localization file for timeago
 	$lang = Zend_Registry::get('Zend_Locale')->getLanguage();
 	$path = '/js/jquery.timeago.' . $lang . '.js';
@@ -22,17 +22,17 @@
 	{
   		$this->headScript()->prependFile($this->serverUrl() . $this->baseUrl($path));
 	}
-  	
-	echo $this->headScript()	
+
+	echo $this->headScript()
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery.timeago.js'))
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/local.js'))
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/both.js'))
 			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.6.min.js'));
-			
+
 	echo $this->googleAnalytics();
-	echo $this->googleWebmasterTools(); 
+	echo $this->googleWebmasterTools();
   ?>
-</head> 
+</head>
 <body>
 <div id="container">
 	<div id="header">
@@ -43,8 +43,8 @@
 			<span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
 		</div>
 		<div id="header-navigation"><span>&nbsp;</span>
-			<?php echo $this->navigation()->menu(); ?> 
-			<?php echo $this->loginState(); ?> 
+			<?php echo $this->navigation()->menu(); ?>
+			<?php echo $this->loginState(); ?>
 		</div>
 	</div>
 	<div id="content">

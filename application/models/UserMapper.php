@@ -1,7 +1,7 @@
 <?php
 
 abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
-{	
+{
 	/**
 	 * Finds a user by its email and password (not hashed)
 	 * @param string $email
@@ -13,12 +13,12 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
 		$select = self::getDbTable()->select()
 			->where('email = ?', $email)
 			->where('password = SHA1(?)', $password);
-		
+
 		$record = self::getDbTable()->fetchRow($select);
-		
+
 		return $record;
 	}
-	
+
 	/**
 	 * Finds a user by its ID
 	 * @param integer $id
@@ -27,7 +27,7 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
     public static function find($id)
     {
         $result = self::getDbTable()->find($id);
-		
+
         return $result->current();
     }
 
@@ -38,7 +38,7 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
     public static function fetchAll()
     {
         $resultSet = self::getDbTable()->fetchAll(null, 'LOWER(nickname)');
-		
+
         return $resultSet;
     }
 }

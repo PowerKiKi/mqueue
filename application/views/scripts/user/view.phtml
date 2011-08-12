@@ -4,7 +4,7 @@
 <h3><?php echo $this->translate('Statistics'); ?></h3>
 
 <table>
-<?php 
+<?php
 // Table header
 echo '<tr>';
 foreach (Default_Model_Status::$ratings as $val => $name)
@@ -12,7 +12,7 @@ foreach (Default_Model_Status::$ratings as $val => $name)
 	echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
 }
 echo '<th>' . $this->translate('Rated') . '</th>';
-echo '<th>' . $this->translate('Not rated') . '</th>';	
+echo '<th>' . $this->translate('Not rated') . '</th>';
 echo '</tr>';
 
 $stats = $this->user->getStatistics();

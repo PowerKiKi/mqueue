@@ -11,7 +11,7 @@ class Default_View_Helper_Link extends Zend_View_Helper_Abstract
 	{
 		$url =  $movie->getImdbUrl();
 		$result = '<a class="imdb' .($showUrl ? '' : ' hideUrl') . '" title="' . $url . '" href="' . $url . '"><span>&nbsp;' . $url . '</span></a>';
-		
+
 		return $result;
 	}
 }

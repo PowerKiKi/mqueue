@@ -1,10 +1,10 @@
-<?php 
+<?php
 $this->headTitle(_tr('Movies'));
 ?>
 <h2><?php echo $this->translate('Movies list'); ?></h2>
 <?php echo $this->formFilter; ?>
 <table>
-<tr>	
+<tr>
 	<?php $i = 0; foreach ($this->users as $user): ?>
 		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sort, $this->sortOrder, $this->permanentParams); ?></th>
 	<?php endforeach; ?>
@@ -37,10 +37,10 @@ $this->headTitle(_tr('Movies'));
 	<?php if ($this->paginator->getTotalItemCount() != 0): ?>
 		<?php echo $this->statusHelp(); ?>
 	<?php else: ?>
-		<?php 
+		<?php
 			echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
 			'<a href="' . $this->url(array('controller' => 'faq'), null, true). '">' . $this->translate('FAQ') . '</a>'
-			)); 
+			));
 		?>
 	<?php endif; ?>
 </div>

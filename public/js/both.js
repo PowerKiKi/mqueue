@@ -18,9 +18,9 @@ var mqueue = (function () {
 				$(this).replaceWith(data.status);
 			});
 
-			parent.removeClass('loading');		
+			parent.removeClass('loading');
 			$('.mqueue_status_links_' + data.id + ' .mqueue_status').click(setStatus);
-		});		
+		});
 		return false;
 	}
 
@@ -41,18 +41,18 @@ var mqueue = (function () {
 	 */
 	function injectStatus(server, node)
 	{
-		var maxPerQuery = 400;	
+		var maxPerQuery = 400;
 		var list = [];
 		var queries = [];
 		var query = '';
 		var i = 0;
-		
+
 		// Find every references to any movies, within the node, or the node itself
 		var selector = "a[href*='title/tt'], link[rel='canonical']";
 		var matches = $(selector, node);
 		if ($(node).is(selector))
 			matches.push(node[0]);
-		
+
 		$.each(matches, function()
 		{
 			var regexp = /imdb\.(com|de|es|fr|it|pt)\/title\/tt(\d{7})/;
@@ -100,7 +100,7 @@ var mqueue = (function () {
 					{
 						$("#tn15title>h1").before(status); // Old IMDb version
 						$("div#main>div.article>h1.header").before(status); // New IMDb version
-						$("div#main>div.article td#overview-top h1.header").before(status); // Newest IMDb version 
+						$("div#main>div.article td#overview-top h1.header").before(status); // Newest IMDb version
 						$("div#main>div.article td#overview-bottom div.add_to_watchlist").html(status); // Newest IMDb version
 
 					}
@@ -126,7 +126,7 @@ var mqueue = (function () {
 	{
 		var timeoutId;
 		var insertedNodes = [];
-		
+
 		injectStatus(server, $('body'));
 		$('body').bind('DOMNodeInserted', function(e){
 			if (!injectingStatus)
@@ -141,9 +141,9 @@ var mqueue = (function () {
 					insertedNodes = [];
 					injectStatus(server, nodes);
 				}, 300);
-				
+
 			}
-		});	
+		});
 	}
 
 	/**
@@ -153,7 +153,7 @@ var mqueue = (function () {
 		bindStatus: bindStatus,
 		monitorLinks: monitorLinks
 	};
-	
+
 }());
 
 $(document).ready(function()

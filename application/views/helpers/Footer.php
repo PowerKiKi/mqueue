@@ -12,9 +12,9 @@ class Default_View_Helper_Footer extends Zend_View_Helper_Abstract
 
 		$result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
 		array('controller'=>'about'),
-				'default', 
+				'default',
 		true) . '">' . $this->view->translate('about mQueue') . '</a> ';
-		
+
 		return $result;
 	}
 

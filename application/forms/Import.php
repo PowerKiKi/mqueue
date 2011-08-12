@@ -16,7 +16,7 @@ class Default_Form_Import extends Zend_Form
                 array('validator' => 'Regex', 'options' => array("|mymovies/list\?l=\d+|"))
                 )
         ));
-        
+
         // Add the minimum for favorite
         $this->addElement('text', 'favoriteMinimum', array(
             'label'      => _tr('Minimum for favorite:'),
@@ -26,7 +26,7 @@ class Default_Form_Import extends Zend_Form
                 array('validator' => 'Float', 'options' => array()),
                 )
         ));
-        
+
         // Add the minimum for excellent
         $this->addElement('text', 'excellentMinimum', array(
             'label'      => _tr('Minimum for excellent:'),
@@ -36,7 +36,7 @@ class Default_Form_Import extends Zend_Form
                 array('validator' => 'Float', 'options' => array()),
                 )
         ));
-        
+
         // Add the minimum for favorite
         $this->addElement('text', 'okMinimum', array(
             'label'      => _tr('Minimum for ok:'),
@@ -46,12 +46,12 @@ class Default_Form_Import extends Zend_Form
                 array('validator' => 'Float', 'options' => array()),
                 )
         ));
-        
+
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
             'label'    => 'Add movie',
         ));
-        
+
     }
 }

@@ -15,10 +15,10 @@ class Default_Model_Setting extends Default_Model_AbstractModel
 	public static function get($id, $defaultValue)
 	{
         $setting = Default_Model_SettingMapper::find($id, $defaultValue);
-        
+
         return $setting;
 	}
-	
+
 	/**
 	 * Defines the value of the setting
 	 * @param string $id unique name of setting

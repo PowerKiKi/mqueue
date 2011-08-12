@@ -1,12 +1,12 @@
 <?php $this->headTitle(_tr('Import')); ?>
 <h2><?php echo $this->translate('Import votes from IMDb')?></h2>
 <?php if (!isset($this->movies)): ?>
-<?php echo $this->form; ?>	
+<?php echo $this->form; ?>
 <div class="tips">
-<?php 
+<?php
 	echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
 	'<a href="' . $this->url(array('controller' => 'faq'), null, true). '">' . $this->translate('FAQ') . '</a>'
-	)); 
+	));
 ?>
 </div>
 <?php else: ?>

@@ -8,15 +8,15 @@ if (!is_array($this->permanentParams))
 <p class="paginationControl">
 <!-- Previous page link -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a> 
+  <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $this->previous, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo _tr('« Previous'); ?></a>
 <?php endif; ?>
 
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?>
   <?php if ($page != $this->current): ?>
-	<a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $page, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo $page; ?></a> 
+	<a href="<?php echo $this->urlParams(array_merge($this->permanentParams, array('page' => $page, 'perPage' => $this->itemCountPerPage))); ?>"><?php echo $page; ?></a>
   <?php else: ?>
-	<?php echo $page; ?> 
+	<?php echo $page; ?>
   <?php endif; ?>
 <?php endforeach; ?>
 
@@ -45,7 +45,7 @@ if (!is_array($this->permanentParams))
 
 		if ($p != end($perPage))
 		{
-			echo ', '; 
+			echo ', ';
 		}
 	}
 ?>

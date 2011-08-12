@@ -16,7 +16,7 @@ class Default_Form_User extends Zend_Form
         		array('validator' =>  new Zend_Validate_Db_NoRecordExists(array('table' => 'user', 'field' => 'nickname'))),
                 )
         ));
-        
+
         // Add the email element
         $this->addElement('text', 'email', array(
             'label'      => _tr('Email:'),
@@ -27,7 +27,7 @@ class Default_Form_User extends Zend_Form
                 array('validator' =>  new Zend_Validate_Db_NoRecordExists(array('table' => 'user', 'field' => 'email'))),
                 )
         ));
-        
+
         // Add the password ail element
         $this->addElement('password', 'password', array(
             'label'      => _tr('Password:'),
@@ -36,7 +36,7 @@ class Default_Form_User extends Zend_Form
                 //array('validator' => 'emailAddress')
                 )
         ));
-        
+
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,

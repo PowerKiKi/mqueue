@@ -10,7 +10,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     public static function find($id)
     {
         $result = self::getDbTable()->find($id);
-		
+
         return $result->current();
     }
 
@@ -21,10 +21,10 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     public static function fetchAll()
     {
         $resultSet = self::getDbTable()->fetchAll();
-		
+
         return $resultSet;
     }
-    
+
     /**
      * Returns a query filtered according to parameters. This query may be used with paginator.
      * @param array $filters
@@ -43,13 +43,13 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	{
     		$sort = 'title';
     	}
-    	
+
     	if ($sortOrder == 'desc')
     		$sortOrder = 'DESC';
     	else
     		$sortOrder = 'ASC';
 
-    	
+
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('movie')
 			->order($sort . ' ' . $sortOrder);
@@ -62,12 +62,12 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$filterUniqueId = $filter['user'] . $filter['status'];
 			if (!preg_match('/^filter\d+$/', $key) || in_array($filterUniqueId, $filtersDone))
 				continue;
-			
+
 			$filtersDone []= $filterUniqueId;
-				
+
 			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
 			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
-				
+
 			// Filter by status
 			if ($filter['status'] >= 0 && $filter['status'] <= 5)
 			{
@@ -77,7 +77,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			{
 				$select->where('status' . $i . '.rating <> ?' . $allowNull, 0);
 			}
-			
+
 			// Filter by title
 			if (isset($filter['title']))
 			{
@@ -88,17 +88,17 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		    			$select->where('movie.title LIKE ?', '%' . $part . '%');
 		    	}
 			}
-			
+
 			if ($maxDate)
 				$maxDate = 'IF(`status' . $i . '`.`dateUpdate` IS NULL OR `status' . $i . '`.`dateUpdate` < ' . $maxDate . ', ' . $maxDate . ', `status' . $i . '`.`dateUpdate`)';
 			else
 				$maxDate = '`status' . $i . '`.`dateUpdate`';
-	    	
+
 	    	$i++;
 		}
-		
+
 		$select->columns(array('date' => new Zend_Db_Expr($maxDate)));
-		
+
     	return $select;
     }
 }

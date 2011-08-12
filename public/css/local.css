@@ -83,7 +83,7 @@ body
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding: 5px;
-	
+
 	/* Repeat the logo slightly over the links */
 	background: #163066 url("../images/logo.svg") no-repeat scroll -39px -149px;
 }

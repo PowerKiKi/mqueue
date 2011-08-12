@@ -13,7 +13,7 @@ class Default_View_Helper_LanguageSelector extends Zend_View_Helper_Abstract
 			'ko' => '한국어',
 			'fr' => 'Français',
 			);
-		
+
 		$result = '<div class="language_selector">';
 		$params = $_GET;
 		foreach ($languages as $val => $name)
