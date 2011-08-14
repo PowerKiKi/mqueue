@@ -3,6 +3,49 @@
 abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 {
 	/**
+	 * Define the status for a movie-user tuple. If an existing satus exists and 
+	 * is very recent, it will be updated, otherwise a new status will be created.
+	 * IMPORTANT: This is the only allowed way to modify status.
+	 * @param Default_Model_Movie $movie
+	 * @param Default_Model_User $user
+	 * @param integer $rating @see Default_Model_Status
+	 * @return Default_Model_Status
+	 */
+	public static function set(Default_Model_Movie $movie, Default_Model_User $user, $rating)
+	{
+		$db = self::getDbTable()->getAdapter();
+		$db->beginTransaction();
+		
+		// Find out if a very recent status exist to be replaced, so user can change their mind "quickly"
+		$select = self::getDbTable()->select()
+				->where('idUser = ?', $user->id)
+				->where('idMovie = ?', $movie->id)
+				->where('dateUpdate > DATE_SUB(NOW(), INTERVAL 5 SECOND)');
+
+		$status = self::getDbTable()->fetchRow($select);
+		
+		// Otherwise create a brand new one and set all existing one as "old"
+		if (!$status)
+		{
+			$status = self::getDbTable()->createRow();
+			$status->idUser = $user->id;
+			$status->idMovie = $movie->id;
+			$status->isLatest = true;
+			
+			// Here we must set dateUpdate to itself to avoid auto-update of the timestamp field by MySql
+			$db->query('UPDATE `status` SET isLatest = 0, dateUpdate = dateUpdate WHERE idUser = ? AND idMovie = ?', array($user->id, $movie->id));
+		}
+		
+		$status->rating = $rating;
+		$status->save();
+		
+		$db->commit();
+		
+		return $status;
+	}
+	
+	
+	/**
 	 * Find a status by its user and movie. If not found it will be created (but not saved).
 	 * @param integer $idMovie
 	 * @param Default_Model_User|null $user
@@ -34,7 +77,8 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		{
 			$select = self::getDbTable()->select()
 					->where('idUser = ?', $user->id)
-					->where('idMovie IN (?)', $idMovies);
+					->where('idMovie IN (?)', $idMovies)
+					->where('isLatest = 1');
 
 			$records = self::getDbTable()->fetchAll($select);
 
@@ -69,11 +113,12 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('status',
 				array(
-				'rating' => 'IFNULL(rating, 0 )',
-				'count' => 'count(IFNULL(rating, 0))'))
+				'rating' => 'IFNULL(rating, 0)',
+				'count' => 'COUNT(IFNULL(rating, 0))'))
 			->joinRight('movie',
 				'movie.id = status.idMovie AND status.idUser = ' . $user->id,
 				array())
+			->where('isLatest = 1')
 			->group('IFNULL(rating, 0)')
 			;
 

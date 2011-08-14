@@ -68,14 +68,20 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
 			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
 
-			// Filter by status
+			// Filter by status, not rated or a specific rating
 			if ($filter['status'] >= 0 && $filter['status'] <= 5)
 			{
-				$select->where('status' . $i . '.rating = ?' . $allowNull, $filter['status']);
+				$select->where('(status' . $i . '.isLatest = 1 AND status' . $i . '.rating = ?)' . $allowNull, $filter['status']);
 			}
+			// All rated
 			elseif ($filter['status'] == -1)
 			{
-				$select->where('status' . $i . '.rating <> ?' . $allowNull, 0);
+				$select->where('(status' . $i . '.isLatest = 1 AND status' . $i . '.rating <> ?)' . $allowNull, 0);
+			}
+			// Anything (all of them)
+			elseif ($filter['status'] == -2)
+			{
+				$select->where('status' . $i . '.isLatest = 1');
 			}
 
 			// Filter by title
@@ -98,7 +104,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		}
 
 		$select->columns(array('date' => new Zend_Db_Expr($maxDate)));
-
+		
     	return $select;
     }
 }

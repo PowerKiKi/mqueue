@@ -119,9 +119,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	 */
 	public function setStatus(Default_Model_User $user, $rating)
 	{
-		$status = Default_Model_StatusMapper::find($this->id, $user);
-		$status->rating = $rating;
-		$status->save();
+		$status = Default_Model_StatusMapper::set($this, $user, $rating);
 
 		return $status;
 	}
