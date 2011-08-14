@@ -20,7 +20,7 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 		$select = self::getDbTable()->select()
 				->where('idUser = ?', $user->id)
 				->where('idMovie = ?', $movie->id)
-				->where('dateUpdate > DATE_SUB(NOW(), INTERVAL 5 SECOND)');
+				->where('dateUpdate > DATE_SUB(NOW(), INTERVAL 5 MINUTE)');
 
 		$status = self::getDbTable()->fetchRow($select);
 		
