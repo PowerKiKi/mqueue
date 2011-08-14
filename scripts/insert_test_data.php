@@ -33,19 +33,19 @@ try
 	$movie3->setId('0096446');
 	$movie3->save();
 
-	
-	// Insert statuses
-	$movie1->setStatus($user1, Default_Model_Status::Favorite);
-	$movie2->setStatus($user1, Default_Model_Status::Excellent);
-	$movie3->setStatus($user1, Default_Model_Status::Ok);
-	$movie1->setStatus($user2, Default_Model_Status::Bad);
-	$movie2->setStatus($user2, Default_Model_Status::Need);
-	
 	$db->commit();
 }
 catch (Exception $e)
 {
 	$db->rollBack();
+	throw $e;
 	echo $e->getMessage() . PHP_EOL;
 	echo 'test data insertion cancelled' . PHP_EOL;
 }
+	
+// Insert statuses
+$movie1->setStatus($user1, Default_Model_Status::Favorite);
+$movie2->setStatus($user1, Default_Model_Status::Excellent);
+$movie3->setStatus($user1, Default_Model_Status::Ok);
+$movie1->setStatus($user2, Default_Model_Status::Bad);
+$movie2->setStatus($user2, Default_Model_Status::Need);
