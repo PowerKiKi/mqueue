@@ -17,7 +17,7 @@ html
 
 body
 {
-	background: url(../images/background.gif) fixed;
+	background: url("../images/background.gif") fixed;
 	padding-top: 10px;
 	padding-bottom: 20px;
 }
@@ -36,7 +36,7 @@ body
 
 #header
 {
-	background: url(../images/header.png);
+	background: url("../images/header.png");
 }
 
 #header h1
@@ -361,7 +361,7 @@ td.number
 select.filterStatus option
 {
 	padding-left: 20px;
-	background-image: url(../images/status.png);
+	background-image: url("../images/status.png");
 	background-repeat: no-repeat;
 	background-position: -999px -999px;
 	height: 16px;
@@ -407,12 +407,12 @@ a.sort.desc
 
 a.sort.asc
 {
-	background-image: url(../images/sort_asc.png);
+	background-image: url("../images/sort_asc.png");
 }
 
 a.sort.desc
 {
-	background-image: url(../images/sort_desc.png);
+	background-image: url("../images/sort_desc.png");
 }
 
 .faq dt
@@ -423,22 +423,22 @@ a.sort.desc
 
 .browser_chrome
 {
-	list-style-image: url(../images/browser_chrome.gif);
+	list-style-image: url("../images/browser_chrome.svg");
 }
 
 .browser_firefox
 {
-	list-style-image: url(../images/browser_firefox.gif);
+	list-style-image: url("../images/browser_firefox.svg");
 }
 
 .browser_safari
 {
-	list-style-image: url(../images/browser_safari.gif);
+	list-style-image: url("../images/browser_safari.gif");
 }
 
 .browser_ie
 {
-	list-style-image: url(../images/browser_ie.gif);
+	list-style-image: url("../images/browser_ie.svg");
 }
 
 a.imdb.hideUrl span
@@ -451,7 +451,7 @@ a.imdb
 	display: inline-block;
 	min-height: 16px;
 	padding-left: 16px;
-	background-image: url(../images/imdb_small.gif);
+	background-image: url("../images/imdb_small.gif");
 	background-repeat:no-repeat;
 }
 
@@ -475,7 +475,7 @@ div.flashmessenger
 
 div.flashmessenger.notice
 {
-    background-image: url(../images/flashmessenger-notice.png);
+    background-image: url("../images/flashmessenger-notice.png");
 	background-color: #dfffdf;
 	border-color: #9fcf9f;
 	color: #005f00;
@@ -483,7 +483,7 @@ div.flashmessenger.notice
 
 div.flashmessenger.warning
 {
-	background-image: url(../images/flashmessenger-warning.png);
+	background-image: url("../images/flashmessenger-warning.png");
 	background-color: #FFEBC1;
 	border-color: #FDBF3B;
 	color: #A6750C;
@@ -491,7 +491,7 @@ div.flashmessenger.warning
 
 div.flashmessenger.error
 {
-    background-image: url(../images/flashmessenger-error.png);
+    background-image: url("../images/flashmessenger-error.png");
 	background-color: #ffe3e3;
 	border-color: #dd0000;
 	color: #550000;
