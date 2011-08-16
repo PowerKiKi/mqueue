@@ -60,7 +60,16 @@ class UserController extends Zend_Controller_Action
 
 					$this->_helper->FlashMessenger('Logged in.');
 
-					return $this->_helper->redirector('index', 'movie');
+					
+					$referrer = $values['referrer'];
+					
+					// If we have a valid referer to one page of ourselve (except login or logout), redirect to it
+					if (strpos($referrer, $this->view->serverUrl() . $this->view->baseUrl()) === 0
+							&& strpos($referrer, $this->view->serverUrl() . $this->view->url(array('controller' => 'user', 'action' => 'login'))) !== 0
+							&& strpos($referrer, $this->view->serverUrl() . $this->view->url(array('controller' => 'user', 'action' => 'logout'))) !== 0)
+						return $this->_redirect($values['referrer']);
+					else
+						return $this->_helper->redirector('index', 'movie');
 				}
 				else 
 				{
@@ -70,7 +79,10 @@ class UserController extends Zend_Controller_Action
 		}
 		else
 		{
-			$form->setDefaults(array('remember' => true));
+			$form->setDefaults(array(
+				'remember' => true,
+				'referrer' => $this->getRequest()->getServer('HTTP_REFERER'),
+				));
 		}
 
 		$this->view->form = $form;

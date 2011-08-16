@@ -34,6 +34,9 @@ class Default_Form_Login extends Zend_Form
             'ignore'   => true,
             'label'    => _tr('Login'),
         ));
+		
+		// Add referrer to redirect after login
+		$this->addElement('hidden', 'referrer');
 
         // And finally add some CSRF protection
       //  $this->addElement('hash', 'csrf', array(
