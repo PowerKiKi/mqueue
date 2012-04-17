@@ -1,15 +1,17 @@
-<?php
-header('Content-type: application/javascript');
-
-echo "var server = '" . $this->serverUrl() . $this->baseUrl('') . "';\n\n";
-
-require_once(APPLICATION_PATH . '/../public/js/jquery-1.6.min.js');
-require_once(APPLICATION_PATH . '/../public/js/both.js');
-?>
 /*global $, document, injectStatus */
+(function(){
+	<?php
+	header('Content-type: application/javascript');
+	require_once(APPLICATION_PATH . '/../public/js/jquery-1.6.min.js');
+	?>
+	jQuery.noConflict()(function(){
+		var server = '<?php echo $this->serverUrl() . $this->baseUrl('') ?>';
+		<?php require_once(APPLICATION_PATH . '/../public/js/both.js'); ?>
 
-$(document).ready(function()
-{
-	$("head").append('<link href="' + server + 'css/both.css" media="screen" rel="stylesheet" type="text/css" />');
-	mqueue.monitorLinks(server);
-});
+		$(document).ready(function()
+		{
+			$("head").append('<link href="' + server + 'css/both.css" media="screen" rel="stylesheet" type="text/css" />');
+			mqueue.monitorLinks(server);
+		});
+	});
+})();
