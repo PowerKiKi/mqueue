@@ -4,7 +4,8 @@
 	header('Content-type: application/javascript');
 	require_once(APPLICATION_PATH . '/../public/js/jquery-1.7.2.min.js');
 	?>
-	jQuery.noConflict()(function(){
+	jQuery.noConflict(true)(function(){
+		var $ = jQuery;
 		var server = '<?php echo $this->serverUrl() . $this->baseUrl('') ?>';
 		<?php require_once(APPLICATION_PATH . '/../public/js/both.js'); ?>
 
