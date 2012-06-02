@@ -65,10 +65,10 @@ abstract class Default_Model_AbstractMapper
         	preg_match("/([^_]*)Mapper/", $className, $r);        	
         	$dbTableClassName = 'Default_Model_DbTable_' . $r[1]; 
         	$dbTable = new $dbTableClassName();
-        	self::$dbTables[$dbTableClassName] = $dbTable;
+        	self::$dbTables[$className] = $dbTable;
         }
         
-        return self::$dbTables[$dbTableClassName];
+        return self::$dbTables[$className];
     }
 }
  
