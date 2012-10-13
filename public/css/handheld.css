@@ -8,6 +8,7 @@ body
 {
 	margin: 0px;
 	padding: 0px;
+	background: black;
 }
 
 #container
@@ -17,13 +18,35 @@ body
 	width: 100%;
 }
 
-#header-logo,
-.language_selector
+#header-logo
 {
 	display: none;
 }
 
+#header,
 #header-navigation
 {
 	background-image: none;
 }
+
+#quickSearch, 
+.language_selector,
+ul.navigation,
+.loginState
+{
+	float: none;
+}
+
+
+#quickSearch, .language_selector {
+
+	clear: none;
+	display: inline;
+}
+
+td
+{
+	white-space: nowrap;
+}
+table{ 
+	background-color: white;}

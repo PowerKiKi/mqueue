@@ -10,7 +10,7 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 	 */
 	public function activity(Zend_Paginator $activity, $hiddenColumns = array())
 	{
-		$columns = array('date', 'user', 'movie', 'status');
+		$columns = array('date', 'user', 'status', 'movie');
 		$columns = array_diff($columns, $hiddenColumns);
 
 		$result = '<table class="activity">';
@@ -18,8 +18,8 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 		$result .= '<tr>';
 		if (in_array('date', $columns)) $result .= '<th>' . $this->view->translate('Date') . '</th>';
 		if (in_array('user', $columns)) $result .= '<th>' . $this->view->translate('User') . '</th>';
-		if (in_array('movie', $columns)) $result .= '<th>' . $this->view->translate('Movie') . '</th>';
 		if (in_array('status', $columns)) $result .= '<th>' . $this->view->translate('Rating') . '</th>';
+		if (in_array('movie', $columns)) $result .= '<th>' . $this->view->translate('Movie') . '</th>';
 		$result .= '</tr>';
 
 		$cacheUser = array();
@@ -47,8 +47,8 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
 										'id' => $user->id
 										),
 									'singleid', true) . '">' . $this->view->gravatar($user). ' ' . $this->view->escape($user->nickname) . '</a></td>';
-			if (in_array('movie', $columns)) $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
 			if (in_array('status', $columns)) $result .= '<td class="rating">' . $this->view->statusLinks($status) . '</td>';
+			if (in_array('movie', $columns)) $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
 
 			$result .= '</tr>';
 		}
