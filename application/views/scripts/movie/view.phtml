@@ -28,7 +28,7 @@ foreach ($this->users as $user)
 <h3><?php echo $this->translate('Activity'); ?></h3>
 <?php echo $this->activity($this->movieActivity, array('movie')); ?>
 <?php echo $this->alternateFormats(array(
-	'atom' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id), 'activityMovie', true),
+	'rss' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id), 'activityMovie', true),
 	), 'mQueue - ' . $this->translate('Activity for %s', array($this->movie->getTitle()))); ?>
 
 <?php echo $this->paginationControl($this->movieActivity); ?>

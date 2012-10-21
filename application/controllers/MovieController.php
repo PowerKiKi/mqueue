@@ -10,10 +10,10 @@ class MovieController extends Zend_Controller_Action
 		// Add the new context
 		$contextSwitch->setContexts(array(
 				'csv' => array('suffix'  => 'csv'),
-				'atom' => array('suffix'  => 'atom'),
+				'rss' => array('suffix'  => 'rss'),
 			));
 
-		$contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'atom')->initContext();
+		$contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'rss')->initContext();
 	}
 
 	public function indexAction()
@@ -86,8 +86,8 @@ class MovieController extends Zend_Controller_Action
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
 
-		// If we ouput atom, we force sorting by date
-		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
+		// If we ouput rss, we force sorting by date
+		if ($this->_helper->contextSwitch()->getCurrentContext() == 'rss')
 		{
 			$this->view->sort = 'date';
 			$this->view->sortOrder = 'desc';
@@ -104,7 +104,7 @@ class MovieController extends Zend_Controller_Action
 		switch ($this->_helper->contextSwitch()->getCurrentContext())
 		{
 			case 'csv': $perPage = 0; break;
-			case 'atom': $perPage = 200; break;
+			case 'rss': $perPage = 200; break;
 			case null: $this->view->paginator->setCurrentPageNumber($this->_getParam('page')); break;
 		}
 		$this->view->paginator->setItemCountPerPage($perPage);

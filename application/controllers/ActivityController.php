@@ -10,10 +10,10 @@ class ActivityController extends Zend_Controller_Action
 
 		// Add the new context
 		$contextSwitch->setContexts(array(
-				'atom' => array('suffix'  => 'atom')
+				'rss' => array('suffix'  => 'rss')
 			));
 			
-		$contextSwitch->addActionContext('index', 'atom')->initContext();
+		$contextSwitch->addActionContext('index', 'rss')->initContext();
     }
 
     public function indexAction()
@@ -49,8 +49,8 @@ class ActivityController extends Zend_Controller_Action
 		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
 		$session->perPage = $perPage;
 		
-		// Always send much more data via Atom feed
-		if ($this->_helper->contextSwitch()->getCurrentContext() == 'atom')
+		// Always send much more data via RSS feed
+		if ($this->_helper->contextSwitch()->getCurrentContext() == 'rss')
 		{
 			$perPage = 200;
 		}

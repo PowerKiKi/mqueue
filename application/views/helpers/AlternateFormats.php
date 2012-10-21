@@ -4,9 +4,9 @@ class Default_View_Helper_AlternateFormats extends Zend_View_Helper_Abstract
 {
 
 	protected static $supportedFormats = array(
-		'atom' => array(
-			'name' => 'Atom',
-			'mime' => 'application/atom+xml',
+		'rss' => array(
+			'name' => 'RSS',
+//			'mime' => 'application/rss+xml',
 		),
 		'csv' => array(
 			'name' => 'CSV',

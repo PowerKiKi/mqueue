@@ -13,7 +13,7 @@
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/handheld.css'), 'handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)')
   			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/print.css'), 'print')
-  			->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=atom&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/atom+xml', $this->translate('mQueue - Overall activity'))
+  			->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
   			. "\n";
 
   	// Set localization file for timeago

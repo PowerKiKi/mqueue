@@ -26,7 +26,7 @@ $this->headTitle(_tr('Movies'));
 <?php endif; ?>
 </table>
 <?php echo $this->alternateFormats(array(
-	'atom' => $this->urlParams($this->permanentParams, false),
+	'rss' => $this->urlParams($this->permanentParams, false),
 	'csv' => $this->urlParams($this->permanentParams, false),
 	), 'mQueue - ' . $this->filterName); ?>
 <?php

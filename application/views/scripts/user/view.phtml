@@ -43,6 +43,6 @@ echo '</tr>';
 <?php echo $this->activity($this->userActivity, array('user')); ?>
 
 <?php echo $this->alternateFormats(array(
-	'atom' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->user->id), 'activityUser', true),
+	'rss' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'user' => $this->user->id), 'activityUser', true),
 	), 'mQueue - ' . $this->translate('Activity for %s', array($this->user->nickname))); ?>
 <?php echo $this->paginationControl($this->userActivity); ?>

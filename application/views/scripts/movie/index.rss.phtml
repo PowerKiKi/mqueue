@@ -6,8 +6,6 @@ $entries = array();
 // Cycle through the rankings, creating an array storing
 // each, and push the array onto the $entries array
 
-$cacheUser = array();
-$cacheMovie = array();
 foreach ($this->paginator as $movie)
 {
 	$date = new Zend_Date($movie->dateUpdate);
@@ -47,8 +45,7 @@ $rss = array(
 );
 
 // Import the array
-$activity = Zend_Feed::importArray($rss);
+$activity = Zend_Feed::importArray($rss, 'rss');
 
 // Write the activity to a variable
 $activity->send();
-

@@ -61,9 +61,7 @@ $rss = array(
 );
 
 // Import the array
-$activity = Zend_Feed::importArray($rss);
+$activity = Zend_Feed::importArray($rss, 'rss');
 
 // Write the activity to a variable
 $activity->send();
-
-?>
