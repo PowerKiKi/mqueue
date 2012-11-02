@@ -6,7 +6,7 @@
  */
 
 
-require_once(dirname(__FILE__) . '/../public/index.php');
+require_once(__DIR__ . '/../public/index.php');
 
 $movies = Default_Model_MovieMapper::fetchAll();
 $count = 0;

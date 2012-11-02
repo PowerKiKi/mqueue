@@ -9,7 +9,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		$autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Default',
-            'basePath'  => dirname(__FILE__),
+            'basePath'  => __DIR__,
 		));
 		return $autoloader;
 	}
@@ -20,7 +20,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view = $this->getResource('view');
 		$view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
 
-		$path = dirname(__FILE__) . '/views/helpers';
+		$path = __DIR__ . '/views/helpers';
 		$prefix = 'Default_View_Helper_';
 		$view->addHelperPath($path, $prefix);
 

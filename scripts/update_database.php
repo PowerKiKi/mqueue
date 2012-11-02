@@ -1,8 +1,8 @@
 <?php
-require_once(dirname(__FILE__) . '/../public/index.php');
+require_once(__DIR__ . '/../public/index.php');
 
 $settingName = 'databaseVersion'; // This is the setting name used in the database to store the version information
-$sqlPath = dirname(__FILE__) . '/sql/'; // This is the path where all SQL patches resides
+$sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
 
 /**
  * Returns the last version available in SQL file
