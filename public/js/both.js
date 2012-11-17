@@ -97,20 +97,20 @@ var mqueue = (function () {
 				$.each(data.status, function(id, status)
 				{
 					// Add status beside main title if on the main page of movie
-					if ($("link[rel='canonical'][href*='" + id.split('_')[0] + "']", node).length !== 0)
+					if ($("link[rel='canonical'][href*='" + id.split('_')[0] + "']").length !== 0)
 					{
-						$("#tn15title>h1").before(status); // Old IMDb version
-						$("div#main>div.article>h1.header").before(status); // New IMDb version
-						$("div#main>div.article td#overview-top h1.header").before(status); // Newest IMDb version
-						$("div#main>div.article td#overview-bottom div.add_to_watchlist").html(status); // Newest IMDb version
+						$("#tn15title > h1 .pro-link", node).before(status); // Old IMDb version (www.imdb.fr)
+						$(".article h1.header", node).append(status); // New IMDb version, next to title
+						$(".star-box.giga-star .rating.rating-list", node).replaceWith(status); // New IMDb version, replace IMDb rating
+						$(".wlb_classic_wrapper", node).html(status); // New IMDb version, replace watch list button
 
 					}
 					// Add status on every links concerning that movie
 					else
 					{
 						var selector = "a[href*='/title/tt" + id.split('_')[0] + "']";
-						$(selector, node).before(status);
-						$(node).filter(selector).before(status);
+						$(selector, node).after(status);
+						$(node).filter(selector).after(status);
 					}
 				});
 				injectingStatus = false;
