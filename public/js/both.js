@@ -37,6 +37,7 @@ var mqueue = (function () {
 	/**
 	 * Scan the current page for IMDB links and inject appropriate icons
 	 * @param server
+	 * @param node
 	 * @return
 	 */
 	function injectStatus(server, node)
@@ -96,7 +97,7 @@ var mqueue = (function () {
 				$.each(data.status, function(id, status)
 				{
 					// Add status beside main title if on the main page of movie
-					if ($("link[rel='canonical'][href*=" + id.split('_')[0] + "]", node).length !== 0)
+					if ($("link[rel='canonical'][href*='" + id.split('_')[0] + "']", node).length !== 0)
 					{
 						$("#tn15title>h1").before(status); // Old IMDb version
 						$("div#main>div.article>h1.header").before(status); // New IMDb version
@@ -127,7 +128,7 @@ var mqueue = (function () {
 		var timeoutId;
 		var insertedNodes = [];
 
-		injectStatus(server, $('body'));
+		injectStatus(server, $(document));
 		$('body').bind('DOMNodeInserted', function(e){
 			if (!injectingStatus)
 			{
