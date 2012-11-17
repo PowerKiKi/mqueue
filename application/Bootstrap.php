@@ -11,6 +11,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'namespace' => 'Default',
             'basePath'  => __DIR__,
 		));
+		
+		// Autoload for stuff in Library
+		Zend_Loader_Autoloader::getInstance()->registerNamespace('SearchEngine');
+
 		return $autoloader;
 	}
 

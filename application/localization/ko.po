@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-09 22:33-0700\n"
+"POT-Creation-Date: 2012-11-17 18:09+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien@ecodev.ch>\n"
 "Language-Team: \n"
@@ -35,27 +35,27 @@ msgstr ""
 "X-Poedit-SearchPath-17: ../views/scripts/status\n"
 "X-Poedit-SearchPath-18: ../views/scripts/user\n"
 
-#: ../controllers/MovieController.php:39
+#: ../controllers/MovieController.php:45
 msgid "Filter is invalid."
 msgstr "잘못된 필터입니다."
 
-#: ../controllers/MovieController.php:116
+#: ../controllers/MovieController.php:122
 msgid "Movie not found"
 msgstr "영화를 찾을 수 없습니다."
 
-#: ../controllers/MovieController.php:150
+#: ../controllers/MovieController.php:156
 msgid "A movie was added."
 msgstr "영화가 추가되었습니다."
 
-#: ../controllers/MovieController.php:171
+#: ../controllers/MovieController.php:177
 msgid "You must be logged in."
 msgstr "로그인 하셔야합니다."
 
-#: ../controllers/MovieController.php:211
+#: ../controllers/MovieController.php:217
 msgid "Movies imported."
 msgstr "영화 목록"
 
-#: ../controllers/MovieController.php:216
+#: ../controllers/MovieController.php:222
 msgid "No movies found for import."
 msgstr "가져올 영화를 찾지 못했습니다."
 
@@ -69,9 +69,49 @@ msgstr "전체 내역"
 msgid "Activity for %s"
 msgstr "%s의 내역"
 
-#: ../controllers/UserController.php:97
+#: ../controllers/UserController.php:109
 msgid "User not found"
 msgstr "사용자를 찾을 수 없습니다."
+
+#: ../forms/Filters.php:15
+msgid "Apply"
+msgstr "적용"
+
+#: ../forms/Filters.php:21
+msgid "Clear"
+msgstr "취소"
+
+#: ../forms/Filters.php:32
+msgid "Filter"
+msgstr "필터"
+
+#: ../forms/Movie.php:12
+msgid "IMDb url or id:"
+msgstr "IMDb url 또는 id:"
+
+#: ../forms/Movie.php:22
+msgid "Add movie"
+msgstr "영화 등록"
+
+#: ../forms/Import.php:12
+msgid "IMDb \"Vote History\" page url:"
+msgstr "IMDb \"Vote History\" 페에지 url:"
+
+#: ../forms/Import.php:14
+msgid "eg: http://www.imdb.com/mymovies/list?l=39480251"
+msgstr "예: http://www.imdb.com/mymovies/list?l=39480251"
+
+#: ../forms/Import.php:22
+msgid "Minimum for favorite:"
+msgstr "mQueue \"최고\"에 해당하는 imdb최저 점수"
+
+#: ../forms/Import.php:32
+msgid "Minimum for excellent:"
+msgstr "mQueue \"재밌음\"에 해당하는 imdb최저 점수"
+
+#: ../forms/Import.php:42
+msgid "Minimum for ok:"
+msgstr "mQueue \"괜찮음\"에 해당하는 imdb최저 점수"
 
 #: ../forms/Login.php:12
 #: ../forms/User.php:22
@@ -90,6 +130,22 @@ msgstr "내 정보 저장"
 #: ../forms/Login.php:35
 msgid "Login"
 msgstr "접속"
+
+#: ../forms/QuickSearch.php:16
+msgid "search movie…"
+msgstr "검색중..."
+
+#: ../forms/QuickSearch.php:22
+msgid "Search"
+msgstr "검색"
+
+#: ../forms/User.php:12
+msgid "Nickname:"
+msgstr "이름:"
+
+#: ../forms/User.php:43
+msgid "Subscribe"
+msgstr "등록"
 
 #: ../forms/Filter.php:13
 msgid "<< me >>"
@@ -119,65 +175,13 @@ msgstr "평점:"
 msgid "Title :"
 msgstr "제목"
 
-#: ../forms/Filter.php:95
+#: ../forms/Filter.php:56
+msgid "With source"
+msgstr "자료 있음"
+
+#: ../forms/Filter.php:102
 msgid "title"
 msgstr "제목"
-
-#: ../forms/Filters.php:15
-msgid "Apply"
-msgstr "적용"
-
-#: ../forms/Filters.php:21
-msgid "Clear"
-msgstr "취소"
-
-#: ../forms/Filters.php:32
-msgid "Filter"
-msgstr "필터"
-
-#: ../forms/User.php:12
-msgid "Nickname:"
-msgstr "이름:"
-
-#: ../forms/User.php:43
-msgid "Subscribe"
-msgstr "등록"
-
-#: ../forms/Movie.php:12
-msgid "IMDb url or id:"
-msgstr "%s의 활동"
-
-#: ../forms/Movie.php:22
-msgid "Add movie"
-msgstr "영화 등록"
-
-#: ../forms/QuickSearch.php:16
-msgid "search movie…"
-msgstr "검색중..."
-
-#: ../forms/QuickSearch.php:22
-msgid "Search"
-msgstr "검색"
-
-#: ../forms/Import.php:12
-msgid "IMDb \"Vote History\" page url:"
-msgstr "IMDb \"Vote History\" 페에지 url:"
-
-#: ../forms/Import.php:14
-msgid "eg: http://www.imdb.com/mymovies/list?l=39480251"
-msgstr "예: http://www.imdb.com/mymovies/list?l=39480251"
-
-#: ../forms/Import.php:22
-msgid "Minimum for favorite:"
-msgstr "mQueue \"최고\"에 해당하는 imdb최저 점수"
-
-#: ../forms/Import.php:32
-msgid "Minimum for excellent:"
-msgstr "mQueue \"재밌음\"에 해당하는 imdb최저 점수"
-
-#: ../forms/Import.php:42
-msgid "Minimum for ok:"
-msgstr "mQueue \"괜찮음\"에 해당하는 imdb최저 점수"
 
 #: ../models/Status.php:37
 msgid "Not rated"
@@ -203,6 +207,43 @@ msgstr "재밌음"
 msgid "Favorite"
 msgstr "최고"
 
+#: ../views/helpers/Footer.php:16
+msgid "about mQueue"
+msgstr "mQueue 소개"
+
+#: ../views/helpers/Activity.php:19
+msgid "Date"
+msgstr "날짜"
+
+#: ../views/helpers/Activity.php:20
+msgid "User"
+msgstr "사용자"
+
+#: ../views/helpers/Activity.php:21
+msgid "Rating"
+msgstr "평점"
+
+#: ../views/helpers/Activity.php:22
+msgid "Movie"
+msgstr "영화"
+
+#: ../views/helpers/Activity.php:58
+msgid "There is no activity to show."
+msgstr "활동 내역이 없습니다."
+
+#: ../views/helpers/LoginState.php:24
+msgid "Logout"
+msgstr "접속종료"
+
+#: ../views/helpers/Movie.php:17
+#, php-format
+msgid "Your rating is : %s"
+msgstr "당신이 준 점수 : %s"
+
+#: ../views/helpers/Movie.php:21
+msgid "You are not logged in"
+msgstr "로그인 하지 않으셨습니다."
+
 #: ../views/helpers/StatusHelp.php:12
 msgid "I want to see this movie"
 msgstr "이 영화 보고싶어요."
@@ -223,65 +264,28 @@ msgstr "재밌음, 두번도 보겠어요."
 msgid "Incredibly awesome, the kind of movie you must watch many times regularly"
 msgstr "진짜 괜찮은 영화, 정기적으로 꼭 봐줘야해요."
 
-#: ../views/helpers/AlternateFormats.php:41
-msgid "Also available in:"
-msgstr "지원 가능한 형식:"
-
-#: ../views/helpers/Activity.php:19
-msgid "Date"
-msgstr "날짜"
-
-#: ../views/helpers/Activity.php:20
-msgid "User"
-msgstr "사용자"
-
-#: ../views/helpers/Activity.php:21
-msgid "Movie"
-msgstr "영화"
-
-#: ../views/helpers/Activity.php:22
-msgid "Rating"
-msgstr "평점"
-
-#: ../views/helpers/Activity.php:58
-msgid "There is no activity to show."
-msgstr "활동 내역이 없습니다."
-
 #: ../views/helpers/Sort.php:22
 #, php-format
 msgid "Sort by \"%s\""
 msgstr "\"%s\"으로 정렬"
 
-#: ../views/helpers/Movie.php:17
-#, php-format
-msgid "Your rating is : %s"
-msgstr "당신이 준 점수 : %s"
+#: ../views/helpers/AlternateFormats.php:42
+msgid "Also available in:"
+msgstr "지원 가능한 형식:"
 
-#: ../views/helpers/Movie.php:21
-msgid "You are not logged in"
-msgstr "로그인 하지 않으셨습니다."
-
-#: ../views/helpers/Footer.php:16
-msgid "about mQueue"
-msgstr "mQueue 소개"
-
-#: ../views/helpers/LoginState.php:24
-msgid "Logout"
-msgstr "접속종료"
-
-#: ../layouts/scripts/layout.phtml:15
+#: ../layouts/scripts/layout.phtml:16
 msgid "mQueue - Overall activity"
 msgstr "mQueue - 전체 활동 내역"
 
-#: ../layouts/scripts/layout.phtml:42
+#: ../layouts/scripts/layout.phtml:43
 msgid "mQueue monster !"
 msgstr "엠큐 몬스터!"
 
-#: ../layouts/scripts/layout.phtml:42
+#: ../layouts/scripts/layout.phtml:43
 msgid "mQueue"
 msgstr "mQueue"
 
-#: ../layouts/scripts/layout.phtml:43
+#: ../layouts/scripts/layout.phtml:44
 msgid "never forget movies you want to watch"
 msgstr "보고 싶은 영화, 기억하고 싶은 영화"
 
@@ -297,61 +301,13 @@ msgstr "다음 »"
 msgid "Per page:"
 msgstr "페이지 당 :"
 
-#: ../views/scripts/about/index.phtml:1
-msgid "About"
-msgstr "소개"
-
-#: ../views/scripts/about/index.phtml:2
-msgid "About mQueue"
-msgstr "mQueue 소개"
-
-#: ../views/scripts/about/index.phtml:3
-msgid "This project started as a personal need. It is written in PHP and is an opportunity to explore <a href=\"http://framework.zend.com/\">Zend Framework</a> and <a href=\"http://jquery.com/\">jQuery</a>. It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
-msgstr ""
-"이 싸이트는 개인적인 용도로 만들어 졌습니다. 이 싸이트는 PHP로 쓰여있고, \n"
-"<a href=\"http://framework.zend.com/\">Zend\n"
-"Framework</a> 와 <a href=\"http://jquery.com/\">jQuery</a>\n"
-" 등이 사용되었습니다. 그리고 <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>이 사용되었습니다."
-
-#: ../views/scripts/about/index.phtml:5
-msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
-msgstr ""
-"소스 코드는 <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
-"http://github.com/PowerKiKi/mqueue</a> 에서 무료로 열람 가능합니다."
-
-#: ../views/scripts/user/index.phtml:1
-msgid "Users"
-msgstr "사용자"
-
-#: ../views/scripts/user/index.phtml:2
-msgid "Users list"
-msgstr "사용자 목록"
-
-#: ../views/scripts/user/index.phtml:13
-#: ../views/scripts/user/view.phtml:14
-msgid "Rated"
-msgstr "평점"
-
-#: ../views/scripts/user/new.phtml:2
-msgid "Create new user"
-msgstr "새 계정등록"
-
-#: ../views/scripts/user/logout.phtml:3
-msgid "You successfully log out"
-msgstr "로그아웃 되었습니다."
-
-#: ../views/scripts/user/view.phtml:4
-msgid "Statistics"
-msgstr "상태"
-
-#: ../views/scripts/user/view.phtml:42
-msgid "Activity"
-msgstr "내역"
+#: ../views/scripts/status/index.phtml:1
+#: ../views/scripts/movie/view.phtml:4
+msgid "Current status"
+msgstr "현재 상태"
 
 #: ../views/scripts/faq/index.phtml:1
 #: ../views/scripts/faq/index.phtml:2
-#: ../views/scripts/movie/index.phtml:42
-#: ../views/scripts/movie/import.phtml:8
 #: ../views/scripts/movie/add.phtml:14
 #: ../views/scripts/movie/add.phtml:33
 msgid "FAQ"
@@ -429,48 +385,22 @@ msgstr "저작권?"
 msgid "Everything is publicly available for anyone. The only exceptions are emails and passwords which will never be published."
 msgstr "개인정보(이메일, 비밀번호)를 제외한 모든정보(영화 평점, 아이디)는 모두에게 공개됩니다."
 
-#: ../views/scripts/movie/index.phtml:2
 #: ../views/scripts/movie/index.csv.phtml:4
 msgid "Movies"
 msgstr "영화"
 
-#: ../views/scripts/movie/index.phtml:4
-msgid "Movies list"
-msgstr "영화 목록"
-
-#: ../views/scripts/movie/index.phtml:11
 #: ../views/scripts/movie/index.csv.phtml:18
 #: ../views/scripts/movie/add.phtml:10
 msgid "Title"
 msgstr "제목"
 
-#: ../views/scripts/movie/index.phtml:15
-msgid "There is no movie to show."
-msgstr "표시될 영화가 없습니다."
-
-#: ../views/scripts/movie/index.phtml:41
-#: ../views/scripts/movie/import.phtml:7
-#: ../views/scripts/movie/add.phtml:32
-#, php-format
-msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
-msgstr "어떻게 한번 클릭으로 www.imdb.com 에서 영화를 바로 등록하는지  %s 를 참고하세요."
-
 #: ../views/scripts/movie/index.csv.phtml:19
 msgid "Link"
 msgstr "링크"
 
-#: ../views/scripts/movie/import.phtml:1
-msgid "Import"
-msgstr "가져오기"
-
-#: ../views/scripts/movie/import.phtml:2
-msgid "Import votes from IMDb"
-msgstr "IMDb에 투표한 점수 가져오기"
-
-#: ../views/scripts/movie/import.phtml:13
-#, php-format
-msgid "%1$s movies were imported successfuly. For details, see <a href=\"%2$s\">your recent activity</a>."
-msgstr "%1$s 영화가 성공적으로 등록되었습니다. 상세정보는 <a href=\"%2$s\">나의 최근 활동 내역</a>에서 확인하세요."
+#: ../views/scripts/movie/view.phtml:28
+msgid "Activity"
+msgstr "내역"
 
 #: ../views/scripts/movie/add.phtml:2
 msgid "Add a new movie"
@@ -485,10 +415,78 @@ msgstr "등록될 영화"
 msgid "There is no movie to show. Please read the %s to learn how to add movies."
 msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고하세요."
 
-#: ../views/scripts/movie/view.phtml:4
-#: ../views/scripts/status/index.phtml:1
-msgid "Current status"
-msgstr "현재 상태"
+#: ../views/scripts/movie/add.phtml:32
+#, php-format
+msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
+msgstr "어떻게 한번 클릭으로 www.imdb.com 에서 영화를 바로 등록하는지  %s 를 참고하세요."
+
+#: ../views/scripts/movie/index.phtml:4
+msgid "Movies list"
+msgstr "영화 목록"
+
+#: ../views/scripts/movie/index.phtml:15
+msgid "There is no movie to show."
+msgstr "표시될 영화가 없습니다."
+
+#: ../views/scripts/movie/import.phtml:1
+msgid "Import"
+msgstr "가져오기"
+
+#: ../views/scripts/movie/import.phtml:2
+msgid "Import votes from IMDb"
+msgstr "IMDb에 투표한 점수 가져오기"
+
+#: ../views/scripts/movie/import.phtml:13
+#, php-format
+msgid "%1$s movies were imported successfuly. For details, see <a href=\"%2$s\">your recent activity</a>."
+msgstr "%1$s 영화가 성공적으로 등록되었습니다. 상세정보는 <a href=\"%2$s\">나의 최근 활동 내역</a>에서 확인하세요."
+
+#: ../views/scripts/user/new.phtml:2
+msgid "Create new user"
+msgstr "새 계정등록"
+
+#: ../views/scripts/user/view.phtml:4
+msgid "Statistics"
+msgstr "상태"
+
+#: ../views/scripts/user/view.phtml:14
+#: ../views/scripts/user/index.phtml:13
+msgid "Rated"
+msgstr "평점"
+
+#: ../views/scripts/user/logout.phtml:3
+msgid "You successfully log out"
+msgstr "로그아웃 되었습니다."
+
+#: ../views/scripts/user/index.phtml:1
+msgid "Users"
+msgstr "사용자"
+
+#: ../views/scripts/user/index.phtml:2
+msgid "Users list"
+msgstr "사용자 목록"
+
+#: ../views/scripts/about/index.phtml:1
+msgid "About"
+msgstr "소개"
+
+#: ../views/scripts/about/index.phtml:2
+msgid "About mQueue"
+msgstr "mQueue 소개"
+
+#: ../views/scripts/about/index.phtml:3
+msgid "This project started as a personal need. It is written in PHP and is an opportunity to explore <a href=\"http://framework.zend.com/\">Zend Framework</a> and <a href=\"http://jquery.com/\">jQuery</a>. It also uses <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>."
+msgstr ""
+"이 싸이트는 개인적인 용도로 만들어 졌습니다. 이 싸이트는 PHP로 쓰여있고, \n"
+"<a href=\"http://framework.zend.com/\">Zend\n"
+"Framework</a> 와 <a href=\"http://jquery.com/\">jQuery</a>\n"
+" 등이 사용되었습니다. 그리고 <a href=\"http://www.fatcow.com/free-icons/\">FatCow's icon set</a>이 사용되었습니다."
+
+#: ../views/scripts/about/index.phtml:5
+msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+msgstr ""
+"소스 코드는 <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
+"http://github.com/PowerKiKi/mqueue</a> 에서 무료로 열람 가능합니다."
 
 #~ msgid "mQueue - Activity for %s"
 #~ msgstr "mQueue - %s의 활동"

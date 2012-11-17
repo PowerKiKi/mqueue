@@ -47,8 +47,19 @@ foreach ($this->activity as $status)
 		'link'=> $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true),
 		'description' => $title,
 		'content' => $text,
-		'lastUpdate' => $date->getTimestamp()
+		'lastUpdate' => $date->getTimestamp(),
 	);
+	
+	if ($movie->source)
+	{
+		$entry['enclosure'] = array(
+			array(
+				'url' => $movie->source,
+				'type' => 'application/x-bittorrent',
+			)
+		);
+	}
+	
 	array_push($entries, $entry);
 }
 

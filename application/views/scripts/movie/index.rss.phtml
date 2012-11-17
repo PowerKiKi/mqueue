@@ -33,6 +33,17 @@ foreach ($this->paginator as $movie)
 		'content' => $text,
 		'lastUpdate' => $date->getTimestamp(),
 	);
+	
+	if ($movie->source)
+	{
+		$entry['enclosure'] = array(
+			array(
+				'url' => $movie->source,
+				'type' => 'application/x-bittorrent',
+			)
+		);
+	}
+	
 	array_push($entries, $entry);
 }
 

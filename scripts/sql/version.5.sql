@@ -1,4 +1,8 @@
--- Allow to record the whole history of statuses, not only the last one
-ALTER TABLE  `status` DROP INDEX  `unique_status`;
-ALTER TABLE  `status` ADD  `isLatest` BOOLEAN NOT NULL AFTER  `rating`;
-UPDATE `status` SET `isLatest` = 1, `dateUpdate` = `dateUpdate`;
+-- Store source for movies
+ALTER TABLE `movie`
+ADD `dateSearch` DATETIME NULL DEFAULT NULL,
+ADD `searchCount` TINYINT UNSIGNED NOT NULL,
+ADD `identity` TINYINT UNSIGNED NOT NULL,
+ADD `quality` TINYINT UNSIGNED NOT NULL,
+ADD `score` TINYINT UNSIGNED NOT NULL,
+ADD `source` VARCHAR( 1024 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;

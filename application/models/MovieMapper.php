@@ -24,6 +24,36 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 
         return $resultSet;
     }
+	
+	/**
+	 * Returns movies for search
+	 * @return Default_Model_Movie[]
+	 */
+	public static function findAllForSearch()
+	{
+		$futureYears = array();
+		$date = Zend_Date::now();
+		for ($i = 0; $i < 10; $i++)
+		{
+			$date->addYear(1);
+			$futureYears[] = $date->get(Zend_Date::YEAR_8601);
+		}
+		
+		$select = self::getDbTable()->select()->setIntegrityCheck(false)
+			->from('movie')
+			->join('status', 'status.idMovie = movie.id AND rating = ' . Default_Model_Status::Need , array())
+			->where('source IS NULL')
+			->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't search for same movie more than once a month
+			->where('title NOT REGEXP ?', '\(.*(' . join('|', $futureYears) . ').*\)') // Avoid movies not yet released
+			->group('movie.id')
+			->order('RAND()') // Randomize order, so we don't watch only old movies
+			->limit(5)
+			;
+		
+		$records = self::getDbTable()->fetchAll($select);
+		
+		return $records;
+	}
 
     /**
      * Returns a query filtered according to parameters. This query may be used with paginator.
@@ -39,7 +69,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     	{
 			$sort = $sort . '.rating';
     	}
-    	elseif ($sort != 'date')
+    	elseif ($sort != 'date' && $sort != 'dateSearch')
     	{
     		$sort = 'title';
     	}
@@ -93,6 +123,12 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		    		if ($part)
 		    			$select->where('movie.title LIKE ?', '%' . $part . '%');
 		    	}
+			}
+
+			// Filter by title
+			if (isset($filter['withSource']) && $filter['withSource'])
+			{
+		    	$select->where('movie.source IS NOT NULL');
 			}
 
 			if ($maxDate)

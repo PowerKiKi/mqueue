@@ -89,7 +89,7 @@ class MovieController extends Zend_Controller_Action
 		// If we ouput rss, we force sorting by date
 		if ($this->_helper->contextSwitch()->getCurrentContext() == 'rss')
 		{
-			$this->view->sort = 'date';
+			$this->view->sort = $filters['filter1']['withSource'] ? 'dateSearch' : 'date';
 			$this->view->sortOrder = 'desc';
 		}
 		$this->view->permanentParams = $form->getValues();

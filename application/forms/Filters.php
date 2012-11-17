@@ -108,7 +108,7 @@ class Default_Form_Filters extends Zend_Form
             	$subform = new Default_Form_Filter();
             	if ($position > 1)
             	{
-            		$subform->disableTitle();
+            		$subform->disableExtraFields();
             	}
 				$this->addSubForm($subform, $key, $position++);
             }

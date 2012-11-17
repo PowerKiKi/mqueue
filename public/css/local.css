@@ -242,9 +242,13 @@ dl.filter dd
 	margin-left: 1em;
 }
 
-dl.filter input
+dl.filter #filter1-title-element input
 {
 	width: 10em;
+}
+dl.filter #filter1-withSource-element
+{
+	margin-right: auto;
 }
 
 #addFilter-label

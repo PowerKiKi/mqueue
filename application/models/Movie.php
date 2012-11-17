@@ -123,4 +123,22 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 
 		return $status;
 	}
+
+	/**
+	 * Set the source for the movie if any. In any case record the search date and count
+	 * @param array|false $source
+	 */
+	public function setSource($source)
+	{
+		
+		$this->dateSearch = Zend_Date::now()->get(Zend_Date::ISO_8601);
+		$this->searchCount++;
+		if ($source && @$source['score'])
+		{
+			$this->identity = $source['identity'];
+			$this->quality = $source['quality'];
+			$this->score = $source['score'];
+			$this->source = $source['link'];
+		}
+	}
 }

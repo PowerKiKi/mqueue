@@ -43,13 +43,19 @@ class Default_Form_Filter extends Zend_Form_SubForm
 		));
 		
 		
-        // Add the filter element
+        // Add the title element
         $this->addElement('text', 'title', array(
             'label'      => _tr('Title :'),
 			'filters' => array(
 				array('stringTrim')
 			)
         ));
+		
+        // Add the filter element
+        $this->addElement('checkbox', 'withSource', array(
+            'label'      => _tr('With source'),
+        ));
+		$this->withSource->getDecorator('Label')->setOptions(array('placement' => 'append'));
 		
 
 		$this->setDecorators(array(
@@ -59,11 +65,12 @@ class Default_Form_Filter extends Zend_Form_SubForm
 	}
     
 	/**
-	 * Disable title element
+	 * Disable extra field elements
 	 */
-    function disableTitle()
+    function disableExtraFields()
     {
     	$this->removeElement('title');
+    	$this->removeElement('withSource');
     }
 
     /**
