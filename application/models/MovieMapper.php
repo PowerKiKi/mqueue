@@ -98,20 +98,17 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
 			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
 
+			$select->where('status' . $i . '.isLatest = 1 OR status' . $i . '.isLatest IS NULL');
+				
 			// Filter by status, not rated or a specific rating
 			if ($filter['status'] >= 0 && $filter['status'] <= 5)
 			{
-				$select->where('(status' . $i . '.isLatest = 1 AND status' . $i . '.rating = ?)' . $allowNull, $filter['status']);
+				$select->where('status' . $i . '.rating = ?' . $allowNull, $filter['status']);
 			}
 			// All rated
 			elseif ($filter['status'] == -1)
 			{
-				$select->where('(status' . $i . '.isLatest = 1 AND status' . $i . '.rating <> ?)' . $allowNull, 0);
-			}
-			// Anything (all of them)
-			elseif ($filter['status'] == -2)
-			{
-				$select->where('status' . $i . '.isLatest = 1');
+				$select->where('status' . $i . '.rating <> ?' . $allowNull, 0);
 			}
 
 			// Filter by title
@@ -125,7 +122,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		    	}
 			}
 
-			// Filter by title
+			// Filter by presence of source
 			if (isset($filter['withSource']) && $filter['withSource'])
 			{
 		    	$select->where('movie.source IS NOT NULL');
