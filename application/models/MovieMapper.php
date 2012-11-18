@@ -94,21 +94,22 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 				continue;
 
 			$filtersDone []= $filterUniqueId;
+			
+			$alias = 'status' . $i++;
+			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR ' . $alias . '.idUser IS NULL' : '');
+			$select->joinLeft(array($alias => 'status'), '(movie.id = ' . $alias . '.idMovie AND ' . $alias . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
 
-			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR status' . $i . '.idUser IS NULL' : '');
-			$select->joinLeft(array('status' . $i => 'status'), '(movie.id = status' . $i . '.idMovie AND status' . $i . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
-
-			$select->where('status' . $i . '.isLatest = 1 OR status' . $i . '.isLatest IS NULL');
+			$select->where($alias . '.isLatest = 1 OR ' . $alias . '.isLatest IS NULL');
 				
 			// Filter by status, not rated or a specific rating
 			if ($filter['status'] >= 0 && $filter['status'] <= 5)
 			{
-				$select->where('status' . $i . '.rating = ?' . $allowNull, $filter['status']);
+				$select->where($alias . '.rating = ?' . $allowNull, $filter['status']);
 			}
 			// All rated
 			elseif ($filter['status'] == -1)
 			{
-				$select->where('status' . $i . '.rating <> ?' . $allowNull, 0);
+				$select->where($alias . '.rating <> ?' . $allowNull, 0);
 			}
 
 			// Filter by title
@@ -129,11 +130,9 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			}
 
 			if ($maxDate)
-				$maxDate = 'IF(`status' . $i . '`.`dateUpdate` IS NULL OR `status' . $i . '`.`dateUpdate` < ' . $maxDate . ', ' . $maxDate . ', `status' . $i . '`.`dateUpdate`)';
+				$maxDate = 'IF(`' . $alias . '`.`dateUpdate` IS NULL OR `' . $alias . '`.`dateUpdate` < ' . $maxDate . ', ' . $maxDate . ', `' . $alias . '`.`dateUpdate`)';
 			else
-				$maxDate = '`status' . $i . '`.`dateUpdate`';
-
-	    	$i++;
+				$maxDate = '`' . $alias . '`.`dateUpdate`';
 		}
 
 		$select->columns(array('date' => new Zend_Db_Expr($maxDate)));
