@@ -119,7 +119,7 @@ class SearchEngine {
 
 			'/\b(maxspeed|axxo|dimension|fxg)\b/i' => 50, // Well known teams
 			'/\b(swesub|nlt-release)\b/i' => -30, // Avoid teams specialized in foreign versions
-			'/\b(french|fra|italian|ita|russian)\b/i' => -30, // Avoid dubbed language
+			'/\b(french|fra|truefrench|italian|ita|russian|german)\b/i' => -30, // Avoid dubbed language
 			'/\b1080p\b/i' => 20,
 			'/\b720p\b/i' => 30, // Favor 720p instead of 1080p because of the filesize and better "compatibility" for low powered computer
 			'/\b(x264|xvid)\b/i' => 20, // Good formats
