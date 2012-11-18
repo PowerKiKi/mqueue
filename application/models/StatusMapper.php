@@ -118,7 +118,7 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
 			->joinRight('movie',
 				'movie.id = status.idMovie AND status.idUser = ' . $user->id,
 				array())
-			->where('isLatest = 1')
+			->where('isLatest = 1 OR isLatest IS NULL')
 			->group('IFNULL(rating, 0)')
 			;
 
