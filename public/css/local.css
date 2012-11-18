@@ -402,22 +402,20 @@ a.sort
 	color: grey;
 }
 
-a.sort.asc,
-a.sort.desc
+a.sort.asc:after,
+a.sort.desc:after
 {
-	background-position: 100% 50%;
-	background-repeat: no-repeat;
-	padding-right: 16px;
+	position: absolute;
+	padding-left: 0.5em;
 }
 
-a.sort.asc
+a.sort.asc:after
 {
-	background-image: url("../images/sort_asc.png");
+	content: '▴';
 }
-
-a.sort.desc
+a.sort.desc:after
 {
-	background-image: url("../images/sort_desc.png");
+	content: '▾';
 }
 
 .faq dt
