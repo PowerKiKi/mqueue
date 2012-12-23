@@ -36,8 +36,9 @@ body
 
 #header
 {
-	background: url("../images/header.png");
-	background-color: #163066;
+	background-image: repeating-linear-gradient(-45deg, #0055FF, #0055FF 15px, #3679FF 15px, #3679FF 30px);
+	background-image: -webkit-repeating-linear-gradient(-45deg, #0055FF, #0055FF 15px, #3679FF 15px, #3679FF 30px);
+	background-color: #3679FF;
 }
 
 #header h1
