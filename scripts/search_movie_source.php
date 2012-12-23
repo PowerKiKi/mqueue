@@ -15,6 +15,7 @@ $total = $movies->count();
 foreach ($movies as $movie)
 {	
 	echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas'). "\t";
+	flush();
 	
 	$title = $movie->getTitle();
 	$data = $searchEngine->search($title);
@@ -26,8 +27,7 @@ foreach ($movies as $movie)
 	
 	echo $movie->source . "\n";
 	
-	sleep(100);
+	sleep(5 * 60); // 5 minutes pause between search, not to stress third-party servers
 }
 
 echo $total . " movie sources updated in database\n";
-

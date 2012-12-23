@@ -26,6 +26,62 @@ class SearchEngine {
 	}
 	
 	/**
+	 * Execute a shell command with a timeout
+	 * @param string $cmd shell command
+	 * @param integer $timeout seconds after which the process will be killed
+	 * @return string the stdout of the command
+	 */
+	protected function execute($cmd, $timeout)
+	{
+		$maximumTime = time() + $timeout;
+		$stdout = null;
+
+		$pipes = array();
+		$process = proc_open(
+			$cmd,
+			array(array('pipe', 'r'), array('pipe', 'w'), array('pipe', 'w')),
+			$pipes
+		);
+		
+		if(is_resource($process))
+		{
+			// Give group id to process (to later kill all its children)
+			$status = proc_get_status($process);
+			posix_setpgid($status['pid'], $status['pid']);
+			
+			stream_set_blocking($pipes[0], 0);
+			stream_set_blocking($pipes[1], 0);
+			stream_set_blocking($pipes[2], 0);
+			fclose($pipes[0]);
+		}
+
+		while(is_resource($process))
+		{
+			$stdout .= stream_get_contents($pipes[1]);
+
+			if (time() > $maximumTime)
+			{
+				// sends SIGKILL to all processes inside group
+				posix_kill(-$status['pid'], 9);
+				proc_terminate($process, 9);
+			}
+			
+			$status = proc_get_status($process);
+			if(!$status['running'])
+			{
+				fclose($pipes[1]);
+				fclose($pipes[2]);
+				proc_close($process);
+			}
+
+			// 1 second will not make accurate timeout, but we don't really need accuracy
+			sleep(1);
+		}
+		
+		return $stdout;
+	}
+	
+	/**
 	 * Parse string content and return an array of unique sources
 	 * @param string $content
 	 * @return array
@@ -61,8 +117,8 @@ class SearchEngine {
 	public function search($title)
 	{
 		$cmd = $this->getNovaCmd() . ' all movies ' . escapeshellarg(str_replace(' ', '+', $title)) . ' 2>&1';
-		$content = `$cmd`;
-	
+		$content = $this->execute($cmd, 5 * 60); // 5 minutes to search
+		
 		$path = sys_get_temp_dir() . '/mqueue_' . $title;
 		file_put_contents($path, $content);
 		
