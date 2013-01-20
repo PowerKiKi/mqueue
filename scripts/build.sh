@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Compiling CSS..."
+compass compile -s compressed --force
+
 echo "Compiling JavaScript..."
 cd public/js
 mkdir -p min

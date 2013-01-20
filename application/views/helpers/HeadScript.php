@@ -2,29 +2,6 @@
 class Default_View_Helper_HeadScript extends Zend_View_Helper_HeadScript
 {
 	/**
-	 * Inject the last modified time of file.
-	 * This avoid browser cache and force reloading when the file changed.
-	 * @param string $fileName
-	 * @return string
-	 */
-	protected function addCacheStamp($fileName) 
-	{
-		// In developent, use non minified version
-		if (APPLICATION_ENV == 'development')
-		{
-			$fileName = str_replace('/js/min/', '/js/', $fileName);
-		}
-		
-		$fullPath = APPLICATION_PATH . '/../public/' . $fileName;
-		if (is_file($fullPath))
-		{
-			$fileName = $this->view->serverUrl() . $this->view->baseUrl($fileName) . '?' . filemtime($fullPath);
-		}
-		
-		return $fileName;
-	}
-
-	/**
 	 * Override parent to support timestamp, compilation and concatenation.
 	 * Compiled and concatened files must pre-exist (compiled by external tools).
 	 * @param string $method
@@ -45,7 +22,7 @@ class Default_View_Helper_HeadScript extends Zend_View_Helper_HeadScript
 				{
 					foreach ($fileName[1] as $f)
 					{
-						$args[0] = $this->addCacheStamp($f);
+						$args[0] = $this->view->cacheStamp($f);
 						parent::__call($method, $args);
 					}
 					
@@ -58,7 +35,7 @@ class Default_View_Helper_HeadScript extends Zend_View_Helper_HeadScript
 				}
 			}
 			
-			$args[0] = $this->addCacheStamp($fileName);
+			$args[0] = $this->view->cacheStamp($fileName);
 		}
 		
 		return parent::__call($method, $args);
