@@ -18,17 +18,22 @@
 
   	// Set localization file for timeago
 	$lang = Zend_Registry::get('Zend_Locale')->getLanguage();
-	$path = '/js/jquery.timeago.' . $lang . '.js';
+	$path = '/js/min/jquery.timeago.' . $lang . '.js';
 	if (is_file(APPLICATION_PATH . '/../public' . $path))
 	{
-  		$this->headScript()->prependFile($this->serverUrl() . $this->baseUrl($path));
+  		$this->headScript()->prependFile($path);
 	}
 
 	echo $this->headScript()
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery.timeago.js'))
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/local.js'))
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/both.js'))
-			->prependFile($this->serverUrl() . $this->baseUrl('/js/jquery-1.8.3.min.js'));
+			->prependFile(array(
+				'/js/min/application.js',
+				array(
+					'/js/jquery.timeago.js',
+					'/js/local.js',
+					'/js/both.js',
+					'/js/jquery-1.8.3.js'
+					)
+				));
 
 	echo $this->googleAnalytics();
 	echo $this->googleWebmasterTools();
