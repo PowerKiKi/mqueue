@@ -1,5 +1,8 @@
 <?php
 header('Content-type: application/javascript');
+header('Cache-Control: max-age=604800');
+header_remove('Pragma');
+header_remove('Expires');
 
 ?>
 // ==UserScript==

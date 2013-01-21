@@ -2,6 +2,9 @@
 (function(){
 	<?php
 	header('Content-type: application/javascript');
+	header('Cache-Control: max-age=604800');
+	header_remove('Pragma');
+	header_remove('Expires');
 	require_once(APPLICATION_PATH . '/../public/js/min/jquery-1.8.3.js');
 	?>
 	(function($){

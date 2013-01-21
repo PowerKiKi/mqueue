@@ -4,3 +4,8 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+# Cache control for 1 week
+<FilesMatch "\.(svg|jpe?g|png|gif|js|css)$">
+	Header set Cache-Control "max-age=604800"
+</FilesMatch>
