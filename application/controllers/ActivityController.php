@@ -42,22 +42,7 @@ class ActivityController extends Zend_Controller_Action
     		}
     	}
 		
-		// Store perPage option in session
-		$perPage = 25;
-		$session = new Zend_Session_Namespace();
-		if (isset($session->perPage)) $perPage = $session->perPage;
-		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
-		$session->perPage = $perPage;
-		
-		// Always send much more data via RSS feed
-		if ($this->_helper->contextSwitch()->getCurrentContext() == 'rss')
-		{
-			$perPage = 200;
-		}
-		
-		$this->view->activity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($item));
-		$this->view->activity->setCurrentPageNumber($this->_getParam('page'));
-		$this->view->activity->setItemCountPerPage($perPage);
+		$this->view->activity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($item));
     }
 
 }

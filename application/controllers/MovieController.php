@@ -74,14 +74,6 @@ class MovieController extends Zend_Controller_Action
 			$this->view->users[$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
 
-		// Store perPage option in session
-		$perPage = 25;
-		$session = new Zend_Session_Namespace();
-		if (isset($session->perPage)) $perPage = $session->perPage;
-		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
-		$session->perPage = $perPage;
-
-
 		// Defines variables for the view
 		$this->view->sort = $this->getRequest()->getParam('sort');
 		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
@@ -100,14 +92,7 @@ class MovieController extends Zend_Controller_Action
 
 
 		// Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering)
-		$this->view->paginator = Zend_Paginator::factory(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
-		switch ($this->_helper->contextSwitch()->getCurrentContext())
-		{
-			case 'csv': $perPage = 0; break;
-			case 'rss': $perPage = 200; break;
-			case null: $this->view->paginator->setCurrentPageNumber($this->_getParam('page')); break;
-		}
-		$this->view->paginator->setItemCountPerPage($perPage);
+		$this->view->paginator = $this->_helper->createPaginator(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
 	}
 
 	public function viewAction()
@@ -123,18 +108,7 @@ class MovieController extends Zend_Controller_Action
 		}
 
 		$this->view->users = Default_Model_UserMapper::fetchAll();
-
-
-		// Store perPage option in session
-		$perPage = 25;
-		$session = new Zend_Session_Namespace();
-		if (isset($session->perPage)) $perPage = $session->perPage;
-		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
-		$session->perPage = $perPage;
-
-		$this->view->movieActivity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($this->view->movie));
-		$this->view->movieActivity->setCurrentPageNumber($this->_getParam('page'));
-		$this->view->movieActivity->setItemCountPerPage($perPage);
+		$this->view->movieActivity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($this->view->movie));
 	}
 
 	public function addAction()

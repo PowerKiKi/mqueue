@@ -109,16 +109,7 @@ class UserController extends Zend_Controller_Action
 			throw new Exception($this->view->translate('User not found'));
 		}
 		
-		// Store perPage option in session
-		$perPage = 25;
-		$session = new Zend_Session_Namespace();
-		if (isset($session->perPage)) $perPage = $session->perPage;
-		if ($this->_getParam('perPage')) $perPage = $this->_getParam('perPage');
-		$session->perPage = $perPage;
-		
-		$this->view->userActivity = Zend_Paginator::factory(Default_Model_StatusMapper::getActivityQuery($this->view->user));
-		$this->view->userActivity->setCurrentPageNumber($this->_getParam('page'));
-		$this->view->userActivity->setItemCountPerPage($perPage);
+		$this->view->userActivity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($this->view->user));
 	}
 }
 

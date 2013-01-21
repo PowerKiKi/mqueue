@@ -12,6 +12,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'basePath'  => __DIR__,
 		));
 		
+		// Add the action helpers
+		$path = __DIR__ . '/controllers/helpers';
+		$prefix = 'Default_Controller_ActionHelper_';
+		Zend_Controller_Action_HelperBroker::addPath($path, $prefix);
+		
 		// Autoload for stuff in Library
 		Zend_Loader_Autoloader::getInstance()->registerNamespace('SearchEngine');
 
