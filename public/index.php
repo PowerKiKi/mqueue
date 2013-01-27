@@ -1,10 +1,5 @@
 <?php
 
-// Manual 'rewrite' of format atom => rss
-// TODO: drop this entirely in a few months
-if (@$_GET['format'] == 'atom')
-	$_GET['format'] = 'rss';
-
 // Keep session data for 120 days, unless explicit destroy in code
 ini_set('session.gc_maxlifetime', 1 * 60 * 60 * 24 * 120);
 
