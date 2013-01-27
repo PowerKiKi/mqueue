@@ -53,8 +53,7 @@ class UserController extends Zend_Controller_Action
 				$user = Default_Model_UserMapper::findEmailPassword($values['email'], $values['password']);
 				if ($user)
 				{
-					if ($values['remember'])
-						Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
+					Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
 					
 					Default_Model_User::setCurrent($user);
 
@@ -80,7 +79,6 @@ class UserController extends Zend_Controller_Action
 		else
 		{
 			$form->setDefaults(array(
-				'remember' => true,
 				'referrer' => $this->getRequest()->getServer('HTTP_REFERER'),
 				));
 		}

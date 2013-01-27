@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 18:09+0900\n"
+"POT-Creation-Date: 2013-01-27 15:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien@ecodev.ch>\n"
 "Language-Team: \n"
@@ -39,23 +39,23 @@ msgstr ""
 msgid "Filter is invalid."
 msgstr "잘못된 필터입니다."
 
-#: ../controllers/MovieController.php:122
+#: ../controllers/MovieController.php:107
 msgid "Movie not found"
 msgstr "영화를 찾을 수 없습니다."
 
-#: ../controllers/MovieController.php:156
+#: ../controllers/MovieController.php:130
 msgid "A movie was added."
 msgstr "영화가 추가되었습니다."
 
-#: ../controllers/MovieController.php:177
+#: ../controllers/MovieController.php:151
 msgid "You must be logged in."
 msgstr "로그인 하셔야합니다."
 
-#: ../controllers/MovieController.php:217
+#: ../controllers/MovieController.php:191
 msgid "Movies imported."
 msgstr "영화 목록"
 
-#: ../controllers/MovieController.php:222
+#: ../controllers/MovieController.php:196
 msgid "No movies found for import."
 msgstr "가져올 영화를 찾지 못했습니다."
 
@@ -69,7 +69,7 @@ msgstr "전체 내역"
 msgid "Activity for %s"
 msgstr "%s의 내역"
 
-#: ../controllers/UserController.php:109
+#: ../controllers/UserController.php:107
 msgid "User not found"
 msgstr "사용자를 찾을 수 없습니다."
 
@@ -114,20 +114,14 @@ msgid "Minimum for ok:"
 msgstr "mQueue \"괜찮음\"에 해당하는 imdb최저 점수"
 
 #: ../forms/Login.php:12
-#: ../forms/User.php:22
 msgid "Email:"
 msgstr "Email:"
 
 #: ../forms/Login.php:22
-#: ../forms/User.php:33
 msgid "Password:"
 msgstr "Password:"
 
-#: ../forms/Login.php:29
-msgid "Remember me"
-msgstr "내 정보 저장"
-
-#: ../forms/Login.php:35
+#: ../forms/Login.php:30
 msgid "Login"
 msgstr "접속"
 
@@ -273,19 +267,19 @@ msgstr "\"%s\"으로 정렬"
 msgid "Also available in:"
 msgstr "지원 가능한 형식:"
 
-#: ../layouts/scripts/layout.phtml:16
+#: ../layouts/scripts/layout.phtml:13
 msgid "mQueue - Overall activity"
 msgstr "mQueue - 전체 활동 내역"
 
-#: ../layouts/scripts/layout.phtml:43
+#: ../layouts/scripts/layout.phtml:45
 msgid "mQueue monster !"
 msgstr "엠큐 몬스터!"
 
-#: ../layouts/scripts/layout.phtml:43
+#: ../layouts/scripts/layout.phtml:45
 msgid "mQueue"
 msgstr "mQueue"
 
-#: ../layouts/scripts/layout.phtml:44
+#: ../layouts/scripts/layout.phtml:46
 msgid "never forget movies you want to watch"
 msgstr "보고 싶은 영화, 기억하고 싶은 영화"
 
@@ -310,6 +304,8 @@ msgstr "현재 상태"
 #: ../views/scripts/faq/index.phtml:2
 #: ../views/scripts/movie/add.phtml:14
 #: ../views/scripts/movie/add.phtml:33
+#: ../views/scripts/movie/index.phtml:42
+#: ../views/scripts/movie/import.phtml:8
 msgid "FAQ"
 msgstr "도움말"
 
@@ -386,11 +382,13 @@ msgid "Everything is publicly available for anyone. The only exceptions are emai
 msgstr "개인정보(이메일, 비밀번호)를 제외한 모든정보(영화 평점, 아이디)는 모두에게 공개됩니다."
 
 #: ../views/scripts/movie/index.csv.phtml:4
+#: ../views/scripts/movie/index.phtml:2
 msgid "Movies"
 msgstr "영화"
 
 #: ../views/scripts/movie/index.csv.phtml:18
 #: ../views/scripts/movie/add.phtml:10
+#: ../views/scripts/movie/index.phtml:11
 msgid "Title"
 msgstr "제목"
 
@@ -399,6 +397,7 @@ msgid "Link"
 msgstr "링크"
 
 #: ../views/scripts/movie/view.phtml:28
+#: ../views/scripts/user/view.phtml:42
 msgid "Activity"
 msgstr "내역"
 
@@ -416,6 +415,8 @@ msgid "There is no movie to show. Please read the %s to learn how to add movies.
 msgstr "등록된 영화가 없습니다. %s을 읽고, 등록방법을 참고하세요."
 
 #: ../views/scripts/movie/add.phtml:32
+#: ../views/scripts/movie/index.phtml:41
+#: ../views/scripts/movie/import.phtml:7
 #, php-format
 msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
 msgstr "어떻게 한번 클릭으로 www.imdb.com 에서 영화를 바로 등록하는지  %s 를 참고하세요."
@@ -487,6 +488,9 @@ msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/
 msgstr ""
 "소스 코드는 <a href=\"http://github.com/PowerKiKi/mqueue\">\n"
 "http://github.com/PowerKiKi/mqueue</a> 에서 무료로 열람 가능합니다."
+
+#~ msgid "Remember me"
+#~ msgstr "내 정보 저장"
 
 #~ msgid "mQueue - Activity for %s"
 #~ msgstr "mQueue - %s의 활동"

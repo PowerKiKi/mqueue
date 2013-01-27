@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mqueue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-17 18:08+0900\n"
+"POT-Creation-Date: 2013-01-27 15:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrien Crivelli <adrien@ecodev.ch>\n"
 "Language-Team: \n"
@@ -39,23 +39,23 @@ msgstr ""
 msgid "Filter is invalid."
 msgstr "Filtre de recherche invalide."
 
-#: ../controllers/MovieController.php:122
+#: ../controllers/MovieController.php:107
 msgid "Movie not found"
 msgstr "Film introuvable"
 
-#: ../controllers/MovieController.php:156
+#: ../controllers/MovieController.php:130
 msgid "A movie was added."
 msgstr "Un film a été ajouté."
 
-#: ../controllers/MovieController.php:177
+#: ../controllers/MovieController.php:151
 msgid "You must be logged in."
 msgstr "Vous devez être loggé."
 
-#: ../controllers/MovieController.php:217
+#: ../controllers/MovieController.php:191
 msgid "Movies imported."
 msgstr "Films importés."
 
-#: ../controllers/MovieController.php:222
+#: ../controllers/MovieController.php:196
 msgid "No movies found for import."
 msgstr "Aucun films trouvés pour l'import."
 
@@ -69,7 +69,7 @@ msgstr "Activité générale"
 msgid "Activity for %s"
 msgstr "Activité de %s"
 
-#: ../controllers/UserController.php:109
+#: ../controllers/UserController.php:107
 msgid "User not found"
 msgstr "Utilisateur introuvable"
 
@@ -114,20 +114,14 @@ msgid "Minimum for ok:"
 msgstr "Minimum pour ok :"
 
 #: ../forms/Login.php:12
-#: ../forms/User.php:22
 msgid "Email:"
 msgstr "Email :"
 
 #: ../forms/Login.php:22
-#: ../forms/User.php:33
 msgid "Password:"
 msgstr "Mot de passe :"
 
-#: ../forms/Login.php:29
-msgid "Remember me"
-msgstr "Se souvenir de moi"
-
-#: ../forms/Login.php:35
+#: ../forms/Login.php:30
 msgid "Login"
 msgstr "Se connecter"
 
@@ -273,19 +267,19 @@ msgstr "Trier par \"%s\""
 msgid "Also available in:"
 msgstr "Aussi disponible :"
 
-#: ../layouts/scripts/layout.phtml:16
+#: ../layouts/scripts/layout.phtml:13
 msgid "mQueue - Overall activity"
 msgstr "mQueue - Activité générale"
 
-#: ../layouts/scripts/layout.phtml:43
+#: ../layouts/scripts/layout.phtml:45
 msgid "mQueue monster !"
 msgstr "le monstre mQueue !"
 
-#: ../layouts/scripts/layout.phtml:43
+#: ../layouts/scripts/layout.phtml:45
 msgid "mQueue"
 msgstr "mQueue"
 
-#: ../layouts/scripts/layout.phtml:44
+#: ../layouts/scripts/layout.phtml:46
 msgid "never forget movies you want to watch"
 msgstr "n'oubliez plus de voir les bons films"
 
@@ -310,6 +304,8 @@ msgstr "Etat actuel"
 #: ../views/scripts/faq/index.phtml:2
 #: ../views/scripts/movie/add.phtml:14
 #: ../views/scripts/movie/add.phtml:33
+#: ../views/scripts/movie/index.phtml:42
+#: ../views/scripts/movie/import.phtml:8
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -386,11 +382,13 @@ msgid "Everything is publicly available for anyone. The only exceptions are emai
 msgstr "Tout est publiquement disponible pour n'importe qui. Les seules exceptions sont les emails et mot de passe qui ne seront jamais publiés."
 
 #: ../views/scripts/movie/index.csv.phtml:4
+#: ../views/scripts/movie/index.phtml:2
 msgid "Movies"
 msgstr "Films"
 
 #: ../views/scripts/movie/index.csv.phtml:18
 #: ../views/scripts/movie/add.phtml:10
+#: ../views/scripts/movie/index.phtml:11
 msgid "Title"
 msgstr "Titre"
 
@@ -399,6 +397,7 @@ msgid "Link"
 msgstr "Lien"
 
 #: ../views/scripts/movie/view.phtml:28
+#: ../views/scripts/user/view.phtml:42
 msgid "Activity"
 msgstr "Activité"
 
@@ -416,6 +415,8 @@ msgid "There is no movie to show. Please read the %s to learn how to add movies.
 msgstr "Il n'y a aucun film à montrer. Lisez la %s pour savoir comment ajouter des nouveaux films."
 
 #: ../views/scripts/movie/add.phtml:32
+#: ../views/scripts/movie/index.phtml:41
+#: ../views/scripts/movie/import.phtml:7
 #, php-format
 msgid "See the %s to learn how to add movies directly from www.imdb.com in a single click !"
 msgstr "Voir la %s pour savoir comment ajouter des films en un seul clique directement sur www.imdb.com !"
@@ -483,6 +484,9 @@ msgstr ""
 #: ../views/scripts/about/index.phtml:5
 msgid "Source code is freely available on <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
 msgstr "Le source code est librement accessible via <a href=\"http://github.com/PowerKiKi/mqueue\">http://github.com/PowerKiKi/mqueue</a>."
+
+#~ msgid "Remember me"
+#~ msgstr "Se souvenir de moi"
 
 #~ msgid "mQueue - Activity for %s"
 #~ msgstr "mQueue - Activité de %s"
