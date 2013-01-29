@@ -2,19 +2,25 @@
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
-class AboutControllerTest extends PHPUnit_Framework_TestCase
+class AboutControllerTest extends AbstractControllerTestCase
 {
 
-    public function setUp()
-    {
-        /* Setup Routine */
-    }
-
-    public function tearDown()
-    {
-        /* Tear Down Routine */
-    }
-
+	public function testIndexAction()
+	{
+        $params = array('action' => 'index', 'controller' => 'about', 'module' => 'default');
+        $url = $this->url($this->urlizeOptions($params));
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($params['module']);
+        $this->assertController($params['controller']);
+        $this->assertAction($params['action']);
+		
+        $this->assertQueryContentContains(
+            'p',
+            'This project started as a personal need'
+            );
+		
+	}
 
 }
-

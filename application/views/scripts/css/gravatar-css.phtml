@@ -2,11 +2,6 @@ span.gravatar { display: inline-block; width: 16px; height: 16px;}
 span.gravatar.big { width: 96px; height: 96px;}
 select.filterUser option { padding-left: 20px; background-repeat: no-repeat; height: 16px; }
 <?php
-header('Content-type: text/css');
-header('Cache-Control: max-age=604800');
-header_remove('Pragma');
-header_remove('Expires');
-
 foreach ($this->users as $user)
 {
 	$url = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?';

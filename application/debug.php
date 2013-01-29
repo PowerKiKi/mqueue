@@ -100,6 +100,9 @@ class Debug
 	 */
 	public static function dump($data, $firstLevel = true)
 	{
+		if (ini_get('xdebug.overload_var_dump'))
+			return var_dump($data);
+		
 		if ($firstLevel && count($data) == 1)
 			$data = $data[0];
 		

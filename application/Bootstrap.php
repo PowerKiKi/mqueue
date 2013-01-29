@@ -122,6 +122,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$front  = Zend_Controller_Front::getInstance();
 		$router = $front->getRouter();
 		
+		// Required for unit tests
+		$router->addDefaultRoutes();
+		
 		// A route for single id (typically view a single movie/user)
 		$router->addRoute('singleid',
 			new Zend_Controller_Router_Route(':controller/:action/:id', array('action' => 'view'))

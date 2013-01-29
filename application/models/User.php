@@ -52,4 +52,18 @@ class Default_Model_User extends Default_Model_AbstractModel
 	{
 		return Default_Model_StatusMapper::getStatistics($this);
 	}
+	
+	/**
+	 * Override parent to auto-logout when deleting logged in user
+	 * @return void
+	 */
+	public function delete()
+	{
+		if (Default_Model_User::getCurrent() == $this)
+		{
+			Default_Model_User::setCurrent(null);
+		}
+		
+		return parent::delete();
+	}
 }
