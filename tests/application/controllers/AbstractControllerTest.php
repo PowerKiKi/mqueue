@@ -16,7 +16,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 	}
 	
 	
-    public function loginUser($login = 'tstadminsystem', $password = 'tstadminsystem')
+    public function loginUser($login, $password)
     {
         $this->request->setMethod('POST')
                       ->setPost(array(

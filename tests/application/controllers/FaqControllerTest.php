@@ -26,5 +26,5 @@ class FaqControllerTest extends AbstractControllerTestCase
             'I want to see this movie'
             );
 	}
-
+    
 }

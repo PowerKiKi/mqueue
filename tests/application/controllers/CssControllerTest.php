@@ -5,7 +5,7 @@ require_once 'PHPUnit/Framework/TestCase.php';
 class CssControllerTest extends AbstractControllerTestCase
 {
 
-	public function testIndexAction()
+	public function testGravatarAction()
 	{
         $params = array('action' => 'gravatar.css', 'controller' => 'css', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));

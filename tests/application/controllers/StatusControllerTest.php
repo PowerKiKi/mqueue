@@ -7,8 +7,23 @@ class StatusControllerTest extends AbstractControllerTestCase
 
 	public function testIndexAction()
 	{
-        $params = array('action' => 'index', 'controller' => 'Faq', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'status', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($params['module']);
+        $this->assertController('error');
+        $this->assertAction('error');
+		
+        $this->assertQueryContentContains(
+            'p',
+            'no valid movie specified'
+            );
+        
+        
+        // Can view any movie status (even non-existing movies)
+        $url .= '/12345678';
         $this->dispatch($url);
         
         // assertions
@@ -16,16 +31,29 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
 		
-//		$this->assertRedirectTo('user/login');
-		
         $this->assertQueryContentContains(
-            'li',
-            'Create an account'
+            '.mqueue_status.mqueue_status_1',
+            'Need'
             );
-		
+        
         $this->assertQueryContentContains(
-            'ul.statusHelp li',
-            'I want to see this movie'
+            '.mqueue_status.mqueue_status_2',
+            'Bad'
+            );
+        
+        $this->assertQueryContentContains(
+            '.mqueue_status.mqueue_status_3',
+            'Ok'
+            );
+        
+        $this->assertQueryContentContains(
+            '.mqueue_status.mqueue_status_4',
+            'Excellent'
+            );
+        
+        $this->assertQueryContentContains(
+            '.mqueue_status.mqueue_status_5',
+            'Favorite'
             );
 	}
 

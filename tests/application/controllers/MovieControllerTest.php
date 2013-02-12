@@ -7,7 +7,7 @@ class MovieControllerTest extends AbstractControllerTestCase
 
 	public function testIndexAction()
 	{
-        $params = array('action' => 'index', 'controller' => 'Faq', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'movie', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
         
@@ -16,16 +16,73 @@ class MovieControllerTest extends AbstractControllerTestCase
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
 		
-//		$this->assertRedirectTo('user/login');
-		
         $this->assertQueryContentContains(
-            'li',
-            'Create an account'
+            'legend',
+            'Filter'
             );
 		
         $this->assertQueryContentContains(
-            'ul.statusHelp li',
-            'I want to see this movie'
+            'th a',
+            'Title'
+            );
+	}
+    
+	public function testAddAction()
+	{
+        $params = array('action' => 'add', 'controller' => 'movie', 'module' => 'default');
+        $url = $this->url($this->urlizeOptions($params));
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($params['module']);
+        $this->assertController($params['controller']);
+        $this->assertAction($params['action']);
+		
+        $this->assertQueryContentContains(
+            'label',
+            'IMDb url or id'
+            );
+		
+        $this->assertQueryContentContains(
+            '.tips',
+            'learn how to add'
+            );
+	}
+    
+	public function testImportAction()
+	{
+        $params = array('action' => 'import', 'controller' => 'movie', 'module' => 'default');
+        $url = $this->url($this->urlizeOptions($params));
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($params['module']);
+        $this->assertController($params['controller']);
+        $this->assertAction($params['action']);
+		
+        $this->assertQueryContentContains(
+            'label',
+            'Vote History'
+            );
+		
+        $this->assertQueryContentContains(
+            'label',
+            'Minimum for favorite'
+            );
+		
+        $this->assertQueryContentContains(
+            'label',
+            'Minimum for excellent'
+            );
+		
+        $this->assertQueryContentContains(
+            'label',
+            'Minimum for ok'
+            );
+		
+        $this->assertQueryContentContains(
+            '.tips',
+            'learn how to add'
             );
 	}
 
