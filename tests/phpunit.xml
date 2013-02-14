@@ -2,12 +2,12 @@
     <testsuite name="Controllers Test Suite">
         <directory>./application/controllers</directory>
     </testsuite>
-    <testsuite name="Models Test Suite">
+<!--    <testsuite name="Models Test Suite">
         <directory>./application/models</directory>
     </testsuite>
     <testsuite name="Library Test Suite">
         <directory>./library</directory>
-    </testsuite>
+    </testsuite>-->
     
     <filter>
         <whitelist>
