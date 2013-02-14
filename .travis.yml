@@ -6,6 +6,7 @@ php:
 
 before_script:
   - pear config-set auto_discover 1
+  - pear channel-discover pear.phpunit.de
   - pear install --force --alldeps phpunit/PHPUnit-3.4.15
   - cp application/configs/application.travis.ini application/configs/application.ini
   - mysql -e 'create database mqueue_travis;'
