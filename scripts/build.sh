@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+php scripts/update_database.php
+
 echo "Compiling CSS..."
 compass compile -s compressed --force
 

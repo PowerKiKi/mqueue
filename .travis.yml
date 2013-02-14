@@ -4,16 +4,8 @@ php:
   - "5.4"
 
 before_script:
-  - pear config-set auto_discover 1
-  - pear channel-discover pear.phpunit.de
-  - pear install --force --alldeps phpunit/PHPUnit-3.4.15
-  - cp application/configs/application.travis.ini application/configs/application.ini
-  - ZF=ZendFramework-1.12.1
-  - wget https://packages.zendframework.com/releases/$ZF/$ZF-minimal.zip
-  - unzip $ZF-minimal.zip
-  - mv $ZF-minimal/library/Zend library/
-  - mysql -e 'create database mqueue_travis;'
-  - php scripts/update_database.php
+  - scripts/install_dependencies.sh
+  - scripts/build.sh
 
 script: cd tests/ && phpunit
 
