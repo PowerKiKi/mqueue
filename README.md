@@ -14,17 +14,18 @@ an IMDb movie). This is possible thanks to the use of user-script (greasemonkey 
 * Apache 2+
 * MySQL 5.1+
 * Zend Framework 1.12+
+* [Compass](http://compass-style.org/)
+* Java
 
 ## Installation
 
 1. Create a database and a user in MySQL (eg: "mqueue")
 2. Download latest version: ``https://github.com/PowerKiKi/mqueue.git``
 3. In application/configs/, copy application.sample.ini to application.ini and edit database configuration
-4. Run ``php scripts/update_database.php``
+4. Run ``scripts/build.sh``
 5. Open mQueue in your browser (something similar to http://mqueue/ or http://localhost/mqueue/public/)
 
 ## Upgrade
 
 1. Download latest version: ``git pull``
-2. Run @php scripts/update_database.php@
-
+2. Run ``scripts/build.sh``

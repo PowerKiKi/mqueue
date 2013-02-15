@@ -2,6 +2,22 @@
 
 abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
 {
+    /**
+     * Create and save a new user
+     * @param array $values
+     * @return Default_Model_User
+     */
+    public static function insertUser(array $values)
+    {
+        $user = Default_Model_UserMapper::getDbTable()->createRow();
+        $user->nickname = $values['nickname'];
+        $user->email = $values['email'];
+        $user->password = sha1($values['password']);
+        $user->save();
+        
+        return $user;
+    }
+    
 	/**
 	 * Finds a user by its email and password (not hashed)
 	 * @param string $email

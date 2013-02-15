@@ -1,6 +1,17 @@
 <?php
 
 abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase {
+    
+	protected $userData = array(
+                'nickname' => 'test user',
+                'email' => 'valid@email.org',
+                'password' => 'superpassword',
+			  );
+    
+	protected $movieData = array(
+                'id' => '0096446',
+                'title' => 'Willow (1988)',
+			  );
 
 	public function setUp() {
 
@@ -12,9 +23,17 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 								APPLICATION_PATH . '/configs/application.ini',
 						))
 		);
+        
+		$user = Default_Model_UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
+		if (!$user)
+            Default_Model_UserMapper::insertUser($this->userData);
+        
+        $movie = Default_Model_MovieMapper::find($this->movieData['id']);
+        if (!$movie)
+            Default_Model_MovieMapper::getDbTable()->createRow($this->movieData)->save();
+        
 		parent::setUp();
 	}
-	
 	
     public function loginUser($login, $password)
     {

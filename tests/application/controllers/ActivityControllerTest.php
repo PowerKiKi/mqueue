@@ -54,7 +54,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
 	public function testMovieAction()
 	{
-        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'movie' => '0096446');
+        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'movie' => $this->movieData['id']);
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
         
@@ -63,7 +63,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 		
         $this->assertQueryContentContains(
             'h2',
-            'Activity for Willow (1988)'
+            'Activity for ' . $this->movieData['title']
             );
 	}
 

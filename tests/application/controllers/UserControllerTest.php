@@ -5,18 +5,19 @@ require_once 'PHPUnit/Framework/TestCase.php';
 class UserControllerTest extends AbstractControllerTestCase
 {
 	protected $idUser = null;
-	protected $userData = array(
-				  'nickname' => 'test user',
-				  'email' => 'valid@email.org',
+	protected $newUserData = array(
+				  'nickname' => 'new test user',
+				  'email' => 'new_valid@email.org',
 				  'password' => 'superpassword',
 			  );
 	
 	public function tearDown()
 	{
-		$user = Default_Model_UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
+		$user = Default_Model_UserMapper::findEmailPassword($this->newUserData['email'], $this->newUserData['password']);
 		if ($user)
 			$user->delete();
-		;
+        
+        parent::tearDown();
 	}
 
 	public function testIndexAction()
@@ -67,9 +68,9 @@ class UserControllerTest extends AbstractControllerTestCase
 		$this->resetResponse();
 		
 		// Prepare POST query
-		$this->userData['csrf'] = $csrf;
+		$this->newUserData['csrf'] = $csrf;
 		$this->request->setMethod('POST')
-			  ->setPost($this->userData);
+			  ->setPost($this->newUserData);
 		
 		// Subscribe new test user
         $this->dispatch($url);
@@ -104,7 +105,7 @@ class UserControllerTest extends AbstractControllerTestCase
 		
 		// Prepare POST query
 		$this->request->setMethod('POST')
-			  ->setPost($this->userData);
+			  ->setPost($this->newUserData);
 		
         $params = array('action' => 'login', 'controller' => 'user', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));

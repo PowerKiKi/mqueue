@@ -22,12 +22,8 @@ class UserController extends Zend_Controller_Action
 			if ($form->isValid($request->getPost()))
 			{
 				$values = $form->getValues();
-				$user = Default_Model_UserMapper::getDbTable()->createRow();
-				$user->nickname = $values['nickname'];
-				$user->email = $values['email'];
-				$user->password = sha1($values['password']);
-				$user->save();
-
+				$user = Default_Model_UserMapper::insertUser($values);
+                
 				Default_Model_User::setCurrent($user);
 
 				$this->_helper->FlashMessenger('Subscription complete.');
