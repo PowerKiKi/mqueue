@@ -39,7 +39,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
 	public function testUserAction()
 	{
-        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'user' => 1);
+        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'user' => $this->testUser->id);
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
         

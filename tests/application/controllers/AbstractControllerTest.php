@@ -2,6 +2,11 @@
 
 abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase {
     
+    /**
+     * @var Default_Model_User
+     */
+    protected $testUser;
+    
 	protected $userData = array(
                 'nickname' => 'test user',
                 'email' => 'valid@email.org',
@@ -24,9 +29,9 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 						))
 		);
         
-		$user = Default_Model_UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
-		if (!$user)
-            Default_Model_UserMapper::insertUser($this->userData);
+		$this->testUser = Default_Model_UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
+		if (!$this->testUser)
+            $this->testUser = Default_Model_UserMapper::insertUser($this->userData);
         
         $movie = Default_Model_MovieMapper::find($this->movieData['id']);
         if (!$movie)
