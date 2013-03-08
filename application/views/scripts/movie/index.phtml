@@ -6,9 +6,9 @@ $this->headTitle(_tr('Movies'));
 <table>
 <tr>
 	<?php $i = 0; foreach ($this->users as $user): ?>
-		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sort, $this->sortOrder, $this->permanentParams); ?></th>
+		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
 	<?php endforeach; ?>
-	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sort, $this->sortOrder, $this->permanentParams); ?></th>
+	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
 </tr>
 <?php if ($this->paginator->getTotalItemCount() == 0): ?>
 	<tr><td colspan="<?php echo count($this->users) + 1; ?>">

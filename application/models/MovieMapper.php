@@ -58,31 +58,17 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
     /**
      * Returns a query filtered according to parameters. This query may be used with paginator.
      * @param array $filters
-     * @param string $sort defines the column to sort with
-     * @param string $sortOrder defines the order of the sort ("desc" or "asc")
+     * @param string $orderBy valid SQL sorting snippet
      * @return Zend_Db_Table_Select
      */
-    public static function getFilteredQuery(array $filters, $sort, $sortOrder)
+    public static function getFilteredQuery(array $filters, $orderBy)
     {
-    	// Find out what to order (only allowed 'title', 'date', 'status0', 'status1', 'status2', ...)
-    	if (preg_match('/^status\d+$/', $sort))
-    	{
-			$sort = $sort . '.rating';
-    	}
-    	elseif ($sort != 'date' && $sort != 'dateSearch')
-    	{
-    		$sort = 'title';
-    	}
-
-    	if ($sortOrder == 'desc')
-    		$sortOrder = 'DESC';
-    	else
-    		$sortOrder = 'ASC';
-
+        
+        $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('movie')
-			->order($sort . ' ' . $sortOrder);
+			->order($orderBy);
 
 		$i = 0;
 		$maxDate = '';

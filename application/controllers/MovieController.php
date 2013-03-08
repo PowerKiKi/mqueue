@@ -74,25 +74,26 @@ class MovieController extends Zend_Controller_Action
 			$this->view->users[$filter['user']]= Default_Model_UserMapper::find($filter['user']);
 		}
 
-		// Defines variables for the view
-		$this->view->sort = $this->getRequest()->getParam('sort');
-		$this->view->sortOrder = $this->getRequest()->getParam('sortOrder');
-
 		// If we ouput rss, we force sorting by date
 		if ($this->_helper->contextSwitch()->getCurrentContext() == 'rss')
 		{
-			$this->view->sort = $filters['filter1']['withSource'] ? 'dateSearch' : 'date';
-			$this->view->sortOrder = 'desc';
+            $this->getRequest()->setParam('sort', $filters['filter1']['withSource'] ? 'dateSearch' : 'date');
+			$this->getRequest()->setParam('sortOrder', 'desc');
 		}
 		$this->view->permanentParams = $form->getValues();
 		$this->view->filterName = $form->getValuesText();
 		unset($this->view->permanentParams['addFilter']);
-		if ($this->view->sort) $this->view->permanentParams['sort'] = $this->view->sort;
-		if ($this->view->sortOrder) $this->view->permanentParams['sortOrder'] = $this->view->sortOrder;
-
+        
+        
+        $allowedSortingKey = array('title', 'date', 'dateSearch');
+        for ($i = 0; $i < count($this->view->users); $i++)
+        {
+            $allowedSortingKey[] = 'status' . $i;
+        }
+        $sort = $this->_helper->createSorting('sort', $allowedSortingKey);
 
 		// Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering)
-		$this->view->paginator = $this->_helper->createPaginator(Default_Model_MovieMapper::getFilteredQuery($filters, $this->view->sort, $this->view->sortOrder));
+		$this->view->paginator = $this->_helper->createPaginator(Default_Model_MovieMapper::getFilteredQuery($filters, $sort));
 	}
 
 	public function viewAction()
