@@ -19,6 +19,7 @@ $bests = array();
 $found = 0;
 foreach (glob(__DIR__ . '/data/sources/*') as $path)
 {
+    echo '.';
 	$title = str_replace('mqueue_', '', pathinfo($path, PATHINFO_BASENAME));
 
 	$content = file_get_contents($path);

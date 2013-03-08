@@ -44,7 +44,8 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Default_Model_Status::Need , array())
 			->where('source IS NULL')
 			->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't search for same movie more than once a month
-			->where('title NOT REGEXP ?', '\(.*(' . join('|', $futureYears) . ').*\)') // Avoid movies not yet released
+			->where('title REGEXP ?', '\(.*[[:digit:]]{4}.*\)') // Movie must at least have one known release year...
+			->where('title NOT REGEXP ?', '\(.*(' . join('|', $futureYears) . ').*\)') // .. but avoid movies not yet released
 			->group('movie.id')
 			->order('RAND()') // Randomize order, so we don't watch only old movies
 			->limit(5)
