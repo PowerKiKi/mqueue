@@ -1,7 +1,5 @@
 <?php
 
-require_once 'PHPUnit/Framework/TestCase.php';
-
 class JsControllerTest extends AbstractControllerTestCase
 {
 

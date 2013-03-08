@@ -1,11 +1,11 @@
 <?php
 
-class AboutControllerTest extends AbstractControllerTestCase
+class IndexControllerTest extends AbstractControllerTestCase
 {
 
 	public function testIndexAction()
 	{
-        $params = array('action' => 'index', 'controller' => 'about', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'index', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
         
@@ -14,10 +14,7 @@ class AboutControllerTest extends AbstractControllerTestCase
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
 		
-        $this->assertQueryContentContains(
-            'p',
-            'This project started as a personal need'
-            );
+        $this->assertRedirectTo('/activity');
 		
 	}
 
