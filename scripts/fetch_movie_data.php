@@ -6,17 +6,6 @@
  */
 
 
-require_once(__DIR__ . '/../public/index.php');
+require_once(__DIR__ . '/search_movie_source.php');
 
-$movies = Default_Model_MovieMapper::fetchAll();
-$count = 0;
-$total = $movies->count();
-foreach ($movies as $movie)
-{	
-	echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas'). "\t";
-	$movie->title = null;
-	$title = $movie->getTitle();
-	echo $title . "\n";
-}
-
-echo $total . " movies updated in database\n";
+fetchMovieData(null, 3);

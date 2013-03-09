@@ -42,27 +42,52 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 		// If we didn't get the title yet, fetch it and save in our database
 		if (!($this->title))
 		{
-			$file = @file_get_contents($this->getImdbUrl('akas'));
-
-			$document = new DOMDocument();
-			@$document->loadHTML($file);
-			$xpath = new DOMXPath($document);
-			$query = '//meta[contains(@property, "og:title")]/@content';
-
-			$entries = $xpath->evaluate($query);
-			if ($entries->length != 1)
-			{
-				return '[title not available, could not fetch from IMDb]';
-			}
-
-			$this->title = $entries->item(0)->value;
-
-			$this->setReadOnly(false); // If the movie is coming from a joined query, we need to set non-readonly before saving
-			$this->save();
+            $this->fetchData();
 		}
 
 		return $this->title;
 	}
+    
+    /**
+     * Fetch data from IMDb and store in database (possibly overwriting)
+     * @return void
+     */
+    public function fetchData()
+    {
+        $file = @file_get_contents($this->getImdbUrl('akas'));
+
+        $document = new DOMDocument();
+        @$document->loadHTML($file);
+        $xpath = new DOMXPath($document);
+        
+        // Extract title
+        $titleEntries = $xpath->evaluate('//meta[contains(@property, "og:title")]/@content');
+        if ($titleEntries->length == 1)
+        {
+            $this->title = $titleEntries->item(0)->value;
+        }
+        else
+        {
+            $this->title = '[title not available, could not fetch from IMDb]';
+            
+            return; // If there is not even title give up everything
+        }
+        
+        // Extract release date
+        $dateReleaseEntries = $xpath->evaluate('//*[@id="overview-top"]//meta[contains(@itemprop, "datePublished")]/@content');
+        if ($dateReleaseEntries->length == 1)
+        {
+            $this->dateRelease = $dateReleaseEntries->item(0)->value;
+        }
+        else
+        {
+            $this->dateRelease = null;
+        }
+        
+        $this->dateUpdate = Zend_Date::now()->get(Zend_Date::ISO_8601);
+        $this->setReadOnly(false); // If the movie is coming from a joined query, we need to set non-readonly before saving
+        $this->save();
+    }
 
 	/**
 	 * Sets the ID for the movie from any string containing a valid ID
@@ -130,7 +155,6 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 	 */
 	public function setSource($source)
 	{
-		
 		$this->dateSearch = Zend_Date::now()->get(Zend_Date::ISO_8601);
 		$this->searchCount++;
 		if ($source && @$source['score'])

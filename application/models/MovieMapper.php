@@ -44,12 +44,32 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Default_Model_Status::Need , array())
 			->where('source IS NULL')
 			->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't search for same movie more than once a month
-			->where('title REGEXP ?', '\(.*[[:digit:]]{4}.*\)') // Movie must at least have one known release year...
-			->where('title NOT REGEXP ?', '\(.*(' . join('|', $futureYears) . ').*\)') // .. but avoid movies not yet released
+			->where('dateRelease IS NOT NULL') // Movie must be released ...
+			->where('dateRelease < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // ...at least released one month ago, or longer
 			->group('movie.id')
 			->order('RAND()') // Randomize order, so we don't watch only old movies
 			->limit(5)
 			;
+		
+		$records = self::getDbTable()->fetchAll($select);
+		
+		return $records;
+	}
+	
+	/**
+	 * Returns movies for data fetching
+	 * @return Default_Model_Movie[]
+	 */
+	public static function findAllForFetching($limit = null)
+	{
+		$select = self::getDbTable()->select()->setIntegrityCheck(false)
+			->from('movie')
+			->where('dateUpdate IS NULL OR dateUpdate < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't fetch data for movies, more than once a month
+			->order('RAND()') // Randomize order, so we don't watch only old movies
+			;
+        
+        if ($limit)
+            $select->limit(20);
 		
 		$records = self::getDbTable()->fetchAll($select);
 		
