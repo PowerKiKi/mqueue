@@ -12,5 +12,6 @@ jQuery.timeago.settings.strings = {
    month: "한달",
    months: "%d달",
    year: "1년",
-   years: "%d년"
+  years: "%d년",
+  wordSeparator: " "
 };
