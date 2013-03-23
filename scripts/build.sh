@@ -27,7 +27,7 @@ echo "Concatenate JavaScript..."
 cd min/
 
 # CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
-cat jquery-1.8.3.js \
+cat jquery-1.9.1.js \
 both.js \
 local.js \
 jquery.timeago.js \
