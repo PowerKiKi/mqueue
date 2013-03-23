@@ -1,6 +1,8 @@
-/.sass-cache/
-/nbproject/
-/tests/data/
-/tests/log/
-/public/js/min/
-/public/css/
+.sass-cache
+application/configs/application.ini
+doc/html
+nbproject
+public/css
+public/js/min
+tests/data
+tests/log
