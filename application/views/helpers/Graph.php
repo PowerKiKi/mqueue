@@ -30,7 +30,7 @@ class Default_View_Helper_Graph extends Zend_View_Helper_Abstract {
 		});
 STRING;
 
-		$html = '<div id="chart_container"  style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		$html = '<div id="chart_container"  style="min-height: 400px"></div>
 				<input type="checkbox" name="graph_percent" id="graph_percent" value="1">
 				<label for="graph_percent">Show graph as stacked percentage</label>';
 
