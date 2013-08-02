@@ -4,19 +4,19 @@ require_once('debug.php');
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 	public static $translator = null;
-	
+
 	protected function _initAutoload()
 	{
 		$autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Default',
             'basePath'  => __DIR__,
 		));
-		
+
 		// Add the action helpers
 		$path = __DIR__ . '/controllers/helpers';
 		$prefix = 'Default_Controller_ActionHelper_';
 		Zend_Controller_Action_HelperBroker::addPath($path, $prefix);
-		
+
 		// Autoload for stuff in Library
 		Zend_Loader_Autoloader::getInstance()->registerNamespace('SearchEngine');
 
@@ -34,12 +34,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->addHelperPath($path, $prefix);
 
 	}
-	
+
 	protected function _initNavigation()
 	{
 		$this->bootstrap('view');
 		$view = $this->getResource('view');
-		
+
 		$navigation = new Zend_Navigation(array(
 			array(
 				'label' => $view->translate('Movies'),
@@ -62,7 +62,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			),
 			array(
 				'label' => $view->translate('Activity'),
-				'controller' => 'activity',				
+				'controller' => 'activity',
 				'route' => 'default',
 			),
 			array(
@@ -76,10 +76,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'route' => 'default',
 			),
 		));
-		
+
 		$view->navigation($navigation);
 	}
-	
+
 	protected function _initSession()
 	{
 		Zend_Session::setOptions(array('name' => 'mqueue'));
@@ -88,7 +88,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	protected function _initLanguage()
 	{
 		$session = new Zend_Session_Namespace();
-		
+
 		// handle language switch
 		if (isset($_GET['lang']))
 		{
@@ -110,26 +110,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		Zend_Form::setDefaultTranslator($adapter);
 		self::$translator = $adapter;
 	}
-	
+
 	protected function _initPagination()
 	{
 		Zend_Paginator::setDefaultScrollingStyle('Elastic');
 		Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
 	}
-	
+
 	protected function _initRoutes()
 	{
 		$front  = Zend_Controller_Front::getInstance();
 		$router = $front->getRouter();
-		
+
 		// Required for unit tests
 		$router->addDefaultRoutes();
-		
+
 		// A route for single id (typically view a single movie/user)
 		$router->addRoute('singleid',
 			new Zend_Controller_Router_Route(':controller/:action/:id', array('action' => 'view'))
 		);
-		
+
 		// A route for activities
 		$router->addRoute('activity',
 			new Zend_Controller_Router_Route('activity/*', array('controller' => 'activity', 'action' => 'index'))
@@ -140,7 +140,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$router->addRoute('activityUser',
 			new Zend_Controller_Router_Route('activity/user/:user/*', array('controller' => 'activity', 'action' => 'index'))
 		);
-		
+
 		// For backward compatibility with RSS readers we keep the old route
 		$router->addRoute('activityOld',
 			new Zend_Controller_Router_Route('activity/index/*', array('controller' => 'activity', 'action' => 'index'))
@@ -151,16 +151,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$router->addRoute('activityUserOld',
 			new Zend_Controller_Router_Route('activity/index/user/:user/*', array('controller' => 'activity', 'action' => 'index'))
 		);
-		
+
 		// Routes to define and view statuses
 		$router->addRoute('status',
-			new Zend_Controller_Router_Route('status/:movie/:rating', array('controller' => 'status', 'action' => 'index'))
+			new Zend_Controller_Router_Route_Regex('status/(\d{7})/(\d)', array('controller' => 'status', 'action' => 'index'), array(1 => 'movie', 2 => 'rating'), 'status/%s/%s')
 		);
 		$router->addRoute('statusView',
-			new Zend_Controller_Router_Route('status/:movie', array('controller' => 'status', 'action' => 'index'))
-		);	
+			new Zend_Controller_Router_Route_Regex('status/(\d{7})', array('controller' => 'status', 'action' => 'index'), array(1 => 'movie'), 'status/%s')
+		);
 	}
-	
+
 	/**
 	 * Add the Zend_Db_Adapter to the registry if we need to call it outside of the modules.
 	 * @return Zend_Db_Adapter
@@ -175,8 +175,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 }
 
 /**
- * Global shortcut method that returns localized strings 
- * 
+ * Global shortcut method that returns localized strings
+ *
  * @param string $msgId the original string to translate
  * @return string the translated string
  */

@@ -9,11 +9,11 @@ echo "Compiling JavaScript..."
 cd public/js
 mkdir -p min
 for file in *.js ; do
-	
+
 	# Discard warnings for third party code
-	if [[ $file =~ jquery|jcarousellite ]]
+	if [[ $file =~ jquery|jcarousellite|d3 ]]
 	then
-		thirdparty="--third_party --warning_level QUIET"
+		thirdparty="--third_party --warning_level QUIET --language_in ECMASCRIPT5"
 	else
 		thirdparty=""
 	fi
@@ -27,7 +27,7 @@ echo "Concatenate JavaScript..."
 cd min/
 
 # CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
-cat jquery-1.9.1.js \
+cat jquery-2.0.0.js \
 both.js \
 local.js \
 jquery.timeago.js \

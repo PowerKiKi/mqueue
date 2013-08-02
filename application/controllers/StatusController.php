@@ -87,8 +87,49 @@ class StatusController extends Zend_Controller_Action
 
 		$this->view->status = $json;
 	}
+
+    public function graphAction() {
+
+		$percent = $this->_request->getParam('percent');
+        $user = Default_Model_UserMapper::find($this->getParam('user'));
+        $data = Default_Model_StatusMapper::getGraph($user, $percent);
+		$chart = array(
+            'chart' => array(
+				'zoomType' => 'x',
+            ),
+            'title' => array(
+                'text' => '',
+            ),
+            'xAxis' => array(
+                'type' => 'datetime',
+            ),
+            'yAxis' => array(
+                'title' => array(
+                    'text' => 'Movies',
+                ),
+                'min' => 0,
+            ),
+            'series' => $data,
+
+		);
+
+		if ($percent) {
+			$chart['chart']['type'] = 'area';
+			$chart['yAxis']['title']['text'] = $chart['yAxis']['title']['text'] . ' [%]';
+			$chart['plotOptions'] = array(
+					'area' => array(
+
+						'stacking' => 'percent',
+						'marker' => array(
+							'enabled' => false,
+						),
+                    ),
+                );
+		}
+
+        echo Zend_Json::encode($chart, Zend_Json::TYPE_ARRAY);
+        die();
+    }
+
 }
-
-
-
 

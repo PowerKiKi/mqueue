@@ -39,6 +39,9 @@ echo '</tr>';
 ?>
 </table>
 
+<h2><?php echo $this->translate('Timeline'); ?></h2>
+<?php echo $this->graph($this->user); ?>
+
 <h3><?php echo $this->translate('Activity'); ?></h3>
 <?php echo $this->activity($this->userActivity, array('user')); ?>
 
