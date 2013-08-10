@@ -1,7 +1,6 @@
 /*global $, document */
 
 var mqueue = (function () {
-	var injectingStatus = false;
 
 	/**
 	 * JSONp function to set and retrieve new status
@@ -93,7 +92,6 @@ var mqueue = (function () {
 			var url = server + "status/list/movies/" + query + "?format=json&jsoncallback=?";
 			$.getJSON(url, function(data)
 			{
-				injectingStatus = true;
 				$.each(data.status, function(id, status)
 				{
 					// Add status beside main title if on the main page of movie
@@ -113,7 +111,6 @@ var mqueue = (function () {
 						$(node).filter(selector).after(status);
 					}
 				});
-				injectingStatus = false;
 
 				bindStatus();
 			});
@@ -122,6 +119,7 @@ var mqueue = (function () {
 
 	/**
 	 * Monitor any links refering to IMDb, existing now or in future
+	 * @param server
 	 **/
 	function monitorLinks(server)
 	{
@@ -129,21 +127,32 @@ var mqueue = (function () {
 		var insertedNodes = [];
 
 		injectStatus(server, $(document));
-		$('body').bind('DOMNodeInserted', function(e){
-			if (!injectingStatus)
-			{
-				insertedNodes.push(e.target);
-				if(typeof timeoutId == "number") {
-					window.clearTimeout(timeoutId);
-					delete timeoutId;
-				}
-				timeoutId = window.setTimeout(function() {
-					var nodes = insertedNodes;
-					insertedNodes = [];
-					injectStatus(server, nodes);
-				}, 300);
+		$('body').bind('DOMNodeInserted', function(e) {
+			insertedNodes.push(e.target);
 
+			// Cancel previous timeout if any
+			if(typeof timeoutId == "number") {
+				window.clearTimeout(timeoutId);
+				delete timeoutId;
 			}
+
+			// Set short timeout to actually injectStatus (several nodes at once)
+			timeoutId = window.setTimeout(function() {
+
+				// Filter inserted nodes to keep only nodes without status links (to avoid duplicated injection)
+				var nodesWitoutStatus = [];
+				$.each(insertedNodes, function(x, node) {
+
+					var selector = ".mqueue_status_links";
+					var statusExist = $(e.target).is(selector) || $(selector, e.target).length;
+					if (!statusExist) {
+						nodesWitoutStatus.push(node);
+					}
+				});
+				insertedNodes = [];
+
+				injectStatus(server, nodesWitoutStatus);
+			}, 300);
 		});
 	}
 
