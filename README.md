@@ -4,13 +4,13 @@
 
 ## About
 
-mQueue is a website to keep track of movies you want to watch and rate the one you watched. It is integrated
-with IMDb and allow you to rate movies on other webpages (www.imdb.com itself and any other page linking to 
+mQueue is a website to keep track of movies you want to watch, and rate the one you watched. It is integrated
+with IMDb and allow you to rate movies on other webpages (www.imdb.com itself and any other page linking to
 an IMDb movie). This is possible thanks to the use of user-script (greasemonkey for Firefox).
 
 ## Requirements
 
-* PHP 5.3+
+* PHP 5.3+ with cURL module
 * Apache 2+
 * MySQL 5.1+
 * Zend Framework 1.12+

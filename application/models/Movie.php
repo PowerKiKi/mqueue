@@ -54,16 +54,13 @@ class Default_Model_Movie extends Default_Model_AbstractModel
      */
     public function fetchData()
     {
-		$opts = array(
-			'http' => array(
-			'method' => "GET",
-			'header' => "Accept-Language: en-US\r\n"
-			)
-		);
+		$ch = curl_init($this->getImdbUrl('akas'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language: en-US,en;q=0.8'));
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		$context = stream_context_create($opts);
-
-        $file = @file_get_contents($this->getImdbUrl('akas'), false, $context);
+		$file = curl_exec($ch);
+		curl_close($ch);
 
         $document = new DOMDocument();
         @$document->loadHTML($file);
