@@ -24,7 +24,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 
         return $resultSet;
     }
-	
+
 	/**
 	 * Returns movies for search
 	 * @return Default_Model_Movie[]
@@ -38,7 +38,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			$date->addYear(1);
 			$futureYears[] = $date->get(Zend_Date::YEAR_8601);
 		}
-		
+
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('movie')
 			->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Default_Model_Status::Need , array())
@@ -52,10 +52,10 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			;
 		
 		$records = self::getDbTable()->fetchAll($select);
-		
+
 		return $records;
 	}
-	
+
 	/**
 	 * Returns movies for data fetching
 	 * @return Default_Model_Movie[]
@@ -67,12 +67,12 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			->where('dateUpdate IS NULL OR dateUpdate < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't fetch data for movies, more than once a month
 			->order('RAND()') // Randomize order, so we don't watch only old movies
 			;
-        
+
         if ($limit)
             $select->limit(20);
-		
+
 		$records = self::getDbTable()->fetchAll($select);
-		
+
 		return $records;
 	}
 
@@ -84,7 +84,7 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
      */
     public static function getFilteredQuery(array $filters, $orderBy)
     {
-        
+
         $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
@@ -101,13 +101,13 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 				continue;
 
 			$filtersDone []= $filterUniqueId;
-			
+
 			$alias = 'status' . $i++;
 			$allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR ' . $alias . '.idUser IS NULL' : '');
 			$select->joinLeft(array($alias => 'status'), '(movie.id = ' . $alias . '.idMovie AND ' . $alias . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
 
 			$select->where($alias . '.isLatest = 1 OR ' . $alias . '.isLatest IS NULL');
-				
+
 			// Filter by status, not rated or a specific rating
 			if ($filter['status'] >= 0 && $filter['status'] <= 5)
 			{
@@ -143,7 +143,24 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 		}
 
 		$select->columns(array('date' => new Zend_Db_Expr($maxDate)));
-		
+
     	return $select;
     }
+
+	/**
+	 * Delete obsolete sources for all movies.
+	 * An obsolete source is either a source older than 3 months, or
+	 * a source which is not needed anymore (nobody need the movie anymore)
+	 */
+	public static function deleteObsoleteSources()
+	{
+		$db = self::getDbTable()->getAdapter();
+		$update = 'UPDATE `movie` SET dateUpdate = dateUpdate, dateSearch = NULL, searchCount = 0, identity = 0, quality = 0, score = 0, source = NULL';
+
+		// Delete sources older than 6 months
+		$db->query($update . ' WHERE `source` IS NOT NULL AND `dateSearch` < DATE_SUB(NOW(), INTERVAL 6 MONTH)');
+
+		// Delete non-needed sources
+		$db->query($update . ' WHERE `movie`.`id` NOT IN (SELECT `status`.`idMovie` FROM `status` WHERE `rating` = ? AND `isLatest`)', array(Default_Model_Status::Need));
+	}
 }

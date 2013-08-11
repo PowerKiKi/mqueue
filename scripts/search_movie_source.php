@@ -11,17 +11,17 @@ function movieProcessor(Closure $func, $movies, $sleep)
     $total = $movies->count();
     $count = 0;
     foreach ($movies as $movie)
-    {	
+    {
         echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas'). "\t";
         flush();
-        
+
         $func($movie);
 
         echo "\n";
 
         sleep($sleep);
     }
-    
+
     return $total;
 }
 
@@ -45,10 +45,10 @@ function searchSource()
 
         echo $movie->source ?: '[source not found]';
     };
-    
+
      // 5 minutes pause between search, not to stress third-party servers
     $total = movieProcessor($searcher, $movies, 5 * 60);
-    
+
     echo $total . " movie sources updated in database\n";
 }
 
@@ -64,7 +64,7 @@ function fetchMovieData($limit = null, $sleep = 0)
         $movie->fetchData();
         echo $movie->title;
     };
-    
+
     $total = movieProcessor($fetcher, $movies, $sleep);
 
     echo $total . " movies updated in database\n";
@@ -74,9 +74,12 @@ function fetchMovieData($limit = null, $sleep = 0)
 // we only do things if this file were NOT included (otherwise, the file was included to access misc functions)
 if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME']))
 {
+	// Clean up obsolete sources
+	Default_Model_MovieMapper::deleteObsoleteSources();
+
     // Fetch movie data to update title and release date
 	fetchMovieData(20, 1 * 60);
-    
+
     // Search source for movies with release date
     searchSource();
 }
