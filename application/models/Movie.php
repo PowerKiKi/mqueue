@@ -47,19 +47,28 @@ class Default_Model_Movie extends Default_Model_AbstractModel
 
 		return $this->title;
 	}
-    
+
     /**
      * Fetch data from IMDb and store in database (possibly overwriting)
      * @return void
      */
     public function fetchData()
     {
-        $file = @file_get_contents($this->getImdbUrl('akas'));
+		$opts = array(
+			'http' => array(
+			'method' => "GET",
+			'header' => "Accept-Language: en-US\r\n"
+			)
+		);
+
+		$context = stream_context_create($opts);
+
+        $file = @file_get_contents($this->getImdbUrl('akas'), false, $context);
 
         $document = new DOMDocument();
         @$document->loadHTML($file);
         $xpath = new DOMXPath($document);
-        
+
         // Extract title
         $titleEntries = $xpath->evaluate('//meta[contains(@property, "og:title")]/@content');
         if ($titleEntries->length == 1)
@@ -69,10 +78,10 @@ class Default_Model_Movie extends Default_Model_AbstractModel
         else
         {
             $this->title = '[title not available, could not fetch from IMDb]';
-            
+
             return; // If there is not even title give up everything
         }
-        
+
         // Extract release date
         $dateReleaseEntries = $xpath->evaluate('//*[@id="overview-top"]//meta[contains(@itemprop, "datePublished")]/@content');
         if ($dateReleaseEntries->length == 1)
@@ -83,7 +92,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
         {
             $this->dateRelease = null;
         }
-        
+
         $this->dateUpdate = Zend_Date::now()->get(Zend_Date::ISO_8601);
         $this->setReadOnly(false); // If the movie is coming from a joined query, we need to set non-readonly before saving
         $this->save();
