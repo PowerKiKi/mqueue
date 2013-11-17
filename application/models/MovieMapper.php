@@ -47,10 +47,11 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 			->where('dateRelease IS NOT NULL') // Movie must be released ...
 			->where('dateRelease < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // ...at least released one month ago, or longer
 			->group('movie.id')
-			->order('RAND()') // Randomize order, so we don't watch only old movies
+			->order('COUNT(movie.id) DESC') // First, order by popularity, so get the most needed first
+			->order('RAND() ASC') // Then, randomize a little bit so we don't always look for the same movies
 			->limit(5)
 			;
-		
+
 		$records = self::getDbTable()->fetchAll($select);
 
 		return $records;
