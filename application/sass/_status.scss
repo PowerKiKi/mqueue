@@ -2,6 +2,7 @@
 
 $status_dimension: 16px;
 $preloader_width : 5 * $status_dimension;
+$preloader_height: 6px;
 
 .mqueue_status {
   display: inline-block !important;
@@ -20,23 +21,21 @@ $preloader_width : 5 * $status_dimension;
 
 .mqueue_status_links {
   display: inline-block !important;
+  vertical-align: text-bottom;
   white-space: nowrap;
   overflow: hidden;
+  height: $status_dimension;
   > .preloader {
     display: none;
   }
   &.loading {
 
-	@include border-radius(3px);
-	background-color: lighten($color2, 30%);
-	width: $preloader_width;
     > .preloader {
-		display: inline-block !important;
-		width: $preloader_width !important;
-		height:6px;
+		display: block !important;
+		margin-top: ($status_dimension - $preloader_height) / 2;
+		height: $preloader_height;
 		background-color: $color1;
-		margin-top:0;
-		margin-left: -$preloader_width;
+		@include border-radius(3px);
 		@include animation-name(preloaderAnimation);
 		@include animation-duration(1.5s);
 		@include animation-iteration-count(infinite);
@@ -51,11 +50,11 @@ $preloader_width : 5 * $status_dimension;
 
 @include keyframes(preloaderAnimation) {
 	0% {
-		margin-left: -$preloader_width;
+		width: 0px;
 	}
 
 	100% {
-		margin-left: 0px;
+		width: $preloader_width;
 	}
 }
 
