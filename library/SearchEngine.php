@@ -5,7 +5,7 @@
  * It relies on Nova to query several popular websites.
  */
 class SearchEngine {
-	
+
 	/**
 	 * Returns the command for the appropriate version of Nova
 	 * @return string
@@ -24,7 +24,7 @@ class SearchEngine {
 			return __DIR__ . '/searchengine/nova/nova2.py';
 		}
 	}
-	
+
 	/**
 	 * Execute a shell command with a timeout
 	 * @param string $cmd shell command
@@ -42,13 +42,13 @@ class SearchEngine {
 			array(array('pipe', 'r'), array('pipe', 'w'), array('pipe', 'w')),
 			$pipes
 		);
-		
+
 		if(is_resource($process))
 		{
 			// Give group id to process (to later kill all its children)
 			$status = proc_get_status($process);
 			posix_setpgid($status['pid'], $status['pid']);
-			
+
 			stream_set_blocking($pipes[0], 0);
 			stream_set_blocking($pipes[1], 0);
 			stream_set_blocking($pipes[2], 0);
@@ -65,7 +65,7 @@ class SearchEngine {
 				posix_kill(-$status['pid'], 9);
 				proc_terminate($process, 9);
 			}
-			
+
 			$status = proc_get_status($process);
 			if(!$status['running'])
 			{
@@ -77,10 +77,10 @@ class SearchEngine {
 			// 1 second will not make accurate timeout, but we don't really need accuracy
 			sleep(1);
 		}
-		
+
 		return $stdout;
 	}
-	
+
 	/**
 	 * Parse string content and return an array of unique sources
 	 * @param string $content
@@ -105,10 +105,10 @@ class SearchEngine {
 				}
 			}
 		}
-		
+
 		return $data;
 	}
-	
+
 	/**
 	 * Search for the given title and return an array of sources
 	 * @param string $title
@@ -117,14 +117,15 @@ class SearchEngine {
 	public function search($title)
 	{
 		$cmd = $this->getNovaCmd() . ' all movies ' . escapeshellarg(str_replace(' ', '+', $title)) . ' 2>&1';
+		echo $cmd . PHP_EOL;
 		$content = $this->execute($cmd, 5 * 60); // 5 minutes to search
-		
+
 		$path = sys_get_temp_dir() . '/mqueue_' . $title;
 		file_put_contents($path, $content);
-		
+
 		return $this->parse($content);
 	}
-	
+
 	/**
 	 * Returns the given name simplified as much as possible
 	 * @param string $name
@@ -135,12 +136,12 @@ class SearchEngine {
 		// Insert space before uppercase letters
 		$name = preg_replace('/([A-Z])/', ' \1', $name);
 		$name = strtolower($name);
-		
+
 		$name = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $name); // Get rid of all accents
-		
+
 		// Replace special character with common representation
 		$name = str_replace('&', 'and', $name);
-		
+
 
 		// Remove all grouped things (may include team name at the beginning of name)
 		// Or remove incomplete grouped things at the end of string
@@ -157,7 +158,7 @@ class SearchEngine {
 
 		return $name;
 	}
-	
+
 	/**
 	 * Compute scores of all sources according to the title searched
 	 * @param string $title
@@ -181,7 +182,7 @@ class SearchEngine {
 			'/\b(x264|xvid)\b/i' => 20, // Good formats
 			'/\b(uncut|unrated|extended|director\'s cut|director cut)\b/i' => 20, // Director's cut version is supposedly better
 		);
-		
+
 		$cleanTitle = $this->cleanName($title);
 		preg_match('/((18|19|20)\d{2})(– )?\)$/', $title, $m);
 		$year = $m[1];
@@ -190,7 +191,7 @@ class SearchEngine {
 		{
 			$identity = 0;
 			$quality = 0;
-			
+
 // TODO: re-evaluate the alternate identity method with more data or drop it entirely
 //			$yearPattern = '/(\D)' . $year . '\D.*$/';
 //			if (preg_match($yearPattern, $source['name']))
@@ -210,7 +211,7 @@ class SearchEngine {
 //				$cleanSource = $m[1];
 //			}
 //			v($cleanTitle, $year, $source['name'], $sourceWithoutYear, $cleanSource, $identity);
-			
+
 			// Identity mostly is matching title in source name
 			$cleanSource = substr($this->cleanName($source['name']), 0, strlen($cleanTitle));
 			similar_text($cleanTitle , $cleanSource, $identity);
@@ -235,14 +236,14 @@ class SearchEngine {
 			{
 				$quality += 10;
 			}
-			
+
 			$source['identity'] = $identity;
 			$source['quality'] = $quality;
 			$source['score'] = $identity >= 100 && $quality > 80 ? 2 * $identity + $quality : 0;
 		}
 
 		// Sort by score, then seeds, then leech
-		usort($sources, function($a, $b) { 
+		usort($sources, function($a, $b) {
 			if ($b['score'] != $a['score'])
 				return $b['score'] - $a['score'];
 			elseif ($b['seeds'] != $a['seeds'])
@@ -252,7 +253,7 @@ class SearchEngine {
 			else
 				return strcmp($b['link'], $a['link']);
 		});
-		
+
 		return $sources;
 	}
 
