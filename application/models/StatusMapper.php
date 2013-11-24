@@ -160,7 +160,6 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
             $graphData[$val] = array();
         }
 
-
         // Fetch real counts
         $lastStatuses = array();
         foreach ($records as $row) {
@@ -179,7 +178,6 @@ abstract class Default_Model_StatusMapper extends Default_Model_AbstractMapper
             $time = new DateTime($row->dateUpdate);
             $time->setTimezone(new DateTimeZone('GMT'));
             $epoch = (int) $time->format('U') * 1000;
-
 
             // If we are in percent mode, we need all status for each timestamp
             if ($percent) {

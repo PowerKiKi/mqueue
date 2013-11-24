@@ -9,6 +9,7 @@ class ErrorController extends Zend_Controller_Action
 
         if (!$errors || !$errors instanceof ArrayObject) {
             $this->view->message = 'You have reached the error page';
+
             return;
         }
 
@@ -50,6 +51,7 @@ class ErrorController extends Zend_Controller_Action
             return false;
         }
         $log = $bootstrap->getResource('Log');
+
         return $log;
     }
 

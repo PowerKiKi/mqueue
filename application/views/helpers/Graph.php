@@ -17,24 +17,24 @@ class Default_View_Helper_Graph extends Zend_View_Helper_Abstract
         $url = $this->view->serverUrl() . $this->view->url($params, 'default');
 
         $js = <<<STRING
-		$(document).ready(function() {
-			var refreshGraph = function() {
-				var percentage = $('#graph_percent').is(':checked') ? '?percent=1' : '';
-				$.get('$url' + percentage, function (chart) {
-					chart = $.parseJSON(chart);
-					$('#chart_container').highcharts(chart);
-				});
-			};
+        $(document).ready(function() {
+            var refreshGraph = function() {
+                var percentage = $('#graph_percent').is(':checked') ? '?percent=1' : '';
+                $.get('$url' + percentage, function (chart) {
+                    chart = $.parseJSON(chart);
+                    $('#chart_container').highcharts(chart);
+                });
+            };
 
-			$('#graph_percent').change(refreshGraph);
-			refreshGraph();
+            $('#graph_percent').change(refreshGraph);
+            refreshGraph();
 
-		});
+        });
 STRING;
 
         $html = '<div id="chart_container"  style="min-height: 400px"></div>
-				<input type="checkbox" name="graph_percent" id="graph_percent" value="1">
-				<label for="graph_percent">Show graph as stacked percentage</label>';
+                <input type="checkbox" name="graph_percent" id="graph_percent" value="1">
+                <label for="graph_percent">Show graph as stacked percentage</label>';
 
         $this->view->headScript()
                 ->prependFile('/js/highcharts.js')

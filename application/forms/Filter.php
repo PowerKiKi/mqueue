@@ -42,7 +42,6 @@ class Default_Form_Filter extends Zend_Form_SubForm
             )
         ));
 
-
         // Add the title element
         $this->addElement('text', 'title', array(
             'label' => _tr('Title :'),
@@ -58,7 +57,6 @@ class Default_Form_Filter extends Zend_Form_SubForm
         ));
         $this->withSource->getDecorator('Label')->setOptions(array('placement' => 'append'));
 
-
         $this->setDecorators(array(
             'FormElements',
             array(array('row' => 'HtmlTag'), array('tag' => 'dl', 'class' => 'filter')),
@@ -68,7 +66,7 @@ class Default_Form_Filter extends Zend_Form_SubForm
     /**
      * Disable extra field elements
      */
-    function disableExtraFields()
+    public function disableExtraFields()
     {
         $this->removeElement('title');
         $this->removeElement('withSource');

@@ -52,18 +52,17 @@ class UserController extends Zend_Controller_Action
 
                     $this->_helper->FlashMessenger('Logged in.');
 
-
                     $referrer = $values['referrer'];
 
                     // If we have a valid referer to one page of ourselve (except login or logout), redirect to it
                     if (strpos($referrer, $this->view->serverUrl() . $this->view->baseUrl()) === 0
                             && strpos($referrer, $this->view->serverUrl() . $this->view->url(array('controller' => 'user', 'action' => 'login'))) !== 0
                             && strpos($referrer, $this->view->serverUrl() . $this->view->url(array('controller' => 'user', 'action' => 'logout'))) !== 0)
+
                         return $this->_redirect($values['referrer']);
                     else
                         return $this->_helper->redirector('index', 'movie');
-                }
-                else {
+                } else {
                     $this->_helper->FlashMessenger(array('error' => 'Login failed.'));
                 }
             }

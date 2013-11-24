@@ -24,7 +24,6 @@ class Default_Form_QuickSearch extends Zend_Form
             'decorators' => array('ViewHelper'),
         ));
 
-
         $this->addDecorator('FormElements')
                 ->addDecorator('HtmlTag', array('tag' => 'span'))
                 ->addDecorator('Form');

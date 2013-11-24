@@ -10,7 +10,6 @@
 
         v($_GET, $_POST);
 
-
         $sreg = new Zend_OpenId_Extension_Sreg(array(
             'nickname' => true,
             'email' => true,

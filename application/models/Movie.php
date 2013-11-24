@@ -25,7 +25,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
      * @param string $string
      * @return null|string the id extracted
      */
-    static public function extractId($string)
+    public static function extractId($string)
     {
         $valid = preg_match_all("/(\d{7})/", $string, $r);
         if (isset($r[1][0]))
@@ -102,6 +102,7 @@ class Default_Model_Movie extends Default_Model_AbstractModel
         }
 
         $this->id = $extractedId;
+
         return $this;
     }
 

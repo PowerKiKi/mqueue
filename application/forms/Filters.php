@@ -9,7 +9,6 @@ class Default_Form_Filters extends Zend_Form
         $this->setMethod('get');
         $this->setName('filters');
 
-
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore' => true,
@@ -32,7 +31,6 @@ class Default_Form_Filters extends Zend_Form
 
         $this->addDisplayGroup(array('submit', 'clear'), 'filters', array('legend' => _tr('Filter')));
 
-
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $view = $viewRenderer->view;
 
@@ -41,7 +39,6 @@ class Default_Form_Filters extends Zend_Form
             'imageValue' => '1',
         ));
         $this->addDisplayGroup(array('addFilter'), 'addFilterGroup', array('class' => 'addFilter'));
-
 
         $this->setDisplayGroupDecorators(array(
             'FormElements',
@@ -56,6 +53,7 @@ class Default_Form_Filters extends Zend_Form
     public function isValid($data)
     {
         $data = $this->createSubForms($data);
+
         return parent::isValid($data);
     }
 

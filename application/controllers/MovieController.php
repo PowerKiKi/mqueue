@@ -76,7 +76,6 @@ class MovieController extends Zend_Controller_Action
         $this->view->filterName = $form->getValuesText();
         unset($this->view->permanentParams['addFilter']);
 
-
         $allowedSortingKey = array('title', 'date', 'dateSearch');
         for ($i = 0; $i < count($this->view->users); $i++) {
             $allowedSortingKey[] = 'status' . $i;
@@ -134,6 +133,7 @@ class MovieController extends Zend_Controller_Action
         if ($this->getRequest()->isPost() && $form->isValid($request->getPost())) {
             if (Default_Model_User::getCurrent() == null) {
                 $this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
+
                 return;
             }
 

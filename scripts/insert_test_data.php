@@ -18,7 +18,6 @@ try {
     $user2->password = sha1('user2');
     $user2->save();
 
-
     // Insert movies
     $movie1 = Default_Model_MovieMapper::getDbTable()->createRow();
     $movie1->setId('0082198');
@@ -27,7 +26,6 @@ try {
     $movie2 = Default_Model_MovieMapper::getDbTable()->createRow();
     $movie2->setId('0095016');
     $movie2->save();
-
 
     $movie3 = Default_Model_MovieMapper::getDbTable()->createRow();
     $movie3->setId('0096446');

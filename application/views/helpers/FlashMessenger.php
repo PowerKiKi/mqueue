@@ -79,6 +79,7 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
     {
         if ($this->isPostponed) {
             $this->isPostponed = false;
+
             return '';
         }
 
@@ -129,6 +130,7 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
         if (null === $this->_flashMessenger) {
             $this->_flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
         }
+
         return $this->_flashMessenger;
     }
 

@@ -14,6 +14,7 @@ class Default_View_Helper_UrlParams extends Zend_View_Helper_Abstract
     public function urlParams(array $params, $escapeParams = true)
     {
         $this->escapeParams = $escapeParams;
+
         return $this->view->serverUrl() . $this->view->url() . '?' . $this->flatten($params);
     }
 

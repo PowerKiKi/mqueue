@@ -114,6 +114,7 @@ function doUpdate($database)
 
     if ($currentVersion == $targetVersion) {
         echo "already up-to-date\n";
+
         return;
     }
 
@@ -135,4 +136,3 @@ $dbAdapter = $bootstrap->getResource('db');
 $options = $bootstrap->getOption('resources');
 
 doUpdate($options['db']['params']);
-

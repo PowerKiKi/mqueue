@@ -79,4 +79,3 @@ if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
     // Search source for movies with release date
     searchSource();
 }
-

@@ -92,7 +92,6 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->resetRequest();
         $this->resetResponse();
 
-
         // Prepare POST query
         $this->request->setMethod('POST')
                 ->setPost($this->newUserData);

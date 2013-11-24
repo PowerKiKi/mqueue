@@ -31,4 +31,3 @@ $application->bootstrap();
 if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
     $application->run();
 }
-

@@ -20,7 +20,6 @@ class Default_Controller_ActionHelper_CreateSorting extends Zend_Controller_Acti
         $key = $this->getRequest()->getParam($sortParameterName);
         $order = $this->getRequest()->getParam($sortOrderParameterName);
 
-
         $view = $this->getActionController()->view;
         $view->sortParameterName = $sortParameterName;
         $view->sortSelectedKey = $key;

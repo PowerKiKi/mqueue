@@ -80,6 +80,7 @@ class Debug
 
         $ret_map['class'] = $ret_name;
         $ret_map['members'] = $ret_list;
+
         return $ret_map;
     }
 
@@ -105,7 +106,7 @@ class Debug
 
         if (is_object($data)) {
             return self::dump(self::parseObject($data), false);
-        } else if (is_array($data)) {
+        } elseif (is_array($data)) {
             echo '<table style="padding: 0px; border: solid 2px red; border-collapse:collapse;">';
             foreach ($data as $key1 => $elem1) {
                 echo '<tr><td style="padding: 0px; border: solid 1px grey;"><pre>';
@@ -115,12 +116,13 @@ class Debug
                 echo '</td></tr>';
             }
             echo '</table>';
-        } else if (null === $data) {
+        } elseif (null === $data) {
             echo "NULL VALUE";
         } else {
             echo "<pre>";
             self::varDump($data);
             echo "</pre>";
+
             return;
         }
     }

@@ -25,7 +25,6 @@ class StatusController extends Zend_Controller_Action
         if ($idMovie == null)
             throw new Exception('no valid movie specified.');
 
-
         // If new rating is specified and we are logged in, save it and create movie if needed
         $rating = $this->_request->getParam('rating');
         if (isset($rating) && Default_Model_User::getCurrent()) {
@@ -40,7 +39,6 @@ class StatusController extends Zend_Controller_Action
         } else {
             $status = Default_Model_StatusMapper::find($idMovie, Default_Model_User::getCurrent());
         }
-
 
         if (!$jsonCallback) {
             $this->view->status = $status;

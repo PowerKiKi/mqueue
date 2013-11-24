@@ -16,7 +16,6 @@ class StatusControllerTest extends AbstractControllerTestCase
 
         $this->assertQueryContentContains('p', 'no valid movie specified');
 
-
         // Can view any movie status (even non-existing movies)
         $url .= '/1234567';
         $this->dispatch($url);

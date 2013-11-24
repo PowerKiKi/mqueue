@@ -57,7 +57,6 @@ function merge($dir, $tag)
         //
         $title = $m[1];
 
-
         $r = '|(<a href="/title/tt\d\d\d\d\d\d\d/" onclick[^>]*>.*)</td></tr>|U';
         preg_match_all($r, $file, $m);
 
@@ -70,7 +69,6 @@ function merge($dir, $tag)
             }
             $m[1][0] = '<a href="' . $m[1][0] . "\">" . $title . "</a>";
         }
-
 
         echo "<h1>$title</h1>";
         echo '<div style="height: 10em; overflow: scroll; background: #EEEEEE">';

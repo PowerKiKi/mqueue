@@ -40,7 +40,6 @@ class Default_View_Helper_Activity extends Zend_View_Helper_Abstract
             }
             $movie = $cacheMovie[$status->idMovie];
 
-
             $result .= '<tr>';
             if (in_array('date', $columns))
                 $result .= '<td class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</td>';
