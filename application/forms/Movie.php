@@ -11,6 +11,7 @@ class Default_Form_Movie extends Zend_Form
         $this->addElement('text', 'id', array(
             'label'      => _tr('IMDb url or id:'),
             'required'   => true,
+            'autofocus'   => true,
             'validators' => array(
                 array('validator' => 'Regex', 'options' => array("/(\d{7})/"))
                 )

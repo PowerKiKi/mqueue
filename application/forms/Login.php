@@ -10,6 +10,7 @@ class Default_Form_Login extends Zend_Form
         // Add the email element
         $this->addElement('text', 'email', array(
             'label'      => _tr('Email:'),
+			'autofocus'  => true,
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(
@@ -29,7 +30,7 @@ class Default_Form_Login extends Zend_Form
             'ignore'   => true,
             'label'    => _tr('Login'),
         ));
-		
+
 		// Add referrer to redirect after login
 		$this->addElement('hidden', 'referrer');
 

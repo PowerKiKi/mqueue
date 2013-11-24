@@ -10,6 +10,7 @@ class Default_Form_User extends Zend_Form
         // Add the nickname element
         $this->addElement('text', 'nickname', array(
             'label'      => _tr('Nickname:'),
+			'autofocus'  => true,
             'required'   => true,
         	'filters' => array('filter' => array('filter' => 'stringTrim')),
             'validators' => array(

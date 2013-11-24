@@ -10,6 +10,7 @@ class Default_Form_Import extends Zend_Form
         // Add the comment element
         $this->addElement('text', 'url', array(
             'label'      => _tr('IMDb "Vote History" page url:'),
+			'autofocus'  => true,
             'required'   => true,
         	'description' => _tr('eg: http://www.imdb.com/mymovies/list?l=39480251'),
             'validators' => array(
