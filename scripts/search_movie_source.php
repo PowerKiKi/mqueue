@@ -78,7 +78,7 @@ if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME']))
 	Default_Model_MovieMapper::deleteObsoleteSources();
 
     // Fetch movie data to update title and release date
-//	fetchMovieData(20, 1 * 60);
+	fetchMovieData(20, 1 * 60);
 
     // Search source for movies with release date
     searchSource();

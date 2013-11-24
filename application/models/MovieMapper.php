@@ -41,9 +41,9 @@ abstract class Default_Model_MovieMapper extends Default_Model_AbstractMapper
 
 		$select = self::getDbTable()->select()->setIntegrityCheck(false)
 			->from('movie')
-			->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Default_Model_Status::Need , array())
+			->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Default_Model_Status::Need, array())
 			->where('source IS NULL')
-			->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't search for same movie more than once a month
+			->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL searchCount MONTH)') // Search for same movie with an incrementally longer interval (1 month, 2 month, 3 month, etc.)
 			->where('dateRelease IS NOT NULL') // Movie must be released ...
 			->where('dateRelease < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // ...at least released one month ago, or longer
 			->group('movie.id')
