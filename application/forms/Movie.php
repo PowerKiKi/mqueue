@@ -4,8 +4,8 @@ class Default_Form_Movie extends Zend_Form
 {
     public function init()
     {
-        // Set the method for the display form to POST
-        $this->setMethod('post');
+        // Set the method for the display form to GET
+        $this->setMethod('get');
 
         // Add the comment element
         $this->addElement('text', 'id', array(

@@ -83,8 +83,8 @@ class MovieController extends Zend_Controller_Action
 		$this->view->permanentParams = $form->getValues();
 		$this->view->filterName = $form->getValuesText();
 		unset($this->view->permanentParams['addFilter']);
-        
-        
+
+
         $allowedSortingKey = array('title', 'date', 'dateSearch');
         for ($i = 0; $i < count($this->view->users); $i++)
         {
@@ -117,9 +117,9 @@ class MovieController extends Zend_Controller_Action
 		$request = $this->getRequest();
 		$form    = new Default_Form_Movie();
 
-		if ($this->getRequest()->isPost())
+		if ($this->_getParam('id'))
 		{
-			if ($form->isValid($request->getPost()))
+			if ($form->isValid($request->getParams()))
 			{
 				$values = $form->getValues();
 				$movie = Default_Model_MovieMapper::find(Default_Model_Movie::extractId($values['id']));
