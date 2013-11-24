@@ -3,32 +3,31 @@
 <p><?php echo $this->link($this->movie, true) ?></p>
 <h3><?php echo $this->translate('Current status'); ?></h3>
 <table>
-<tr>
-	<th><?php echo $this->translate('User'); ?></th>
-	<th><?php echo $this->translate('Rating'); ?></th>
-</tr>
-<?php
-
+    <tr>
+        <th><?php echo $this->translate('User'); ?></th>
+        <th><?php echo $this->translate('Rating'); ?></th>
+    </tr>
+    <?php
 // Table data
-foreach ($this->users as $user)
-{
-	echo '<tr>';
-	echo '<td><a href="' . $this->url(array(
-										'controller' => 'user',
-										'action' => 'view',
-										'id' => $user->id
-										),
-									'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
-	echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
+    foreach ($this->users as $user) {
+        echo '<tr>';
+        echo '<td><a href="' . $this->url(array(
+            'controller' => 'user',
+            'action' => 'view',
+            'id' => $user->id
+                ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
+        echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
 
-	echo '</tr>';
-}
-?>
+        echo '</tr>';
+    }
+    ?>
 </table>
 <h3><?php echo $this->translate('Activity'); ?></h3>
 <?php echo $this->activity($this->movieActivity, array('movie')); ?>
-<?php echo $this->alternateFormats(array(
-	'rss' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id), 'activityMovie', true),
-	), 'mQueue - ' . $this->translate('Activity for %s', array($this->movie->getTitle()))); ?>
+<?php
+echo $this->alternateFormats(array(
+    'rss' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id), 'activityMovie', true),
+        ), 'mQueue - ' . $this->translate('Activity for %s', array($this->movie->getTitle())));
+?>
 
 <?php echo $this->paginationControl($this->movieActivity); ?>

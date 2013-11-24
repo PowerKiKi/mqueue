@@ -1,5 +1,5 @@
 
 $(document).ready(function()
 {
-	$(".timestamp").timeago();
+    $(".timestamp").timeago();
 });

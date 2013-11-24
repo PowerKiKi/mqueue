@@ -1,4 +1,5 @@
 <?php
+
 require_once(__DIR__ . '/../public/index.php');
 
 $settingName = 'databaseVersion'; // This is the setting name used in the database to store the version information
@@ -10,20 +11,18 @@ $sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
  */
 function getPatchVersion()
 {
-	global $sqlPath;
-	$lastVersion = 0;
-	$d = dir($sqlPath);
-	while (false !== ($entry = $d->read()))
-	{
-		if ( preg_match('/^version\.(\d+)\.sql$/i', $entry, $a))
-		{
-			if ((int)$a[1] > $lastVersion)
-			$lastVersion = (int)$a[1];
-		}
-	}
-	$d->close();
+    global $sqlPath;
+    $lastVersion = 0;
+    $d = dir($sqlPath);
+    while (false !== ($entry = $d->read())) {
+        if (preg_match('/^version\.(\d+)\.sql$/i', $entry, $a)) {
+            if ((int) $a[1] > $lastVersion)
+                $lastVersion = (int) $a[1];
+        }
+    }
+    $d->close();
 
-	return $lastVersion;
+    return $lastVersion;
 }
 
 /**
@@ -35,35 +34,31 @@ function getPatchVersion()
  */
 function buildSQL($currentVersion, $targetVersion)
 {
-	global $sqlPath;
+    global $sqlPath;
 
-	if ($currentVersion > $targetVersion)
-		throw new Exception('Cannot downgrade versions. Target version must be higher than current version');
+    if ($currentVersion > $targetVersion)
+        throw new Exception('Cannot downgrade versions. Target version must be higher than current version');
 
-	$sql = "START TRANSACTION;\n";
+    $sql = "START TRANSACTION;\n";
 
-	$missingVersions = array();
-	for ($v = $currentVersion + 1; $v <= $targetVersion; $v++)
-	{
-		$file = $sqlPath . 'version.' . $v . '.sql';
-		if (is_file($file))
-		{
-			$sql .= "\n-- -------- VERSION $v BEGINS ------------------------\n";
-			$sql .= file_get_contents($file);
-			$sql .= "\n-- -------- VERSION $v ENDS --------------------------\n";
-		}
-		else
-		{
-			$missingVersions[]= $v;
-		}
-	}
+    $missingVersions = array();
+    for ($v = $currentVersion + 1; $v <= $targetVersion; $v++) {
+        $file = $sqlPath . 'version.' . $v . '.sql';
+        if (is_file($file)) {
+            $sql .= "\n-- -------- VERSION $v BEGINS ------------------------\n";
+            $sql .= file_get_contents($file);
+            $sql .= "\n-- -------- VERSION $v ENDS --------------------------\n";
+        } else {
+            $missingVersions[] = $v;
+        }
+    }
 
-	$sql .= "\nCOMMIT;\n";
+    $sql .= "\nCOMMIT;\n";
 
-	if (count($missingVersions))
-	throw new Exception('Missing SQL file for versions: ' . join(',', $missingVersions));
+    if (count($missingVersions))
+        throw new Exception('Missing SQL file for versions: ' . join(',', $missingVersions));
 
-	return $sql;
+    return $sql;
 }
 
 /**
@@ -80,22 +75,19 @@ function executeBatchSql($sql, $database)
     mysql_select_db($database['dbname']);
     mysql_query("SET NAMES UTF8");
 
-	$queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
-	foreach ($queries as $query)
-	{
-		if (strlen(trim($query)) > 0)
-		{
-			if (mysql_query($query) === false)
-			{
-				$error = mysql_error();
-				echo $error;
-				
-				return $error;	
-			}
-		}
-	}
-	
-	return '';
+    $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
+    foreach ($queries as $query) {
+        if (strlen(trim($query)) > 0) {
+            if (mysql_query($query) === false) {
+                $error = mysql_error();
+                echo $error;
+
+                return $error;
+            }
+        }
+    }
+
+    return '';
 }
 
 /**
@@ -103,48 +95,38 @@ function executeBatchSql($sql, $database)
  */
 function doUpdate($database)
 {
-	global $settingName;
+    global $settingName;
 
-	try
-	{
-		$currentVersion = (integer)Default_Model_Setting::get($settingName, 0)->value;
-	}
-	catch (Exception $e)
-	{
-		if (strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0)
-		{
-	 		$currentVersion = -1;
-		}
-		else
-		{
-			die('Caught exception: ' . $e->getMessage() . "\n");
-		}
-	}
+    try {
+        $currentVersion = (integer) Default_Model_Setting::get($settingName, 0)->value;
+    } catch (Exception $e) {
+        if (strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0) {
+            $currentVersion = -1;
+        } else {
+            die('Caught exception: ' . $e->getMessage() . "\n");
+        }
+    }
 
-	$targetVersion = getPatchVersion();
+    $targetVersion = getPatchVersion();
 
-	echo 'current version is: ' . $currentVersion . "\n";
-	echo 'target version is : ' . $targetVersion . "\n";
+    echo 'current version is: ' . $currentVersion . "\n";
+    echo 'target version is : ' . $targetVersion . "\n";
 
-	if ($currentVersion == $targetVersion)
-	{
-		echo "already up-to-date\n";
-		return;
-	}
+    if ($currentVersion == $targetVersion) {
+        echo "already up-to-date\n";
+        return;
+    }
 
-	$sql = buildSQL($currentVersion, $targetVersion);
-	echo $sql;
-	echo "\n_________________________________________________\n";
-	echo "updating...\n";
-	if (executeBatchSql($sql, $database))
-	{
-		echo "\nFAILED ! see mysql error above, the update was rolled back";
-	}
-	else
-	{
-		Default_Model_Setting::set($settingName, $targetVersion);
-		echo "\nsuccessful update to version $targetVersion !\n";
-	}
+    $sql = buildSQL($currentVersion, $targetVersion);
+    echo $sql;
+    echo "\n_________________________________________________\n";
+    echo "updating...\n";
+    if (executeBatchSql($sql, $database)) {
+        echo "\nFAILED ! see mysql error above, the update was rolled back";
+    } else {
+        Default_Model_Setting::set($settingName, $targetVersion);
+        echo "\nsuccessful update to version $targetVersion !\n";
+    }
 }
 
 $bootstrap = $application->getBootstrap();

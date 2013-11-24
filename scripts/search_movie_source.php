@@ -3,16 +3,14 @@
 /**
  * This script will search for source for needed movies that does not have sources yet
  */
-
 require_once(__DIR__ . '/../public/index.php');
 
 function movieProcessor(Closure $func, $movies, $sleep)
 {
     $total = $movies->count();
     $count = 0;
-    foreach ($movies as $movie)
-    {
-        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas'). "\t";
+    foreach ($movies as $movie) {
+        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas') . "\t";
         flush();
 
         $func($movie);
@@ -43,10 +41,10 @@ function searchSource()
         $movie->setSource($best);
         $movie->save();
 
-        echo $movie->source ?: '[source not found]';
+        echo $movie->source ? : '[source not found]';
     };
 
-     // 5 minutes pause between search, not to stress third-party servers
+    // 5 minutes pause between search, not to stress third-party servers
     $total = movieProcessor($searcher, $movies, 5 * 60);
 
     echo $total . " movie sources updated in database\n";
@@ -70,15 +68,13 @@ function fetchMovieData($limit = null, $sleep = 0)
     echo $total . " movies updated in database\n";
 }
 
-
 // we only do things if this file were NOT included (otherwise, the file was included to access misc functions)
-if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME']))
-{
-	// Clean up obsolete sources
-	Default_Model_MovieMapper::deleteObsoleteSources();
+if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
+    // Clean up obsolete sources
+    Default_Model_MovieMapper::deleteObsoleteSources();
 
     // Fetch movie data to update title and release date
-	fetchMovieData(20, 1 * 60);
+    fetchMovieData(20, 1 * 60);
 
     // Search source for movies with release date
     searchSource();

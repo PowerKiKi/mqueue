@@ -5,9 +5,9 @@
  */
 class Default_Model_DbTable_Status extends Zend_Db_Table_Abstract
 {
+
     /** Table name */
-    protected $_name    = 'status';
+    protected $_name = 'status';
+    protected $_rowClass = 'Default_Model_Status';
 
-	protected $_rowClass = 'Default_Model_Status';
 }
-

@@ -2,15 +2,14 @@ span.gravatar { display: inline-block; width: 16px; height: 16px;}
 span.gravatar.big { width: 96px; height: 96px;}
 select.filterUser option { padding-left: 20px; background-repeat: no-repeat; height: 16px; }
 <?php
-foreach ($this->users as $user)
-{
-	$url = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?';
-	$url .= '&default=identicon';
-	$urlSmall = $url . '&size=16';
-	$urlBig = $url . '&size=96';
-?>
+foreach ($this->users as $user) {
+    $url = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?';
+    $url .= '&default=identicon';
+    $urlSmall = $url . '&size=16';
+    $urlBig = $url . '&size=96';
+    ?>
 span.gravatar.user_<?php echo $user->id; ?>, select.filterUser option[value='<?php echo $user->id; ?>'] { background-image: url(<?php echo $urlSmall; ?>); }
 span.gravatar.user_<?php echo $user->id; ?>.big {background-image: url(<?php echo $urlBig; ?>); }
-<?php
+    <?php
 }
 

@@ -1,60 +1,59 @@
 <?php echo $this->doctype() ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width">
-  <?php
-  	echo $this->headTitle('mQueue')->setSeparator(' - ');
-  	echo $this->headLink(array('rel' => 'icon',
-                                  'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
-                                  'PREPEND'))
-  			->appendStylesheet('/css/application.css', 'all')
-  			->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
-  			->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
-  			. "\n";
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width">
+            <?php
+            echo $this->headTitle('mQueue')->setSeparator(' - ');
+            echo $this->headLink(array('rel' => 'icon',
+                        'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
+                        'PREPEND'))
+                    ->appendStylesheet('/css/application.css', 'all')
+                    ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
+                    ->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+            . "\n";
 
-  	// Set localization file for timeago
-	$lang = Zend_Registry::get('Zend_Locale')->getLanguage();
-	$path = '/js/min/jquery.timeago.' . $lang . '.js';
-	if (is_file(APPLICATION_PATH . '/../public' . $path))
-	{
-  		$this->headScript()->prependFile($path);
-	}
+            // Set localization file for timeago
+            $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
+            $path = '/js/min/jquery.timeago.' . $lang . '.js';
+            if (is_file(APPLICATION_PATH . '/../public' . $path)) {
+                $this->headScript()->prependFile($path);
+            }
 
-	echo $this->headScript()
-			->prependFile(array(
-				'/js/min/application.js',
-				array(
-					'/js/jquery.timeago.js',
-					'/js/local.js',
-					'/js/both.js',
-					'/js/jquery-2.0.3.js'
-					)
-				));
+            echo $this->headScript()
+                    ->prependFile(array(
+                        '/js/min/application.js',
+                        array(
+                            '/js/jquery.timeago.js',
+                            '/js/local.js',
+                            '/js/both.js',
+                            '/js/jquery-2.0.3.js'
+                        )
+            ));
 
-	echo $this->googleAnalytics();
-	echo $this->googleWebmasterTools();
-  ?>
-</head>
-<body>
-<div id="container">
-	<div id="header">
-		<?php echo $this->languageSelector(); ?>
-		<?php echo new Default_Form_QuickSearch(); ?>
-		<div id="header-logo">
-			<h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1>
-			<span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
-		</div>
-		<div id="header-navigation"><span>&nbsp;</span>
-			<?php echo $this->navigation()->menu(); ?>
-			<?php echo $this->loginState(); ?>
-		</div>
-	</div>
-	<div id="content">
-		<?php echo $this->flashMessenger(); ?>
-		<?php echo $this->layout()->content; ?>
-	</div>
-</div>
-<div id="footer"><?php echo $this->footer(); ?></div>
-</body>
+            echo $this->googleAnalytics();
+            echo $this->googleWebmasterTools();
+            ?>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <?php echo $this->languageSelector(); ?>
+                <?php echo new Default_Form_QuickSearch(); ?>
+                <div id="header-logo">
+                    <h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1>
+                    <span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
+                </div>
+                <div id="header-navigation"><span>&nbsp;</span>
+                    <?php echo $this->navigation()->menu(); ?>
+                    <?php echo $this->loginState(); ?>
+                </div>
+            </div>
+            <div id="content">
+                <?php echo $this->flashMessenger(); ?>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+        <div id="footer"><?php echo $this->footer(); ?></div>
+    </body>
 </html>

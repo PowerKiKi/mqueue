@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Noumenal PHP Library.
  *
@@ -50,11 +51,12 @@
  */
 class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
 {
+
     /**
      * @var Zend_Controller_Action_Helper_FlashMessenger $_flashMessenger
      */
     private $_flashMessenger = null;
-    
+
     /**
      * If the flashmessenger is postoned it will do nothing on first call.
      * @var boolean $isPostponed
@@ -66,32 +68,29 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
      */
     public function flashMessenger()
     {
-    	return $this;
+        return $this;
     }
-    
+
     /**
      * Render the flash messages
      * @return string flash messages formatted as div
      */
     public function __toString()
     {
-    	if ($this->isPostponed)
-    	{
-    		$this->isPostponed = false;
-    		return '';
-    	}
-    		
+        if ($this->isPostponed) {
+            $this->isPostponed = false;
+            return '';
+        }
+
         $flashMessenger = $this->_getFlashMessenger();
 
         //get messages from previous requests
         $messages = $flashMessenger->getMessages();
 
         //add any messages from this request
-        if ($flashMessenger->hasCurrentMessages())
-        {
+        if ($flashMessenger->hasCurrentMessages()) {
             $messages = array_merge(
-                $messages,
-                $flashMessenger->getCurrentMessages()
+                    $messages, $flashMessenger->getCurrentMessages()
             );
             //we don't need to display them twice.
             $flashMessenger->clearCurrentMessages();
@@ -101,26 +100,24 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
         $output = '';
 
         //process messages
-        foreach ($messages as $message)
-        {
-        	$level = 'notice';
-            if (is_array($message))
-            {
+        foreach ($messages as $message) {
+            $level = 'notice';
+            if (is_array($message)) {
                 list($level, $message) = each($message);
             }
-            $output .= '<div class="flashmessenger ' . $level .'">' . $message . '</div>';
+            $output .= '<div class="flashmessenger ' . $level . '">' . $message . '</div>';
         }
 
         return $output;
     }
-    
+
     /**
      * Postpone the flash messages to the next next call. The next call will return empty string.
      * @param $isPostponed
      */
     public function postpone($isPostponed = true)
     {
-    	$this->isPostponed = $isPostponed;
+        $this->isPostponed = $isPostponed;
     }
 
     /**
@@ -129,10 +126,10 @@ class Default_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
      */
     protected function _getFlashMessenger()
     {
-        if (null === $this->_flashMessenger)
-        {
+        if (null === $this->_flashMessenger) {
             $this->_flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
         }
         return $this->_flashMessenger;
     }
+
 }

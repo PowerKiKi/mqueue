@@ -1,51 +1,43 @@
 <?php $this->headTitle(_tr('Users')); ?>
 <h2><?php echo $this->translate('Users list'); ?></h2>
 <table>
-<?php
-
+    <?php
 // Table header
-echo '<tr>';
-echo '<th>' . $this->translate('User') . '</th>';
-foreach (Default_Model_Status::$ratings as $val => $name)
-{
-	echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
-}
-echo '<th>' . $this->translate('Rated') . '</th>';
-echo '<th>' . $this->translate('Not rated') . '</th>';
-echo '</tr>';
+    echo '<tr>';
+    echo '<th>' . $this->translate('User') . '</th>';
+    foreach (Default_Model_Status::$ratings as $val => $name) {
+        echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
+    }
+    echo '<th>' . $this->translate('Rated') . '</th>';
+    echo '<th>' . $this->translate('Not rated') . '</th>';
+    echo '</tr>';
 
 // Table data
-foreach ($this->users as $user)
-{
-	echo '<tr>';
-	echo '<td class="user"><a href="' . $this->url(array(
-										'controller' => 'user',
-										'action' => 'view',
-										'id' => $user->id
-										),
-									'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
-	$stats = $user->getStatistics();
-	foreach (Default_Model_Status::$ratings as $val => $name)
-	{
-		echo '<td class="number"><a href="' . $this->url(array(
-										'controller' => 'movie',
-										'action' => 'index'
-										),
-									'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=' . $val . '">' . $stats[$val] . '</a></td>';
-	}
-	echo '<td class="number"><a href="' . $this->url(array(
-										'controller' => 'movie',
-										'action' => 'index'
-										),
-									'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=-1">' . $stats['rated'] . '</a></td>';
-	echo '<td class="number"><a href="' . $this->url(array(
-										'controller' => 'movie',
-										'action' => 'index'
-										),
-									'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=0">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
-	echo '</tr>';
-}
-?>
+    foreach ($this->users as $user) {
+        echo '<tr>';
+        echo '<td class="user"><a href="' . $this->url(array(
+            'controller' => 'user',
+            'action' => 'view',
+            'id' => $user->id
+                ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
+        $stats = $user->getStatistics();
+        foreach (Default_Model_Status::$ratings as $val => $name) {
+            echo '<td class="number"><a href="' . $this->url(array(
+                'controller' => 'movie',
+                'action' => 'index'
+                    ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=' . $val . '">' . $stats[$val] . '</a></td>';
+        }
+        echo '<td class="number"><a href="' . $this->url(array(
+            'controller' => 'movie',
+            'action' => 'index'
+                ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=-1">' . $stats['rated'] . '</a></td>';
+        echo '<td class="number"><a href="' . $this->url(array(
+            'controller' => 'movie',
+            'action' => 'index'
+                ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=0">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
+        echo '</tr>';
+    }
+    ?>
 </table>
 
 <h2><?php echo $this->translate('Timeline'); ?></h2>

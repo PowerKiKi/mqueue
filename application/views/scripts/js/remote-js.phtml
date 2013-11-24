@@ -1,13 +1,13 @@
-<?php $jsBasePath = APPLICATION_PATH . '/../public/js/' . (APPLICATION_ENV != 'development' ? 'min/' : '');?>/*global $, document, injectStatus */
+<?php $jsBasePath = APPLICATION_PATH . '/../public/js/' . (APPLICATION_ENV != 'development' ? 'min/' : ''); ?>/*global $, document, injectStatus */
 (function(){
-	<?php require_once($jsBasePath . 'jquery-2.0.3.js'); ?>
-	(function($){
-		<?php require_once($jsBasePath . 'both.js'); ?>
+<?php require_once($jsBasePath . 'jquery-2.0.3.js'); ?>
+(function($){
+<?php require_once($jsBasePath . 'both.js'); ?>
 
-		$(document).ready(function()
-		{
-			$("head").append('<link href="<?php echo $this->cacheStamp('/css/both.css'); ?>" media="screen" rel="stylesheet" type="text/css" />');
-			mqueue.monitorLinks('<?php echo $this->serverUrl() . $this->baseUrl('') ?>');
-		});
-	})(jQuery.noConflict(true));
+$(document).ready(function()
+{
+$("head").append('<link href="<?php echo $this->cacheStamp('/css/both.css'); ?>" media="screen" rel="stylesheet" type="text/css" />');
+mqueue.monitorLinks('<?php echo $this->serverUrl() . $this->baseUrl('') ?>');
+});
+})(jQuery.noConflict(true));
 })();

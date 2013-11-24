@@ -8,67 +8,61 @@ $entries = array();
 
 $cacheUser = array();
 $cacheMovie = array();
-foreach ($this->activity as $status)
-{
-	if (!array_key_exists($status->idUser, $cacheUser))
-	{
-		$cacheUser[$status->idUser] = Default_Model_UserMapper::find($status->idUser);
-	}
-	$user = $cacheUser[$status->idUser];
+foreach ($this->activity as $status) {
+    if (!array_key_exists($status->idUser, $cacheUser)) {
+        $cacheUser[$status->idUser] = Default_Model_UserMapper::find($status->idUser);
+    }
+    $user = $cacheUser[$status->idUser];
 
-	if (!array_key_exists($status->idMovie, $cacheMovie))
-	{
-		$cacheMovie[$status->idMovie] = Default_Model_MovieMapper::find($status->idMovie);
-	}
-	$movie = $cacheMovie[$status->idMovie];
+    if (!array_key_exists($status->idMovie, $cacheMovie)) {
+        $cacheMovie[$status->idMovie] = Default_Model_MovieMapper::find($status->idMovie);
+    }
+    $movie = $cacheMovie[$status->idMovie];
 
 
-	$date = new Zend_Date($status->dateUpdate);
-	$text = '<p><a href="' . $this->serverUrl() . $this->url(array(
-										'controller' => 'user',
-										'action' => 'view',
-										'id' => $user->id
-										),
-									'singleid', true) . '">' . $this->gravatar($user). ' ' . $this->escape($user->nickname) . '</a> ' .
-			'<a href="' . $this->serverUrl() . $this->url(array(
-										'controller' => 'movie',
-										'action' => 'view',
-										'id' => $movie->id
-										),
-									'singleid', true) . '">' . $this->escape($movie->getTitle()) . '</a> ' .
-			$status->getName() . '</p>';
-	$text .= '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
+    $date = new Zend_Date($status->dateUpdate);
+    $text = '<p><a href="' . $this->serverUrl() . $this->url(array(
+                'controller' => 'user',
+                'action' => 'view',
+                'id' => $user->id
+                    ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> ' .
+            '<a href="' . $this->serverUrl() . $this->url(array(
+                'controller' => 'movie',
+                'action' => 'view',
+                'id' => $movie->id
+                    ), 'singleid', true) . '">' . $this->escape($movie->getTitle()) . '</a> ' .
+            $status->getName() . '</p>';
+    $text .= '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
 
-	$title = $this->escape($user->nickname) . ' - ' . $this->escape($movie->getTitle()) . ' - ' . $status->getName();
+    $title = $this->escape($user->nickname) . ' - ' . $this->escape($movie->getTitle()) . ' - ' . $status->getName();
 
-	$entry = array(
-		'author' => 'mQueue',
-		'title' => $title,
-		'link'=> $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true),
-		'description' => $title,
-		'content' => $text,
-		'lastUpdate' => $date->getTimestamp(),
-	);
-	
-	if ($movie->source)
-	{
-		$entry['enclosure'] = array(
-			array(
-				'url' => $movie->source,
-				'type' => 'application/x-bittorrent',
-			)
-		);
-	}
-	
-	array_push($entries, $entry);
+    $entry = array(
+        'author' => 'mQueue',
+        'title' => $title,
+        'link' => $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true),
+        'description' => $title,
+        'content' => $text,
+        'lastUpdate' => $date->getTimestamp(),
+    );
+
+    if ($movie->source) {
+        $entry['enclosure'] = array(
+            array(
+                'url' => $movie->source,
+                'type' => 'application/x-bittorrent',
+            )
+        );
+    }
+
+    array_push($entries, $entry);
 }
 
 // Create the RSS array
 $rss = array(
-	'title' => 'mQueue - ' . $this->title,
-	'link' => $this->serverUrl() . $this->url(array()),
-	'charset' => 'UTF-8',
-	'entries' => $entries
+    'title' => 'mQueue - ' . $this->title,
+    'link' => $this->serverUrl() . $this->url(array()),
+    'charset' => 'UTF-8',
+    'entries' => $entries
 );
 
 // Import the array

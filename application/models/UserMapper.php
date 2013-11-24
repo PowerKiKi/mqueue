@@ -2,6 +2,7 @@
 
 abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
 {
+
     /**
      * Create and save a new user
      * @param array $values
@@ -14,32 +15,32 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
         $user->email = $values['email'];
         $user->password = sha1($values['password']);
         $user->save();
-        
+
         return $user;
     }
-    
-	/**
-	 * Finds a user by its email and password (not hashed)
-	 * @param string $email
-	 * @param string $password
+
+    /**
+     * Finds a user by its email and password (not hashed)
+     * @param string $email
+     * @param string $password
      * @return Default_Model_User|null
-	 */
-	public static function findEmailPassword($email, $password)
-	{
-		$select = self::getDbTable()->select()
-			->where('email = ?', $email)
-			->where('password = SHA1(?)', $password);
+     */
+    public static function findEmailPassword($email, $password)
+    {
+        $select = self::getDbTable()->select()
+                ->where('email = ?', $email)
+                ->where('password = SHA1(?)', $password);
 
-		$record = self::getDbTable()->fetchRow($select);
+        $record = self::getDbTable()->fetchRow($select);
 
-		return $record;
-	}
+        return $record;
+    }
 
-	/**
-	 * Finds a user by its ID
-	 * @param integer $id
+    /**
+     * Finds a user by its ID
+     * @param integer $id
      * @return Default_Model_User|null
-	 */
+     */
     public static function find($id)
     {
         $result = self::getDbTable()->find($id);
@@ -57,4 +58,5 @@ abstract class Default_Model_UserMapper extends Default_Model_AbstractMapper
 
         return $resultSet;
     }
+
 }

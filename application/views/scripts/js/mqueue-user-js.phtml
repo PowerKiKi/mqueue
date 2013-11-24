@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           mQueue - Injects buttons to rate IMDb movies on <?php echo $this->serverUrl() . $this->baseUrl(''); ?> 
+// @name           mQueue - Injects buttons to rate IMDb movies on <?php echo $this->serverUrl() . $this->baseUrl(''); ?>
 // @namespace      mQueue
 // @include        *
 // @exclude        <?php echo $this->serverUrl() . $this->baseUrl(''); ?>*
@@ -11,6 +11,6 @@
 if (document.evaluate('count(//a[contains(@href, "title/tt")])', document, null, XPathResult.NUMBER_TYPE, null).numberValue > 0)
 {
     var script = document.createElement('script');
-    script.src = '<?php echo $this->serverUrl() . $this->baseUrl('js/remote.js')?>';
+    script.src = '<?php echo $this->serverUrl() . $this->baseUrl('js/remote.js'); ?>';
     document.getElementsByTagName('head')[0].appendChild(script);
 }

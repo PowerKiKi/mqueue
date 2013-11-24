@@ -5,95 +5,95 @@ $preloader_width : 5 * $status_dimension;
 $preloader_height: 6px;
 
 .mqueue_status {
-  display: inline-block !important;
-  clear: none !important;
-  width: $status_dimension !important;
-  height: $status_dimension !important;
-  margin: 0px !important;
-  padding: 0px !important;
-  background-image: url("../images/status.png") !important;
-  background-color: transparent !important;
-  > span {
-    display: none !important;
-  }
+    display: inline-block !important;
+    clear: none !important;
+    width: $status_dimension !important;
+    height: $status_dimension !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    background-image: url("../images/status.png") !important;
+    background-color: transparent !important;
+    > span {
+        display: none !important;
+    }
 }
 
 
 .mqueue_status_links {
-  display: inline-block !important;
-  vertical-align: text-bottom;
-  white-space: nowrap;
-  overflow: hidden;
-  height: $status_dimension;
-  > .preloader {
-    display: none;
-  }
-  &.loading {
-
+    display: inline-block !important;
+    vertical-align: text-bottom;
+    white-space: nowrap;
+    overflow: hidden;
+    height: $status_dimension;
     > .preloader {
-		display: block !important;
-		margin-top: ($status_dimension - $preloader_height) / 2;
-		height: $preloader_height;
-		background-color: $color1;
-		@include border-radius(3px);
-		@include animation-name(preloaderAnimation);
-		@include animation-duration(1.5s);
-		@include animation-iteration-count(infinite);
-		@include animation-timing-function(ease-out);
+        display: none;
+    }
+    &.loading {
 
+        > .preloader {
+            display: block !important;
+            margin-top: ($status_dimension - $preloader_height) / 2;
+            height: $preloader_height;
+            background-color: $color1;
+            @include border-radius(3px);
+            @include animation-name(preloaderAnimation);
+            @include animation-duration(1.5s);
+            @include animation-iteration-count(infinite);
+            @include animation-timing-function(ease-out);
+
+        }
+        > .mqueue_status {
+            display: none !important;
+        }
     }
-    > .mqueue_status {
-      display: none !important;
-    }
-  }
 }
 
 @include keyframes(preloaderAnimation) {
-	0% {
-		width: 0px;
-	}
+    0% {
+        width: 0px;
+    }
 
-	100% {
-		width: $preloader_width;
-	}
+    100% {
+        width: $preloader_width;
+    }
 }
 
 .mqueue_status_1 {
-  background-position: 0px 0px !important;
+    background-position: 0px 0px !important;
 }
 
 a.mqueue_status_1:hover, .mqueue_status_1.current {
-  background-position: -16px 0px !important;
+    background-position: -16px 0px !important;
 }
 
 .mqueue_status_2 {
-  background-position: 0px -16px !important;
+    background-position: 0px -16px !important;
 }
 
 a.mqueue_status_2:hover, .mqueue_status_2.current {
-  background-position: -16px -16px !important;
+    background-position: -16px -16px !important;
 }
 
 .mqueue_status_3 {
-  background-position: 0px -32px !important;
+    background-position: 0px -32px !important;
 }
 
 a.mqueue_status_3:hover, .mqueue_status_3.current {
-  background-position: -16px -32px !important;
+    background-position: -16px -32px !important;
 }
 
 .mqueue_status_4 {
-  background-position: 0px -48px !important;
+    background-position: 0px -48px !important;
 }
 
 a.mqueue_status_4:hover, .mqueue_status_4.current {
-  background-position: -16px -48px !important;
+    background-position: -16px -48px !important;
 }
 
 .mqueue_status_5 {
-  background-position: 0px -64px !important;
+    background-position: 0px -64px !important;
 }
 
 a.mqueue_status_5:hover, .mqueue_status_5.current {
-  background-position: -16px -64px !important;
+    background-position: -16px -64px !important;
 }

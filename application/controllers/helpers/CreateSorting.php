@@ -2,6 +2,7 @@
 
 class Default_Controller_ActionHelper_CreateSorting extends Zend_Controller_Action_Helper_Abstract
 {
+
     /**
      * Initialize the view for sorting based on $sortParameterName and store/retrive values from session
      * It will look for parameter "{name}Key" and "{name}Order" in request.
@@ -18,15 +19,14 @@ class Default_Controller_ActionHelper_CreateSorting extends Zend_Controller_Acti
         $sortOrderParameterName = $sortParameterName . 'Order';
         $key = $this->getRequest()->getParam($sortParameterName);
         $order = $this->getRequest()->getParam($sortOrderParameterName);
-        
-        
+
+
         $view = $this->getActionController()->view;
         $view->sortParameterName = $sortParameterName;
         $view->sortSelectedKey = $key;
         $view->sortSelectedOrder = $order;
-        
-        if (is_array($view->permanentParams))
-        {   
+
+        if (is_array($view->permanentParams)) {
             $view->permanentParams[$sortParameterName] = $key;
             $view->permanentParams[$sortOrderParameterName] = $order;
         }
@@ -61,4 +61,5 @@ class Default_Controller_ActionHelper_CreateSorting extends Zend_Controller_Acti
     {
         return $this->createSorting($sortParameterName, $allowedKeys);
     }
+
 }

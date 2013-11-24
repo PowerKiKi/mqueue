@@ -10,16 +10,11 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	if (Default_Model_User::getCurrent())
-    	{
-    		$this->_helper->redirector('index', 'movie');	
-    	}
-    	else
-    	{
-    		$this->_helper->redirector('index', 'activity');
-    	}
+        if (Default_Model_User::getCurrent()) {
+            $this->_helper->redirector('index', 'movie');
+        } else {
+            $this->_helper->redirector('index', 'activity');
+        }
     }
 
-
 }
-

@@ -1,37 +1,37 @@
 @CHARSET "UTF-8";
 
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #container {
-  border: none;
-  margin: 0 0 0 0;
-  width: 100%;
+    border: none;
+    margin: 0 0 0 0;
+    width: 100%;
 }
 
 #header, .tips, input[type="submit"], img.gravatar {
-  display: none;
+    display: none;
 }
 
 .mqueue_status {
-  display: none !important;
-  &.current {
-    display: inline !important;
-    > span {
-      display: inline !important;
+    display: none !important;
+    &.current {
+        display: inline !important;
+        > span {
+            display: inline !important;
+        }
     }
-  }
 }
 
 table {
-  width: 100%;
-  tr {
-    border: 1px grey solid;
-  }
+    width: 100%;
+    tr {
+        border: 1px grey solid;
+    }
 }

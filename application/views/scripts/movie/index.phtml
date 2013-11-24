@@ -4,43 +4,48 @@ $this->headTitle(_tr('Movies'));
 <h2><?php echo $this->translate('Movies list'); ?></h2>
 <?php echo $this->formFilter; ?>
 <table>
-<tr>
-	<?php $i = 0; foreach ($this->users as $user): ?>
-		<th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
-	<?php endforeach; ?>
-	<th><?php echo $this->sort($this->translate('Title'), 'title', $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
-</tr>
-<?php if ($this->paginator->getTotalItemCount() == 0): ?>
-	<tr><td colspan="<?php echo count($this->users) + 1; ?>">
-	<?php echo $this->translate('There is no movie to show.'); ?>
-	</td></tr>
-<?php else: ?>
-	<?php foreach ($this->paginator as $entry): ?>
-		<tr>
-			<?php foreach ($this->users as $user): ?>
-				<td class="rating"><?php echo $this->statusLinks($entry->getStatus($user))?></td>
-			<?php endforeach; ?>
-			<td class="movie"><?php echo $this->movie($entry); ?></td>
-		</tr>
-	<?php endforeach; ?>
+    <tr>
+        <?php
+        $i = 0;
+        foreach ($this->users as $user):
+            ?>
+            <th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
+<?php endforeach; ?>
+        <th><?php echo $this->sort($this->translate('Title'), 'title', $this->sortSelectedKey, $this->sortSelectedOrder, $this->permanentParams); ?></th>
+    </tr>
+            <?php if ($this->paginator->getTotalItemCount() == 0): ?>
+        <tr><td colspan="<?php echo count($this->users) + 1; ?>">
+        <?php echo $this->translate('There is no movie to show.'); ?>
+            </td></tr>
+    <?php else: ?>
+            <?php foreach ($this->paginator as $entry): ?>
+            <tr>
+                <?php foreach ($this->users as $user): ?>
+                    <td class="rating"><?php echo $this->statusLinks($entry->getStatus($user)) ?></td>
+        <?php endforeach; ?>
+                <td class="movie"><?php echo $this->movie($entry); ?></td>
+            </tr>
+        <?php endforeach; ?>
 <?php endif; ?>
 </table>
-<?php echo $this->alternateFormats(array(
-	'rss' => $this->urlParams($this->permanentParams, false),
-	'csv' => $this->urlParams($this->permanentParams, false),
-	), 'mQueue - ' . $this->filterName); ?>
 <?php
-	echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $this->permanentParams));
+echo $this->alternateFormats(array(
+    'rss' => $this->urlParams($this->permanentParams, false),
+    'csv' => $this->urlParams($this->permanentParams, false),
+        ), 'mQueue - ' . $this->filterName);
+?>
+<?php
+echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $this->permanentParams));
 ?>
 
 <div class="tips">
-	<?php if ($this->paginator->getTotalItemCount() != 0): ?>
-		<?php echo $this->statusHelp(); ?>
-	<?php else: ?>
-		<?php
-			echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
-			'<a href="' . $this->url(array('controller' => 'faq'), null, true). '">' . $this->translate('FAQ') . '</a>'
-			));
-		?>
-	<?php endif; ?>
+    <?php if ($this->paginator->getTotalItemCount() != 0): ?>
+        <?php echo $this->statusHelp(); ?>
+    <?php else: ?>
+        <?php
+        echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
+            '<a href="' . $this->url(array('controller' => 'faq'), null, true) . '">' . $this->translate('FAQ') . '</a>'
+        ));
+        ?>
+<?php endif; ?>
 </div>

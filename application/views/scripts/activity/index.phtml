@@ -1,7 +1,9 @@
 <?php $this->headTitle($this->title); ?>
 <h2><?php echo $this->escape($this->title); ?></h2>
 <?php echo $this->activity($this->activity); ?>
-<?php echo $this->alternateFormats(array(
-	'rss' => $this->serverUrl() . $this->url()
-	), $this->title == $this->translate('Overall activity') ? null : 'mQueue - ' . $this->title); // Don't give title to avoid adding a duplicate alternate link to overall activity ?>
+<?php
+echo $this->alternateFormats(array(
+    'rss' => $this->serverUrl() . $this->url()
+        ), $this->title == $this->translate('Overall activity') ? null : 'mQueue - ' . $this->title); // Don't give title to avoid adding a duplicate alternate link to overall activity
+?>
 <?php echo $this->paginationControl($this->activity, null, null, array('permanentParams' => array())); ?>

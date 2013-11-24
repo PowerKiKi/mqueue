@@ -2,29 +2,27 @@
 
 class Default_View_Helper_GoogleAnalytics extends Zend_View_Helper_Abstract
 {
-	/**
-	 * Returns javascript code for Google Analytics
-	 * @param string $trackingCode
-	 * @return string
-	 */
-	public function googleAnalytics($trackingCode = null)
-	{
-		if (!is_string($trackingCode))
-		{
-			global $application;
-			if ($application instanceof Zend_Application)
-			{
-				$trackingCode = $application->getOption('googleAnalyticsTrackingCode', null);
-			}
-		}
 
-		$trackingCode = trim($trackingCode);
-		if (!is_string($trackingCode) || empty($trackingCode))
-		{
-			return '';
-		}
+    /**
+     * Returns javascript code for Google Analytics
+     * @param string $trackingCode
+     * @return string
+     */
+    public function googleAnalytics($trackingCode = null)
+    {
+        if (!is_string($trackingCode)) {
+            global $application;
+            if ($application instanceof Zend_Application) {
+                $trackingCode = $application->getOption('googleAnalyticsTrackingCode', null);
+            }
+        }
 
-		$result = <<<STRING
+        $trackingCode = trim($trackingCode);
+        if (!is_string($trackingCode) || empty($trackingCode)) {
+            return '';
+        }
+
+        $result = <<<STRING
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -40,7 +38,7 @@ class Default_View_Helper_GoogleAnalytics extends Zend_View_Helper_Abstract
 </script>
 STRING;
 
-		return $result;
-	}
-}
+        return $result;
+    }
 
+}

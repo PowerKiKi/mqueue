@@ -11,23 +11,20 @@ $out = fopen('php://output', 'w');
 fputcsv($out, array($this->urlParams($this->permanentParams, false)));
 
 $header = array();
-foreach ($this->users as $user)
-{
-	$header[]= $user->nickname;
+foreach ($this->users as $user) {
+    $header[] = $user->nickname;
 }
 $header[] = $this->translate('Title');
 $header[] = $this->translate('Link');
 fputcsv($out, $header);
 
-foreach ($this->paginator as $entry)
-{
-	$data = array();
-	foreach ($this->users as $user)
-	{
-		$data[] = $entry->getStatus($user)->getName();
-	}
-	$data[]= $entry->getTitle();
-	$data[]= $entry->getImdbUrl();
-	fputcsv($out, $data);
+foreach ($this->paginator as $entry) {
+    $data = array();
+    foreach ($this->users as $user) {
+        $data[] = $entry->getStatus($user)->getName();
+    }
+    $data[] = $entry->getTitle();
+    $data[] = $entry->getImdbUrl();
+    fputcsv($out, $data);
 }
 fclose($out);

@@ -5,9 +5,10 @@
  */
 class Default_Form_Validate_User extends Zend_Validate_Db_RecordExists
 {
+
     public function __construct()
     {
-    	parent::__construct(array('table' => 'user', 'field' => 'id'));
+        parent::__construct(array('table' => 'user', 'field' => 'id'));
     }
 
     /**
@@ -20,6 +21,7 @@ class Default_Form_Validate_User extends Zend_Validate_Db_RecordExists
      */
     public function isValid($value)
     {
-    	return ($value === 0) || parent::isValid($value);
+        return ($value === 0) || parent::isValid($value);
     }
+
 }

@@ -2,13 +2,13 @@
     <testsuite name="Controllers Test Suite">
         <directory>./application/controllers</directory>
     </testsuite>
-<!--    <testsuite name="Models Test Suite">
+    <!--    <testsuite name="Models Test Suite">
         <directory>./application/models</directory>
     </testsuite>
     <testsuite name="Library Test Suite">
         <directory>./library</directory>
     </testsuite>-->
-    
+
     <filter>
         <whitelist>
             <directory suffix=".php">../application/</directory>
@@ -19,9 +19,11 @@
             </exclude>
         </whitelist>
     </filter>
-    
+
     <logging>
         <log type="coverage-html" target="./log/report" charset="UTF-8" yui="true" hightlight="true" lowupperbound="50" highlowerbound="80">
-        <log type="testdox" target="./log/testdox.html">
-    </log></log></logging>
+            <log type="testdox" target="./log/testdox.html">
+            </log>
+        </log>
+    </logging>
 </phpunit>

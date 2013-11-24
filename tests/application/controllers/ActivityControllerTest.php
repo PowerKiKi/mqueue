@@ -8,61 +8,45 @@ class ActivityControllerTest extends AbstractControllerTestCase
         $this->assertModule($params['module']);
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
-		
-        $this->assertQueryContentContains(
-            'th',
-            'Date'
-            );
-        
-        $this->assertQueryContentContains(
-            'th',
-            'Movie'
-            );
+
+        $this->assertQueryContentContains('th', 'Date');
+        $this->assertQueryContentContains('th', 'Movie');
     }
-    
-	public function testIndexAction()
-	{
+
+    public function testIndexAction()
+    {
         $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default');
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertCommonThings($params);
-		
-        $this->assertQueryContentContains(
-            'h2',
-            'Overall activity'
-            );
-	}
 
-	public function testUserAction()
-	{
+        $this->assertQueryContentContains('h2', 'Overall activity');
+    }
+
+    public function testUserAction()
+    {
         $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'user' => $this->testUser->id);
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertCommonThings($params);
-		
-        $this->assertQueryContentContains(
-            'h2',
-            'Activity for'
-            );
-	}
 
-	public function testMovieAction()
-	{
+        $this->assertQueryContentContains('h2', 'Activity for');
+    }
+
+    public function testMovieAction()
+    {
         $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'movie' => $this->movieData['id']);
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertCommonThings($params);
-		
-        $this->assertQueryContentContains(
-            'h2',
-            'Activity for ' . $this->movieData['title']
-            );
-	}
+
+        $this->assertQueryContentContains('h2', 'Activity for ' . $this->movieData['title']);
+    }
 
 }
