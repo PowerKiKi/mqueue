@@ -24,7 +24,7 @@ class ActivityController extends Zend_Controller_Action
 
         // Try to show user's actitvity
         if ($this->getRequest()->getParam('user')) {
-            $item = Default_Model_UserMapper::find($this->getRequest()->getParam('user'));
+            $item = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('user'));
             if ($item) {
                 $this->view->title = $this->view->translate('Activity for %s', array($item->nickname));
             }
@@ -32,13 +32,13 @@ class ActivityController extends Zend_Controller_Action
 
         // Try to show movie's actitvity
         if ($this->getRequest()->getParam('movie')) {
-            $item = Default_Model_MovieMapper::find($this->getRequest()->getParam('movie'));
+            $item = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('movie'));
             if ($item) {
                 $this->view->title = $this->view->translate('Activity for %s', array($item->getTitle()));
             }
         }
 
-        $this->view->activity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($item));
+        $this->view->activity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($item));
     }
 
 }

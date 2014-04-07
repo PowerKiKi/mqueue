@@ -10,12 +10,12 @@ $cacheUser = array();
 $cacheMovie = array();
 foreach ($this->activity as $status) {
     if (!array_key_exists($status->idUser, $cacheUser)) {
-        $cacheUser[$status->idUser] = Default_Model_UserMapper::find($status->idUser);
+        $cacheUser[$status->idUser] = \mQueue\Model\UserMapper::find($status->idUser);
     }
     $user = $cacheUser[$status->idUser];
 
     if (!array_key_exists($status->idMovie, $cacheMovie)) {
-        $cacheMovie[$status->idMovie] = Default_Model_MovieMapper::find($status->idMovie);
+        $cacheMovie[$status->idMovie] = \mQueue\Model\MovieMapper::find($status->idMovie);
     }
     $movie = $cacheMovie[$status->idMovie];
 

@@ -39,7 +39,7 @@
         <div id="container">
             <div id="header">
                 <?php echo $this->languageSelector(); ?>
-                <?php echo new Default_Form_QuickSearch(); ?>
+                <?php echo new \mQueue\Form\QuickSearch(); ?>
                 <div id="header-logo">
                     <h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1>
                     <span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>

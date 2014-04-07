@@ -10,20 +10,20 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->users = Default_Model_UserMapper::fetchAll();
+        $this->view->users = \mQueue\Model\UserMapper::fetchAll();
     }
 
     public function newAction()
     {
         $request = $this->getRequest();
-        $form = new Default_Form_User();
+        $form = new \mQueue\Form\User();
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $values = $form->getValues();
-                $user = Default_Model_UserMapper::insertUser($values);
+                $user = \mQueue\Model\UserMapper::insertUser($values);
 
-                Default_Model_User::setCurrent($user);
+                \mQueue\Model\User::setCurrent($user);
 
                 $this->_helper->FlashMessenger('Subscription complete.');
 
@@ -37,18 +37,18 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         $request = $this->getRequest();
-        $form = new Default_Form_Login();
+        $form = new \mQueue\Form\Login();
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost())) {
 
                 $values = $form->getValues();
 
-                $user = Default_Model_UserMapper::findEmailPassword($values['email'], $values['password']);
+                $user = \mQueue\Model\UserMapper::findEmailPassword($values['email'], $values['password']);
                 if ($user) {
                     Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
 
-                    Default_Model_User::setCurrent($user);
+                    \mQueue\Model\User::setCurrent($user);
 
                     $this->_helper->FlashMessenger('Logged in.');
 
@@ -77,22 +77,22 @@ class UserController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        Default_Model_User::setCurrent(null);
+        \mQueue\Model\User::setCurrent(null);
     }
 
     public function viewAction()
     {
         if ($this->getRequest()->getParam('id')) {
-            $this->view->user = Default_Model_UserMapper::find($this->getRequest()->getParam('id'));
+            $this->view->user = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('id'));
         } else {
-            $this->view->user = Default_Model_User::getCurrent();
+            $this->view->user = \mQueue\Model\User::getCurrent();
         }
 
         if (!$this->view->user) {
             throw new Exception($this->view->translate('User not found'));
         }
 
-        $this->view->userActivity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($this->view->user));
+        $this->view->userActivity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($this->view->user));
     }
 
 }

@@ -16,7 +16,7 @@
         <?php else: ?>
             <?php foreach ($this->movies as $entry): ?>
                 <tr>
-                    <td><?php echo $this->statusLinks($entry->getStatus(Default_Model_User::getCurrent())); ?></td>
+                    <td><?php echo $this->statusLinks($entry->getStatus(\mQueue\Model\User::getCurrent())); ?></td>
                     <td><a href="<?php echo $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $entry->id), 'singleid'); ?>"><?php echo $this->movie($entry); ?></a></td>
                 </tr>
             <?php endforeach ?>

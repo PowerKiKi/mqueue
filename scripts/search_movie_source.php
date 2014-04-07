@@ -28,8 +28,8 @@ function movieProcessor(Closure $func, $movies, $sleep)
  */
 function searchSource()
 {
-    $movies = Default_Model_MovieMapper::findAllForSearch();
-    $searcher = function(Default_Model_Movie $movie) {
+    $movies = \mQueue\Model\MovieMapper::findAllForSearch();
+    $searcher = function(\mQueue\Model\Movie $movie) {
         $searchEngine = new SearchEngine();
 
         $movie->fetchData(); // Refresh movie data to be sure we have latest available title
@@ -57,8 +57,8 @@ function searchSource()
  */
 function fetchMovieData($limit = null, $sleep = 0)
 {
-    $movies = Default_Model_MovieMapper::findAllForFetching($limit);
-    $fetcher = function(Default_Model_Movie $movie) {
+    $movies = \mQueue\Model\MovieMapper::findAllForFetching($limit);
+    $fetcher = function(\mQueue\Model\Movie $movie) {
         $movie->fetchData();
         echo $movie->title;
     };
@@ -71,7 +71,7 @@ function fetchMovieData($limit = null, $sleep = 0)
 // we only do things if this file were NOT included (otherwise, the file was included to access misc functions)
 if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
     // Clean up obsolete sources
-    Default_Model_MovieMapper::deleteObsoleteSources();
+    \mQueue\Model\MovieMapper::deleteObsoleteSources();
 
     // Fetch movie data to update title and release date
     fetchMovieData(20, 1 * 60);

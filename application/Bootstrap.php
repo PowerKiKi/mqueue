@@ -9,20 +9,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initAutoload()
     {
-        $autoloader = new Zend_Application_Module_Autoloader(array(
-            'namespace' => 'Default',
-            'basePath' => __DIR__,
-        ));
+        // Add our own action helpers
+        Zend_Controller_Action_HelperBroker::addPath(APPLICATION_PATH . '/mQueue/Controller/ActionHelper', 'mQueue\\Controller\\ActionHelper\\');
 
-        // Add the action helpers
-        $path = __DIR__ . '/controllers/helpers';
-        $prefix = 'Default_Controller_ActionHelper_';
-        Zend_Controller_Action_HelperBroker::addPath($path, $prefix);
-
-        // Autoload for stuff in Library
-        Zend_Loader_Autoloader::getInstance()->registerNamespace('SearchEngine');
-
-        return $autoloader;
+        return Zend_Loader_AutoloaderFactory::factory([
+                    'Zend_Loader_StandardAutoloader' => [
+                        'autoregister_zf' => true,
+                        'namespaces' => [
+                            'mQueue' => APPLICATION_PATH . '/mQueue',
+                        ],
+                    ]
+        ]);
     }
 
     protected function _initDoctype()
@@ -31,9 +28,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = $this->getResource('view');
         $view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
 
-        $path = __DIR__ . '/views/helpers';
-        $prefix = 'Default_View_Helper_';
-        $view->addHelperPath($path, $prefix);
+        // Enable our own View Helpers
+        $view->addHelperPath(APPLICATION_PATH . '/mQueue/View/Helper', 'mQueue\\View\\Helper');
     }
 
     protected function _initNavigation()

@@ -4,7 +4,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 {
 
     /**
-     * @var Default_Model_User
+     * @var \mQueue\Model\User
      */
     protected $testUser;
     protected $userData = array(
@@ -27,14 +27,14 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
             ))
         );
 
-        $this->testUser = Default_Model_UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
+        $this->testUser = \mQueue\Model\UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
         if (!$this->testUser) {
-            $this->testUser = Default_Model_UserMapper::insertUser($this->userData);
+            $this->testUser = \mQueue\Model\UserMapper::insertUser($this->userData);
         }
 
-        $movie = Default_Model_MovieMapper::find($this->movieData['id']);
+        $movie = \mQueue\Model\MovieMapper::find($this->movieData['id']);
         if (!$movie) {
-            Default_Model_MovieMapper::getDbTable()->createRow($this->movieData)->save();
+            \mQueue\Model\MovieMapper::getDbTable()->createRow($this->movieData)->save();
         }
 
         parent::setUp();

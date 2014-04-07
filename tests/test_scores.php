@@ -5,7 +5,7 @@
  */
 require_once(__DIR__ . '/../public/index.php');
 
-$searchEngine = new SearchEngine();
+$searchEngine = new \mQueue\Service\SearchEngine();
 
 // Clean up
 $destination = __DIR__ . '/data/current/';
@@ -30,8 +30,9 @@ foreach (glob(__DIR__ . '/data/sources/*') as $path) {
     // Keep the best source for global statistics
     $best = reset($scores);
     $bests[$title] = $best;
-    if ($best && $best['score'])
+    if ($best && $best['score']) {
         $found++;
+    }
 }
 
 // Output global statistics

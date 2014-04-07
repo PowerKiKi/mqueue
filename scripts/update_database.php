@@ -98,7 +98,7 @@ function doUpdate($database)
     global $settingName;
 
     try {
-        $currentVersion = (integer) Default_Model_Setting::get($settingName, 0)->value;
+        $currentVersion = (integer) \mQueue\Model\Setting::get($settingName, 0)->value;
     } catch (Exception $e) {
         if (strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0) {
             $currentVersion = -1;
@@ -125,7 +125,7 @@ function doUpdate($database)
     if (executeBatchSql($sql, $database)) {
         echo "\nFAILED ! see mysql error above, the update was rolled back";
     } else {
-        Default_Model_Setting::set($settingName, $targetVersion);
+        \mQueue\Model\Setting::set($settingName, $targetVersion);
         echo "\nsuccessful update to version $targetVersion !\n";
     }
 }

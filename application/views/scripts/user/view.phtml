@@ -7,7 +7,7 @@
     <?php
 // Table header
     echo '<tr>';
-    foreach (Default_Model_Status::$ratings as $val => $name) {
+    foreach (\mQueue\Model\Status::$ratings as $val => $name) {
         echo '<th><span class="status current status_' . $val . '" title="' . $name . '"><span>' . $name . '</span></span></th>';
     }
     echo '<th>' . $this->translate('Rated') . '</th>';
@@ -16,7 +16,7 @@
 
     $stats = $this->user->getStatistics();
     echo '<tr>';
-    foreach (Default_Model_Status::$ratings as $val => $name) {
+    foreach (\mQueue\Model\Status::$ratings as $val => $name) {
         echo '<td class="number"><a href="' . $this->url(array(
             'controller' => 'movie',
             'action' => 'index'
@@ -29,7 +29,7 @@
     echo '<td class="number"><a href="' . $this->url(array(
         'controller' => 'movie',
         'action' => 'index'
-            ), 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[status]=0">' . $stats[Default_Model_Status::Nothing] . '</a></td>';
+            ), 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[status]=0">' . $stats[\mQueue\Model\Status::Nothing] . '</a></td>';
     echo '</tr>';
     ?>
 </table>

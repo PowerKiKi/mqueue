@@ -20,11 +20,11 @@ class MovieController extends Zend_Controller_Action
     public function indexAction()
     {
         // Check there is at least one user, otherwise the whole page will crash
-        if (!Default_Model_User::getCurrent() && !Default_Model_UserMapper::getDbTable()->fetchRow()) {
+        if (!\mQueue\Model\User::getCurrent() && !\mQueue\Model\UserMapper::getDbTable()->fetchRow()) {
             throw new Exception('At least one user must exist to access this page');
         }
 
-        $form = new Default_Form_Filters();
+        $form = new \mQueue\Form\Filters();
         $this->view->formFilter = $form;
 
         // Detect if at least one filter was submitted
@@ -46,7 +46,7 @@ class MovieController extends Zend_Controller_Action
         elseif ($this->_getParam('search')) {
             $form->setDefaults(array(
                 'filter1' => array(
-                    'user' => Default_Model_User::getCurrent() ? 0 : Default_Model_UserMapper::fetchAll()->current()->id,
+                    'user' => \mQueue\Model\User::getCurrent() ? 0 : \mQueue\Model\UserMapper::fetchAll()->current()->id,
                     'status' => -2,
                     'title' => $this->_getParam('search'),
                 )
@@ -64,7 +64,7 @@ class MovieController extends Zend_Controller_Action
             if (!preg_match('/^filter\d+$/', $key))
                 continue;
 
-            $this->view->users[$filter['user']] = Default_Model_UserMapper::find($filter['user']);
+            $this->view->users[$filter['user']] = \mQueue\Model\UserMapper::find($filter['user']);
         }
 
         // If we ouput rss, we force sorting by date
@@ -83,34 +83,34 @@ class MovieController extends Zend_Controller_Action
         $sort = $this->_helper->createSorting('sort', $allowedSortingKey);
 
         // Set up the paginator: Apply pagination only if there is no special context (so it is normal html rendering)
-        $this->view->paginator = $this->_helper->createPaginator(Default_Model_MovieMapper::getFilteredQuery($filters, $sort));
+        $this->view->paginator = $this->_helper->createPaginator(\mQueue\Model\MovieMapper::getFilteredQuery($filters, $sort));
     }
 
     public function viewAction()
     {
         if ($this->getRequest()->getParam('id')) {
-            $this->view->movie = Default_Model_MovieMapper::find($this->getRequest()->getParam('id'));
+            $this->view->movie = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('id'));
         }
 
         if (!$this->view->movie) {
             throw new Exception($this->view->translate('Movie not found'));
         }
 
-        $this->view->users = Default_Model_UserMapper::fetchAll();
-        $this->view->movieActivity = $this->_helper->createPaginator(Default_Model_StatusMapper::getActivityQuery($this->view->movie));
+        $this->view->users = \mQueue\Model\UserMapper::fetchAll();
+        $this->view->movieActivity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($this->view->movie));
     }
 
     public function addAction()
     {
         $request = $this->getRequest();
-        $form = new Default_Form_Movie();
+        $form = new \mQueue\Form\Movie();
 
         if ($this->_getParam('id')) {
             if ($form->isValid($request->getParams())) {
                 $values = $form->getValues();
-                $movie = Default_Model_MovieMapper::find(Default_Model_Movie::extractId($values['id']));
+                $movie = \mQueue\Model\MovieMapper::find(\mQueue\Model\Movie::extractId($values['id']));
                 if (!$movie) {
-                    $movie = Default_Model_MovieMapper::getDbTable()->createRow();
+                    $movie = \mQueue\Model\MovieMapper::getDbTable()->createRow();
                     $movie->setId($values['id']);
                     $movie->save();
                     $this->_helper->FlashMessenger(_tr('A movie was added.'));
@@ -126,12 +126,12 @@ class MovieController extends Zend_Controller_Action
     public function importAction()
     {
         $request = $this->getRequest();
-        $form = new Default_Form_Import();
+        $form = new \mQueue\Form\Import();
         $form->setDefaults(array('favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5));
         $this->view->form = $form;
 
         if ($this->getRequest()->isPost() && $form->isValid($request->getPost())) {
-            if (Default_Model_User::getCurrent() == null) {
+            if (\mQueue\Model\User::getCurrent() == null) {
                 $this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
 
                 return;
@@ -148,23 +148,23 @@ class MovieController extends Zend_Controller_Action
                 $id = $matches[1][$i];
                 $imdbRating = $matches[2][$i];
 
-                $movie = Default_Model_MovieMapper::find($id);
+                $movie = \mQueue\Model\MovieMapper::find($id);
                 if (!$movie) {
-                    $movie = Default_Model_MovieMapper::getDbTable()->createRow();
+                    $movie = \mQueue\Model\MovieMapper::getDbTable()->createRow();
                     $movie->setId($id);
                     $movie->save();
                 }
 
                 if ($imdbRating >= $values['favoriteMinimum'])
-                    $rating = Default_Model_Status::Favorite;
+                    $rating = \mQueue\Model\Status::Favorite;
                 elseif ($imdbRating >= $values['excellentMinimum'])
-                    $rating = Default_Model_Status::Excellent;
+                    $rating = \mQueue\Model\Status::Excellent;
                 elseif ($imdbRating >= $values['okMinimum'])
-                    $rating = Default_Model_Status::Ok;
+                    $rating = \mQueue\Model\Status::Ok;
                 else
-                    $rating = Default_Model_Status::Bad;
+                    $rating = \mQueue\Model\Status::Bad;
 
-                $movie->setStatus(Default_Model_User::getCurrent(), $rating);
+                $movie->setStatus(\mQueue\Model\User::getCurrent(), $rating);
                 $movies [] = $movie;
             }
 
