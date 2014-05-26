@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Exit script on any error
+set -e
+
 php scripts/update_database.php
 
 echo "Compiling CSS..."

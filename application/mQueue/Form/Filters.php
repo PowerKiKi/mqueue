@@ -4,8 +4,8 @@ namespace mQueue\Form;
 
 use Zend_Form;
 use Zend_Controller_Action_HelperBroker;
-use \mQueue\Model\User;
 use \mQueue\Model\UserMapper;
+use \mQueue\Model\User;
 
 class Filters extends Zend_Form
 {
@@ -97,7 +97,7 @@ class Filters extends Zend_Form
         // If we specifically asked to add a filter or if there is none, then add a new filter with default value
         if ((isset($defaults['addFilter_x'])) || $max == 0) {
             $defaults['filter' . ($max + 1)] = array(
-                'user' => User::getCurrent() ? 0 : \mQueue\Model\UserMapper::fetchAll()->current()->id,
+                'user' => User::getCurrent() ? 0 : UserMapper::fetchAll()->current()->id,
                 'status' => -1,
             );
         }

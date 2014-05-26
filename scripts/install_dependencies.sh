@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+# Exit script on any error
+set -e
+
 # Install Compass
-gem install --no-rdoc --no-ri sass compass oily_png
+gem install --no-rdoc --no-ri compass -v 0.13.alpha.2 --pre
+gem install --no-rdoc --no-ri oily_png
 
 # Install PHPUnit 3.4.15 (last supported version for ZF1)
 pear config-set auto_discover 1
