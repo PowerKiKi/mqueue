@@ -66,28 +66,25 @@ function buildSQL($currentVersion, $targetVersion)
  * (This is a workaround to Zend limitation to have only one command at once)
  * @param string $sql to be executed
  * @param array $database database parameters
- * @return string the error code returned by mysql
  */
 function executeBatchSql($sql, $database)
 {
-
-    mysql_connect($database['host'], $database['username'], $database['password']);
-    mysql_select_db($database['dbname']);
-    mysql_query("SET NAMES UTF8");
-
+    $affectedRows = 0;
     $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
     foreach ($queries as $query) {
         if (strlen(trim($query)) > 0) {
-            if (mysql_query($query) === false) {
-                $error = mysql_error();
-                echo $error;
-
-                return $error;
+            try {
+                $result = Zend_Registry::get('db')->query($query);
+            } catch (\Exception $exception) {
+                echo 'FAILED QUERY: ' . $query . PHP_EOL;
+                throw $exception;
             }
+
+            $affectedRows += $result->rowCount();
         }
     }
 
-    return '';
+    echo "\n" . 'affected rows count: ' . $affectedRows . "\n";
 }
 
 /**
@@ -122,12 +119,10 @@ function doUpdate($database)
     echo $sql;
     echo "\n_________________________________________________\n";
     echo "updating...\n";
-    if (executeBatchSql($sql, $database)) {
-        echo "\nFAILED ! see mysql error above, the update was rolled back";
-    } else {
-        \mQueue\Model\Setting::set($settingName, $targetVersion);
-        echo "\nsuccessful update to version $targetVersion !\n";
-    }
+    executeBatchSql($sql, $database);
+    \mQueue\Model\Setting::set($settingName, $targetVersion);
+
+    echo "\nsuccessful update to version $targetVersion !\n";
 }
 
 $bootstrap = $application->getBootstrap();
