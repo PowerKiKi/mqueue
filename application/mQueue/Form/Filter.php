@@ -3,7 +3,6 @@
 namespace mQueue\Form;
 
 use Zend_Form_SubForm;
-use \mQueue\Model\User;
 use \mQueue\Model\UserMapper;
 
 class Filter extends Zend_Form_SubForm
@@ -15,7 +14,7 @@ class Filter extends Zend_Form_SubForm
         $this->setMethod('get');
 
         $users = array();
-        if (User::getCurrent()) {
+        if (\mQueue\Model\User::getCurrent()) {
             $users = array(0 => _tr('<< me >>'));
         }
 
@@ -87,7 +86,7 @@ class Filter extends Zend_Form_SubForm
         $values = parent::getValues($suppressArrayNotation);
 
         if ($values['user'] == '0') {
-            $values['user'] = User::getCurrent()->id;
+            $values['user'] = \mQueue\Model\User::getCurrent()->id;
         }
 
         return $values;
