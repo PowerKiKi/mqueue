@@ -4,7 +4,8 @@
 set -e
 
 # Install gulp.js
-sudo apt-get install nodejs nodejs-legacy npm
+sudo apt-get install nodejs npm
+sudo apt-get install nodejs-legacy || true
 sudo npm install -g gulp
 
 # Install Compass
