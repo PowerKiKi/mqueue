@@ -4,7 +4,8 @@ php:
 
 before_script:
   - scripts/install_dependencies.sh
-  - scripts/build.sh
+  - sudo npm install
+  - gulp
 
 script: cd tests/ && phpunit
 
