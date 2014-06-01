@@ -13,7 +13,7 @@ sudo apt-get -qq install nodejs-legacy || true
 sudo npm install -g gulp
 
 # Install Compass
-gem install --no-rdoc --no-ri compass -v 0.13.alpha.2 --pre
+gem install --no-rdoc --no-ri compass -v 1.0.0.alpha.19 --pre
 gem install --no-rdoc --no-ri oily_png
 
 # Install PHPUnit 3.4.15 (last supported version for ZF1)

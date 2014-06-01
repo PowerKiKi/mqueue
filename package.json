@@ -2,7 +2,7 @@
     "name": "mQueue",
     "private": true,
     "dependencies": {
-        "gulp": "^3.4.0",
+        "gulp": "~3.7.0",
         "gulp-uglify": "~0.3.0",
         "gulp-concat": "~2.2.0",
         "gulp-shell": "~0.2.5",
