@@ -2,6 +2,7 @@
 application/configs/application.ini
 doc/html
 nbproject
+node_modules
 public/css
 public/js/min
 tests/data

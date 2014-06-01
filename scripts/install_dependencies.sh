@@ -3,6 +3,10 @@
 # Exit script on any error
 set -e
 
+# Install gulp.js
+sudo apt-get install nodejs nodejs-legacy npm
+sudo npm install -g gulp
+
 # Install Compass
 gem install --no-rdoc --no-ri compass -v 0.13.alpha.2 --pre
 gem install --no-rdoc --no-ri oily_png
