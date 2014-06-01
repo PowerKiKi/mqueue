@@ -17,8 +17,9 @@ class Graph extends Zend_View_Helper_Abstract
     {
 
         $params = array('controller' => 'status', 'action' => 'graph');
-        if ($user)
+        if ($user) {
             $params['user'] = $user->id;
+        }
         $url = $this->view->serverUrl() . $this->view->url($params, 'default');
 
         $js = <<<STRING
@@ -42,7 +43,7 @@ STRING;
                 <label for="graph_percent">Show graph as stacked percentage</label>';
 
         $this->view->headScript()
-                ->prependFile('/js/highcharts.js')
+                ->appendFile('/js/min/highcharts.js')
                 ->appendScript($js);
 
         return $html;

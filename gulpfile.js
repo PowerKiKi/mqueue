@@ -17,15 +17,9 @@ gulp.task('compress', function() {
 
 gulp.task('concat', ['compress'], function() {
     // CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
-    gulp.src([
-        'public/js/min/jquery-2.1.1.js',
-        'public/js/min/both.js',
-        'public/js/min/local.js',
-        'public/js/min/jquery.timeago.js',
-        'public/js/min/local.js',
-        'public/js/min/local.js'
-    ])
+    gulp.src('public/js/application/*.js')
             .pipe(concat('application.js'))
+            .pipe(uglify())
             .pipe(gulp.dest('public/js/min/'));
 });
 
