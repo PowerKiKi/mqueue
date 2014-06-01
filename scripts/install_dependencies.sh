@@ -4,6 +4,10 @@
 set -e
 
 # Install gulp.js
+sudo apt-get -qq update
+sudo apt-get install -qq software-properties-common # to get next command: add-apt-repository
+sudo add-apt-repository --yes ppa:chris-lea/node.js
+sudo apt-get -qq update
 sudo apt-get install nodejs npm
 sudo apt-get install nodejs-legacy || true
 sudo npm install -g gulp
