@@ -6,9 +6,11 @@ before_script:
   - scripts/install_dependencies.sh
   - sudo npm install
   - gulp
-  - wget https://scrutinizer-ci.com/ocular.phar
 
 script:
-  - cd tests/ && phpunit --coverage-clover log/clover.xml && cd ../
+  - cd tests/ && phpunit --coverage-clover clover.xml && cd ../
+
+after_script:
   - pwd
-  - php ocular.phar code-coverage:upload -vvv --format=php-clover tests/log/clover.xml
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload -vvv --format=php-clover tests/clover.xml
