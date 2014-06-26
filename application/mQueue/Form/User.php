@@ -39,9 +39,6 @@ class User extends Zend_Form
         $this->addElement('password', 'password', array(
             'label' => _tr('Password:'),
             'required' => true,
-            'validators' => array(
-            //array('validator' => 'emailAddress')
-            )
         ));
 
         // Add the submit button

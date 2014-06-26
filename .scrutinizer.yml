@@ -30,7 +30,7 @@ checks:
         deprecated_code_usage: true
         duplication: true
         encourage_postdec_operator: true
-        encourage_shallow_comparison: true
+        encourage_shallow_comparison: false
         encourage_single_quotes: true
         ensure_lower_case_builtin_functions: true
         fix_doc_comments: true
@@ -45,7 +45,7 @@ checks:
             order_alphabetically: false
         foreach_traversable: true
         foreach_usable_as_reference: true
-        function_body_start_on_same_line: true
+        function_body_start_on_same_line: false
         function_in_camel_caps: true
         instanceof_class_exists: true
         lowercase_basic_constants: true
@@ -71,9 +71,9 @@ checks:
         no_short_variable_names:
             minimum: '3'
         no_short_method_names:
-            minimum: '5'
+            minimum: '4'
         no_long_variable_names:
-            maximum: '20'
+            maximum: '25'
         no_space_around_object_operator: true
         no_space_before_semicolon: true
         no_space_inside_cast_operator: true

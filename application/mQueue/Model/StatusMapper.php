@@ -124,7 +124,7 @@ abstract class StatusMapper extends AbstractMapper
 
         // Set all count to 0
         $result = array('total' => 0, 'rated' => 0, Status::Nothing => 0);
-        foreach (\mQueue\Model\Status::$ratings as $val => $name) {
+        foreach (Status::$ratings as $val => $name) {
             $result[$val] = 0;
         }
 
@@ -160,7 +160,7 @@ abstract class StatusMapper extends AbstractMapper
         // Set all count to 0
         $cumulatedStatuses = array(Status::Nothing => 0);
         $graphData = array();
-        foreach (\mQueue\Model\Status::$ratings as $val => $name) {
+        foreach (Status::$ratings as $val => $name) {
             $cumulatedStatuses[$val] = 0;
             $graphData[$val] = array();
         }
@@ -186,7 +186,7 @@ abstract class StatusMapper extends AbstractMapper
 
             // If we are in percent mode, we need all status for each timestamp
             if ($percent) {
-                $changed = array_keys(\mQueue\Model\Status::$ratings);
+                $changed = array_keys(Status::$ratings);
             }
 
             // Keep for the graph only the changed values (and overwrite previous value if it happened at exactly the same time)
@@ -200,7 +200,7 @@ abstract class StatusMapper extends AbstractMapper
 
         // Format everything in a more output friendly way
         $result = array();
-        foreach (\mQueue\Model\Status::$ratings as $val => $name) {
+        foreach (Status::$ratings as $val => $name) {
             $result[] = array(
                 'name' => $name,
                 'data' => array_values($graphData[$val]),

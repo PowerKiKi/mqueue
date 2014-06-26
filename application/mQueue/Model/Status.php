@@ -39,9 +39,11 @@ class Status extends AbstractModel
      */
     public function getName()
     {
-        if ($this->rating == 0)
+        if ($this->rating == 0) {
             return _tr('Not rated');
-        return \mQueue\Model\Status::$ratings[$this->rating];
+        }
+
+        return self::$ratings[$this->rating];
     }
 
     /**

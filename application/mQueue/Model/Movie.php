@@ -35,9 +35,10 @@ class Movie extends AbstractModel
      */
     public static function extractId($string)
     {
-        $valid = preg_match_all("/(\d{7})/", $string, $r);
-        if (isset($r[1][0]))
+        preg_match_all("/(\d{7})/", $string, $r);
+        if (isset($r[1][0])) {
             return $r[1][0];
+        }
 
         return null;
     }
@@ -125,10 +126,11 @@ class Movie extends AbstractModel
             $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
         }
 
-        if (isset(\mQueue\Model\Movie::$imdbHostnames[$lang]))
-            $hostname = \mQueue\Model\Movie::$imdbHostnames[$lang];
-        else
-            $hostname = reset(\mQueue\Model\Movie::$imdbHostnames);
+        if (isset(self::$imdbHostnames[$lang])) {
+            $hostname = self::$imdbHostnames[$lang];
+        } else {
+            $hostname = reset(self::$imdbHostnames);
+        }
 
         return 'http://' . $hostname . '/title/tt' . $this->id . '/';
     }

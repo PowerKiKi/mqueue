@@ -11,11 +11,9 @@ class AlternateFormats extends Zend_View_Helper_Abstract
     protected static $supportedFormats = array(
         'rss' => array(
             'name' => 'RSS',
-//			'mime' => 'application/rss+xml',
         ),
         'csv' => array(
             'name' => 'CSV',
-        //'mime' => 'text/csv',
         ),
     );
 
@@ -29,11 +27,14 @@ class AlternateFormats extends Zend_View_Helper_Abstract
     {
         $formatLinks = array();
         foreach ($formats as $format => $url) {
+
             // Inject format and locale parameters
-            if (strpos($url, '?') === false)
+            if (strpos($url, '?') === false) {
                 $url .= '?';
-            else
+            } else {
                 $url .= '&';
+            }
+            
             $url .= 'format=' . $format . '&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage();
 
             $formatLinks [] = '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';

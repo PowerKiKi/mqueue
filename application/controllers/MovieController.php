@@ -77,7 +77,8 @@ class MovieController extends Zend_Controller_Action
         unset($this->view->permanentParams['addFilter']);
 
         $allowedSortingKey = array('title', 'date', 'dateSearch');
-        for ($i = 0; $i < count($this->view->users); $i++) {
+        $usersCount = count($this->view->users);
+        for ($i = 0; $i < $usersCount; $i++) {
             $allowedSortingKey[] = 'status' . $i;
         }
         $sort = $this->_helper->createSorting('sort', $allowedSortingKey);
@@ -140,11 +141,12 @@ class MovieController extends Zend_Controller_Action
             $values = $form->getValues();
             $page = file_get_contents($values['url']);
 
-            $r = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
-            preg_match_all($r, $page, $matches);
+            $pattern = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
+            preg_match_all($pattern, $page, $matches);
 
             $movies = array();
-            for ($i = 0; $i < count($matches[1]); $i++) {
+            $matchesCount = count($matches[1]);
+            for ($i = 0; $i < $matchesCount; $i++) {
                 $id = $matches[1][$i];
                 $imdbRating = $matches[2][$i];
 

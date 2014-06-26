@@ -38,11 +38,6 @@ class Login extends Zend_Form
 
         // Add referrer to redirect after login
         $this->addElement('hidden', 'referrer');
-
-        // And finally add some CSRF protection
-        //  $this->addElement('hash', 'csrf', array(
-        //       'ignore' => true,
-        //   ));
     }
 
 }

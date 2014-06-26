@@ -16,8 +16,8 @@ class SearchEngine
     protected function getNovaCmd()
     {
         $cmd = shell_exec('python --version 2>&1');
-        preg_match('/\\d+\\.\\d+\\.\\d+/', $cmd, $m);
-        $version = $m[0];
+        preg_match('/\\d+\\.\\d+\\.\\d+/', $cmd, $matches);
+        $version = $matches[0];
         if (version_compare($version, '3.0.0', '>=')) {
             return APPLICATION_PATH . '/library/searchengine/nova3/nova2.py';
         } else {
@@ -174,8 +174,8 @@ class SearchEngine
         );
 
         $cleanTitle = $this->cleanName($title);
-        preg_match('/((18|19|20)\d{2})(– )?\)$/', $title, $m);
-        $year = $m[1];
+        preg_match('/((18|19|20)\d{2})(– )?\)$/', $title, $matches);
+        $year = $matches[1];
 
         foreach ($sources as &$source) {
             $identity = 0;
@@ -211,7 +211,7 @@ class SearchEngine
 
             // Apply all regexp based quality rules
             foreach ($rules as $pattern => $score) {
-                if (preg_match($pattern, $source['name'], $m)) {
+                if (preg_match($pattern, $source['name'], $matches)) {
                     $quality += $score;
                 }
             }
@@ -227,15 +227,15 @@ class SearchEngine
         }
 
         // Sort by score, then seeds, then leech
-        usort($sources, function($a, $b) {
-            if ($b['score'] != $a['score']) {
-                return $b['score'] - $a['score'];
-            } elseif ($b['seeds'] != $a['seeds']) {
-                return $b['seeds'] - $a['seeds'];
-            } elseif ($b['leech'] != $a['leech']) {
-                return $b['leech'] - $a['leech'];
+        usort($sources, function($source, $other) {
+            if ($other['score'] != $source['score']) {
+                return $other['score'] - $source['score'];
+            } elseif ($other['seeds'] != $source['seeds']) {
+                return $other['seeds'] - $source['seeds'];
+            } elseif ($other['leech'] != $source['leech']) {
+                return $other['leech'] - $source['leech'];
             } else {
-                return strcmp($b['link'], $a['link']);
+                return strcmp($other['link'], $source['link']);
             }
         });
 

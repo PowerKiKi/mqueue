@@ -27,11 +27,6 @@ class Movie extends Zend_Form
             'ignore' => true,
             'label' => _tr('Add movie'),
         ));
-
-        // And finally add some CSRF protection
-        //  $this->addElement('hash', 'csrf', array(
-        //       'ignore' => true,
-        //   ));
     }
 
 }

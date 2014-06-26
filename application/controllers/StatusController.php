@@ -9,7 +9,6 @@ class StatusController extends Zend_Controller_Action
         $contextSwitch->addActionContext('list', 'json')
                 ->addActionContext('index', 'json')
                 ->initContext();
-        //$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
     }
 
     public function indexAction()
@@ -43,7 +42,6 @@ class StatusController extends Zend_Controller_Action
         if (!$jsonCallback) {
             $this->view->status = $status;
         } else {
-            $json = array();
             $html = $this->view->statusLinks($status);
             $this->view->status = $html;
             $this->view->id = $status->getUniqueId();

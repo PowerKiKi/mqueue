@@ -74,8 +74,9 @@ abstract class MovieMapper extends AbstractMapper
                 ->order('RAND()') // Randomize order, so we don't watch only old movies
         ;
 
-        if ($limit)
+        if ($limit) {
             $select->limit(20);
+        }
 
         $records = self::getDbTable()->fetchAll($select);
 
@@ -106,8 +107,9 @@ abstract class MovieMapper extends AbstractMapper
             }
 
             $filterUniqueId = $filter['user'] . $filter['status'];
-            if (!preg_match('/^filter\d+$/', $key) || in_array($filterUniqueId, $filtersDone))
+            if (!preg_match('/^filter\d+$/', $key) || in_array($filterUniqueId, $filtersDone)) {
                 continue;
+            }
 
             $filtersDone [] = $filterUniqueId;
 
@@ -130,8 +132,9 @@ abstract class MovieMapper extends AbstractMapper
             if (isset($filter['title'])) {
                 $titles = explode(' ', trim($filter['title']));
                 foreach ($titles as $part) {
-                    if ($part)
+                    if ($part) {
                         $select->where('movie.title LIKE ?', '%' . $part . '%');
+                    }
                 }
             }
 
@@ -140,10 +143,11 @@ abstract class MovieMapper extends AbstractMapper
                 $select->where('movie.source IS NOT NULL');
             }
 
-            if ($maxDate)
+            if ($maxDate) {
                 $maxDate = 'IF(`' . $alias . '`.`dateUpdate` IS NULL OR `' . $alias . '`.`dateUpdate` < ' . $maxDate . ', ' . $maxDate . ', `' . $alias . '`.`dateUpdate`)';
-            else
+            } else {
                 $maxDate = '`' . $alias . '`.`dateUpdate`';
+            }
         }
 
         $select->columns(array('date' => new Zend_Db_Expr($maxDate)));

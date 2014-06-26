@@ -65,9 +65,8 @@ function buildSQL($currentVersion, $targetVersion)
  * Executes a batch of SQL commands.
  * (This is a workaround to Zend limitation to have only one command at once)
  * @param string $sql to be executed
- * @param array $database database parameters
  */
-function executeBatchSql($sql, $database)
+function executeBatchSql($sql)
 {
     $affectedRows = 0;
     $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
@@ -90,7 +89,7 @@ function executeBatchSql($sql, $database)
 /**
  * Do the actual update
  */
-function doUpdate($database)
+function doUpdate()
 {
     global $settingName;
 
@@ -119,15 +118,10 @@ function doUpdate($database)
     echo $sql;
     echo "\n_________________________________________________\n";
     echo "updating...\n";
-    executeBatchSql($sql, $database);
+    executeBatchSql($sql);
     \mQueue\Model\Setting::set($settingName, $targetVersion);
 
     echo "\nsuccessful update to version $targetVersion !\n";
 }
 
-$bootstrap = $application->getBootstrap();
-$bootstrap->bootstrap('db');
-$dbAdapter = $bootstrap->getResource('db');
-$options = $bootstrap->getOption('resources');
-
-doUpdate($options['db']['params']);
+doUpdate();
