@@ -58,7 +58,7 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
     /**
      * Strategy pattern: call helper as broker method
      * @param  string $sortParameterName used to look for parameters in request and as key in $_SESSION
-     * @return null
+     * @return string similar to 'name DESC'
      */
     public function direct($sortParameterName, array $allowedKeys)
     {

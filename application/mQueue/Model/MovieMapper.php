@@ -64,6 +64,7 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns movies for data fetching
+     * @param integer $limit
      * @return \mQueue\Model\Movie[]
      */
     public static function findAllForFetching($limit = null)

@@ -5,7 +5,13 @@
  */
 require_once(__DIR__ . '/../public/index.php');
 
-function movieProcessor(Closure $func, $movies, $sleep)
+/**
+ * Process a movie and pause between each of them
+ * @param Closure $func
+ * @param \mQueue\Model\Movie[] $movies
+ * @param integer $seconds
+ */
+function movieProcessor(Closure $func, $movies, $seconds)
 {
     $total = $movies->count();
     $count = 0;
@@ -17,7 +23,7 @@ function movieProcessor(Closure $func, $movies, $sleep)
 
         echo "\n";
 
-        sleep($sleep);
+        sleep($seconds);
     }
 
     return $total;
