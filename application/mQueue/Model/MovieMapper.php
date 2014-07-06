@@ -131,10 +131,12 @@ abstract class MovieMapper extends AbstractMapper
 
             // Filter by title
             if (isset($filter['title'])) {
-                $titles = explode(' ', trim($filter['title']));
+                $title = $filter['title'];
+                $id = Movie::extractId($title);
+                $titles = explode(' ', trim($title));
                 foreach ($titles as $part) {
                     if ($part) {
-                        $select->where('movie.title LIKE ?', '%' . $part . '%');
+                        $select->where('movie.title LIKE ? OR movie.id = "' . $id . '"', '%' . $part . '%');
                     }
                 }
             }
