@@ -16,7 +16,7 @@ class Debug
         }
     }
 
-    protected static function parseObject($obj, $values = true)
+    protected static function parseObject($obj)
     {
         $obj_dump = print_r($obj, 1);
         $ret_list = array();

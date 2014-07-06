@@ -16,13 +16,8 @@ sudo npm install -g gulp
 gem install --no-rdoc --no-ri compass -v 1.0.0.alpha.19 --pre
 gem install --no-rdoc --no-ri oily_png
 
-# Install PHPUnit 3.4.15 (last supported version for ZF1)
-pear config-set auto_discover 1
-pear channel-discover pear.phpunit.de
-pear install --force --alldeps phpunit/PHPUnit-3.4.15
-
 # Install ZendFramework
-ZF=ZendFramework-1.12.1
+ZF=ZendFramework-1.12.7
 wget https://packages.zendframework.com/releases/$ZF/$ZF-minimal.zip
 unzip -qq $ZF-minimal.zip
 mv $ZF-minimal/library/Zend library/
