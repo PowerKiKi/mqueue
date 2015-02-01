@@ -65,9 +65,9 @@ class Filters extends Zend_Form
 
     /**
      * Override setDefaults to dynamically generate subforms.
-     * @param array|Traversable $defaults
+     * @param array $defaults
      */
-    public function setDefaults($defaults)
+    public function setDefaults(array $defaults)
     {
         $defaults = $this->createSubForms($defaults);
 

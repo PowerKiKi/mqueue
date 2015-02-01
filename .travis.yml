@@ -7,7 +7,7 @@ php:
 
 before_script:
   - scripts/install_dependencies.sh
-  - sudo npm install
+  - npm install
   - gulp
 
 script:

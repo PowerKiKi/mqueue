@@ -1,15 +1,12 @@
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
 var shell = require('gulp-shell');
-var compass = require('gulp-compass');
 
-
-gulp.task('default', ['update_database', 'concat', 'compress', 'compass'], function() {
+gulp.task('default', ['composer', 'update_database', 'concat', 'compress', 'compass'], function() {
     // place code for your default task here
 });
 
 gulp.task('compress', function() {
+    var uglify = require('gulp-uglify');
     gulp.src('public/js/*.js')
             .pipe(uglify())
             .pipe(gulp.dest('public/js/min'));
@@ -17,17 +14,20 @@ gulp.task('compress', function() {
 
 gulp.task('concat', ['compress'], function() {
     // CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
+    var concat = require('gulp-concat');
+    var uglify = require('gulp-uglify');
     gulp.src('public/js/application/*.js')
             .pipe(concat('application.js'))
             .pipe(uglify())
             .pipe(gulp.dest('public/js/min/'));
 });
 
-gulp.task('update_database', shell.task([
+gulp.task('update_database', ['composer'], shell.task([
     'php scripts/update_database.php'
 ]));
 
 gulp.task('compass', function() {
+    var compass = require('gulp-compass');
     gulp.src('application/sass/*.scss')
             .pipe(compass({
                 project: __dirname,
@@ -39,4 +39,9 @@ gulp.task('compass', function() {
                 relative: true
             }))
             .pipe(gulp.dest('public/css'));
+});
+
+gulp.task('composer', function() {
+    var composer = require('gulp-composer');
+    return composer('install', {});
 });

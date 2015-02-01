@@ -19,8 +19,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 /** Zend_Application */
-require_once __DIR__ . '/../application/Debug.php';
-require_once 'Zend/Application.php';
+require_once APPLICATION_PATH . '/Debug.php';
+require_once APPLICATION_PATH . '/../vendor/autoload.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(

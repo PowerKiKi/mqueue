@@ -10,17 +10,11 @@ sudo add-apt-repository --yes ppa:chris-lea/node.js
 sudo apt-get -qq update
 sudo apt-get -qq install nodejs
 sudo apt-get -qq install nodejs-legacy || true
-sudo npm install -g gulp
+sudo npm install -g gulp --cache /tmp/.npm
 
 # Install Compass
 gem install --no-rdoc --no-ri compass -v 1.0.0.alpha.19 --pre
 gem install --no-rdoc --no-ri oily_png
-
-# Install ZendFramework
-ZF=ZendFramework-1.12.7
-wget https://packages.zendframework.com/releases/$ZF/$ZF-minimal.zip
-unzip -qq $ZF-minimal.zip
-mv $ZF-minimal/library/Zend library/
 
 # Init database
 cp application/configs/application.travis.ini application/configs/application.ini
