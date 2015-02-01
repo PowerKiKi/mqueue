@@ -8,3 +8,4 @@ public/js/min
 tests/data
 tests/log
 vendor/
+*.pyc
