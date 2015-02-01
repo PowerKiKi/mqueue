@@ -36,7 +36,7 @@ function searchSource()
 {
     $movies = \mQueue\Model\MovieMapper::findAllForSearch();
     $searcher = function(\mQueue\Model\Movie $movie) {
-        $searchEngine = new SearchEngine();
+        $searchEngine = new mQueue\Service\SearchEngine();
 
         $movie->fetchData(); // Refresh movie data to be sure we have latest available title
         $title = $movie->getTitle();
