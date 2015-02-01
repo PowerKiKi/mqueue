@@ -37,7 +37,7 @@ abstract class MovieMapper extends AbstractMapper
      */
     public static function findAllForSearch()
     {
-        $futureYears = array();
+        $futureYears = [];
         $date = Zend_Date::now();
         for ($i = 0; $i < 10; $i++) {
             $date->addYear(1);
@@ -46,7 +46,7 @@ abstract class MovieMapper extends AbstractMapper
 
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
                 ->from('movie')
-                ->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Status::Need, array())
+                ->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Status::Need, [])
                 ->where('source IS NULL')
                 ->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL searchCount MONTH)') // Search for same movie with an incrementally longer interval (1 month, 2 month, 3 month, etc.)
                 ->where('dateRelease IS NOT NULL') // Movie must be released ...
@@ -54,8 +54,7 @@ abstract class MovieMapper extends AbstractMapper
                 ->group('movie.id')
                 ->order('COUNT(movie.id) DESC') // First, order by popularity, so get the most needed first
                 ->order('RAND() ASC') // Then, randomize a little bit so we don't always look for the same movies
-                ->limit(5)
-        ;
+                ->limit(5);
 
         $records = self::getDbTable()->fetchAll($select);
 
@@ -101,7 +100,7 @@ abstract class MovieMapper extends AbstractMapper
 
         $i = 0;
         $maxDate = '';
-        $filtersDone = array();
+        $filtersDone = [];
         foreach ($filters as $key => $filter) {
             if (!is_array($filter)) {
                 continue;
@@ -116,7 +115,7 @@ abstract class MovieMapper extends AbstractMapper
 
             $alias = 'status' . $i++;
             $allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR ' . $alias . '.idUser IS NULL' : '');
-            $select->joinLeft(array($alias => 'status'), '(movie.id = ' . $alias . '.idMovie AND ' . $alias . '.idUser = ' . $filter['user'] . ')' . $allowNull, array());
+            $select->joinLeft([$alias => 'status'], '(movie.id = ' . $alias . '.idMovie AND ' . $alias . '.idUser = ' . $filter['user'] . ')' . $allowNull, []);
 
             $select->where($alias . '.isLatest = 1 OR ' . $alias . '.isLatest IS NULL');
 
@@ -153,7 +152,7 @@ abstract class MovieMapper extends AbstractMapper
             }
         }
 
-        $select->columns(array('date' => new Zend_Db_Expr($maxDate)));
+        $select->columns(['date' => new Zend_Db_Expr($maxDate)]);
 
         return $select;
     }
@@ -172,7 +171,7 @@ abstract class MovieMapper extends AbstractMapper
         $db->query($update . ' WHERE `source` IS NOT NULL AND `dateSearch` < DATE_SUB(NOW(), INTERVAL 6 MONTH)');
 
         // Delete non-needed sources
-        $db->query($update . ' WHERE `movie`.`id` NOT IN (SELECT `status`.`idMovie` FROM `status` WHERE `rating` = ? AND `isLatest`)', array(Status::Need));
+        $db->query($update . ' WHERE `movie`.`id` NOT IN (SELECT `status`.`idMovie` FROM `status` WHERE `rating` = ? AND `isLatest`)', [Status::Need]);
     }
 
 }

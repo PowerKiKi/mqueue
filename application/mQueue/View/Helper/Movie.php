@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
-use \mQueue\Model\User;
 
 class Movie extends Zend_View_Helper_Abstract
 {
@@ -19,12 +19,12 @@ class Movie extends Zend_View_Helper_Abstract
         $user = User::getCurrent();
         if ($user) {
             $status = $movie->getStatus($user);
-            $title = $this->view->translate('Your rating is : %s', array($status->getName()));
+            $title = $this->view->translate('Your rating is : %s', [$status->getName()]);
         } else {
             $title = $this->view->translate('You are not logged in');
         }
 
-        $movieUrl = $this->view->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true);
+        $movieUrl = $this->view->url(['controller' => 'movie', 'action' => 'view', 'id' => $movie->id], 'singleid', true);
         $result .= ' <a title="' . $title . '" href="' . $movieUrl . '">' . $this->view->escape($movie->getTitle()) . '</a>';
 
         return $result;

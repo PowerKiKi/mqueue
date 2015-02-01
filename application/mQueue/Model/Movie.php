@@ -4,8 +4,8 @@ namespace mQueue\Model;
 
 use DOMDocument;
 use DOMXPath;
-use Zend_Date;
 use Exception;
+use Zend_Date;
 use Zend_Registry;
 
 /**
@@ -18,7 +18,7 @@ class Movie extends AbstractModel
      * All known IMDb hostnames indexed by their language
      * @var array $imdbHostnames
      */
-    public static $imdbHostnames = array(
+    public static $imdbHostnames = [
         'en' => 'www.imdb.com',
         'fr' => 'www.imdb.fr',
         'de' => 'www.imdb.de',
@@ -26,7 +26,7 @@ class Movie extends AbstractModel
         'it' => 'www.imdb.it',
         'pt' => 'www.imdb.pt',
         'akas' => 'akas.imdb.com',
-    );
+    ];
 
     /**
      * Extract IMDb id from URL
@@ -64,7 +64,7 @@ class Movie extends AbstractModel
     public function fetchData()
     {
         $ch = curl_init($this->getImdbUrl('akas'));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language: en-US,en;q=0.8'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept-Language: en-US,en;q=0.8']);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 

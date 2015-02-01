@@ -5,7 +5,7 @@ class JsControllerTest extends AbstractControllerTestCase
 
     public function testRemoteJsAction()
     {
-        $params = array('action' => 'remote.js', 'controller' => 'js', 'module' => 'default');
+        $params = ['action' => 'remote.js', 'controller' => 'js', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -21,7 +21,7 @@ class JsControllerTest extends AbstractControllerTestCase
 
     public function testMqueueUserJsAction()
     {
-        $params = array('action' => 'mqueue-user.js', 'controller' => 'js', 'module' => 'default');
+        $params = ['action' => 'mqueue-user.js', 'controller' => 'js', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

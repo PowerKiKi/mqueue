@@ -5,7 +5,7 @@ class AboutControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'about', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'about', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

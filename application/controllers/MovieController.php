@@ -9,10 +9,10 @@ class MovieController extends Zend_Controller_Action
         $contextSwitch = $this->_helper->contextSwitch();
 
         // Add the new context
-        $contextSwitch->setContexts(array(
-            'csv' => array('suffix' => 'csv'),
-            'rss' => array('suffix' => 'rss'),
-        ));
+        $contextSwitch->setContexts([
+            'csv' => ['suffix' => 'csv'],
+            'rss' => ['suffix' => 'rss'],
+        ]);
 
         $contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'rss')->initContext();
     }
@@ -38,27 +38,27 @@ class MovieController extends Zend_Controller_Action
         // If was submitted and do not want to clear, try to validate values
         if ($submitted && !$this->_getParam('clear', false)) {
             if (!$form->isValid($this->getRequest()->getParams())) {
-                $this->_helper->FlashMessenger(array('warning' => _tr('Filter is invalid.')));
-                $form->setDefaults(array());
+                $this->_helper->FlashMessenger(['warning' => _tr('Filter is invalid.')]);
+                $form->setDefaults([]);
             }
         }
         // If we submitted a quicksearch, set default values to search with any status
         elseif ($this->_getParam('search')) {
-            $form->setDefaults(array(
-                'filter1' => array(
+            $form->setDefaults([
+                'filter1' => [
                     'user' => \mQueue\Model\User::getCurrent() ? 0 : \mQueue\Model\UserMapper::fetchAll()->current()->id,
                     'status' => -2,
                     'title' => $this->_getParam('search'),
-                )
-            ));
+                ],
+            ]);
         }
         // Otherwise clear the filter
         else {
-            $form->setDefaults(array());
+            $form->setDefaults([]);
         }
 
         // Gather users selected in filters
-        $this->view->users = array();
+        $this->view->users = [];
         $filters = $form->getValues();
         foreach ($filters as $key => $filter) {
             if (!preg_match('/^filter\d+$/', $key))
@@ -76,7 +76,7 @@ class MovieController extends Zend_Controller_Action
         $this->view->filterName = $form->getValuesText();
         unset($this->view->permanentParams['addFilter']);
 
-        $allowedSortingKey = array('title', 'date', 'dateSearch');
+        $allowedSortingKey = ['title', 'date', 'dateSearch'];
         $usersCount = count($this->view->users);
         for ($i = 0; $i < $usersCount; $i++) {
             $allowedSortingKey[] = 'status' . $i;
@@ -117,7 +117,7 @@ class MovieController extends Zend_Controller_Action
                     $this->_helper->FlashMessenger(_tr('A movie was added.'));
                 }
 
-                $this->view->movies = array($movie);
+                $this->view->movies = [$movie];
             }
         }
 
@@ -128,12 +128,12 @@ class MovieController extends Zend_Controller_Action
     {
         $request = $this->getRequest();
         $form = new \mQueue\Form\Import();
-        $form->setDefaults(array('favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5));
+        $form->setDefaults(['favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5]);
         $this->view->form = $form;
 
         if ($this->getRequest()->isPost() && $form->isValid($request->getPost())) {
             if (\mQueue\Model\User::getCurrent() == null) {
-                $this->_helper->FlashMessenger(array('error' => _tr('You must be logged in.')));
+                $this->_helper->FlashMessenger(['error' => _tr('You must be logged in.')]);
 
                 return;
             }
@@ -144,7 +144,7 @@ class MovieController extends Zend_Controller_Action
             $pattern = '|<a href="/title/tt(\d{7})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
             preg_match_all($pattern, $page, $matches);
 
-            $movies = array();
+            $movies = [];
             $matchesCount = count($matches[1]);
             for ($i = 0; $i < $matchesCount; $i++) {
                 $id = $matches[1][$i];
@@ -175,7 +175,7 @@ class MovieController extends Zend_Controller_Action
                 $this->_helper->FlashMessenger(_tr('Movies imported.'));
                 $this->view->movies = $movies;
             } else {
-                $this->_helper->FlashMessenger(array('warning' => _tr('No movies found for import.')));
+                $this->_helper->FlashMessenger(['warning' => _tr('No movies found for import.')]);
             }
         }
     }

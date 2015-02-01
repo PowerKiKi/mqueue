@@ -2,8 +2,8 @@
 
 namespace mQueue\Model;
 
-use Zend_Date;
 use mQueue\Model\Status as DefaultModelStatus;
+use Zend_Date;
 
 /**
  * A status (link between movie and user with a rating)
@@ -58,9 +58,9 @@ class Status extends AbstractModel
 }
 
 // Defines ratings names
-\mQueue\Model\Status::$ratings = array(
+\mQueue\Model\Status::$ratings = [
     DefaultModelStatus::Need => _tr('Need'),
     DefaultModelStatus::Bad => _tr('Bad'),
     DefaultModelStatus::Ok => _tr('Ok'),
     DefaultModelStatus::Excellent => _tr('Excellent'),
-    DefaultModelStatus::Favorite => _tr('Favorite'));
+    DefaultModelStatus::Favorite => _tr('Favorite'), ];

@@ -11,6 +11,7 @@ before_script:
   - gulp
 
 script:
+  - ./vendor/bin/php-cs-fixer fix --dry-run --verbose --diff --config-file .php_cs .
   - cd tests/ && phpunit --coverage-clover clover.xml && cd ../
 
 after_script:

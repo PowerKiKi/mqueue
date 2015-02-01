@@ -13,11 +13,11 @@ class LanguageSelector extends Zend_View_Helper_Abstract
      */
     public function languageSelector()
     {
-        $languages = array(
+        $languages = [
             'en' => 'English',
             'ko' => '한국어',
             'fr' => 'Français',
-        );
+        ];
 
         $result = '<div class="language_selector">';
         $params = $_GET;

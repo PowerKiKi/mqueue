@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
-use \mQueue\Model\User;
 
 class Graph extends Zend_View_Helper_Abstract
 {
@@ -16,7 +16,7 @@ class Graph extends Zend_View_Helper_Abstract
     public function graph(\mQueue\Model\User $user = null)
     {
 
-        $params = array('controller' => 'status', 'action' => 'graph');
+        $params = ['controller' => 'status', 'action' => 'graph'];
         if ($user) {
             $params['user'] = $user->id;
         }

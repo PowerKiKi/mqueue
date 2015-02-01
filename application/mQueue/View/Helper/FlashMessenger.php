@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
-use Zend_View_Helper_Abstract;
 use Zend_Controller_Action_HelperBroker;
+use Zend_View_Helper_Abstract;
 
 /**
  * Noumenal PHP Library.

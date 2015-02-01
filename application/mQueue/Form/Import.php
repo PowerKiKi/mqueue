@@ -13,51 +13,51 @@ class Import extends Zend_Form
         $this->setMethod('post');
 
         // Add the comment element
-        $this->addElement('text', 'url', array(
+        $this->addElement('text', 'url', [
             'label' => _tr('IMDb "Vote History" page url:'),
             'autofocus' => true,
             'required' => true,
             'description' => _tr('eg: http://www.imdb.com/mymovies/list?l=39480251'),
-            'validators' => array(
-                array('validator' => 'Regex', 'options' => array("|mymovies/list\?l=\d+|"))
-            )
-        ));
+            'validators' => [
+                ['validator' => 'Regex', 'options' => ["|mymovies/list\?l=\d+|"]],
+            ],
+        ]);
 
         // Add the minimum for favorite
-        $this->addElement('text', 'favoriteMinimum', array(
+        $this->addElement('text', 'favoriteMinimum', [
             'label' => _tr('Minimum for favorite:'),
             'required' => true,
-            'validators' => array(
-                array('validator' => 'Between', 'options' => array(0, 10)),
-                array('validator' => 'Float', 'options' => array()),
-            )
-        ));
+            'validators' => [
+                ['validator' => 'Between', 'options' => [0, 10]],
+                ['validator' => 'Float', 'options' => []],
+            ],
+        ]);
 
         // Add the minimum for excellent
-        $this->addElement('text', 'excellentMinimum', array(
+        $this->addElement('text', 'excellentMinimum', [
             'label' => _tr('Minimum for excellent:'),
             'required' => true,
-            'validators' => array(
-                array('validator' => 'Between', 'options' => array(0, 10)),
-                array('validator' => 'Float', 'options' => array()),
-            )
-        ));
+            'validators' => [
+                ['validator' => 'Between', 'options' => [0, 10]],
+                ['validator' => 'Float', 'options' => []],
+            ],
+        ]);
 
         // Add the minimum for favorite
-        $this->addElement('text', 'okMinimum', array(
+        $this->addElement('text', 'okMinimum', [
             'label' => _tr('Minimum for ok:'),
             'required' => true,
-            'validators' => array(
-                array('validator' => 'Between', 'options' => array(0, 10)),
-                array('validator' => 'Float', 'options' => array()),
-            )
-        ));
+            'validators' => [
+                ['validator' => 'Between', 'options' => [0, 10]],
+                ['validator' => 'Float', 'options' => []],
+            ],
+        ]);
 
         // Add the submit button
-        $this->addElement('submit', 'submit', array(
+        $this->addElement('submit', 'submit', [
             'ignore' => true,
             'label' => 'Add movie',
-        ));
+        ]);
     }
 
 }

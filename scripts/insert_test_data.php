@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../public/index.php');
+require_once __DIR__ . '/../public/index.php';
 
 $db = Zend_Registry::get('db');
 $db->beginTransaction();

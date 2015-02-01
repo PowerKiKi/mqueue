@@ -2,20 +2,20 @@
 
 namespace mQueue\View\Helper;
 
-use Zend_View_Helper_Abstract;
 use Zend_Registry;
+use Zend_View_Helper_Abstract;
 
 class AlternateFormats extends Zend_View_Helper_Abstract
 {
 
-    protected static $supportedFormats = array(
-        'rss' => array(
+    protected static $supportedFormats = [
+        'rss' => [
             'name' => 'RSS',
-        ),
-        'csv' => array(
+        ],
+        'csv' => [
             'name' => 'CSV',
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns a string of HTML links for end-user, and also append 'alternate' links to HTML header
@@ -25,7 +25,7 @@ class AlternateFormats extends Zend_View_Helper_Abstract
      */
     public function alternateFormats(array $formats, $title = null)
     {
-        $formatLinks = array();
+        $formatLinks = [];
         foreach ($formats as $format => $url) {
 
             // Inject format and locale parameters
@@ -34,7 +34,7 @@ class AlternateFormats extends Zend_View_Helper_Abstract
             } else {
                 $url .= '&';
             }
-            
+
             $url .= 'format=' . $format . '&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage();
 
             $formatLinks [] = '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';
@@ -43,7 +43,7 @@ class AlternateFormats extends Zend_View_Helper_Abstract
             }
         }
 
-        $result = '<p class="alternateFormats">' . $this->view->translate('Also available in:') . ' ' . join(' | ', $formatLinks) . '</p>';
+        $result = '<p class="alternateFormats">' . $this->view->translate('Also available in:') . ' ' . implode(' | ', $formatLinks) . '</p>';
 
         return $result;
     }

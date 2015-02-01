@@ -16,7 +16,7 @@ class Footer extends Zend_View_Helper_Abstract
         $result = '';
 
         $result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
-                        array('controller' => 'about'), 'default', true) . '">' . $this->view->translate('about mQueue') . '</a> ';
+                        ['controller' => 'about'], 'default', true) . '">' . $this->view->translate('about mQueue') . '</a> ';
 
         return $result;
     }

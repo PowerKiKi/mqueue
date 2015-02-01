@@ -13,28 +13,28 @@ class Login extends Zend_Form
         $this->setMethod('post');
 
         // Add the email element
-        $this->addElement('text', 'email', array(
+        $this->addElement('text', 'email', [
             'label' => _tr('Email:'),
             'autofocus' => true,
             'required' => true,
-            'filters' => array('filter' => array('filter' => 'stringTrim')),
-            'validators' => array(
-                array('validator' => 'emailAddress')
-            )
-        ));
+            'filters' => ['filter' => ['filter' => 'stringTrim']],
+            'validators' => [
+                ['validator' => 'emailAddress'],
+            ],
+        ]);
 
         // Add the password element
-        $this->addElement('password', 'password', array(
+        $this->addElement('password', 'password', [
             'label' => _tr('Password:'),
             'required' => true,
-            'filters' => array('filter' => array('filter' => 'stringTrim')),
-        ));
+            'filters' => ['filter' => ['filter' => 'stringTrim']],
+        ]);
 
         // Add the submit button
-        $this->addElement('submit', 'submit', array(
+        $this->addElement('submit', 'submit', [
             'ignore' => true,
             'label' => _tr('Login'),
-        ));
+        ]);
 
         // Add referrer to redirect after login
         $this->addElement('hidden', 'referrer');

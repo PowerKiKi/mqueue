@@ -38,7 +38,7 @@ abstract class StatusMapper extends AbstractMapper
             $status->isLatest = true;
 
             // Here we must set dateUpdate to itself to avoid auto-update of the timestamp field by MySql
-            $db->query('UPDATE `status` SET isLatest = 0, dateUpdate = dateUpdate WHERE idUser = ? AND idMovie = ?', array($user->id, $movie->id));
+            $db->query('UPDATE `status` SET isLatest = 0, dateUpdate = dateUpdate WHERE idUser = ? AND idMovie = ?', [$user->id, $movie->id]);
         }
 
         $status->rating = $rating;
@@ -57,7 +57,7 @@ abstract class StatusMapper extends AbstractMapper
      */
     public static function find($idMovie, User $user = null)
     {
-        $statuses = self::findAll(array($idMovie), $user);
+        $statuses = self::findAll([$idMovie], $user);
 
         return reset($statuses);
     }
@@ -72,7 +72,7 @@ abstract class StatusMapper extends AbstractMapper
      */
     public static function findAll(array $idMovies, User $user = null)
     {
-        $statuses = array();
+        $statuses = [];
         if (!count($idMovies))
             return $statuses;
 
@@ -112,18 +112,17 @@ abstract class StatusMapper extends AbstractMapper
     public static function getStatistics(User $user)
     {
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
-                ->from('status', array(
+                ->from('status', [
                     'rating' => 'IFNULL(rating, 0)',
-                    'count' => 'COUNT(IFNULL(rating, 0))'))
-                ->joinRight('movie', 'movie.id = status.idMovie AND status.idUser = ' . $user->id, array())
+                    'count' => 'COUNT(IFNULL(rating, 0))', ])
+                ->joinRight('movie', 'movie.id = status.idMovie AND status.idUser = ' . $user->id, [])
                 ->where('isLatest = 1 OR isLatest IS NULL')
-                ->group('IFNULL(rating, 0)')
-        ;
+                ->group('IFNULL(rating, 0)');
 
         $records = self::getDbTable()->fetchAll($select);
 
         // Set all count to 0
-        $result = array('total' => 0, 'rated' => 0, Status::Nothing => 0);
+        $result = ['total' => 0, 'rated' => 0, Status::Nothing => 0];
         foreach (Status::$ratings as $val => $name) {
             $result[$val] = 0;
         }
@@ -148,8 +147,7 @@ abstract class StatusMapper extends AbstractMapper
     public static function getGraph(User $user = null, $percent = false)
     {
         $select = self::getDbTable()->select()
-                ->order('dateUpdate')
-        ;
+                ->order('dateUpdate');
 
         if ($user) {
             $select->where('idUser = ?', $user->id);
@@ -158,20 +156,20 @@ abstract class StatusMapper extends AbstractMapper
         $records = self::getDbTable()->fetchAll($select);
 
         // Set all count to 0
-        $cumulatedStatuses = array(Status::Nothing => 0);
-        $graphData = array();
+        $cumulatedStatuses = [Status::Nothing => 0];
+        $graphData = [];
         foreach (Status::$ratings as $val => $name) {
             $cumulatedStatuses[$val] = 0;
-            $graphData[$val] = array();
+            $graphData[$val] = [];
         }
 
         // Fetch real counts
-        $lastStatuses = array();
+        $lastStatuses = [];
         foreach ($records as $row) {
 
             // Add new status
             $cumulatedStatuses[$row->rating] ++;
-            $changed = array($row->rating);
+            $changed = [$row->rating];
 
             // Substract old status
             if (isset($lastStatuses[$row->idUser][$row->idMovie])) {
@@ -191,20 +189,20 @@ abstract class StatusMapper extends AbstractMapper
 
             // Keep for the graph only the changed values (and overwrite previous value if it happened at exactly the same time)
             foreach ($changed as $val) {
-                $graphData[$val][$epoch] = array(
+                $graphData[$val][$epoch] = [
                     $epoch,
                     $cumulatedStatuses[$val],
-                );
+                ];
             }
         }
 
         // Format everything in a more output friendly way
-        $result = array();
+        $result = [];
         foreach (Status::$ratings as $val => $name) {
-            $result[] = array(
+            $result[] = [
                 'name' => $name,
                 'data' => array_values($graphData[$val]),
-            );
+            ];
         }
 
         return $result;

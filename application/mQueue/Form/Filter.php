@@ -2,8 +2,8 @@
 
 namespace mQueue\Form;
 
+use mQueue\Model\UserMapper;
 use Zend_Form_SubForm;
-use \mQueue\Model\UserMapper;
 
 class Filter extends Zend_Form_SubForm
 {
@@ -13,59 +13,59 @@ class Filter extends Zend_Form_SubForm
         // Set the method for the display form to GET
         $this->setMethod('get');
 
-        $users = array();
+        $users = [];
         if (\mQueue\Model\User::getCurrent()) {
-            $users = array(0 => _tr('<< me >>'));
+            $users = [0 => _tr('<< me >>')];
         }
 
         foreach (UserMapper::fetchAll() as $user)
             $users[$user->id] = $user->nickname;
 
-        $this->addElement('select', 'user', array(
+        $this->addElement('select', 'user', [
             'multiOptions' => $users,
             'label' => _tr('User :'),
             'required' => true,
             'class' => 'filterUser',
-            'validators' => array(
-                array('validator' => new Validate\User()),
-            ),
-            'filters' => array(
-                array('int')
-            )
-        ));
+            'validators' => [
+                ['validator' => new Validate\User()],
+            ],
+            'filters' => [
+                ['int'],
+            ],
+        ]);
 
-        $status = array(-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>'));
+        $status = [-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>')];
         $status = $status + \mQueue\Model\Status::$ratings;
 
-        $this->addElement('select', 'status', array(
+        $this->addElement('select', 'status', [
             'multiOptions' => $status,
             'label' => _tr('Rating :'),
             'required' => true,
             'class' => 'filterStatus',
-            'filters' => array(
-                array('int')
-            )
-        ));
+            'filters' => [
+                ['int'],
+            ],
+        ]);
 
         // Add the title element
-        $this->addElement('text', 'title', array(
+        $this->addElement('text', 'title', [
             'label' => _tr('Title :'),
             'autofocus' => true,
-            'filters' => array(
-                array('stringTrim')
-            )
-        ));
+            'filters' => [
+                ['stringTrim'],
+            ],
+        ]);
 
         // Add the filter element
-        $this->addElement('checkbox', 'withSource', array(
+        $this->addElement('checkbox', 'withSource', [
             'label' => _tr('With source'),
-        ));
-        $this->withSource->getDecorator('Label')->setOptions(array('placement' => 'append'));
+        ]);
+        $this->withSource->getDecorator('Label')->setOptions(['placement' => 'append']);
 
-        $this->setDecorators(array(
+        $this->setDecorators([
             'FormElements',
-            array(array('row' => 'HtmlTag'), array('tag' => 'dl', 'class' => 'filter')),
-        ));
+            [['row' => 'HtmlTag'], ['tag' => 'dl', 'class' => 'filter']],
+        ]);
     }
 
     /**

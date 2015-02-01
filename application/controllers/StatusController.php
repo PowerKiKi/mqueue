@@ -56,7 +56,7 @@ class StatusController extends Zend_Controller_Action
             $this->view->jsonCallback = $jsonCallback;
         }
 
-        $idMovies = array();
+        $idMovies = [];
         foreach (explode(',', trim($this->_request->getParam('movies'), ',')) as $idMovie) {
             $idMovie = \mQueue\Model\Movie::extractId($idMovie);
             if ($idMovie)
@@ -65,7 +65,7 @@ class StatusController extends Zend_Controller_Action
 
         $statuses = \mQueue\Model\StatusMapper::findAll($idMovies, \mQueue\Model\User::getCurrent());
 
-        $json = array();
+        $json = [];
         foreach ($statuses as $s) {
             $html = $this->view->statusLinks($s);
             $json[$s->getUniqueId()] = $html;
@@ -80,36 +80,36 @@ class StatusController extends Zend_Controller_Action
         $percent = $this->_request->getParam('percent');
         $user = \mQueue\Model\UserMapper::find($this->getParam('user'));
         $data = \mQueue\Model\StatusMapper::getGraph($user, $percent);
-        $chart = array(
-            'chart' => array(
+        $chart = [
+            'chart' => [
                 'zoomType' => 'x',
-            ),
-            'title' => array(
+            ],
+            'title' => [
                 'text' => '',
-            ),
-            'xAxis' => array(
+            ],
+            'xAxis' => [
                 'type' => 'datetime',
-            ),
-            'yAxis' => array(
-                'title' => array(
+            ],
+            'yAxis' => [
+                'title' => [
                     'text' => 'Movies',
-                ),
+                ],
                 'min' => 0,
-            ),
+            ],
             'series' => $data,
-        );
+        ];
 
         if ($percent) {
             $chart['chart']['type'] = 'area';
             $chart['yAxis']['title']['text'] = $chart['yAxis']['title']['text'] . ' [%]';
-            $chart['plotOptions'] = array(
-                'area' => array(
+            $chart['plotOptions'] = [
+                'area' => [
                     'stacking' => 'percent',
-                    'marker' => array(
+                    'marker' => [
                         'enabled' => false,
-                    ),
-                ),
-            );
+                    ],
+                ],
+            ];
         }
 
         echo Zend_Json::encode($chart, Zend_Json::TYPE_ARRAY);

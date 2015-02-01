@@ -9,9 +9,9 @@ class ActivityController extends Zend_Controller_Action
         $contextSwitch = $this->_helper->contextSwitch();
 
         // Add the new context
-        $contextSwitch->setContexts(array(
-            'rss' => array('suffix' => 'rss')
-        ));
+        $contextSwitch->setContexts([
+            'rss' => ['suffix' => 'rss'],
+        ]);
 
         $contextSwitch->addActionContext('index', 'rss')->initContext();
     }
@@ -26,7 +26,7 @@ class ActivityController extends Zend_Controller_Action
         if ($this->getRequest()->getParam('user')) {
             $item = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('user'));
             if ($item) {
-                $this->view->title = $this->view->translate('Activity for %s', array($item->nickname));
+                $this->view->title = $this->view->translate('Activity for %s', [$item->nickname]);
             }
         }
 
@@ -34,7 +34,7 @@ class ActivityController extends Zend_Controller_Action
         if ($this->getRequest()->getParam('movie')) {
             $item = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('movie'));
             if ($item) {
-                $this->view->title = $this->view->translate('Activity for %s', array($item->getTitle()));
+                $this->view->title = $this->view->translate('Activity for %s', [$item->getTitle()]);
             }
         }
 

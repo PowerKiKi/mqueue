@@ -5,7 +5,7 @@ class MovieControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'movie', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -20,7 +20,7 @@ class MovieControllerTest extends AbstractControllerTestCase
 
     public function testAddAction()
     {
-        $params = array('action' => 'add', 'controller' => 'movie', 'module' => 'default');
+        $params = ['action' => 'add', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -35,7 +35,7 @@ class MovieControllerTest extends AbstractControllerTestCase
 
     public function testImportAction()
     {
-        $params = array('action' => 'import', 'controller' => 'movie', 'module' => 'default');
+        $params = ['action' => 'import', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

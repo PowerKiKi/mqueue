@@ -36,9 +36,9 @@ class SearchEngine
         $maximumTime = time() + $timeout;
         $stdout = null;
 
-        $pipes = array();
+        $pipes = [];
         $process = proc_open(
-                $cmd, array(array('pipe', 'r'), array('pipe', 'w'), array('pipe', 'w')), $pipes
+                $cmd, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipes
         );
 
         if (is_resource($process)) {
@@ -82,9 +82,9 @@ class SearchEngine
      */
     public function parse($content)
     {
-        $data = array();
-        $keys = array('link', 'name', 'size', 'seeds', 'leech', 'engine_url', 'page');
-        $duplicates = array();
+        $data = [];
+        $keys = ['link', 'name', 'size', 'seeds', 'leech', 'engine_url', 'page'];
+        $duplicates = [];
         foreach (explode(PHP_EOL, trim($content)) as $line) {
             $values = explode('|', trim($line));
             if (count($keys) == count($values)) {
@@ -158,7 +158,7 @@ class SearchEngine
      */
     public function computeScores($title, array $sources)
     {
-        $rules = array(
+        $rules = [
             // @see http://en.wikipedia.org/wiki/Pirated_movie_release_types
             '/\b(dvdrip|bdrip|brrip|blu-ray|bluray|bdr|bd5|bd9)\b/i' => 80, // Good sources
             '/\b(dvdr|dvd-full|full-rip|iso|dvd-5|dvd-9)\b/i' => 40, // Ok sources
@@ -171,7 +171,7 @@ class SearchEngine
             '/\b720p\b/i' => 30, // Favor 720p instead of 1080p because of the filesize and better "compatibility" for low powered computer
             '/\b(x264|xvid)\b/i' => 20, // Good formats
             '/\b(uncut|unrated|extended|director\'s cut|director cut)\b/i' => 20, // Director's cut version is supposedly better
-        );
+        ];
 
         $cleanTitle = $this->cleanName($title);
         preg_match('/((18|19|20)\d{2})(– )?\)$/', $title, $matches);
@@ -227,7 +227,7 @@ class SearchEngine
         }
 
         // Sort by score, then seeds, then leech
-        usort($sources, function($source, $other) {
+        usort($sources, function ($source, $other) {
             if ($other['score'] != $source['score']) {
                 return $other['score'] - $source['score'];
             } elseif ($other['seeds'] != $source['seeds']) {

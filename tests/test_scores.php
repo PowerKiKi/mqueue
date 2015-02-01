@@ -3,7 +3,7 @@
 /**
  * This script is used to test score computing algorithm on a batch of movies and their sources
  */
-require_once(__DIR__ . '/../public/index.php');
+require_once __DIR__ . '/../public/index.php';
 
 $searchEngine = new \mQueue\Service\SearchEngine();
 
@@ -14,7 +14,7 @@ $cmd = 'rm -rf ' . escapeshellarg($destination);
 @mkdir($destination);
 
 // For each file of sources, compute scores
-$bests = array();
+$bests = [];
 $found = 0;
 foreach (glob(__DIR__ . '/data/sources/*') as $path) {
     echo '.';
@@ -36,9 +36,9 @@ foreach (glob(__DIR__ . '/data/sources/*') as $path) {
 }
 
 // Output global statistics
-array_unshift($bests, array(
+array_unshift($bests, [
     'found' => $found,
     'not found' => count($bests) - $found,
     'total' => count($bests),
-));
+]);
 file_put_contents($destination . '/_all', var_export($bests, true));

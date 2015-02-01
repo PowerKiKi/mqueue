@@ -15,7 +15,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'activity', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -27,7 +27,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
     public function testUserAction()
     {
-        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'user' => $this->testUser->id);
+        $params = ['action' => 'index', 'controller' => 'activity', 'module' => 'default', 'user' => $this->testUser->id];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -39,7 +39,7 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
     public function testMovieAction()
     {
-        $params = array('action' => 'index', 'controller' => 'activity', 'module' => 'default', 'movie' => $this->movieData['id']);
+        $params = ['action' => 'index', 'controller' => 'activity', 'module' => 'default', 'movie' => $this->movieData['id']];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

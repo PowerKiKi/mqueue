@@ -2,9 +2,9 @@
 
 namespace mQueue\Form;
 
-use Zend_Form;
+use mQueue\Model\UserMapper;
 use Zend_Controller_Action_HelperBroker;
-use \mQueue\Model\UserMapper;
+use Zend_Form;
 
 class Filters extends Zend_Form
 {
@@ -16,40 +16,40 @@ class Filters extends Zend_Form
         $this->setName('filters');
 
         // Add the submit button
-        $this->addElement('submit', 'submit', array(
+        $this->addElement('submit', 'submit', [
             'ignore' => true,
             'label' => _tr('Apply'),
-        ));
+        ]);
 
         // Add the submit button
-        $this->addElement('submit', 'clear', array(
+        $this->addElement('submit', 'clear', [
             'ignore' => true,
             'label' => _tr('Clear'),
-        ));
+        ]);
 
         $this->addDecorator('Fieldset');
 
-        $this->setDecorators(array(
+        $this->setDecorators([
             'FormElements',
-            array(array('fieldset' => 'Fieldset'), array('legend' => 'Filter')),
+            [['fieldset' => 'Fieldset'], ['legend' => 'Filter']],
             'Form',
-        ));
+        ]);
 
-        $this->addDisplayGroup(array('submit', 'clear'), 'filters', array('legend' => _tr('Filter')));
+        $this->addDisplayGroup(['submit', 'clear'], 'filters', ['legend' => _tr('Filter')]);
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $view = $viewRenderer->view;
 
-        $this->addElement('image', 'addFilter', array(
+        $this->addElement('image', 'addFilter', [
             'src' => $view->serverUrl() . $view->baseUrl('/images/add.png'),
             'imageValue' => '1',
-        ));
-        $this->addDisplayGroup(array('addFilter'), 'addFilterGroup', array('class' => 'addFilter'));
+        ]);
+        $this->addDisplayGroup(['addFilter'], 'addFilterGroup', ['class' => 'addFilter']);
 
-        $this->setDisplayGroupDecorators(array(
+        $this->setDisplayGroupDecorators([
             'FormElements',
-            array(array('row' => 'HtmlTag'), array('tag' => 'dl', 'class' => 'buttons')),
-        ));
+            [['row' => 'HtmlTag'], ['tag' => 'dl', 'class' => 'buttons']],
+        ]);
     }
 
     /**
@@ -95,10 +95,10 @@ class Filters extends Zend_Form
 
         // If we specifically asked to add a filter or if there is none, then add a new filter with default value
         if ((isset($defaults['addFilter_x'])) || $max == 0) {
-            $defaults['filter' . ($max + 1)] = array(
+            $defaults['filter' . ($max + 1)] = [
                 'user' => \mQueue\Model\User::getCurrent() ? 0 : UserMapper::fetchAll()->current()->id,
                 'status' => -1,
-            );
+            ];
         }
 
         // Create all filters
@@ -122,12 +122,12 @@ class Filters extends Zend_Form
      */
     public function getValuesText()
     {
-        $text = array();
+        $text = [];
         foreach ($this->getSubForms() as $subForm) {
             $text [] = $subForm->getValuesText();
         }
 
-        return join(' + ', $text);
+        return implode(' + ', $text);
     }
 
 }

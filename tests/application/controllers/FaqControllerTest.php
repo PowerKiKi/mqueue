@@ -5,7 +5,7 @@ class FaqControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'faq', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'faq', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

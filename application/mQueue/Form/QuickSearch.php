@@ -2,8 +2,8 @@
 
 namespace mQueue\Form;
 
-use Zend_Form;
 use Zend_Controller_Action_HelperBroker;
+use Zend_Form;
 
 class QuickSearch extends Zend_Form
 {
@@ -15,22 +15,22 @@ class QuickSearch extends Zend_Form
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $view = $viewRenderer->view;
 
-        $this->setAction($view->serverUrl() . $view->url(array('controller' => 'movie', 'action' => 'index'), 'default', false));
+        $this->setAction($view->serverUrl() . $view->url(['controller' => 'movie', 'action' => 'index'], 'default', false));
 
         // Add the comment element
-        $this->addElement('text', 'search', array(
+        $this->addElement('text', 'search', [
             'placeholder' => _tr('search movie…'),
-            'decorators' => array('ViewHelper')
-        ));
+            'decorators' => ['ViewHelper'],
+        ]);
 
         // Add the submit button
-        $this->addElement('submit', 'searchSubmit', array(
+        $this->addElement('submit', 'searchSubmit', [
             'label' => _tr('Search'),
-            'decorators' => array('ViewHelper'),
-        ));
+            'decorators' => ['ViewHelper'],
+        ]);
 
         $this->addDecorator('FormElements')
-                ->addDecorator('HtmlTag', array('tag' => 'span'))
+                ->addDecorator('HtmlTag', ['tag' => 'span'])
                 ->addDecorator('Form');
     }
 

@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\Status;
 use Zend_View_Helper_Abstract;
-use \mQueue\Model\Status;
 
 class StatusHelp extends Zend_View_Helper_Abstract
 {

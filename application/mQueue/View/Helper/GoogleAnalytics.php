@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
-use Zend_View_Helper_Abstract;
 use Zend_Application;
+use Zend_View_Helper_Abstract;
 
 class GoogleAnalytics extends Zend_View_Helper_Abstract
 {

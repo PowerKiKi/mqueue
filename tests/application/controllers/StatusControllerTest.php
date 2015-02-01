@@ -5,7 +5,7 @@ class StatusControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'status', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'status', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

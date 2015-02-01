@@ -2,8 +2,8 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
-use \mQueue\Model\User;
 
 class Gravatar extends Zend_View_Helper_Abstract
 {

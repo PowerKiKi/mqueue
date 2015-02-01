@@ -3,8 +3,8 @@
 namespace mQueue\Controller\ActionHelper;
 
 use Zend_Controller_Action_Helper_Abstract;
-use Zend_Session_Namespace;
 use Zend_Paginator;
+use Zend_Session_Namespace;
 
 class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
 {

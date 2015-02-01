@@ -7,24 +7,24 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
      * @var \mQueue\Model\User
      */
     protected $testUser;
-    protected $userData = array(
+    protected $userData = [
         'nickname' => 'test user',
         'email' => 'valid@email.org',
         'password' => 'superpassword',
-    );
-    protected $movieData = array(
+    ];
+    protected $movieData = [
         'id' => '0096446',
         'title' => 'Willow (1988)',
-    );
+    ];
 
     public function setUp()
     {
 
         $this->bootstrap = new Zend_Application(
-                APPLICATION_ENV, array(
-            'config' => array(
+                APPLICATION_ENV, [
+            'config' => [
                 APPLICATION_PATH . '/configs/application.ini',
-            ))
+            ], ]
         );
 
         $this->testUser = \mQueue\Model\UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
@@ -43,16 +43,16 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
     public function loginUser($login, $password)
     {
         $this->request->setMethod('POST')
-                ->setPost(array(
+                ->setPost([
                     'login' => $login,
                     'password' => $password,
-        ));
+        ]);
         $this->dispatch('/user/login');
 
         $this->resetRequest()
                 ->resetResponse();
 
-        $this->request->setPost(array());
+        $this->request->setPost([]);
     }
 
     /**

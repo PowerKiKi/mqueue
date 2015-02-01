@@ -2,8 +2,8 @@
 
 namespace mQueue\Model;
 
-use Zend_Session_Namespace;
 use mQueue\Model\User as DefaultModelUser;
+use Zend_Session_Namespace;
 
 class User extends AbstractModel
 {

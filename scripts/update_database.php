@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../public/index.php');
+require_once __DIR__ . '/../public/index.php';
 
 $settingName = 'databaseVersion'; // This is the setting name used in the database to store the version information
 $sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
@@ -41,7 +41,7 @@ function buildSQL($currentVersion, $targetVersion)
 
     $sql = "START TRANSACTION;\n";
 
-    $missingVersions = array();
+    $missingVersions = [];
     for ($v = $currentVersion + 1; $v <= $targetVersion; $v++) {
         $file = $sqlPath . 'version.' . $v . '.sql';
         if (is_file($file)) {
@@ -56,7 +56,7 @@ function buildSQL($currentVersion, $targetVersion)
     $sql .= "\nCOMMIT;\n";
 
     if (count($missingVersions))
-        throw new Exception('Missing SQL file for versions: ' . join(',', $missingVersions));
+        throw new Exception('Missing SQL file for versions: ' . implode(',', $missingVersions));
 
     return $sql;
 }

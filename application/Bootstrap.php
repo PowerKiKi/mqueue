@@ -16,7 +16,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'namespaces' => [
                             'mQueue' => APPLICATION_PATH . '/mQueue',
                         ],
-                    ]
+                    ],
         ]);
     }
 
@@ -35,49 +35,49 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('view');
         $view = $this->getResource('view');
 
-        $navigation = new Zend_Navigation(array(
-            array(
+        $navigation = new Zend_Navigation([
+            [
                 'label' => $view->translate('Movies'),
                 'controller' => 'movie',
                 'route' => 'default',
-                'pages' => array(
-                    array(
+                'pages' => [
+                    [
                         'label' => $view->translate('Add movie'),
                         'controller' => 'movie',
                         'action' => 'add',
                         'route' => 'default',
-                    ),
-                    array(
+                    ],
+                    [
                         'label' => $view->translate('Import votes from IMDb'),
                         'controller' => 'movie',
                         'action' => 'import',
                         'route' => 'default',
-                    ),
-                )
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'label' => $view->translate('Activity'),
                 'controller' => 'activity',
                 'route' => 'default',
-            ),
-            array(
+            ],
+            [
                 'label' => $view->translate('Users'),
                 'controller' => 'user',
                 'route' => 'default',
-            ),
-            array(
+            ],
+            [
                 'label' => $view->translate('FAQ'),
                 'controller' => 'faq',
                 'route' => 'default',
-            ),
-        ));
+            ],
+        ]);
 
         $view->navigation($navigation);
     }
 
     protected function _initSession()
     {
-        Zend_Session::setOptions(array('name' => 'mqueue'));
+        Zend_Session::setOptions(['name' => 'mqueue']);
     }
 
     protected function _initLanguage()
@@ -96,7 +96,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
         Zend_Registry::set('Zend_Locale', $locale);
 
-        $adapter = new Zend_Translate('gettext', APPLICATION_PATH . '/localization', $locale, array('scan' => Zend_Translate::LOCALE_FILENAME, 'disableNotices' => true));
+        $adapter = new Zend_Translate('gettext', APPLICATION_PATH . '/localization', $locale, ['scan' => Zend_Translate::LOCALE_FILENAME, 'disableNotices' => true]);
         Zend_Registry::set('Zend_Translate', $adapter);
         Zend_Form::setDefaultTranslator($adapter);
         self::$translator = $adapter;
@@ -117,21 +117,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addDefaultRoutes();
 
         // A route for single id (typically view a single movie/user)
-        $router->addRoute('singleid', new Zend_Controller_Router_Route(':controller/:action/:id', array('action' => 'view')));
+        $router->addRoute('singleid', new Zend_Controller_Router_Route(':controller/:action/:id', ['action' => 'view']));
 
         // A route for activities
-        $router->addRoute('activity', new Zend_Controller_Router_Route('activity/*', array('controller' => 'activity', 'action' => 'index')));
-        $router->addRoute('activityMovie', new Zend_Controller_Router_Route('activity/movie/:movie/*', array('controller' => 'activity', 'action' => 'index')));
-        $router->addRoute('activityUser', new Zend_Controller_Router_Route('activity/user/:user/*', array('controller' => 'activity', 'action' => 'index')));
+        $router->addRoute('activity', new Zend_Controller_Router_Route('activity/*', ['controller' => 'activity', 'action' => 'index']));
+        $router->addRoute('activityMovie', new Zend_Controller_Router_Route('activity/movie/:movie/*', ['controller' => 'activity', 'action' => 'index']));
+        $router->addRoute('activityUser', new Zend_Controller_Router_Route('activity/user/:user/*', ['controller' => 'activity', 'action' => 'index']));
 
         // For backward compatibility with RSS readers we keep the old route
-        $router->addRoute('activityOld', new Zend_Controller_Router_Route('activity/index/*', array('controller' => 'activity', 'action' => 'index')));
-        $router->addRoute('activityMovieOld', new Zend_Controller_Router_Route('activity/index/movie/:movie/*', array('controller' => 'activity', 'action' => 'index')));
-        $router->addRoute('activityUserOld', new Zend_Controller_Router_Route('activity/index/user/:user/*', array('controller' => 'activity', 'action' => 'index')));
+        $router->addRoute('activityOld', new Zend_Controller_Router_Route('activity/index/*', ['controller' => 'activity', 'action' => 'index']));
+        $router->addRoute('activityMovieOld', new Zend_Controller_Router_Route('activity/index/movie/:movie/*', ['controller' => 'activity', 'action' => 'index']));
+        $router->addRoute('activityUserOld', new Zend_Controller_Router_Route('activity/index/user/:user/*', ['controller' => 'activity', 'action' => 'index']));
 
         // Routes to define and view statuses
-        $router->addRoute('status', new Zend_Controller_Router_Route_Regex('status/(\d{7})/(\d)', array('controller' => 'status', 'action' => 'index'), array(1 => 'movie', 2 => 'rating'), 'status/%s/%s'));
-        $router->addRoute('statusView', new Zend_Controller_Router_Route_Regex('status/(\d{7})', array('controller' => 'status', 'action' => 'index'), array(1 => 'movie'), 'status/%s'));
+        $router->addRoute('status', new Zend_Controller_Router_Route_Regex('status/(\d{7})/(\d)', ['controller' => 'status', 'action' => 'index'], [1 => 'movie', 2 => 'rating'], 'status/%s/%s'));
+        $router->addRoute('statusView', new Zend_Controller_Router_Route_Regex('status/(\d{7})', ['controller' => 'status', 'action' => 'index'], [1 => 'movie'], 'status/%s'));
     }
 
     /**

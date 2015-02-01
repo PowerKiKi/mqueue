@@ -4,11 +4,11 @@ class UserControllerTest extends AbstractControllerTestCase
 {
 
     protected $idUser = null;
-    protected $newUserData = array(
+    protected $newUserData = [
         'nickname' => 'new test user',
         'email' => 'new_valid@email.org',
         'password' => 'superpassword',
-    );
+    ];
 
     public function tearDown()
     {
@@ -21,7 +21,7 @@ class UserControllerTest extends AbstractControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'user', 'module' => 'default');
+        $params = ['action' => 'index', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -36,7 +36,7 @@ class UserControllerTest extends AbstractControllerTestCase
     public function testNewAction()
     {
         // First, query to display form
-        $params = array('action' => 'new', 'controller' => 'user', 'module' => 'default');
+        $params = ['action' => 'new', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -82,7 +82,7 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->resetRequest();
         $this->resetResponse();
 
-        $params = array('action' => 'logout', 'controller' => 'user', 'module' => 'default');
+        $params = ['action' => 'logout', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
@@ -96,7 +96,7 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->request->setMethod('POST')
                 ->setPost($this->newUserData);
 
-        $params = array('action' => 'login', 'controller' => 'user', 'module' => 'default');
+        $params = ['action' => 'login', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

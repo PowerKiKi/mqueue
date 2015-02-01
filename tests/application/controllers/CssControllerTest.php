@@ -5,7 +5,7 @@ class CssControllerTest extends AbstractControllerTestCase
 
     public function testGravatarAction()
     {
-        $params = array('action' => 'gravatar.css', 'controller' => 'css', 'module' => 'default');
+        $params = ['action' => 'gravatar.css', 'controller' => 'css', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 

@@ -12,7 +12,7 @@ class User extends Zend_Validate_Db_RecordExists
 
     public function __construct()
     {
-        parent::__construct(array('table' => 'user', 'field' => 'id'));
+        parent::__construct(['table' => 'user', 'field' => 'id']);
     }
 
     /**

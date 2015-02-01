@@ -2,9 +2,9 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\Status;
+use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
-use \mQueue\Model\Status;
-use \mQueue\Model\User;
 
 class StatusLinks extends Zend_View_Helper_Abstract
 {
@@ -27,11 +27,11 @@ class StatusLinks extends Zend_View_Helper_Abstract
 
         foreach (\mQueue\Model\Status::$ratings as $val => $name) {
             $class = $val . ($status->rating == $val ? ' current' : '');
-            $url = $this->view->serverUrl() . $this->view->url(array(
+            $url = $this->view->serverUrl() . $this->view->url([
                         'controller' => 'status',
                         'movie' => $status->idMovie,
-                        'rating' => ($val == $status->rating && $user && $user->id == $status->idUser) ? 0 : $val
-                            ), 'status', true);
+                        'rating' => ($val == $status->rating && $user && $user->id == $status->idUser) ? 0 : $val,
+                            ], 'status', true);
 
             $result .= '<' . $tag . ' class="mqueue_status mqueue_status_' . $class . '"' . ($tag == 'a' ? ' href="' . $url . '"' : '') . ' title="' . $name . '"><span>' . $name . '</span></' . $tag . '>';
         }

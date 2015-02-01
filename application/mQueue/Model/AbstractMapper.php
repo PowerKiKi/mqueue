@@ -5,7 +5,7 @@ namespace mQueue\Model;
 abstract class AbstractMapper
 {
 
-    private static $dbTables = array();
+    private static $dbTables = [];
 
     /**
      * Returns the Zend_Db_Table for the current model class
