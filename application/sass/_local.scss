@@ -270,6 +270,7 @@ input {
     &[type='text'] {
         &[id='id'], &[id='url'] {
             width: 40em;
+            max-width: 100%; // Don't overflow small screens
         }
     }
 }
