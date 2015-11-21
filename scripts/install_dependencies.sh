@@ -4,8 +4,6 @@
 set -e
 
 # Install gulp.js
-nvm install 0.12
-nvm use 0.12
 npm install -g gulp-cli
 
 # Install Compass
