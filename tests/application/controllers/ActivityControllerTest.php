@@ -8,9 +8,6 @@ class ActivityControllerTest extends AbstractControllerTestCase
         $this->assertModule($params['module']);
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
-
-        $this->assertQueryContentContains('th', 'Date');
-        $this->assertQueryContentContains('th', 'Movie');
     }
 
     public function testIndexAction()

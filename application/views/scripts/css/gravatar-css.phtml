@@ -1,15 +1,22 @@
-span.gravatar { display: inline-block; width: 16px; height: 16px;}
-span.gravatar.big { width: 96px; height: 96px;}
+span.gravatar {display: inline-block;}
 select.filterUser option { padding-left: 20px; background-repeat: no-repeat; height: 16px; }
 <?php
+$sizes = [
+    'small' => 16,
+    'medium' => 36,
+    'big' => 128,
+];
+foreach ($sizes as $name => $size) {
+    echo 'span.gravatar.' . $name . '{width: ' . $size . 'px; height: ' . $size . 'px;}' . PHP_EOL;
+}
 foreach ($this->users as $user) {
-    $url = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?';
-    $url .= '&default=identicon';
-    $urlSmall = $url . '&size=16';
-    $urlBig = $url . '&size=96';
-    ?>
-span.gravatar.user_<?php echo $user->id; ?>, select.filterUser option[value='<?php echo $user->id; ?>'] { background-image: url(<?php echo $urlSmall; ?>); }
-span.gravatar.user_<?php echo $user->id; ?>.big {background-image: url(<?php echo $urlBig; ?>); }
-    <?php
+    $urlBase = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?default=identicon';
+    foreach ($sizes as $name => $size) {
+        $url = $urlBase . '&size=' . $size;
+        $additionnalSelector = $name == 'small' ? ", select.filterUser option[value='" . $user->id . "']" : '';
+        ?>
+span.gravatar.user_<?php echo $user->id; ?>.<?php echo $name . $additionnalSelector; ?> {background-image: url(<?php echo $url; ?>);}
+<?php
+    }
 }
 

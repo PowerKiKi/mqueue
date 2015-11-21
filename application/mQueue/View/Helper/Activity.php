@@ -10,7 +10,6 @@ use Zend_View_Helper_Abstract;
 
 class Activity extends Zend_View_Helper_Abstract
 {
-
     /**
      * Returns an HTML table of activities
      * @param Zend_Paginator $activity
@@ -22,18 +21,7 @@ class Activity extends Zend_View_Helper_Abstract
         $columns = ['date', 'user', 'status', 'movie'];
         $columns = array_diff($columns, $hiddenColumns);
 
-        $result = '<table class="activity">';
-
-        $result .= '<tr>';
-        if (in_array('date', $columns))
-            $result .= '<th>' . $this->view->translate('Date') . '</th>';
-        if (in_array('user', $columns))
-            $result .= '<th>' . $this->view->translate('User') . '</th>';
-        if (in_array('status', $columns))
-            $result .= '<th>' . $this->view->translate('Rating') . '</th>';
-        if (in_array('movie', $columns))
-            $result .= '<th>' . $this->view->translate('Movie') . '</th>';
-        $result .= '</tr>';
+        $result = '<div class="activity">';
 
         $cacheUser = [];
         $cacheMovie = [];
@@ -48,28 +36,40 @@ class Activity extends Zend_View_Helper_Abstract
             }
             $movie = $cacheMovie[$status->idMovie];
 
-            $result .= '<tr>';
-            if (in_array('date', $columns))
-                $result .= '<td class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</td>';
-            if (in_array('user', $columns))
-                $result .= '<td class="user"><a href="' . $this->view->url([
+            $result .= '<div class="row">';
+
+            if (in_array('user', $columns)) {
+                $result .= '<div class="user"><a href="' . $this->view->url([
                             'controller' => 'user',
                             'action' => 'view',
                             'id' => $user->id,
-                                ], 'singleid', true) . '">' . $this->view->gravatar($user) . ' ' . $this->view->escape($user->nickname) . '</a></td>';
-            if (in_array('status', $columns))
-                $result .= '<td class="rating">' . $this->view->statusLinks($status) . '</td>';
-            if (in_array('movie', $columns))
-                $result .= '<td class="movie">' . $this->view->movie($movie) . '</td>';
+                                ], 'singleid', true) . '">' . $this->view->gravatar($user, 'medium') . ' ' /* . $this->view->escape($user->nickname) */ . '</a></div>';
+            }
 
-            $result .= '</tr>';
+            $result .= '<div class="others">';
+
+            if (in_array('movie', $columns)) {
+                $result .= '<div class="movie">' . $this->view->movie($movie) . '</div>';
+            }
+            if (in_array('status', $columns)) {
+                $result .= '<span class="rating">' . $this->view->statusLinks($status) . '</span> ';
+            }
+
+            if (in_array('date', $columns)) {
+                $result .= '<span class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</span> ';
+            }
+
+
+            $result .= '</div>';
+
+            $result .= '</div>';
         }
 
         if ($activity->getTotalItemCount() == 0) {
-            $result .= '<tr><td colspan="' . count($columns) . '">' . $this->view->translate('There is no activity to show.') . '</td></tr>';
+            $result .= '<p>' . $this->view->translate('There is no activity to show.') . '<p>';
         }
 
-        return $result . '</table>';
+        return $result . '</div>';
     }
 
 }
