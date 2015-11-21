@@ -8,10 +8,9 @@ an IMDb movie). This is possible thanks to the use of user-script (greasemonkey 
 
 ## Requirements
 
-* PHP 5.5+ with cURL module
-* Apache 2+
-* MySQL 5.1+
-* Zend Framework 1.12.7+
+* PHP with cURL module
+* Apache
+* MariaDB
 * [Compass](http://compass-style.org/)
 
 ## Installation
