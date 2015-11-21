@@ -4,8 +4,8 @@
     "require": {
         "php": ">=5.5.0",
         "zendframework/zendframework1": "~1.12",
-        "phpunit/phpunit": "~4.4",
-        "fabpot/php-cs-fixer": "~1.4"
+        "phpunit/phpunit": "~5.0",
+        "fabpot/php-cs-fixer": "~1.10"
     },
     "license": "MIT",
     "authors": [
