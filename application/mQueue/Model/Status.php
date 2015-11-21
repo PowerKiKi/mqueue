@@ -10,7 +10,6 @@ use Zend_Date;
  */
 class Status extends AbstractModel
 {
-
     const Nothing = 0;
     const Need = 1;
     const Bad = 2;
@@ -20,7 +19,7 @@ class Status extends AbstractModel
 
     /**
      * array of ratings names indexed by the rating value
-     * @var array $ratings
+     * @var array
      */
     public static $ratings = null;
 
@@ -54,7 +53,6 @@ class Status extends AbstractModel
     {
         return new Zend_Date($this->dateUpdate, Zend_Date::ISO_8601);
     }
-
 }
 
 // Defines ratings names

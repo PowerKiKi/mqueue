@@ -7,7 +7,7 @@ $sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
 
 /**
  * Returns the last version available in SQL file
- * @return integer last version of patches
+ * @return int last version of patches
  */
 function getPatchVersion()
 {
@@ -16,8 +16,9 @@ function getPatchVersion()
     $d = dir($sqlPath);
     while (false !== ($entry = $d->read())) {
         if (preg_match('/^version\.(\d+)\.sql$/i', $entry, $a)) {
-            if ((int) $a[1] > $lastVersion)
+            if ((int) $a[1] > $lastVersion) {
                 $lastVersion = (int) $a[1];
+            }
         }
     }
     $d->close();
@@ -28,21 +29,22 @@ function getPatchVersion()
 /**
  * Returns the whole SQL (enclosed in transaction) needed to update from
  * specified version to specified target version.
- * @param integer $currentVersion the version currently found in database
- * @param integer $targetVersion the target version to reach wich patches
+ * @param int $currentVersion the version currently found in database
+ * @param int $targetVersion the target version to reach wich patches
  * @return string the SQL
  */
 function buildSQL($currentVersion, $targetVersion)
 {
     global $sqlPath;
 
-    if ($currentVersion > $targetVersion)
+    if ($currentVersion > $targetVersion) {
         throw new Exception('Cannot downgrade versions. Target version must be higher than current version');
+    }
 
     $sql = "START TRANSACTION;\n";
 
     $missingVersions = [];
-    for ($v = $currentVersion + 1; $v <= $targetVersion; $v++) {
+    for ($v = $currentVersion + 1; $v <= $targetVersion; ++$v) {
         $file = $sqlPath . 'version.' . $v . '.sql';
         if (is_file($file)) {
             $sql .= "\n-- -------- VERSION $v BEGINS ------------------------\n";
@@ -55,8 +57,9 @@ function buildSQL($currentVersion, $targetVersion)
 
     $sql .= "\nCOMMIT;\n";
 
-    if (count($missingVersions))
+    if (count($missingVersions)) {
         throw new Exception('Missing SQL file for versions: ' . implode(',', $missingVersions));
+    }
 
     return $sql;
 }

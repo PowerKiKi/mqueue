@@ -7,10 +7,9 @@ use Zend_Db_Expr;
 
 abstract class MovieMapper extends AbstractMapper
 {
-
     /**
      * Returns a movie by its ID
-     * @param integer $id
+     * @param int $id
      * @return \mQueue\Model\Movie|null
      */
     public static function find($id)
@@ -39,7 +38,7 @@ abstract class MovieMapper extends AbstractMapper
     {
         $futureYears = [];
         $date = Zend_Date::now();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $date->addYear(1);
             $futureYears[] = $date->get(Zend_Date::YEAR_8601);
         }
@@ -63,7 +62,7 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns movies for data fetching
-     * @param integer $limit
+     * @param int $limit
      * @return \mQueue\Model\Movie[]
      */
     public static function findAllForFetching($limit = null)
@@ -91,7 +90,6 @@ abstract class MovieMapper extends AbstractMapper
      */
     public static function getFilteredQuery(array $filters, $orderBy)
     {
-
         $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
@@ -173,5 +171,4 @@ abstract class MovieMapper extends AbstractMapper
         // Delete non-needed sources
         $db->query($update . ' WHERE `movie`.`id` NOT IN (SELECT `status`.`idMovie` FROM `status` WHERE `rating` = ? AND `isLatest`)', [Status::Need]);
     }
-
 }

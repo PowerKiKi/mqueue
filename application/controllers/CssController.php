@@ -2,7 +2,6 @@
 
 class CssController extends Zend_Controller_Action
 {
-
     public function init()
     {
         $this->_helper->layout->disableLayout();
@@ -13,5 +12,4 @@ class CssController extends Zend_Controller_Action
     {
         $this->view->users = \mQueue\Model\UserMapper::fetchAll();
     }
-
 }

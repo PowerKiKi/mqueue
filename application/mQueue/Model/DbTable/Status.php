@@ -9,9 +9,7 @@ use Zend_Db_Table_Abstract;
  */
 class Status extends Zend_Db_Table_Abstract
 {
-
     /** Table name */
     protected $_name = 'status';
     protected $_rowClass = '\mQueue\Model\Status';
-
 }

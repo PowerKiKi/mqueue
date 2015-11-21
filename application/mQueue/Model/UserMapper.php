@@ -6,7 +6,6 @@ use mQueue\Model\UserMapper as DefaultModelUserMapper;
 
 abstract class UserMapper extends AbstractMapper
 {
-
     /**
      * Create and save a new user
      * @param array $values
@@ -42,7 +41,7 @@ abstract class UserMapper extends AbstractMapper
 
     /**
      * Finds a user by its ID
-     * @param integer $id
+     * @param int $id
      * @return \mQueue\Model\User|null
      */
     public static function find($id)
@@ -62,5 +61,4 @@ abstract class UserMapper extends AbstractMapper
 
         return $resultSet;
     }
-
 }

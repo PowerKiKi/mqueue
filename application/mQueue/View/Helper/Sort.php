@@ -6,7 +6,6 @@ use Zend_View_Helper_Abstract;
 
 class Sort extends Zend_View_Helper_Abstract
 {
-
     /**
      * Return an HTML links to be able to sort (will typically be in table header)
      * @param string $label
@@ -18,8 +17,9 @@ class Sort extends Zend_View_Helper_Abstract
      */
     public function sort($label, $column, $selectedSortKey, $selectedSortOrder, array $additionalParameters = null)
     {
-        if (is_null($additionalParameters))
+        if (is_null($additionalParameters)) {
             $additionalParameters = [];
+        }
 
         $orders = ['desc' => 'asc', 'asc' => 'desc'];
         if (!in_array($selectedSortOrder, $orders)) {
@@ -31,5 +31,4 @@ class Sort extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

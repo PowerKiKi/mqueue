@@ -2,7 +2,6 @@
 
 class AboutControllerTest extends AbstractControllerTestCase
 {
-
     public function testIndexAction()
     {
         $params = ['action' => 'index', 'controller' => 'about', 'module' => 'default'];
@@ -16,5 +15,4 @@ class AboutControllerTest extends AbstractControllerTestCase
 
         $this->assertQueryContentContains('p', 'This project started as a personal need');
     }
-
 }

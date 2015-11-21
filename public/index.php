@@ -6,8 +6,9 @@ ini_set('session.gc_maxlifetime', 1 * 60 * 60 * 24 * 120);
 // Define path to application directory
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(__DIR__ . '/../application'));
 
-if (@$_SERVER['HTTP_HOST'] == 'localhost')
+if (@$_SERVER['HTTP_HOST'] == 'localhost') {
     define('APPLICATION_ENV', 'development');
+}
 
 // Define application environment
 defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));

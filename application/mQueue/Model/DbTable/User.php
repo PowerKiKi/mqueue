@@ -9,9 +9,7 @@ use Zend_Db_Table_Abstract;
  */
 class User extends Zend_Db_Table_Abstract
 {
-
     /** Table name */
     protected $_name = 'user';
     protected $_rowClass = '\mQueue\Model\User';
-
 }

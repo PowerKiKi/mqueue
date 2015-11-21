@@ -4,7 +4,6 @@ namespace mQueue\Model;
 
 abstract class SettingMapper extends AbstractMapper
 {
-
     /**
      * Returns the setting, with a default value set if none was found.
      * @param string $id
@@ -23,5 +22,4 @@ abstract class SettingMapper extends AbstractMapper
 
         return $result;
     }
-
 }

@@ -6,7 +6,6 @@ use Zend_View_Helper_Abstract;
 
 class CacheStamp extends Zend_View_Helper_Abstract
 {
-
     /**
      * Inject the last modified time of file.
      * This avoid browser cache and force reloading when the file changed.
@@ -27,5 +26,4 @@ class CacheStamp extends Zend_View_Helper_Abstract
 
         return $fileName;
     }
-
 }

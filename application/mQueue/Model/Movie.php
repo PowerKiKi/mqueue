@@ -13,10 +13,9 @@ use Zend_Registry;
  */
 class Movie extends AbstractModel
 {
-
     /**
      * All known IMDb hostnames indexed by their language
-     * @var array $imdbHostnames
+     * @var array
      */
     public static $imdbHostnames = [
         'en' => 'www.imdb.com',
@@ -59,7 +58,6 @@ class Movie extends AbstractModel
 
     /**
      * Fetch data from IMDb and store in database (possibly overwriting)
-     * @return void
      */
     public function fetchData()
     {
@@ -148,7 +146,7 @@ class Movie extends AbstractModel
     /**
      * Set the status for the specified user
      * @param \mQueue\Model\User $user
-     * @param integer $rating @see \mQueue\Model\Status
+     * @param int $rating @see \mQueue\Model\Status
      * @return \mQueue\Model\Status
      */
     public function setStatus(User $user, $rating)
@@ -165,7 +163,7 @@ class Movie extends AbstractModel
     public function setSource($source)
     {
         $this->dateSearch = Zend_Date::now()->get(Zend_Date::ISO_8601);
-        $this->searchCount++;
+        ++$this->searchCount;
         if ($source && @$source['score']) {
             $this->identity = $source['identity'];
             $this->quality = $source['quality'];
@@ -173,5 +171,4 @@ class Movie extends AbstractModel
             $this->source = $source['link'];
         }
     }
-
 }

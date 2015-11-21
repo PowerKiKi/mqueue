@@ -7,7 +7,6 @@ use Zend_Form;
 
 class QuickSearch extends Zend_Form
 {
-
     public function init()
     {
         $this->setMethod('get');
@@ -33,5 +32,4 @@ class QuickSearch extends Zend_Form
                 ->addDecorator('HtmlTag', ['tag' => 'span'])
                 ->addDecorator('Form');
     }
-
 }

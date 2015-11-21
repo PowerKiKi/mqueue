@@ -2,7 +2,6 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-
     public static $translator = null;
 
     protected function _initAutoload()
@@ -145,7 +144,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $db;
     }
-
 }
 
 /**

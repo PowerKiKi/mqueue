@@ -2,7 +2,6 @@
 
 class JsControllerTest extends AbstractControllerTestCase
 {
-
     public function testRemoteJsAction()
     {
         $params = ['action' => 'remote.js', 'controller' => 'js', 'module' => 'default'];
@@ -33,5 +32,4 @@ class JsControllerTest extends AbstractControllerTestCase
         $this->assertHeaderContains('Content-Type', 'application/javascript');
         $this->assertContentContains('document.evaluate');
     }
-
 }

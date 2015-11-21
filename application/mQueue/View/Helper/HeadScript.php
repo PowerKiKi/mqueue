@@ -6,7 +6,6 @@ use Zend_View_Helper_HeadScript;
 
 class HeadScript extends Zend_View_Helper_HeadScript
 {
-
     /**
      * Include a directory recursively
      * @param string $directory
@@ -59,5 +58,4 @@ class HeadScript extends Zend_View_Helper_HeadScript
 
         return parent::__call($method, $args);
     }
-
 }

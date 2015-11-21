@@ -7,7 +7,6 @@ use Zend_Validate_Db_NoRecordExists;
 
 class User extends Zend_Form
 {
-
     public function init()
     {
         // Set the method for the display form to POST
@@ -53,5 +52,4 @@ class User extends Zend_Form
             'decorators' => ['ViewHelper'],
         ]);
     }
-
 }

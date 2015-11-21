@@ -7,7 +7,6 @@ use Zend_View_Helper_Abstract;
 
 class AlternateFormats extends Zend_View_Helper_Abstract
 {
-
     protected static $supportedFormats = [
         'rss' => [
             'name' => 'RSS',
@@ -47,5 +46,4 @@ class AlternateFormats extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

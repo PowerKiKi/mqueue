@@ -4,11 +4,9 @@ namespace mQueue\Model;
 
 /**
  * Settings stored in database (not to be confused with application configuration)
- *
  */
 class Setting extends AbstractModel
 {
-
     /**
      * Returns the setting, with a default value set if none was found.
      * @param string $id unique name of setting
@@ -33,5 +31,4 @@ class Setting extends AbstractModel
         $setting->value = $value;
         $setting->save();
     }
-
 }

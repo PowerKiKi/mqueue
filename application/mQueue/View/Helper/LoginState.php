@@ -7,7 +7,6 @@ use Zend_View_Helper_Abstract;
 
 class LoginState extends Zend_View_Helper_Abstract
 {
-
     /**
      * Returns a string displaying the login state of the user and buttons to login/off
      * @return string
@@ -33,5 +32,4 @@ class LoginState extends Zend_View_Helper_Abstract
 
         return $result . '</div>';
     }
-
 }

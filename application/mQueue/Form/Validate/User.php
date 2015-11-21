@@ -9,7 +9,6 @@ use Zend_Validate_Db_RecordExists;
  */
 class User extends Zend_Validate_Db_RecordExists
 {
-
     public function __construct()
     {
         parent::__construct(['table' => 'user', 'field' => 'id']);
@@ -20,12 +19,11 @@ class User extends Zend_Validate_Db_RecordExists
      *
      * Returns true if and only if $value contains a valid User ID
      *
-     * @param  integer $value
-     * @return boolean
+     * @param  int $value
+     * @return bool
      */
     public function isValid($value)
     {
         return ($value === 0) || parent::isValid($value);
     }
-
 }

@@ -9,14 +9,14 @@ require_once __DIR__ . '/../public/index.php';
  * Process a movie and pause between each of them
  * @param Closure $func
  * @param \mQueue\Model\Movie[] $movies
- * @param integer $seconds
+ * @param int $seconds
  */
 function movieProcessor(Closure $func, $movies, $seconds)
 {
     $total = $movies->count();
     $count = 0;
     foreach ($movies as $movie) {
-        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . "] " . $movie->getImdbUrl('akas') . "\t";
+        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . '] ' . $movie->getImdbUrl('akas') . "\t";
         flush();
 
         $func($movie);

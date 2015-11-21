@@ -8,7 +8,6 @@ use Zend_Session_Namespace;
 
 class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
 {
-
     /**
      * Create a new Zend_Paginator and configure it with GET or session variables
      * @param mixed $data
@@ -19,8 +18,9 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
         // Read perPage from session, or GET
         $perPage = 25;
         $session = new Zend_Session_Namespace();
-        if (isset($session->perPage))
+        if (isset($session->perPage)) {
             $perPage = $session->perPage;
+        }
 
         $userPerPage = $this->getRequest()->getParam('perPage');
         if ($userPerPage) {
@@ -54,5 +54,4 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
     {
         return $this->createPaginator($data);
     }
-
 }

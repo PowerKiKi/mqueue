@@ -6,13 +6,12 @@ use Zend_View_Helper_Abstract;
 
 class UrlParams extends Zend_View_Helper_Abstract
 {
-
     private $escapeParams = null;
 
     /**
      * Returns the current page URL with specified GET parameters.
      * @param array $params
-     * @param boolean $escapeParams if false '&' characters will not be escaped
+     * @param bool $escapeParams if false '&' characters will not be escaped
      * @return string
      */
     public function urlParams(array $params, $escapeParams = true)
@@ -50,5 +49,4 @@ class UrlParams extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

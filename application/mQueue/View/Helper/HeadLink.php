@@ -6,7 +6,6 @@ use Zend_View_Helper_HeadLink;
 
 class HeadLink extends Zend_View_Helper_HeadLink
 {
-
     /**
      * Override parent to inject the last modified time of file.
      * This avoid browser cache and force reloading when the file changed.
@@ -22,5 +21,4 @@ class HeadLink extends Zend_View_Helper_HeadLink
 
         return parent::__call($method, $args);
     }
-
 }

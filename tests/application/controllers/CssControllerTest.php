@@ -2,7 +2,6 @@
 
 class CssControllerTest extends AbstractControllerTestCase
 {
-
     public function testGravatarAction()
     {
         $params = ['action' => 'gravatar.css', 'controller' => 'css', 'module' => 'default'];
@@ -18,5 +17,4 @@ class CssControllerTest extends AbstractControllerTestCase
         $this->assertContentContains('span.gravatar');
         $this->assertContentContains('span.gravatar.big');
     }
-
 }

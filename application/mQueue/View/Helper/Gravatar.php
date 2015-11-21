@@ -18,9 +18,8 @@ class Gravatar extends Zend_View_Helper_HtmlElement
             'class' => 'gravatar user_' . $user->id . ' ' . $size,
             'title' => $user->nickname,
         ];
-        $result = '<span' . $this->_htmlAttribs($attribs). '"></span>';
+        $result = '<span' . $this->_htmlAttribs($attribs) . '"></span>';
 
         return $result;
     }
-
 }

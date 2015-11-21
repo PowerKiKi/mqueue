@@ -2,7 +2,6 @@
 
 class StatusControllerTest extends AbstractControllerTestCase
 {
-
     public function testIndexAction()
     {
         $params = ['action' => 'index', 'controller' => 'status', 'module' => 'default'];
@@ -31,5 +30,4 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_4', 'Excellent');
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_5', 'Favorite');
     }
-
 }

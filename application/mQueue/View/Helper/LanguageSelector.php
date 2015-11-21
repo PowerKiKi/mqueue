@@ -6,7 +6,6 @@ use Zend_View_Helper_Abstract;
 
 class LanguageSelector extends Zend_View_Helper_Abstract
 {
-
     /**
      * Return a div to select language.
      * @return string
@@ -29,5 +28,4 @@ class LanguageSelector extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

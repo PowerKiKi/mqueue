@@ -2,12 +2,10 @@
 
 namespace mQueue\View\Helper;
 
-use mQueue\Model\Status;
 use Zend_View_Helper_Abstract;
 
 class StatusHelp extends Zend_View_Helper_Abstract
 {
-
     /**
      * Returns some help text about statuses for end-user
      * @return string
@@ -24,5 +22,4 @@ class StatusHelp extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

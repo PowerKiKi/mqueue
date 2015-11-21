@@ -2,7 +2,6 @@
 
 class MovieController extends Zend_Controller_Action
 {
-
     public function init()
     {
         // Init the Context Switch Action helper
@@ -61,8 +60,9 @@ class MovieController extends Zend_Controller_Action
         $this->view->users = [];
         $filters = $form->getValues();
         foreach ($filters as $key => $filter) {
-            if (!preg_match('/^filter\d+$/', $key))
+            if (!preg_match('/^filter\d+$/', $key)) {
                 continue;
+            }
 
             $this->view->users[$filter['user']] = \mQueue\Model\UserMapper::find($filter['user']);
         }
@@ -78,7 +78,7 @@ class MovieController extends Zend_Controller_Action
 
         $allowedSortingKey = ['title', 'date', 'dateSearch'];
         $usersCount = count($this->view->users);
-        for ($i = 0; $i < $usersCount; $i++) {
+        for ($i = 0; $i < $usersCount; ++$i) {
             $allowedSortingKey[] = 'status' . $i;
         }
         $sort = $this->_helper->createSorting('sort', $allowedSortingKey);
@@ -146,7 +146,7 @@ class MovieController extends Zend_Controller_Action
 
             $movies = [];
             $matchesCount = count($matches[1]);
-            for ($i = 0; $i < $matchesCount; $i++) {
+            for ($i = 0; $i < $matchesCount; ++$i) {
                 $id = $matches[1][$i];
                 $imdbRating = $matches[2][$i];
 
@@ -157,14 +157,15 @@ class MovieController extends Zend_Controller_Action
                     $movie->save();
                 }
 
-                if ($imdbRating >= $values['favoriteMinimum'])
+                if ($imdbRating >= $values['favoriteMinimum']) {
                     $rating = \mQueue\Model\Status::Favorite;
-                elseif ($imdbRating >= $values['excellentMinimum'])
+                } elseif ($imdbRating >= $values['excellentMinimum']) {
                     $rating = \mQueue\Model\Status::Excellent;
-                elseif ($imdbRating >= $values['okMinimum'])
+                } elseif ($imdbRating >= $values['okMinimum']) {
                     $rating = \mQueue\Model\Status::Ok;
-                else
+                } else {
                     $rating = \mQueue\Model\Status::Bad;
+                }
 
                 $movie->setStatus(\mQueue\Model\User::getCurrent(), $rating);
                 $movies [] = $movie;
@@ -179,5 +180,4 @@ class MovieController extends Zend_Controller_Action
             }
         }
     }
-
 }

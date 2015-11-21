@@ -2,7 +2,6 @@
 
 class UserControllerTest extends AbstractControllerTestCase
 {
-
     protected $idUser = null;
     protected $newUserData = [
         'nickname' => 'new test user',
@@ -13,8 +12,9 @@ class UserControllerTest extends AbstractControllerTestCase
     public function tearDown()
     {
         $user = \mQueue\Model\UserMapper::findEmailPassword($this->newUserData['email'], $this->newUserData['password']);
-        if ($user)
+        if ($user) {
             $user->delete();
+        }
 
         parent::tearDown();
     }
@@ -70,7 +70,6 @@ class UserControllerTest extends AbstractControllerTestCase
 
     public function testLoginAction()
     {
-
         $this->assertNull(\mQueue\Model\User::getCurrent(), 'at first we are not logged in');
 
         // Create test user
@@ -102,5 +101,4 @@ class UserControllerTest extends AbstractControllerTestCase
 
         $this->assertNotNull(\mQueue\Model\User::getCurrent(), 'after login, we are login');
     }
-
 }

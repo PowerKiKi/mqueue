@@ -7,13 +7,12 @@ use Zend_Session_Namespace;
 
 class User extends AbstractModel
 {
-
     /**
      * The current user logged in.
      * -1 before initialization
      * null if no user logged in
      * \mQueue\Model\User if logged in
-     * @var \mQueue\Model\User $currentUser
+     * @var \mQueue\Model\User
      */
     private static $currentUser = -1;
 
@@ -57,7 +56,6 @@ class User extends AbstractModel
 
     /**
      * Override parent to auto-logout when deleting logged in user
-     * @return void
      */
     public function delete()
     {
@@ -67,5 +65,4 @@ class User extends AbstractModel
 
         return parent::delete();
     }
-
 }

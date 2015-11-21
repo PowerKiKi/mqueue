@@ -33,7 +33,6 @@ use Zend_View_Helper_Abstract;
  *
  * http://noumenal.co.uk/
  *
- * @package    Noumenal
  * @author     Carlton Gibson <carlton.gibson@noumenal.co.uk>
  * @copyright  Copyright (c) 2009 Noumenal Software Ltd. (http://noumenal.co.uk/)
  * @license    http://noumenal.co.uk/license/new-bsd     New BSD License
@@ -51,20 +50,17 @@ use Zend_View_Helper_Abstract;
  *
  * NOTE: MESSAGES ARE PRESUMED TO BE SAFE HTML. IF REDISPLAYING USER
  * INPUT, ESCAPE ALL MESSAGES PRIOR TO ADDING TO FLASHMESSENGER.
- *
- * @package Noumenal_View
  */
 class FlashMessenger extends Zend_View_Helper_Abstract
 {
-
     /**
-     * @var Zend_Controller_Action_Helper_FlashMessenger $_flashMessenger
+     * @var Zend_Controller_Action_Helper_FlashMessenger
      */
     private $_flashMessenger = null;
 
     /**
      * If the flashmessenger is postoned it will do nothing on first call.
-     * @var boolean $isPostponed
+     * @var bool
      */
     private $isPostponed = false;
 
@@ -138,5 +134,4 @@ class FlashMessenger extends Zend_View_Helper_Abstract
 
         return $this->_flashMessenger;
     }
-
 }

@@ -4,7 +4,6 @@ namespace mQueue\Model;
 
 abstract class AbstractMapper
 {
-
     private static $dbTables = [];
 
     /**
@@ -35,5 +34,4 @@ abstract class AbstractMapper
 
         return $r[1];
     }
-
 }

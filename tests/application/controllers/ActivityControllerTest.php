@@ -2,7 +2,6 @@
 
 class ActivityControllerTest extends AbstractControllerTestCase
 {
-
     protected function assertCommonThings(array $params)
     {
         $this->assertModule($params['module']);
@@ -45,5 +44,4 @@ class ActivityControllerTest extends AbstractControllerTestCase
 
         $this->assertQueryContentContains('h2', 'Activity for ' . $this->movieData['title']);
     }
-
 }

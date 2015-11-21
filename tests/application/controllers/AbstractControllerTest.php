@@ -2,7 +2,6 @@
 
 abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
 {
-
     /**
      * @var \mQueue\Model\User
      */
@@ -19,7 +18,6 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 
     public function setUp()
     {
-
         $this->bootstrap = new Zend_Application(
                 APPLICATION_ENV, [
             'config' => [
@@ -60,14 +58,12 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
      *
      * @param  string $needle needle that should be contained in content
      * @param  string $message
-     * @return void
      */
     public function assertContentContains($needle, $message = '')
     {
         $this->_incrementAssertionCount();
         $content = $this->response->outputBody();
         if (strpos($content, $needle) === false) {
-
             $failure = sprintf('Failed asserting needle DENOTED BY %s DOES NOT EXIST', $needle);
             if (!empty($message)) {
                 $failure = $message . "\n" . $failure;
@@ -75,5 +71,4 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
             throw new Zend_Test_PHPUnit_Constraint_Exception($failure);
         }
     }
-
 }

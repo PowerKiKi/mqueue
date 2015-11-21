@@ -8,7 +8,6 @@ use Zend_Form;
 
 class Filters extends Zend_Form
 {
-
     public function init()
     {
         // Set the method for the display form to GET
@@ -88,8 +87,9 @@ class Filters extends Zend_Form
         $max = 0;
         foreach (array_keys($defaults) as $key) {
             if (preg_match('/^filter(\d+)$/', $key, $m)) {
-                if ($m[1] > $max)
+                if ($m[1] > $max) {
                     $max = $m[1];
+                }
             }
         }
 
@@ -129,5 +129,4 @@ class Filters extends Zend_Form
 
         return implode(' + ', $text);
     }
-
 }

@@ -2,7 +2,6 @@
 
 class FaqControllerTest extends AbstractControllerTestCase
 {
-
     public function testIndexAction()
     {
         $params = ['action' => 'index', 'controller' => 'faq', 'module' => 'default'];
@@ -17,5 +16,4 @@ class FaqControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('li', 'Create an account');
         $this->assertQueryContentContains('ul.statusHelp li', 'I want to see this movie');
     }
-
 }

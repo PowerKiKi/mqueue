@@ -2,7 +2,6 @@
 
 class UserController extends Zend_Controller_Action
 {
-
     public function init()
     {
         /* Initialize action controller here */
@@ -41,7 +40,6 @@ class UserController extends Zend_Controller_Action
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost())) {
-
                 $values = $form->getValues();
 
                 $user = \mQueue\Model\UserMapper::findEmailPassword($values['email'], $values['password']);
@@ -57,11 +55,11 @@ class UserController extends Zend_Controller_Action
                     // If we have a valid referer to one page of ourselve (except login or logout), redirect to it
                     if (strpos($referrer, $this->view->serverUrl() . $this->view->baseUrl()) === 0
                             && strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'login'])) !== 0
-                            && strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'logout'])) !== 0)
-
+                            && strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'logout'])) !== 0) {
                         return $this->_redirect($values['referrer']);
-                    else
+                    } else {
                         return $this->_helper->redirector('index', 'movie');
+                    }
                 } else {
                     $this->_helper->FlashMessenger(['error' => 'Login failed.']);
                 }
@@ -94,5 +92,4 @@ class UserController extends Zend_Controller_Action
 
         $this->view->userActivity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($this->view->user));
     }
-
 }

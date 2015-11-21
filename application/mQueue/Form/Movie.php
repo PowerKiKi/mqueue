@@ -6,7 +6,6 @@ use Zend_Form;
 
 class Movie extends Zend_Form
 {
-
     public function init()
     {
         // Set the method for the display form to GET
@@ -28,5 +27,4 @@ class Movie extends Zend_Form
             'label' => _tr('Add movie'),
         ]);
     }
-
 }

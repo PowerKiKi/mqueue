@@ -2,7 +2,6 @@
 
 class StatusController extends Zend_Controller_Action
 {
-
     public function init()
     {
         $contextSwitch = $this->_helper->getHelper('contextSwitch');
@@ -21,8 +20,9 @@ class StatusController extends Zend_Controller_Action
 
         $idMovie = \mQueue\Model\Movie::extractId($this->_request->getParam('movie'));
 
-        if ($idMovie == null)
+        if ($idMovie == null) {
             throw new Exception('no valid movie specified.');
+        }
 
         // If new rating is specified and we are logged in, save it and create movie if needed
         $rating = $this->_request->getParam('rating');
@@ -59,8 +59,9 @@ class StatusController extends Zend_Controller_Action
         $idMovies = [];
         foreach (explode(',', trim($this->_request->getParam('movies'), ',')) as $idMovie) {
             $idMovie = \mQueue\Model\Movie::extractId($idMovie);
-            if ($idMovie)
+            if ($idMovie) {
                 $idMovies[] = $idMovie;
+            }
         }
 
         $statuses = \mQueue\Model\StatusMapper::findAll($idMovies, \mQueue\Model\User::getCurrent());
@@ -76,7 +77,6 @@ class StatusController extends Zend_Controller_Action
 
     public function graphAction()
     {
-
         $percent = $this->_request->getParam('percent');
         $user = \mQueue\Model\UserMapper::find($this->getParam('user'));
         $data = \mQueue\Model\StatusMapper::getGraph($user, $percent);
@@ -115,5 +115,4 @@ class StatusController extends Zend_Controller_Action
         echo Zend_Json::encode($chart, Zend_Json::TYPE_ARRAY);
         die();
     }
-
 }

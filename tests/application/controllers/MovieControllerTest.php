@@ -2,7 +2,6 @@
 
 class MovieControllerTest extends AbstractControllerTestCase
 {
-
     public function testIndexAction()
     {
         $params = ['action' => 'index', 'controller' => 'movie', 'module' => 'default'];
@@ -50,5 +49,4 @@ class MovieControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('label', 'Minimum for ok');
         $this->assertQueryContentContains('.tips', 'learn how to add');
     }
-
 }

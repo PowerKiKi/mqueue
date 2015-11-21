@@ -6,7 +6,6 @@ use Zend_Form;
 
 class Login extends Zend_Form
 {
-
     public function init()
     {
         // Set the method for the display form to POST
@@ -39,5 +38,4 @@ class Login extends Zend_Form
         // Add referrer to redirect after login
         $this->addElement('hidden', 'referrer');
     }
-
 }

@@ -8,7 +8,6 @@ namespace mQueue\Service;
  */
 class SearchEngine
 {
-
     /**
      * Returns the command for the appropriate version of Nova
      * @return string
@@ -28,7 +27,7 @@ class SearchEngine
     /**
      * Execute a shell command with a timeout
      * @param string $cmd shell command
-     * @param integer $timeout seconds after which the process will be killed
+     * @param int $timeout seconds after which the process will be killed
      * @return string the stdout of the command
      */
     protected function execute($cmd, $timeout)
@@ -241,5 +240,4 @@ class SearchEngine
 
         return $sources;
     }
-
 }

@@ -7,14 +7,13 @@ use DateTimeZone;
 
 abstract class StatusMapper extends AbstractMapper
 {
-
     /**
      * Define the status for a movie-user tuple. If an existing satus exists and
      * is very recent, it will be updated, otherwise a new status will be created.
      * IMPORTANT: This is the only allowed way to modify status.
      * @param \mQueue\Model\Movie $movie
      * @param \mQueue\Model\User $user
-     * @param integer $rating @see \mQueue\Model\Status
+     * @param int $rating @see \mQueue\Model\Status
      * @return \mQueue\Model\Status
      */
     public static function set(Movie $movie, User $user, $rating)
@@ -51,7 +50,7 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Find a status by its user and movie. If not found it will be created (but not saved).
-     * @param integer $idMovie
+     * @param int $idMovie
      * @param \mQueue\Model\User|null $user
      * @return \mQueue\Model\Status
      */
@@ -73,8 +72,9 @@ abstract class StatusMapper extends AbstractMapper
     public static function findAll(array $idMovies, User $user = null)
     {
         $statuses = [];
-        if (!count($idMovies))
+        if (!count($idMovies)) {
             return $statuses;
+        }
 
         // Do not hit database if we know there won't be any result anyway
         if ($user) {
@@ -94,8 +94,9 @@ abstract class StatusMapper extends AbstractMapper
         foreach ($idMovies as $id) {
             if (!array_key_exists($id, $statuses)) {
                 $status = self::getDbTable()->createRow();
-                if ($user)
+                if ($user) {
                     $status->idUser = $user->id;
+                }
                 $status->idMovie = $id;
                 $statuses[$status->idMovie] = $status;
             }
@@ -168,12 +169,12 @@ abstract class StatusMapper extends AbstractMapper
         foreach ($records as $row) {
 
             // Add new status
-            $cumulatedStatuses[$row->rating] ++;
+            ++$cumulatedStatuses[$row->rating];
             $changed = [$row->rating];
 
             // Substract old status
             if (isset($lastStatuses[$row->idUser][$row->idMovie])) {
-                $cumulatedStatuses[$lastStatuses[$row->idUser][$row->idMovie]] --;
+                --$cumulatedStatuses[$lastStatuses[$row->idUser][$row->idMovie]];
                 $changed [] = $lastStatuses[$row->idUser][$row->idMovie];
             }
             $lastStatuses[$row->idUser][$row->idMovie] = $row->rating;
@@ -227,5 +228,4 @@ abstract class StatusMapper extends AbstractMapper
 
         return $select;
     }
-
 }

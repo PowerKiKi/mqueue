@@ -8,7 +8,6 @@ use Zend_View_Helper_Abstract;
 
 class StatusLinks extends Zend_View_Helper_Abstract
 {
-
     /**
      * Returns the set of links to display a status (the icons used to rate movies)
      * @param \mQueue\Model\Status $status
@@ -20,10 +19,11 @@ class StatusLinks extends Zend_View_Helper_Abstract
         $user = User::getCurrent();
 
         // Deactivate links if no logged user
-        if ($user)
+        if ($user) {
             $tag = 'a';
-        else
+        } else {
             $tag = 'span';
+        }
 
         foreach (\mQueue\Model\Status::$ratings as $val => $name) {
             $class = $val . ($status->rating == $val ? ' current' : '');
@@ -39,5 +39,4 @@ class StatusLinks extends Zend_View_Helper_Abstract
 
         return $result;
     }
-
 }

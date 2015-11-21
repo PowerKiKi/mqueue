@@ -31,7 +31,7 @@ foreach (glob(__DIR__ . '/data/sources/*') as $path) {
     $best = reset($scores);
     $bests[$title] = $best;
     if ($best && $best['score']) {
-        $found++;
+        ++$found;
     }
 }
 

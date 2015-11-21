@@ -2,7 +2,6 @@
 
 class Debug
 {
-
     protected static function varDump($var)
     {
         if (php_sapi_name() == 'cli') {
@@ -35,14 +34,11 @@ class Debug
         }//if
 
         foreach ($dump_lines as &$line) {
-
             $matches = [];
 
             //load up var and values...
             if (preg_match('/^\s*\[\s*(\S+)\s*\]\s+=>\s+(.*)$/', $line, $matches)) {
-
                 if (mb_stripos($matches[2], 'array') !== false) {
-
                     $arr_map = [];
                     $arr_map[$ARR_NAME] = $matches[1];
                     $arr_map[$ARR_LIST] = [];
@@ -60,9 +56,7 @@ class Debug
 
                 // save the current array to the return list...
                 if (mb_stripos($line, ')') !== false) {
-
                     if ($arr_index >= 0) {
-
                         $arr_map = array_pop($arr_list);
 
                         // if there is more than one array then this array belongs to the earlier array...
@@ -72,7 +66,7 @@ class Debug
                             $ret_list[$arr_map[$ARR_NAME]] = $arr_map[$ARR_LIST];
                         }//if/else
 
-                        $arr_index--;
+                        --$arr_index;
                     }//if
                 }//if
             }//if/else
@@ -90,15 +84,16 @@ class Debug
      * Dump any kind of variable in a table (array, object, etc..)
      *
      * @param mixed $data
-     * @return null
      */
     public static function dump($data, $firstLevel = true)
     {
-        if (ini_get('xdebug.overload_var_dump'))
+        if (ini_get('xdebug.overload_var_dump')) {
             return var_dump($data);
+        }
 
-        if ($firstLevel && count($data) == 1)
+        if ($firstLevel && count($data) == 1) {
             $data = $data[0];
+        }
 
         if (php_sapi_name() == 'cli') {
             return self::varDump($data);
@@ -117,16 +112,15 @@ class Debug
             }
             echo '</table>';
         } elseif (null === $data) {
-            echo "NULL VALUE";
+            echo 'NULL VALUE';
         } else {
-            echo "<pre>";
+            echo '<pre>';
             self::varDump($data);
-            echo "</pre>";
+            echo '</pre>';
 
             return;
         }
     }
-
 }
 
 function v()
@@ -139,8 +133,8 @@ function w()
     $isHtml = (php_sapi_name() != 'cli');
     echo "\n_________________________________________________________________________________________________________________________" . ($isHtml ? '</br>' : '') . "\n";
     Debug::dump(func_get_args());
-    echo "\n" . ($isHtml ? '</br>' : '') . "_________________________________________________________________________________________________________________________" . ($isHtml ? '<pre>' : '') . "\n";
+    echo "\n" . ($isHtml ? '</br>' : '') . '_________________________________________________________________________________________________________________________' . ($isHtml ? '<pre>' : '') . "\n";
     debug_print_backtrace();
-    echo "" . ($isHtml ? '</pre>' : '') . "_________________________________________________________________________________________________________________________" . ($isHtml ? '</br>' : '') . "\n";
+    echo '' . ($isHtml ? '</pre>' : '') . '_________________________________________________________________________________________________________________________' . ($isHtml ? '</br>' : '') . "\n";
     die("script aborted on purpose.\n");
 }

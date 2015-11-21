@@ -7,7 +7,6 @@ use Zend_Form_SubForm;
 
 class Filter extends Zend_Form_SubForm
 {
-
     public function init()
     {
         // Set the method for the display form to GET
@@ -18,8 +17,9 @@ class Filter extends Zend_Form_SubForm
             $users = [0 => _tr('<< me >>')];
         }
 
-        foreach (UserMapper::fetchAll() as $user)
+        foreach (UserMapper::fetchAll() as $user) {
             $users[$user->id] = $user->nickname;
+        }
 
         $this->addElement('select', 'user', [
             'multiOptions' => $users,
@@ -101,8 +101,9 @@ class Filter extends Zend_Form_SubForm
         $text = '';
         $values = $this->getValues(true);
 
-        if (@$values['title'])
+        if (@$values['title']) {
             $text = _tr('title') . ':"' . $values['title'] . '" + ';
+        }
 
         $users = $this->getElement('user')->getMultiOptions();
         $statuses = $this->getElement('status')->getMultiOptions();
@@ -111,5 +112,4 @@ class Filter extends Zend_Form_SubForm
 
         return $text;
     }
-
 }

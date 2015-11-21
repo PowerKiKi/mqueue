@@ -7,7 +7,6 @@ use Zend_View_Helper_Abstract;
 
 class Graph extends Zend_View_Helper_Abstract
 {
-
     /**
      * Returns a graph for everybody or single user
      * @param \mQueue\Model\User $user
@@ -15,7 +14,6 @@ class Graph extends Zend_View_Helper_Abstract
      */
     public function graph(\mQueue\Model\User $user = null)
     {
-
         $params = ['controller' => 'status', 'action' => 'graph'];
         if ($user) {
             $params['user'] = $user->id;
@@ -48,5 +46,4 @@ STRING;
 
         return $html;
     }
-
 }

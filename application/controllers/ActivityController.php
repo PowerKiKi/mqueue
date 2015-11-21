@@ -2,7 +2,6 @@
 
 class ActivityController extends Zend_Controller_Action
 {
-
     public function init()
     {
         // Init the Context Switch Action helper
@@ -40,5 +39,4 @@ class ActivityController extends Zend_Controller_Action
 
         $this->view->activity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($item));
     }
-
 }

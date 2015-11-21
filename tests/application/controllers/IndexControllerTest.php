@@ -2,7 +2,6 @@
 
 class IndexControllerTest extends AbstractControllerTestCase
 {
-
     public function testIndexAction()
     {
         $params = ['action' => 'index', 'controller' => 'index', 'module' => 'default'];
@@ -16,5 +15,4 @@ class IndexControllerTest extends AbstractControllerTestCase
 
         $this->assertRedirectTo('/activity');
     }
-
 }

@@ -2,8 +2,6 @@
 
 namespace mQueue\View\Helper;
 
-use mQueue\Model\MovieMapper;
-use mQueue\Model\UserMapper;
 use Zend_Date;
 use Zend_Paginator;
 use Zend_View_Helper_Abstract;
@@ -59,7 +57,6 @@ class Activity extends Zend_View_Helper_Abstract
                 $result .= '<span class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</span> ';
             }
 
-
             $result .= '</div>';
 
             $result .= '</div>';
@@ -71,5 +68,4 @@ class Activity extends Zend_View_Helper_Abstract
 
         return $result . '</div>';
     }
-
 }
