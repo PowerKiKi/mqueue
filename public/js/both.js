@@ -97,11 +97,8 @@ var mqueue = (function() {
                     // Add status beside main title if on the main page of movie
                     if ($("link[rel='canonical'][href*='" + id.split('_')[0] + "']").length !== 0)
                     {
-                        $("#tn15title > h1 .pro-link", node).before(status); // Old IMDb version (www.imdb.fr)
-                        $(".article h1.header", node).append(status); // New IMDb version, next to title
-                        $(".star-box.giga-star .rating.rating-list", node).replaceWith(status); // New IMDb version, replace IMDb rating
-                        $(".wlb_classic_wrapper", node).html(status); // New IMDb version, replace watch list button
-
+                        // New IMDb version, add under the main title in the subtext line
+                        $(".title_wrapper .subtext", node).append('<span class="ghost">|</span>' + status);
                     }
                     // Add status on every links concerning that movie
                     else
