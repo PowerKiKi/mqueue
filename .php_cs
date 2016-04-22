@@ -12,12 +12,15 @@ return Symfony\CS\Config\Config::create()
                 ->fixers([
                     // 'align_double_arrow', // Waste of time
                     // 'align_equals', // Waste of time
+                    'array_element_no_space_before_comma',
+                    'array_element_white_space_after_comma',
                     'blankline_after_open_tag',
                     'braces',
                     // 'concat_without_spaces', // This make it less readable
                     'concat_with_spaces',
                     'double_arrow_multiline_whitespaces',
                     'duplicate_semicolon',
+                    // 'echo_to_print', // We prefer echo
                     'elseif',
                     // 'empty_return', // even if technically useless, we prefer to be explicit with our intent to return null
                     'encoding',
@@ -26,6 +29,7 @@ return Symfony\CS\Config\Config::create()
                     'extra_empty_lines',
                     'function_call_space',
                     'function_declaration',
+                    'function_typehint_space',
                     // 'header_comment', // We don't use common header in all our files
                     'include',
                     'indentation',
@@ -66,18 +70,21 @@ return Symfony\CS\Config\Config::create()
                     // 'phpdoc_short_description', // We usually don't generate documentation so punctuation is not important
                     'phpdoc_to_comment',
                     'phpdoc_trim',
+                    'phpdoc_types',
                     'phpdoc_type_to_var',
                     // 'phpdoc_var_to_type', // This is not supported by phpDoc2 anymore
                     'phpdoc_var_without_name',
                     'php_unit_construct',
                     'php_unit_strict',
                     'pre_increment',
+                    'print_to_echo',
                     // 'psr0', // We unfortunately cannot be entirely PSR-0 compliant with ZF1
                     'remove_leading_slash_use',
                     'remove_lines_between_uses',
                     'return',
                     'self_accessor',
                     'short_array_syntax',
+                    'short_bool_cast',
                     'short_echo_tag',
                     'short_tag',
                     'single_array_no_trailing_comma',
@@ -95,6 +102,7 @@ return Symfony\CS\Config\Config::create()
                     'unalign_double_arrow',
                     'unalign_equals',
                     'unary_operators_spaces',
+                    'unneeded_control_parentheses',
                     'unused_use',
                     'visibility',
                     'whitespacy_lines',
