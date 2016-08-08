@@ -12,12 +12,12 @@ before_script:
 
 script:
   - ./vendor/bin/php-cs-fixer fix --dry-run --verbose --diff --config-file .php_cs .
-  - cd tests/ && phpunit --coverage-clover clover.xml && cd ../
+  - phpunit --coverage-clover clover.xml
 
 after_script:
   - pwd
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload -vvv --format=php-clover tests/clover.xml
+  - php ocular.phar code-coverage:upload -vvv --format=php-clover clover.xml
 
 matrix:
   allow_failures:
