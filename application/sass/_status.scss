@@ -35,11 +35,11 @@ $preloader_height: 6px;
             margin-top: ($status_dimension - $preloader_height) / 2;
             height: $preloader_height;
             background-color: $color1;
-            @include border-radius(3px);
-            @include animation-name(preloaderAnimation);
-            @include animation-duration(1.5s);
-            @include animation-iteration-count(infinite);
-            @include animation-timing-function(ease-out);
+            border-radius: 3px;
+            animation-name: preloaderAnimation;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-out;
 
         }
         > .mqueue_status {
@@ -48,7 +48,7 @@ $preloader_height: 6px;
     }
 }
 
-@include keyframes(preloaderAnimation) {
+@keyframes preloaderAnimation {
     0% {
         width: 0px;
     }

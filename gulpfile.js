@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell');
 
-gulp.task('default', ['composer', 'update_database', 'concat', 'compress', 'compass'], function() {
+gulp.task('default', ['composer', 'update_database', 'concat', 'compress', 'sass'], function() {
     // place code for your default task here
 });
 
@@ -26,18 +26,11 @@ gulp.task('update_database', ['composer'], shell.task([
     'php scripts/update_database.php'
 ]));
 
-gulp.task('compass', function() {
-    var compass = require('gulp-compass');
-    gulp.src('application/sass/*.scss')
-            .pipe(compass({
-                project: __dirname,
-                style: 'compressed',
-                css: 'public/css',
-                sass: 'application/sass',
-                javascript: 'public/js',
-                image: 'public/images',
-                relative: true
-            }))
+gulp.task('sass', function() {
+    var sass = require('gulp-sass');
+
+    return gulp.src('application/sass/**/*.scss')
+            .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
             .pipe(gulp.dest('public/css'));
 });
 
