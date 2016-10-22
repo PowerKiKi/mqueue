@@ -25,6 +25,7 @@ $preloader_height: 6px;
     white-space: nowrap;
     overflow: hidden;
     height: $status_dimension;
+    min-width: $preloader_width;
     > .preloader {
         display: none;
     }
