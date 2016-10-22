@@ -11,7 +11,7 @@ an IMDb movie). This is possible thanks to the use of user-script (greasemonkey 
 * PHP with cURL module
 * Apache
 * MariaDB
-* [Compass](http://compass-style.org/)
+* gulp
 
 ## Installation
 

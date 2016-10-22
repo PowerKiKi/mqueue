@@ -6,10 +6,6 @@ set -e
 # Install gulp.js
 npm install -g gulp-cli
 
-# Install Compass
-gem install --no-rdoc --no-ri compass -v 1.0.0.alpha.19 --pre
-gem install --no-rdoc --no-ri oily_png
-
 # Init database
 cp application/configs/application.travis.ini application/configs/application.ini
 mysql -e 'create database mqueue_travis;'
