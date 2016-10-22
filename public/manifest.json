@@ -1,0 +1,25 @@
+{
+    "name": "mQueue",
+    "short_name": "mQueue",
+    "description": "Never forget movies you want to watch",
+    "icons": [
+        {
+            "src": "images/logo_128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "images/logo_256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "images/logo_512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "display": "fullscreen",
+    "theme_color": "#3679FF",
+    "background_color": "#163066"
+}
