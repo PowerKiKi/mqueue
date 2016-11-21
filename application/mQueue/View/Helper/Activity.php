@@ -54,7 +54,7 @@ class Activity extends Zend_View_Helper_Abstract
             }
 
             if (in_array('date', $columns)) {
-                $result .= '<span class="dateUpdate timestamp" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</span> ';
+                $result .= '<time class="dateUpdate timestamp" datetime="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '" title="' . $status->getDateUpdate()->get(Zend_Date::ISO_8601) . '">' . $status->dateUpdate . '</time>';
             }
 
             $result .= '</div>';
