@@ -27,10 +27,10 @@ class HeadScript extends Zend_View_Helper_HeadScript
 
     /**
      * Override parent to support timestamp, compilation and concatenation.
-     * Compiled and concatened files must pre-exist (compiled by external tools).
+     * Compiled and concatenated files must pre-exist (compiled by external tools).
      * @param string $method
      * @param array $args
-     * @return \mQueue\View\Helper_HeadScript
+     * @return self
      */
     public function __call($method, $args)
     {
