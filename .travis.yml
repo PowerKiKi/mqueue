@@ -1,8 +1,6 @@
 language: php
 sudo: false
 php:
-  - 5.6
-  - 7.0
   - 7.1
 
 before_script:
@@ -18,7 +16,3 @@ after_script:
   - pwd
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload -vvv --format=php-clover clover.xml
-
-matrix:
-  allow_failures:
-    - php: 7.1
