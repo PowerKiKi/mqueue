@@ -9,10 +9,9 @@ before_script:
   - gulp
 
 script:
-  - ./vendor/bin/php-cs-fixer fix --dry-run --verbose --diff --config-file .php_cs .
+  - ./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run
   - phpunit --coverage-clover clover.xml
 
 after_script:
-  - pwd
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload -vvv --format=php-clover clover.xml

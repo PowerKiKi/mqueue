@@ -1,11 +1,11 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-        ->exclude('library')
-        ->exclude('node_modules')
-        ->exclude('vendor')
+    ->exclude('library')
+    ->exclude('node_modules')
+    ->exclude('vendor')
     ->name('*.phtml')
-        ->in(__DIR__)
+    ->in(__DIR__)
 ;
 
 return PhpCsFixer\Config::create()
@@ -90,7 +90,7 @@ return PhpCsFixer\Config::create()
             'php_unit_construct' => true,
             'php_unit_dedicate_assert' => true,
             'php_unit_fqcn_annotation' => true,
-            'php_unit_strict' => false, // We sometime actually need assertEquals            'phpdoc_align' => false, // Waste of time
+            'php_unit_strict' => false, // We sometime actually need assertEquals
             'phpdoc_add_missing_param_annotation' => true,
             'phpdoc_align' => false, // Waste of time
             'phpdoc_annotation_without_dot' => true,
@@ -112,7 +112,7 @@ return PhpCsFixer\Config::create()
             'pow_to_exponentiation' => true,
             'pre_increment' => true,
             'protected_to_private' => true,
-            'psr0' => false,  // We unfortunately cannot be entirely PSR-0 compliant with ZF1
+            'psr0' => false, // We unfortunately cannot be entirely PSR-0 compliant with ZF1
             'psr4' => true,
             'random_api_migration' => true,
             'return_type_declaration' => true,
@@ -130,7 +130,7 @@ return PhpCsFixer\Config::create()
             'space_after_semicolon' => true,
             'standardize_not_equals' => true,
             'strict_comparison' => false, // We sometimes need to compare DateTime objects with non-strict operator
-            'strict_param' => false,  // No, too dangerous to change that
+            'strict_param' => false, // No, too dangerous to change that
             'switch_case_semicolon_to_colon' => true,
             'switch_case_space' => true,
             'ternary_operator_spaces' => true,
