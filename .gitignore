@@ -1,5 +1,4 @@
 .php_cs.cache
-.sass-cache
 application/configs/application.ini
 doc/html
 nbproject
