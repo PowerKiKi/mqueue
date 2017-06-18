@@ -10,7 +10,7 @@ before_script:
 
 script:
   - ./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run
-  - phpunit --coverage-clover clover.xml
+  - ./vendor/bin/phpunit --coverage-clover clover.xml
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
