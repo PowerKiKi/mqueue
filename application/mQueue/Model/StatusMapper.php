@@ -143,6 +143,7 @@ abstract class StatusMapper extends AbstractMapper
     /**
      * Build statistic for the given user.
      * @param \mQueue\Model\User $user
+     * @param bool $percent
      * @return array statistics
      */
     public static function getGraph(User $user = null, $percent = false)
@@ -167,7 +168,6 @@ abstract class StatusMapper extends AbstractMapper
         // Fetch real counts
         $lastStatuses = [];
         foreach ($records as $row) {
-
             // Add new status
             ++$cumulatedStatuses[$row->rating];
             $changed = [$row->rating];
@@ -175,7 +175,7 @@ abstract class StatusMapper extends AbstractMapper
             // Substract old status
             if (isset($lastStatuses[$row->idUser][$row->idMovie])) {
                 --$cumulatedStatuses[$lastStatuses[$row->idUser][$row->idMovie]];
-                $changed [] = $lastStatuses[$row->idUser][$row->idMovie];
+                $changed[] = $lastStatuses[$row->idUser][$row->idMovie];
             }
             $lastStatuses[$row->idUser][$row->idMovie] = $row->rating;
 

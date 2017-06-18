@@ -15,7 +15,7 @@ class HeadLink extends Zend_View_Helper_HeadLink
      */
     public function __call($method, $args)
     {
-        if (strpos($method, 'Stylesheet')) {
+        if (mb_strpos($method, 'Stylesheet')) {
             $args[0] = $this->view->cacheStamp($args[0]);
         }
 

@@ -1,7 +1,7 @@
 <?php
 
 // Create array to store the RSS activity entries
-$entries = array();
+$entries = [];
 
 // Cycle through the rankings, creating an array storing
 // each, and push the array onto the $entries array
@@ -12,44 +12,44 @@ foreach ($this->paginator as $movie) {
 
     foreach ($this->users as $user) {
         $status = $movie->getStatus($user);
-        $text .= '<p><a href="' . $this->serverUrl() . $this->url(array(
+        $text .= '<p><a href="' . $this->serverUrl() . $this->url([
                     'controller' => 'user',
                     'action' => 'view',
-                    'id' => $user->id
-                        ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> ' .
+                    'id' => $user->id,
+                        ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> ' .
                 $status->getName() . '</p>';
     }
 
     $title = $movie->getTitle();
 
-    $entry = array(
+    $entry = [
         'author' => 'mQueue',
         'title' => $title,
-        'link' => $this->serverUrl() . $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $movie->id), 'singleid', true),
+        'link' => $this->serverUrl() . $this->url(['controller' => 'movie', 'action' => 'view', 'id' => $movie->id], 'singleid', true),
         'description' => $title,
         'content' => $text,
         'lastUpdate' => $date->getTimestamp(),
-    );
+    ];
 
     if ($movie->source) {
-        $entry['enclosure'] = array(
-            array(
+        $entry['enclosure'] = [
+            [
                 'url' => $movie->source,
                 'type' => 'application/x-bittorrent',
-            )
-        );
+            ],
+        ];
     }
 
     array_push($entries, $entry);
 }
 
 // Create the RSS array
-$rss = array(
+$rss = [
     'title' => 'mQueue - ' . $this->formFilter->getValuesText(),
     'link' => $this->urlParams($this->permanentParams),
     'charset' => 'UTF-8',
-    'entries' => $entries
-);
+    'entries' => $entries,
+];
 
 // Import the array
 $activity = Zend_Feed::importArray($rss, 'rss');

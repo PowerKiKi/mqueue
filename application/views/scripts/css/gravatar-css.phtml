@@ -10,13 +10,11 @@ foreach ($sizes as $name => $size) {
     echo 'span.gravatar.' . $name . '{width: ' . $size . 'px; height: ' . $size . 'px;}' . PHP_EOL;
 }
 foreach ($this->users as $user) {
-    $urlBase = 'https://secure.gravatar.com/avatar/' . md5(trim(strtolower($user->email))) . '.jpg?default=identicon';
+    $urlBase = 'https://secure.gravatar.com/avatar/' . md5(trim(mb_strtolower($user->email))) . '.jpg?default=identicon';
     foreach ($sizes as $name => $size) {
         $url = $urlBase . '&size=' . $size;
-        $additionnalSelector = $name == 'small' ? ", select.filterUser option[value='" . $user->id . "']" : '';
-        ?>
+        $additionnalSelector = $name == 'small' ? ", select.filterUser option[value='" . $user->id . "']" : ''; ?>
 span.gravatar.user_<?php echo $user->id; ?>.<?php echo $name . $additionnalSelector; ?> {background-image: url(<?php echo $url; ?>);}
 <?php
     }
 }
-

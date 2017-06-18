@@ -14,7 +14,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "@stable",
-        "friendsofphp/php-cs-fixer": "@stable"
+        "friendsofphp/php-cs-fixer": "@stable",
+        "phpunit/phpunit": "^5.7"
     }
 }

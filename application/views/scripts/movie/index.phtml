@@ -29,13 +29,13 @@ $this->headTitle(_tr('Movies'));
 <?php endif; ?>
 </table>
 <?php
-echo $this->alternateFormats(array(
+echo $this->alternateFormats([
     'rss' => $this->urlParams($this->permanentParams, false),
     'csv' => $this->urlParams($this->permanentParams, false),
-        ), 'mQueue - ' . $this->filterName);
+        ], 'mQueue - ' . $this->filterName);
 ?>
 <?php
-echo $this->paginationControl($this->paginator, null, null, array('permanentParams' => $this->permanentParams));
+echo $this->paginationControl($this->paginator, null, null, ['permanentParams' => $this->permanentParams]);
 ?>
 
 <div class="tips">
@@ -43,9 +43,9 @@ echo $this->paginationControl($this->paginator, null, null, array('permanentPara
         <?php echo $this->statusHelp(); ?>
     <?php else: ?>
         <?php
-        echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
-            '<a href="' . $this->url(array('controller' => 'faq'), null, true) . '">' . $this->translate('FAQ') . '</a>'
-        ));
+        echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', [
+            '<a href="' . $this->url(['controller' => 'faq'], null, true) . '">' . $this->translate('FAQ') . '</a>',
+        ]);
         ?>
 <?php endif; ?>
 </div>

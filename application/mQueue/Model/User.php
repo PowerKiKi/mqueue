@@ -22,7 +22,7 @@ class User extends AbstractModel
      */
     public static function getCurrent()
     {
-        if (is_integer(self::$currentUser)) {
+        if (is_int(self::$currentUser)) {
             $session = new Zend_Session_Namespace();
             if (isset($session->idUser)) {
                 self::$currentUser = UserMapper::find($session->idUser);

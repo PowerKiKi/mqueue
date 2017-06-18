@@ -15,26 +15,26 @@
 // Table data
     foreach ($this->users as $user) {
         echo '<tr>';
-        echo '<td class="user"><a href="' . $this->url(array(
+        echo '<td class="user"><a href="' . $this->url([
             'controller' => 'user',
             'action' => 'view',
-            'id' => $user->id
-                ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
+            'id' => $user->id,
+                ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
         $stats = $user->getStatistics();
         foreach (\mQueue\Model\Status::$ratings as $val => $name) {
-            echo '<td class="number"><a href="' . $this->url(array(
+            echo '<td class="number"><a href="' . $this->url([
                 'controller' => 'movie',
-                'action' => 'index'
-                    ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=' . $val . '">' . $stats[$val] . '</a></td>';
+                'action' => 'index',
+                    ], 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=' . $val . '">' . $stats[$val] . '</a></td>';
         }
-        echo '<td class="number"><a href="' . $this->url(array(
+        echo '<td class="number"><a href="' . $this->url([
             'controller' => 'movie',
-            'action' => 'index'
-                ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=-1">' . $stats['rated'] . '</a></td>';
-        echo '<td class="number"><a href="' . $this->url(array(
+            'action' => 'index',
+                ], 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=-1">' . $stats['rated'] . '</a></td>';
+        echo '<td class="number"><a href="' . $this->url([
             'controller' => 'movie',
-            'action' => 'index'
-                ), 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=0">' . $stats[\mQueue\Model\Status::Nothing] . '</a></td>';
+            'action' => 'index',
+                ], 'default', true) . '?filter1[user]=' . $user->id . '&amp;filter1[status]=0">' . $stats[\mQueue\Model\Status::Nothing] . '</a></td>';
         echo '</tr>';
     }
     ?>

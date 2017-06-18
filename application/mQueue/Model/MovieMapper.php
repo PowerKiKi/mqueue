@@ -71,7 +71,7 @@ abstract class MovieMapper extends AbstractMapper
                 ->from('movie')
                 ->where('dateUpdate IS NULL OR dateUpdate < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't fetch data for movies, more than once a month
                 ->order('RAND()') // Randomize order, so we don't watch only old movies
-        ;
+;
 
         if ($limit) {
             $select->limit(20);
@@ -109,7 +109,7 @@ abstract class MovieMapper extends AbstractMapper
                 continue;
             }
 
-            $filtersDone [] = $filterUniqueId;
+            $filtersDone[] = $filterUniqueId;
 
             $alias = 'status' . $i++;
             $allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR ' . $alias . '.idUser IS NULL' : '');

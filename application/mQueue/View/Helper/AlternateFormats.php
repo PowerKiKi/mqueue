@@ -26,9 +26,8 @@ class AlternateFormats extends Zend_View_Helper_Abstract
     {
         $formatLinks = [];
         foreach ($formats as $format => $url) {
-
             // Inject format and locale parameters
-            if (strpos($url, '?') === false) {
+            if (mb_strpos($url, '?') === false) {
                 $url .= '?';
             } else {
                 $url .= '&';
@@ -36,7 +35,7 @@ class AlternateFormats extends Zend_View_Helper_Abstract
 
             $url .= 'format=' . $format . '&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage();
 
-            $formatLinks [] = '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';
+            $formatLinks[] = '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';
             if ($title && isset(self::$supportedFormats[$format]['mime'])) {
                 $this->view->headLink()->appendAlternate($url, self::$supportedFormats[$format]['mime'], $title);
             }

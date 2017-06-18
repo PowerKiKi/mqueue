@@ -124,7 +124,7 @@ class Filters extends Zend_Form
     {
         $text = [];
         foreach ($this->getSubForms() as $subForm) {
-            $text [] = $subForm->getValuesText();
+            $text[] = $subForm->getValuesText();
         }
 
         return implode(' + ', $text);

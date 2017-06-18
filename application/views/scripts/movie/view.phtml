@@ -11,11 +11,11 @@
 // Table data
     foreach ($this->users as $user) {
         echo '<tr>';
-        echo '<td><a href="' . $this->url(array(
+        echo '<td><a href="' . $this->url([
             'controller' => 'user',
             'action' => 'view',
-            'id' => $user->id
-                ), 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
+            'id' => $user->id,
+                ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
         echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
 
         echo '</tr>';
@@ -23,11 +23,11 @@
     ?>
 </table>
 <h3><?php echo $this->translate('Activity'); ?></h3>
-<?php echo $this->activity($this->movieActivity, array('movie')); ?>
+<?php echo $this->activity($this->movieActivity, ['movie']); ?>
 <?php
-echo $this->alternateFormats(array(
-    'rss' => $this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id), 'activityMovie', true),
-        ), 'mQueue - ' . $this->translate('Activity for %s', array($this->movie->getTitle())));
+echo $this->alternateFormats([
+    'rss' => $this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id], 'activityMovie', true),
+        ], 'mQueue - ' . $this->translate('Activity for %s', [$this->movie->getTitle()]));
 ?>
 
 <?php echo $this->paginationControl($this->movieActivity); ?>

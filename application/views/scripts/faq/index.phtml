@@ -4,7 +4,7 @@
     <dt><?php echo $this->translate('How does this work ?'); ?></dt>
     <dd><?php echo $this->translate('To get the most of this website, you should:'); ?>
         <ol>
-            <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'new')); ?>"><?php echo $this->translate('Create an account'); ?></a></li>
+            <li><a href="<?php echo $this->url(['controller' => 'user', 'action' => 'new']); ?>"><?php echo $this->translate('Create an account'); ?></a></li>
             <li>
                 <ol>
                     <li class="browser_chrome"><?php echo $this->translate('For Chrome, skip to next step'); ?></li>
@@ -22,7 +22,7 @@
     <dd><?php echo $this->statusHelp(); ?></dd>
 
     <dt><?php echo $this->translate("What happens if I click on others' icons ?"); ?></dt>
-    <dd><?php echo $this->translate("Clicking on any icons you see will *always* vote for you. Never for someone else. So if you click on icons in someone else list, you will not immediately see the result, but you actually vote for yourself."); ?></dd>
+    <dd><?php echo $this->translate('Clicking on any icons you see will *always* vote for you. Never for someone else. So if you click on icons in someone else list, you will not immediately see the result, but you actually vote for yourself.'); ?></dd>
 
     <dt><?php echo $this->translate('How can I add more ratings options ?'); ?></dt>
     <dd><?php echo $this->translate('You cannot. It is meant to be a very simple, fast and efficient system. No extra bloating options.'); ?></dd>

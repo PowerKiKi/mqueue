@@ -79,6 +79,7 @@ class Filter extends Zend_Form_SubForm
 
     /**
      * Override getValues() to replace special '0' value with current user
+     * @param bool $suppressArrayNotation
      * @return array values
      */
     public function getValues($suppressArrayNotation = false)

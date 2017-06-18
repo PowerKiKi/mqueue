@@ -8,9 +8,9 @@ header('Pragma: public');
 
 $out = fopen('php://output', 'w');
 
-fputcsv($out, array($this->urlParams($this->permanentParams, false)));
+fputcsv($out, [$this->urlParams($this->permanentParams, false)]);
 
-$header = array();
+$header = [];
 foreach ($this->users as $user) {
     $header[] = $user->nickname;
 }
@@ -19,7 +19,7 @@ $header[] = $this->translate('Link');
 fputcsv($out, $header);
 
 foreach ($this->paginator as $entry) {
-    $data = array();
+    $data = [];
     foreach ($this->users as $user) {
         $data[] = $entry->getStatus($user)->getName();
     }

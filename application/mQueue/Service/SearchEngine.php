@@ -19,9 +19,9 @@ class SearchEngine
         $version = $matches[0];
         if (version_compare($version, '3.0.0', '>=')) {
             return APPLICATION_PATH . '/../library/searchengine/nova3/nova2.py';
-        } else {
-            return APPLICATION_PATH . '/../library/searchengine/nova/nova2.py';
         }
+
+        return APPLICATION_PATH . '/../library/searchengine/nova/nova2.py';
     }
 
     /**
@@ -125,7 +125,7 @@ class SearchEngine
     {
         // Insert space before uppercase letters
         $name = preg_replace('/([A-Z])/', ' \1', $name);
-        $name = strtolower($name);
+        $name = mb_strtolower($name);
 
         // Get rid of all accents
         $name = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $name);
@@ -200,7 +200,7 @@ class SearchEngine
 //			}
 //			v($cleanTitle, $year, $source['name'], $sourceWithoutYear, $cleanSource, $identity);
             // Identity mostly is matching title in source name
-            $cleanSource = substr($this->cleanName($source['name']), 0, strlen($cleanTitle));
+            $cleanSource = mb_substr($this->cleanName($source['name']), 0, mb_strlen($cleanTitle));
             similar_text($cleanTitle, $cleanSource, $identity);
 
             // If the name contains the year of the movie, boost identity
@@ -233,9 +233,9 @@ class SearchEngine
                 return $other['seeds'] - $source['seeds'];
             } elseif ($other['leech'] != $source['leech']) {
                 return $other['leech'] - $source['leech'];
-            } else {
-                return strcmp($other['link'], $source['link']);
             }
+
+            return strcmp($other['link'], $source['link']);
         });
 
         return $sources;

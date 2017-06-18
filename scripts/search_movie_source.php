@@ -47,7 +47,7 @@ function searchSource()
         $movie->setSource($best);
         $movie->save();
 
-        echo $movie->source ? : '[source not found]';
+        echo $movie->source ?: '[source not found]';
     };
 
     // 5 minutes pause between search, not to stress third-party servers

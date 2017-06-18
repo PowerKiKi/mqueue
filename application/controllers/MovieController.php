@@ -168,7 +168,7 @@ class MovieController extends Zend_Controller_Action
                 }
 
                 $movie->setStatus(\mQueue\Model\User::getCurrent(), $rating);
-                $movies [] = $movie;
+                $movies[] = $movie;
             }
 
             $count = count($movies);

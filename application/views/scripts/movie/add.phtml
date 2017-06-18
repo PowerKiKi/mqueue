@@ -11,13 +11,13 @@
         </tr>
         <?php if (count($this->movies) == 0): ?>
             <tr><td colspan="2">
-                    <?php echo $this->translate('There is no movie to show. Please read the %s to learn how to add movies.', array('<a href="' . $this->url(array('controller' => 'faq')) . '">' . _tr('FAQ') . '</a>')); ?>
+                    <?php echo $this->translate('There is no movie to show. Please read the %s to learn how to add movies.', ['<a href="' . $this->url(['controller' => 'faq']) . '">' . _tr('FAQ') . '</a>']); ?>
                 </td></tr>
         <?php else: ?>
             <?php foreach ($this->movies as $entry): ?>
                 <tr>
                     <td><?php echo $this->statusLinks($entry->getStatus(\mQueue\Model\User::getCurrent())); ?></td>
-                    <td><a href="<?php echo $this->url(array('controller' => 'movie', 'action' => 'view', 'id' => $entry->id), 'singleid'); ?>"><?php echo $this->movie($entry); ?></a></td>
+                    <td><a href="<?php echo $this->url(['controller' => 'movie', 'action' => 'view', 'id' => $entry->id], 'singleid'); ?>"><?php echo $this->movie($entry); ?></a></td>
                 </tr>
             <?php endforeach ?>
         <?php endif; ?>
@@ -29,9 +29,9 @@
 
     <div class="tips">
         <?php
-        echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', array(
-            '<a href="' . $this->url(array('controller' => 'faq'), null, true) . '">' . $this->translate('FAQ') . '</a>'
-        ));
+        echo $this->translate('See the %s to learn how to add movies directly from www.imdb.com in a single click !', [
+            '<a href="' . $this->url(['controller' => 'faq'], null, true) . '">' . $this->translate('FAQ') . '</a>',
+        ]);
         ?>
     </div>
 <?php endif; ?>

@@ -34,7 +34,7 @@ class HeadScript extends Zend_View_Helper_HeadScript
      */
     public function __call($method, $args)
     {
-        if (strpos($method, 'File')) {
+        if (mb_strpos($method, 'File')) {
             $fileName = $args[0];
 
             // If file will be concatened, use concatenation system instead
@@ -48,9 +48,8 @@ class HeadScript extends Zend_View_Helper_HeadScript
                     return $this;
                 }
                 // Otherwise use pre-existing concatenated file
-                else {
+
                     $fileName = $fileName[0];
-                }
             }
 
             $args[0] = $this->view->cacheStamp($fileName);

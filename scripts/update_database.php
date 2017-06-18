@@ -74,7 +74,7 @@ function executeBatchSql($sql)
     $affectedRows = 0;
     $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
     foreach ($queries as $query) {
-        if (strlen(trim($query)) > 0) {
+        if (mb_strlen(trim($query)) > 0) {
             try {
                 $result = Zend_Registry::get('db')->query($query);
             } catch (\Exception $exception) {
@@ -97,9 +97,9 @@ function doUpdate()
     global $settingName;
 
     try {
-        $currentVersion = (integer) \mQueue\Model\Setting::get($settingName, 0)->value;
+        $currentVersion = (int) \mQueue\Model\Setting::get($settingName, 0)->value;
     } catch (Exception $e) {
-        if (strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0) {
+        if (mb_strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0) {
             $currentVersion = -1;
         } else {
             die('Caught exception: ' . $e->getMessage() . "\n");

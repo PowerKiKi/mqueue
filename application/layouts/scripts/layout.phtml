@@ -7,12 +7,12 @@
         <link rel="manifest" href="manifest.json">
             <?php
             echo $this->headTitle('mQueue')->setSeparator(' - ');
-            echo $this->headLink(array('rel' => 'icon',
+            echo $this->headLink(['rel' => 'icon',
                         'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
-                        'PREPEND'))
+                        'PREPEND', ])
                     ->appendStylesheet('/css/application.css', 'all')
                     ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
-                    ->prependAlternate($this->serverUrl() . $this->url(array('controller' => 'activity', 'action' => 'index'), 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+                    ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
             . "\n";
 
             // Set localization file for timeago
@@ -23,12 +23,12 @@
             }
 
             echo $this->headScript()
-                    ->prependFile(array(
+                    ->prependFile([
                         '/js/min/application.js',
-                        array(
+                        [
                             '/js/application',
-                        )
-            ));
+                        ],
+            ]);
 
             echo $this->googleAnalytics();
             ?>

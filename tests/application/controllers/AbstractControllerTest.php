@@ -63,7 +63,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
     {
         $this->_incrementAssertionCount();
         $content = $this->response->outputBody();
-        if (strpos($content, $needle) === false) {
+        if (mb_strpos($content, $needle) === false) {
             $failure = sprintf('Failed asserting needle DENOTED BY %s DOES NOT EXIST', $needle);
             if (!empty($message)) {
                 $failure = $message . "\n" . $failure;
