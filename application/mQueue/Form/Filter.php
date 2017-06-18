@@ -23,7 +23,6 @@ class Filter extends Zend_Form_SubForm
 
         $this->addElement('select', 'user', [
             'multiOptions' => $users,
-            'label' => _tr('User :'),
             'required' => true,
             'class' => 'filterUser',
             'validators' => [
@@ -34,22 +33,31 @@ class Filter extends Zend_Form_SubForm
             ],
         ]);
 
-        $status = [-1 => _tr('<< rated >>'), 0 => _tr('<< no rated >>'), -2 => _tr('<< all >>')];
-        $status = $status + \mQueue\Model\Status::$ratings;
-
-        $this->addElement('select', 'status', [
-            'multiOptions' => $status,
-            'label' => _tr('Rating :'),
+        $this->addElement('select', 'condition', [
+            'multiOptions' => ['is' => _tr('rating is'), 'isnot' => _tr('rating is not')],
             'required' => true,
-            'class' => 'filterStatus',
+        ]);
+
+        $statuses = [];
+        foreach (\mQueue\Model\Status::$ratings as $rating => $label) {
+            $statuses[$rating] = $this->getView()->rating($rating);
+        }
+        $statuses = $statuses + [0 => _tr('nothing')];
+
+        $this->addElement('multiCheckbox', 'status', [
+            'escape' => false,
+            'multiOptions' => $statuses,
+            'required' => true,
+            'separator' => ' ',
             'filters' => [
                 ['int'],
             ],
         ]);
+        $this->status->getDecorator('HtmlTag')->setOption('class', 'filterStatus');
 
         // Add the title element
         $this->addElement('text', 'title', [
-            'label' => _tr('Title :'),
+            'placeholder' => _tr('title'),
             'autofocus' => true,
             'filters' => [
                 ['stringTrim'],
@@ -109,7 +117,11 @@ class Filter extends Zend_Form_SubForm
         $users = $this->getElement('user')->getMultiOptions();
         $statuses = $this->getElement('status')->getMultiOptions();
 
-        $text .= $users[$values['user']] . ':' . $statuses[$values['status']];
+        $statusLabels = [];
+        foreach ($values['status'] as $status) {
+            $statusLabels[] = \mQueue\Model\Status::$ratings[$status] ?? $statuses[$status];
+        }
+        $text .= $users[$values['user']] . ':' . implode('+', $statusLabels);
 
         return $text;
     }

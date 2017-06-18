@@ -88,7 +88,7 @@ abstract class MovieMapper extends AbstractMapper
      * @param string $orderBy valid SQL sorting snippet
      * @return Zend_Db_Table_Select
      */
-    public static function getFilteredQuery(array $filters, $orderBy)
+    public static function getFilteredQuery(array $filters, string $orderBy)
     {
         $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
@@ -104,27 +104,28 @@ abstract class MovieMapper extends AbstractMapper
                 continue;
             }
 
-            $filterUniqueId = $filter['user'] . $filter['status'];
+            $filterUniqueId = $filter['user'];
             if (!preg_match('/^filter\d+$/', $key) || in_array($filterUniqueId, $filtersDone)) {
                 continue;
             }
 
             $filtersDone[] = $filterUniqueId;
-
+            $showNoRating = in_array(0, $filter['status']);
             $alias = 'status' . $i++;
-            $allowNull = ($filter['status'] == 0 || $filter['status'] == -2 ? ' OR ' . $alias . '.idUser IS NULL' : '');
+            $allowNull = ' OR ' . $alias . '.idUser IS NULL';
+            if ($filter['condition'] === 'is') {
+                $condition = '';
+                $allowNull = $showNoRating ? $allowNull : '';
+            } else {
+                $condition = 'NOT ';
+                $allowNull = !$showNoRating ? $allowNull : '';
+            }
             $select->joinLeft([$alias => 'status'], '(movie.id = ' . $alias . '.idMovie AND ' . $alias . '.idUser = ' . $filter['user'] . ')' . $allowNull, []);
 
             $select->where($alias . '.isLatest = 1 OR ' . $alias . '.isLatest IS NULL');
 
-            // Filter by status, not rated or a specific rating
-            if ($filter['status'] >= 0 && $filter['status'] <= 5) {
-                $select->where($alias . '.rating = ?' . $allowNull, $filter['status']);
-            }
-            // All rated
-            elseif ($filter['status'] == -1) {
-                $select->where($alias . '.rating <> ?' . $allowNull, 0);
-            }
+            // Filter by status
+            $select->where($alias . '.rating ' . $condition . 'IN (?)' . $allowNull, $filter['status']);
 
             // Filter by title
             if (isset($filter['title'])) {

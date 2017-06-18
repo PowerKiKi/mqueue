@@ -137,7 +137,7 @@ ul.navigation {
 
 #content {
     padding-left: 1em;
-    padding-right: 2em;
+    padding-right: 1em;
 }
 
 #footer {
@@ -176,17 +176,18 @@ dl.filter {
     dd, dt {
         display: inline;
         margin: 0px;
+        line-height: 2em;
     }
     dd {
-        margin-right: 2em;
+        margin-right: 1em;
     }
 }
 
 #fieldset-filters {
-    #submit-label, #clear-label {
+    #submit-label {
         display: none;
     }
-    #submit-element, #clear-element {
+    #submit-element {
         float: right;
         margin-left: 1em;
     }
@@ -298,29 +299,6 @@ td {
     }
     &.number {
         text-align: right;
-    }
-}
-
-select.filterStatus option {
-    padding-left: 20px;
-    background-image: url("../images/status.png");
-    background-repeat: no-repeat;
-    background-position: -999px -999px;
-    height: 16px;
-    &[value='1'] {
-        background-position: -16px 0px;
-    }
-    &[value='2'] {
-        background-position: -16px -16px;
-    }
-    &[value='3'] {
-        background-position: -16px -32px;
-    }
-    &[value='4'] {
-        background-position: -16px -48px;
-    }
-    &[value='5'] {
-        background-position: -16px -64px;
     }
 }
 

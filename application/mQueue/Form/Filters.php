@@ -20,12 +20,6 @@ class Filters extends Zend_Form
             'label' => _tr('Apply'),
         ]);
 
-        // Add the submit button
-        $this->addElement('submit', 'clear', [
-            'ignore' => true,
-            'label' => _tr('Clear'),
-        ]);
-
         $this->addDecorator('Fieldset');
 
         $this->setDecorators([
@@ -34,7 +28,7 @@ class Filters extends Zend_Form
             'Form',
         ]);
 
-        $this->addDisplayGroup(['submit', 'clear'], 'filters', ['legend' => _tr('Filter')]);
+        $this->addDisplayGroup(['submit'], 'filters', ['legend' => _tr('Filter')]);
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $view = $viewRenderer->view;
@@ -79,7 +73,7 @@ class Filters extends Zend_Form
      * It will at least create one subform. It may add a default subform
      * if 'addFilter_x' value is given.
      * @param array $defaults values of form
-     * @return array $defaults modified values with additionnal filter
+     * @return array $defaults modified values with additional filter
      */
     private function createSubForms(array $defaults)
     {
@@ -97,7 +91,8 @@ class Filters extends Zend_Form
         if ((isset($defaults['addFilter_x'])) || $max == 0) {
             $defaults['filter' . ($max + 1)] = [
                 'user' => \mQueue\Model\User::getCurrent() ? 0 : UserMapper::fetchAll()->current()->id,
-                'status' => -1,
+                'condition' => 'is',
+                'status' => array_keys(\mQueue\Model\Status::$ratings),
             ];
         }
 

@@ -34,8 +34,8 @@ class MovieController extends Zend_Controller_Action
             }
         }
 
-        // If was submitted and do not want to clear, try to validate values
-        if ($submitted && !$this->_getParam('clear', false)) {
+        // If was submitted, try to validate values
+        if ($submitted) {
             if (!$form->isValid($this->getRequest()->getParams())) {
                 $this->_helper->FlashMessenger(['warning' => _tr('Filter is invalid.')]);
                 $form->setDefaults([]);
@@ -46,7 +46,8 @@ class MovieController extends Zend_Controller_Action
             $form->setDefaults([
                 'filter1' => [
                     'user' => \mQueue\Model\User::getCurrent() ? 0 : \mQueue\Model\UserMapper::fetchAll()->current()->id,
-                    'status' => -2,
+                    'condition' => 'is',
+                    'status' => array_merge([0], array_keys(mQueue\Model\Status::$ratings)),
                     'title' => $this->_getParam('search'),
                 ],
             ]);
