@@ -4,6 +4,8 @@ php:
   - 7.1
 
 before_script:
+  - nvm install 6
+  - nvm use 6
   - bin/install_dependencies.sh
   - npm install
   - gulp
