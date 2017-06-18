@@ -23,7 +23,7 @@ gulp.task('concat', ['compress'], function() {
 });
 
 gulp.task('update_database', ['composer'], shell.task([
-    'php scripts/update_database.php'
+    'php bin/update_database.php'
 ]));
 
 gulp.task('sass', function() {
