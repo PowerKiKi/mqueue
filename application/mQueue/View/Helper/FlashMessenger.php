@@ -105,7 +105,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
         foreach ($messages as $message) {
             $level = 'notice';
             if (is_array($message)) {
-                list($level, $message) = each($message);
+                [$level, $message] = each($message);
             }
             $output .= '<div class="flashmessenger ' . $level . '">' . $message . '</div>';
         }

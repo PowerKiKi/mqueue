@@ -17,7 +17,7 @@ class Sort extends Zend_View_Helper_Abstract
      */
     public function sort($label, $column, $selectedSortKey, $selectedSortOrder, array $additionalParameters = null)
     {
-        if (is_null($additionalParameters)) {
+        if ($additionalParameters === null) {
             $additionalParameters = [];
         }
 
