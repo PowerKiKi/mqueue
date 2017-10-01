@@ -10,6 +10,7 @@ class Debug
      * @param mixed $data
      * @param bool $return
      * @param int $level
+     *
      * @return string string representation of variable
      */
     public static function export($data, bool $return = false, int $level = 0)
@@ -46,12 +47,12 @@ function ve($a, bool $return = false)
     return Debug::export($a, $return);
 }
 
-function v()
+function v(): void
 {
     var_dump(func_get_args());
 }
 
-function w()
+function w(): void
 {
     $isHtml = (PHP_SAPI !== 'cli');
     echo "\n_________________________________________________________________________________________________________________________" . ($isHtml ? '</br>' : '') . "\n";

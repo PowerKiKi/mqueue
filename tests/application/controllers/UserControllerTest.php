@@ -2,14 +2,14 @@
 
 class UserControllerTest extends AbstractControllerTestCase
 {
-    protected $idUser = null;
+    protected $idUser;
     protected $newUserData = [
         'nickname' => 'new test user',
         'email' => 'new_valid@email.org',
         'password' => 'superpassword',
     ];
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $user = \mQueue\Model\UserMapper::findEmailPassword($this->newUserData['email'], $this->newUserData['password']);
         if ($user) {
@@ -19,7 +19,7 @@ class UserControllerTest extends AbstractControllerTestCase
         parent::tearDown();
     }
 
-    public function testIndexAction()
+    public function testIndexAction(): void
     {
         $params = ['action' => 'index', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
@@ -33,7 +33,7 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('h2', 'Users list');
     }
 
-    public function testNewAction()
+    public function testNewAction(): void
     {
         // First, query to display form
         $params = ['action' => 'new', 'controller' => 'user', 'module' => 'default'];
@@ -68,7 +68,7 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->assertRedirectTo('/movie', 'succesfull subscription redirect to movie list');
     }
 
-    public function testLoginAction()
+    public function testLoginAction(): void
     {
         $this->assertNull(\mQueue\Model\User::getCurrent(), 'at first we are not logged in');
 

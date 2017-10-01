@@ -8,6 +8,7 @@ class Footer extends Zend_View_Helper_Abstract
 {
     /**
      * Returns the website footer
+     *
      * @return string
      */
     public function footer()

@@ -8,9 +8,10 @@ class Headers extends Zend_Controller_Action_Helper_Abstract
 {
     /**
      * Set appropriate headers according to content type
+     *
      * @param mixed $contentType
      */
-    public function headers($contentType)
+    public function headers($contentType): void
     {
         $response = $this->getActionController()->getResponse();
         $response->setHeader('Content-Type', $contentType);
@@ -27,6 +28,7 @@ class Headers extends Zend_Controller_Action_Helper_Abstract
 
     /**
      * Strategy pattern: call helper as broker method
+     *
      * @param mixed $data
      */
     public function direct($data)

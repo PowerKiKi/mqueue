@@ -9,7 +9,9 @@ class CacheStamp extends Zend_View_Helper_Abstract
     /**
      * Inject the last modified time of file.
      * This avoid browser cache and force reloading when the file changed.
+     *
      * @param string $fileName
+     *
      * @return string
      */
     public function cacheStamp($fileName)

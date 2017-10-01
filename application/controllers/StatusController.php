@@ -2,7 +2,7 @@
 
 class StatusController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
         $contextSwitch = $this->_helper->getHelper('contextSwitch');
         $contextSwitch->addActionContext('list', 'json')
@@ -10,7 +10,7 @@ class StatusController extends Zend_Controller_Action
                 ->initContext();
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $jsonCallback = $this->_request->getParam('jsoncallback');
         if ($jsonCallback) {
@@ -48,7 +48,7 @@ class StatusController extends Zend_Controller_Action
         }
     }
 
-    public function listAction()
+    public function listAction(): void
     {
         $jsonCallback = $this->_request->getParam('jsoncallback');
         if ($jsonCallback) {
@@ -75,7 +75,7 @@ class StatusController extends Zend_Controller_Action
         $this->view->status = $json;
     }
 
-    public function graphAction()
+    public function graphAction(): void
     {
         $percent = $this->_request->getParam('percent');
         $user = \mQueue\Model\UserMapper::find($this->getParam('user'));

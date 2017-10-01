@@ -8,6 +8,7 @@ class LanguageSelector extends Zend_View_Helper_Abstract
 {
     /**
      * Return a div to select language.
+     *
      * @return string
      */
     public function languageSelector()

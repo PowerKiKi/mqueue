@@ -7,7 +7,7 @@ use Zend_Form_SubForm;
 
 class Filter extends Zend_Form_SubForm
 {
-    public function init()
+    public function init(): void
     {
         // Set the method for the display form to GET
         $this->setMethod('get');
@@ -79,7 +79,7 @@ class Filter extends Zend_Form_SubForm
     /**
      * Disable extra field elements
      */
-    public function disableExtraFields()
+    public function disableExtraFields(): void
     {
         $this->removeElement('title');
         $this->removeElement('withSource');
@@ -87,7 +87,9 @@ class Filter extends Zend_Form_SubForm
 
     /**
      * Override getValues() to replace special '0' value with current user
+     *
      * @param bool $suppressArrayNotation
+     *
      * @return array values
      */
     public function getValues($suppressArrayNotation = false)
@@ -103,6 +105,7 @@ class Filter extends Zend_Form_SubForm
 
     /**
      * Returns values as readable text for end-user
+     *
      * @return string
      */
     public function getValuesText()

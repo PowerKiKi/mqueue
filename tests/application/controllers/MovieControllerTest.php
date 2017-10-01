@@ -2,7 +2,7 @@
 
 class MovieControllerTest extends AbstractControllerTestCase
 {
-    public function testIndexAction()
+    public function testIndexAction(): void
     {
         $params = ['action' => 'index', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
@@ -17,7 +17,7 @@ class MovieControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('th a', 'Title');
     }
 
-    public function testAddAction()
+    public function testAddAction(): void
     {
         $params = ['action' => 'add', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
@@ -32,7 +32,7 @@ class MovieControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('.tips', 'learn how to add');
     }
 
-    public function testImportAction()
+    public function testImportAction(): void
     {
         $params = ['action' => 'import', 'controller' => 'movie', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));

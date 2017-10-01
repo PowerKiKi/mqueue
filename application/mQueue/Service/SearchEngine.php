@@ -10,6 +10,7 @@ class SearchEngine
 {
     /**
      * Returns the command for the appropriate version of Nova
+     *
      * @return string
      */
     protected function getNovaCmd()
@@ -26,8 +27,10 @@ class SearchEngine
 
     /**
      * Execute a shell command with a timeout
+     *
      * @param string $cmd shell command
      * @param int $timeout seconds after which the process will be killed
+     *
      * @return string the stdout of the command
      */
     protected function execute($cmd, $timeout)
@@ -76,7 +79,9 @@ class SearchEngine
 
     /**
      * Parse string content and return an array of unique sources
+     *
      * @param string $content
+     *
      * @return array
      */
     public function parse($content)
@@ -101,7 +106,9 @@ class SearchEngine
 
     /**
      * Search for the given title and return an array of sources
+     *
      * @param string $title
+     *
      * @return array sources
      */
     public function search($title)
@@ -118,7 +125,9 @@ class SearchEngine
 
     /**
      * Returns the given name simplified as much as possible
+     *
      * @param string $name
+     *
      * @return string
      */
     protected function cleanName($name)
@@ -151,8 +160,10 @@ class SearchEngine
 
     /**
      * Compute scores of all sources according to the title searched
+     *
      * @param string $title
      * @param array $sources
+     *
      * @return array
      */
     public function computeScores($title, array $sources)
@@ -180,25 +191,25 @@ class SearchEngine
             $identity = 0;
             $quality = 0;
 
-// TODO: re-evaluate the alternate identity method with more data or drop it entirely
-//			$yearPattern = '/(\D)' . $year . '\D.*$/';
-//			if (preg_match($yearPattern, $source['name']))
-//			{
-//				$sourceWithoutYear = trim(preg_replace($yearPattern, '\1', $source['name']));
-//				$cleanSource = $this->cleanName($sourceWithoutYear);
-//
-//				// Boost identity because we found the year
-//				$identity += 20;
-//			}
-//			else
-//			{
-//
-//				$length = strlen($cleanTitle);
-//				$pattern = '/^(.{0,' . $length . '}\w*)/';
-//				preg_match($pattern, $this->cleanName($source['name']), $m);
-//				$cleanSource = $m[1];
-//			}
-//			v($cleanTitle, $year, $source['name'], $sourceWithoutYear, $cleanSource, $identity);
+            // TODO: re-evaluate the alternate identity method with more data or drop it entirely
+            //			$yearPattern = '/(\D)' . $year . '\D.*$/';
+            //			if (preg_match($yearPattern, $source['name']))
+            //			{
+            //				$sourceWithoutYear = trim(preg_replace($yearPattern, '\1', $source['name']));
+            //				$cleanSource = $this->cleanName($sourceWithoutYear);
+            //
+            //				// Boost identity because we found the year
+            //				$identity += 20;
+            //			}
+            //			else
+            //			{
+            //
+            //				$length = strlen($cleanTitle);
+            //				$pattern = '/^(.{0,' . $length . '}\w*)/';
+            //				preg_match($pattern, $this->cleanName($source['name']), $m);
+            //				$cleanSource = $m[1];
+            //			}
+            //			v($cleanTitle, $year, $source['name'], $sourceWithoutYear, $cleanSource, $identity);
             // Identity mostly is matching title in source name
             $cleanSource = mb_substr($this->cleanName($source['name']), 0, mb_strlen($cleanTitle));
             similar_text($cleanTitle, $cleanSource, $identity);
@@ -229,9 +240,11 @@ class SearchEngine
         usort($sources, function ($source, $other) {
             if ($other['score'] != $source['score']) {
                 return $other['score'] - $source['score'];
-            } elseif ($other['seeds'] != $source['seeds']) {
+            }
+            if ($other['seeds'] != $source['seeds']) {
                 return $other['seeds'] - $source['seeds'];
-            } elseif ($other['leech'] != $source['leech']) {
+            }
+            if ($other['leech'] != $source['leech']) {
                 return $other['leech'] - $source['leech'];
             }
 

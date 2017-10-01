@@ -16,7 +16,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
         'title' => 'Willow (1988)',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->bootstrap = new Zend_Application(
                 APPLICATION_ENV, [
@@ -38,7 +38,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
         parent::setUp();
     }
 
-    public function loginUser($login, $password)
+    public function loginUser($login, $password): void
     {
         $this->request->setMethod('POST')
                 ->setPost([
@@ -59,7 +59,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
      * @param  string $needle needle that should be contained in content
      * @param  string $message
      */
-    public function assertContentContains($needle, $message = '')
+    public function assertContentContains($needle, $message = ''): void
     {
         $this->_incrementAssertionCount();
         $content = $this->response->outputBody();
@@ -68,6 +68,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
             if (!empty($message)) {
                 $failure = $message . "\n" . $failure;
             }
+
             throw new Zend_Test_PHPUnit_Constraint_Exception($failure);
         }
     }

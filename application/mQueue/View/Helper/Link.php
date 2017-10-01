@@ -8,6 +8,7 @@ class Link extends Zend_View_Helper_Abstract
 {
     /**
      * Create a link to IMDb page for specified movie.
+     *
      * @param \mQueue\Model\Movie $movie
      * @param bool $showUrl
      */

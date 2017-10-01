@@ -8,7 +8,9 @@ class Rating extends Zend_View_Helper_Abstract
 {
     /**
      * Returns some help text about statuses for end-user
+     *
      * @param int $rating
+     *
      * @return string
      */
     public function rating(int $rating)

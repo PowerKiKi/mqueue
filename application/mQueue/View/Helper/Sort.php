@@ -8,11 +8,13 @@ class Sort extends Zend_View_Helper_Abstract
 {
     /**
      * Return an HTML links to be able to sort (will typically be in table header)
+     *
      * @param string $label
      * @param string $column
      * @param string $selectedSortKey
      * @param string $selectedSortOrder
      * @param array $additionalParameters
+     *
      * @return string
      */
     public function sort($label, $column, $selectedSortKey, $selectedSortOrder, array $additionalParameters = null)

@@ -13,8 +13,10 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
      * 	- sortParameterName
      *  - sortSelectedKey
      *  - sortSelectedOrder
+     *
      * @param  string $sortParameterName       used to look for parameters in request and as key in $_SESSION
      * @param  array  $allowedKeys
+     *
      * @return string similar to 'name DESC'
      */
     public function createSorting($sortParameterName, array $allowedKeys)
@@ -38,9 +40,11 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
 
     /**
      * Returns a valid SQL sorting snippet
+     *
      * @param  string $key
      * @param  string $order
      * @param  array  $allowedKeys
+     *
      * @return string similar to 'name DESC'
      */
     private static function getSorting($key, $order, array $allowedKeys)
@@ -56,7 +60,9 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
 
     /**
      * Strategy pattern: call helper as broker method
+     *
      * @param  string $sortParameterName used to look for parameters in request and as key in $_SESSION
+     *
      * @return string similar to 'name DESC'
      */
     public function direct($sortParameterName, array $allowedKeys)

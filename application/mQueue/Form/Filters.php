@@ -8,7 +8,7 @@ use Zend_Form;
 
 class Filters extends Zend_Form
 {
-    public function init()
+    public function init(): void
     {
         // Set the method for the display form to GET
         $this->setMethod('get');
@@ -47,6 +47,7 @@ class Filters extends Zend_Form
 
     /**
      * Overrides isValid to dynamically generate subforms which will be used for validation.
+     *
      * @param array $data
      */
     public function isValid($data)
@@ -58,6 +59,7 @@ class Filters extends Zend_Form
 
     /**
      * Override setDefaults to dynamically generate subforms.
+     *
      * @param array $defaults
      */
     public function setDefaults(array $defaults)
@@ -72,7 +74,9 @@ class Filters extends Zend_Form
      * Create actual filter as subforms according to filter values given.
      * It will at least create one subform. It may add a default subform
      * if 'addFilter_x' value is given.
+     *
      * @param array $defaults values of form
+     *
      * @return array $defaults modified values with additional filter
      */
     private function createSubForms(array $defaults)
@@ -113,6 +117,7 @@ class Filters extends Zend_Form
 
     /**
      * Returns values as readable text for end-user
+     *
      * @return string
      */
     public function getValuesText()

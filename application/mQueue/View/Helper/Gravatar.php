@@ -9,6 +9,7 @@ class Gravatar extends Zend_View_Helper_HtmlElement
 {
     /**
      * Return a span with CSS class for a user on gravatar
+     *
      * @param \mQueue\Model\User $user
      * @param string $size small|medium|big
      */

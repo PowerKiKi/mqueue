@@ -2,12 +2,12 @@
 
 class UserController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
-        /* Initialize action controller here */
+        // Initialize action controller here
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->view->users = \mQueue\Model\UserMapper::fetchAll();
     }
@@ -72,12 +72,12 @@ class UserController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    public function logoutAction()
+    public function logoutAction(): void
     {
         \mQueue\Model\User::setCurrent(null);
     }
 
-    public function viewAction()
+    public function viewAction(): void
     {
         if ($this->getRequest()->getParam('id')) {
             $this->view->user = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('id'));

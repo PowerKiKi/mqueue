@@ -6,12 +6,14 @@ use Zend_View_Helper_Abstract;
 
 class UrlParams extends Zend_View_Helper_Abstract
 {
-    private $escapeParams = null;
+    private $escapeParams;
 
     /**
      * Returns the current page URL with specified GET parameters.
+     *
      * @param array $params
      * @param bool $escapeParams if false '&' characters will not be escaped
+     *
      * @return string
      */
     public function urlParams(array $params, $escapeParams = true)
@@ -23,6 +25,7 @@ class UrlParams extends Zend_View_Helper_Abstract
 
     /**
      * Flatten a recursive array in GET parameters (same as HTML form send GET request)
+     *
      * @param array $params
      * @param string $result
      * @param string $previousName

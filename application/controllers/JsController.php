@@ -2,18 +2,18 @@
 
 class JsController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
         $this->_helper->layout->disableLayout();
         $this->_helper->headers('application/javascript');
     }
 
-    public function remoteJsAction()
+    public function remoteJsAction(): void
     {
         // action body
     }
 
-    public function mqueueUserJsAction()
+    public function mqueueUserJsAction(): void
     {
         // action body
     }

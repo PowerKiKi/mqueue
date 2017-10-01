@@ -8,7 +8,9 @@ abstract class UserMapper extends AbstractMapper
 {
     /**
      * Create and save a new user
+     *
      * @param array $values
+     *
      * @return \mQueue\Model\User
      */
     public static function insertUser(array $values)
@@ -24,9 +26,11 @@ abstract class UserMapper extends AbstractMapper
 
     /**
      * Finds a user by its email and password (not hashed)
+     *
      * @param string $email
      * @param string $password
-     * @return \mQueue\Model\User|null
+     *
+     * @return null|\mQueue\Model\User
      */
     public static function findEmailPassword($email, $password)
     {
@@ -41,8 +45,10 @@ abstract class UserMapper extends AbstractMapper
 
     /**
      * Finds a user by its ID
+     *
      * @param int $id
-     * @return \mQueue\Model\User|null
+     *
+     * @return null|\mQueue\Model\User
      */
     public static function find($id)
     {
@@ -53,6 +59,7 @@ abstract class UserMapper extends AbstractMapper
 
     /**
      * Finds all users
+     *
      * @return \mQueue\Model\User[]
      */
     public static function fetchAll()

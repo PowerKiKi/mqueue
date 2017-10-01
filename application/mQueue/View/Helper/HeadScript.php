@@ -8,11 +8,12 @@ class HeadScript extends Zend_View_Helper_HeadScript
 {
     /**
      * Include a directory recursively
+     *
      * @param string $directory
      * @param string $method
      * @param array $args
      */
-    private function includeDirectory($directory, $method, array $args)
+    private function includeDirectory($directory, $method, array $args): void
     {
         $prefix = APPLICATION_PATH . '/../';
         foreach (array_reverse(glob($prefix . $directory . '/*')) as $file) {
@@ -28,8 +29,10 @@ class HeadScript extends Zend_View_Helper_HeadScript
     /**
      * Override parent to support timestamp, compilation and concatenation.
      * Compiled and concatenated files must pre-exist (compiled by external tools).
+     *
      * @param string $method
      * @param array $args
+     *
      * @return self
      */
     public function __call($method, $args)
@@ -47,9 +50,9 @@ class HeadScript extends Zend_View_Helper_HeadScript
 
                     return $this;
                 }
-                // Otherwise use pre-existing concatenated file
 
-                    $fileName = $fileName[0];
+                // Otherwise use pre-existing concatenated file
+                $fileName = $fileName[0];
             }
 
             $args[0] = $this->view->cacheStamp($fileName);

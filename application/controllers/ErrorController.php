@@ -2,7 +2,7 @@
 
 class ErrorController extends Zend_Controller_Action
 {
-    public function errorAction()
+    public function errorAction(): void
     {
         $errors = $this->_getParam('error_handler');
 
@@ -20,12 +20,14 @@ class ErrorController extends Zend_Controller_Action
                 $this->getResponse()->setHttpResponseCode(404);
                 $priority = Zend_Log::NOTICE;
                 $this->view->message = 'Page not found';
+
                 break;
             default:
                 // application error
                 $this->getResponse()->setHttpResponseCode(500);
                 $priority = Zend_Log::CRIT;
                 $this->view->message = 'Application error';
+
                 break;
         }
 

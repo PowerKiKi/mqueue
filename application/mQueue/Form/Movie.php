@@ -6,7 +6,7 @@ use Zend_Form;
 
 class Movie extends Zend_Form
 {
-    public function init()
+    public function init(): void
     {
         // Set the method for the display form to GET
         $this->setMethod('get');

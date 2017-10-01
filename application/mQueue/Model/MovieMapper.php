@@ -9,8 +9,10 @@ abstract class MovieMapper extends AbstractMapper
 {
     /**
      * Returns a movie by its ID
+     *
      * @param int $id
-     * @return \mQueue\Model\Movie|null
+     *
+     * @return null|\mQueue\Model\Movie
      */
     public static function find($id)
     {
@@ -21,6 +23,7 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns all movies
+     *
      * @return \mQueue\Model\Movie[]
      */
     public static function fetchAll()
@@ -32,6 +35,7 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns movies for search
+     *
      * @return \mQueue\Model\Movie[]
      */
     public static function findAllForSearch()
@@ -62,7 +66,9 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns movies for data fetching
+     *
      * @param int $limit
+     *
      * @return \mQueue\Model\Movie[]
      */
     public static function findAllForFetching($limit = null)
@@ -84,8 +90,10 @@ abstract class MovieMapper extends AbstractMapper
 
     /**
      * Returns a query filtered according to parameters. This query may be used with paginator.
+     *
      * @param array $filters
      * @param string $orderBy valid SQL sorting snippet
+     *
      * @return Zend_Db_Table_Select
      */
     public static function getFilteredQuery(array $filters, string $orderBy)
@@ -161,7 +169,7 @@ abstract class MovieMapper extends AbstractMapper
      * An obsolete source is either a source older than 3 months, or
      * a source which is not needed anymore (nobody need the movie anymore)
      */
-    public static function deleteObsoleteSources()
+    public static function deleteObsoleteSources(): void
     {
         $db = self::getDbTable()->getAdapter();
         $update = 'UPDATE `movie` SET dateUpdate = dateUpdate, dateSearch = NULL, searchCount = 0, identity = 0, quality = 0, score = 0, source = NULL';

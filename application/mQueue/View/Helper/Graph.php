@@ -9,7 +9,9 @@ class Graph extends Zend_View_Helper_Abstract
 {
     /**
      * Returns a graph for everybody or single user
+     *
      * @param \mQueue\Model\User $user
+     *
      * @return string
      */
     public function graph(\mQueue\Model\User $user = null)

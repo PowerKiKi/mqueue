@@ -11,9 +11,11 @@ abstract class StatusMapper extends AbstractMapper
      * Define the status for a movie-user tuple. If an existing satus exists and
      * is very recent, it will be updated, otherwise a new status will be created.
      * IMPORTANT: This is the only allowed way to modify status.
+     *
      * @param \mQueue\Model\Movie $movie
      * @param \mQueue\Model\User $user
      * @param int $rating @see \mQueue\Model\Status
+     *
      * @return \mQueue\Model\Status
      */
     public static function set(Movie $movie, User $user, $rating)
@@ -50,8 +52,10 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Find a status by its user and movie. If not found it will be created (but not saved).
+     *
      * @param int $idMovie
-     * @param \mQueue\Model\User|null $user
+     * @param null|\mQueue\Model\User $user
+     *
      * @return \mQueue\Model\Status
      */
     public static function find($idMovie, User $user = null)
@@ -66,7 +70,8 @@ abstract class StatusMapper extends AbstractMapper
      * (if they don't exist in database, they will be created with default values but not saved)
      *
      * @param array $idMovies
-     * @param \mQueue\Model\User|null $user
+     * @param null|\mQueue\Model\User $user
+     *
      * @return array of \mQueue\Model\Status
      */
     public static function findAll(array $idMovies, User $user = null)
@@ -107,7 +112,9 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Build statistic for the given user.
+     *
      * @param \mQueue\Model\User $user
+     *
      * @return array statistics
      */
     public static function getStatistics(User $user)
@@ -142,8 +149,10 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Build statistic for the given user.
+     *
      * @param \mQueue\Model\User $user
      * @param bool $percent
+     *
      * @return array statistics
      */
     public static function getGraph(User $user = null, $percent = false)
@@ -211,7 +220,9 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Returns the query to get activity for either the whole system, or a specific user, or a specific movie
-     * @param \mQueue\Model\User|\mQueue\Model\Movie|null $item
+     *
+     * @param null|\mQueue\Model\Movie|\mQueue\Model\User $item
+     *
      * @return Zend_Db_Table_Select
      */
     public static function getActivityQuery($item = null)

@@ -10,7 +10,9 @@ class StatusLinks extends Zend_View_Helper_Abstract
 {
     /**
      * Returns the set of links to display a status (the icons used to rate movies)
+     *
      * @param \mQueue\Model\Status $status
+     *
      * @return string
      */
     public function statusLinks(\mQueue\Model\Status $status)

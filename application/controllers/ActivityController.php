@@ -2,7 +2,7 @@
 
 class ActivityController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
         // Init the Context Switch Action helper
         $contextSwitch = $this->_helper->contextSwitch();
@@ -15,7 +15,7 @@ class ActivityController extends Zend_Controller_Action
         $contextSwitch->addActionContext('index', 'rss')->initContext();
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         // By default we show overall activity
         $item = null;

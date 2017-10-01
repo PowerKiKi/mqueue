@@ -2,7 +2,7 @@
 
 class MovieController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
         // Init the Context Switch Action helper
         $contextSwitch = $this->_helper->contextSwitch();
@@ -16,7 +16,7 @@ class MovieController extends Zend_Controller_Action
         $contextSwitch->addActionContext('index', 'csv')->addActionContext('index', 'rss')->initContext();
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         // Check there is at least one user, otherwise the whole page will crash
         if (!\mQueue\Model\User::getCurrent() && !\mQueue\Model\UserMapper::getDbTable()->fetchRow()) {
@@ -88,7 +88,7 @@ class MovieController extends Zend_Controller_Action
         $this->view->paginator = $this->_helper->createPaginator(\mQueue\Model\MovieMapper::getFilteredQuery($filters, $sort));
     }
 
-    public function viewAction()
+    public function viewAction(): void
     {
         if ($this->getRequest()->getParam('id')) {
             $this->view->movie = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('id'));
@@ -102,7 +102,7 @@ class MovieController extends Zend_Controller_Action
         $this->view->movieActivity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($this->view->movie));
     }
 
-    public function addAction()
+    public function addAction(): void
     {
         $request = $this->getRequest();
         $form = new \mQueue\Form\Movie();
@@ -125,7 +125,7 @@ class MovieController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    public function importAction()
+    public function importAction(): void
     {
         $request = $this->getRequest();
         $form = new \mQueue\Form\Import();

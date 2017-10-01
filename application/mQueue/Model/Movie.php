@@ -15,6 +15,7 @@ class Movie extends AbstractModel
 {
     /**
      * All known IMDb hostnames indexed by their language
+     *
      * @var array
      */
     public static $imdbHostnames = [
@@ -29,7 +30,9 @@ class Movie extends AbstractModel
 
     /**
      * Extract IMDb id from URL
+     *
      * @param string $string
+     *
      * @return null|string the id extracted
      */
     public static function extractId($string)
@@ -44,6 +47,7 @@ class Movie extends AbstractModel
 
     /**
      * Returns the title, if needed fetch the title from IMDb
+     *
      * @return string
      */
     public function getTitle()
@@ -59,7 +63,7 @@ class Movie extends AbstractModel
     /**
      * Fetch data from IMDb and store in database (possibly overwriting)
      */
-    public function fetchData()
+    public function fetchData(): void
     {
         $ch = curl_init($this->getImdbUrl('akas'));
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept-Language: en-US,en;q=0.8']);
@@ -98,7 +102,9 @@ class Movie extends AbstractModel
 
     /**
      * Sets the ID for the movie from any string containing a valid ID
+     *
      * @param string $id
+     *
      * @return \mQueue\Model\Movie
      */
     public function setId($id)
@@ -115,7 +121,9 @@ class Movie extends AbstractModel
 
     /**
      * Returns the IMDb url for the movie
+     *
      * @param string $lang suggested language for hostname
+     *
      * @return string
      */
     public function getImdbUrl($lang = null)
@@ -135,7 +143,9 @@ class Movie extends AbstractModel
 
     /**
      * Returns the status for this movie and the specified user
+     *
      * @param \mQueue\Model\User $user
+     *
      * @return \mQueue\Model\Status
      */
     public function getStatus(User $user = null)
@@ -145,8 +155,10 @@ class Movie extends AbstractModel
 
     /**
      * Set the status for the specified user
+     *
      * @param \mQueue\Model\User $user
      * @param int $rating @see \mQueue\Model\Status
+     *
      * @return \mQueue\Model\Status
      */
     public function setStatus(User $user, $rating)
@@ -158,9 +170,10 @@ class Movie extends AbstractModel
 
     /**
      * Set the source for the movie if any. In any case record the search date and count
+     *
      * @param array|false $source
      */
-    public function setSource($source)
+    public function setSource($source): void
     {
         $this->dateSearch = Zend_Date::now()->get(Zend_Date::ISO_8601);
         ++$this->searchCount;

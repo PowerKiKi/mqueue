@@ -2,12 +2,12 @@
 
 class AboutController extends Zend_Controller_Action
 {
-    public function init()
+    public function init(): void
     {
-        /* Initialize action controller here */
+        // Initialize action controller here
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         // action body
     }

@@ -7,7 +7,7 @@ use Zend_Form;
 
 class QuickSearch extends Zend_Form
 {
-    public function init()
+    public function init(): void
     {
         $this->setMethod('get');
         $this->setName('quickSearch');

@@ -2,7 +2,7 @@
 
 class AboutControllerTest extends AbstractControllerTestCase
 {
-    public function testIndexAction()
+    public function testIndexAction(): void
     {
         $params = ['action' => 'index', 'controller' => 'about', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));

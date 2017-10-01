@@ -6,8 +6,10 @@ abstract class SettingMapper extends AbstractMapper
 {
     /**
      * Returns the setting, with a default value set if none was found.
+     *
      * @param string $id
      * @param mixed $defaultValue
+     *
      * @return \mQueue\Model\Setting
      */
     public static function find($id, $defaultValue)

@@ -4,6 +4,7 @@ require_once __DIR__ . '/../public/index.php';
 
 $db = Zend_Registry::get('db');
 $db->beginTransaction();
+
 try {
     // Insert users
     $user1 = \mQueue\Model\UserMapper::getDbTable()->createRow();
@@ -35,6 +36,7 @@ try {
 } catch (Exception $e) {
     $db->rollBack();
     echo 'FATAL: test data insertion cancelled' . PHP_EOL;
+
     throw $e;
 }
 

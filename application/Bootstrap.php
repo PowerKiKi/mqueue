@@ -19,7 +19,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         ]);
     }
 
-    protected function _initDoctype()
+    protected function _initDoctype(): void
     {
         $this->bootstrap('view');
         $view = $this->getResource('view');
@@ -29,7 +29,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->addHelperPath(APPLICATION_PATH . '/mQueue/View/Helper', 'mQueue\\View\\Helper');
     }
 
-    protected function _initNavigation()
+    protected function _initNavigation(): void
     {
         $this->bootstrap('view');
         $view = $this->getResource('view');
@@ -74,12 +74,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->navigation($navigation);
     }
 
-    protected function _initSession()
+    protected function _initSession(): void
     {
         Zend_Session::setOptions(['name' => 'mqueue']);
     }
 
-    protected function _initLanguage()
+    protected function _initLanguage(): void
     {
         $session = new Zend_Session_Namespace();
 
@@ -101,13 +101,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         self::$translator = $adapter;
     }
 
-    protected function _initPagination()
+    protected function _initPagination(): void
     {
         Zend_Paginator::setDefaultScrollingStyle('Elastic');
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
     }
 
-    protected function _initRoutes()
+    protected function _initRoutes(): void
     {
         $front = Zend_Controller_Front::getInstance();
         $router = $front->getRouter();
@@ -135,6 +135,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     /**
      * Add the Zend_Db_Adapter to the registry if we need to call it outside of the modules.
+     *
      * @return Zend_Db_Adapter
      */
     protected function _initMyDb()
@@ -150,6 +151,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
  * Global shortcut method that returns localized strings
  *
  * @param string $msgId the original string to translate
+ *
  * @return string the translated string
  */
 function _tr($msgId)

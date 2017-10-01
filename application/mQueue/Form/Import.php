@@ -6,7 +6,7 @@ use Zend_Form;
 
 class Import extends Zend_Form
 {
-    public function init()
+    public function init(): void
     {
         // Set the method for the display form to POST
         $this->setMethod('post');

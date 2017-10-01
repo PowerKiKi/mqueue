@@ -12,12 +12,14 @@ class User extends AbstractModel
      * -1 before initialization
      * null if no user logged in
      * \mQueue\Model\User if logged in
+     *
      * @var \mQueue\Model\User
      */
     private static $currentUser = -1;
 
     /**
      * Returns the user currently logged in or null
+     *
      * @return null|\mQueue\Model\User
      */
     public static function getCurrent()
@@ -36,9 +38,10 @@ class User extends AbstractModel
 
     /**
      * Set the user currently logged in, or log him out
+     *
      * @param \mQueue\Model\User $user
      */
-    public static function setCurrent(DefaultModelUser $user = null)
+    public static function setCurrent(DefaultModelUser $user = null): void
     {
         $session = new Zend_Session_Namespace();
         $session->idUser = $user ? $user->id : null;
@@ -47,6 +50,7 @@ class User extends AbstractModel
 
     /**
      * Returns movie ratings statistics
+     *
      * @return array of count of movies per ratings
      */
     public function getStatistics()

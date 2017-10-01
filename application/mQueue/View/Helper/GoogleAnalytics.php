@@ -9,7 +9,9 @@ class GoogleAnalytics extends Zend_View_Helper_Abstract
 {
     /**
      * Returns javascript code for Google Analytics
+     *
      * @param string $trackingCode
+     *
      * @return string
      */
     public function googleAnalytics($trackingCode = null)

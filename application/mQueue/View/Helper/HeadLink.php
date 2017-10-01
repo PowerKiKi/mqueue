@@ -9,8 +9,10 @@ class HeadLink extends Zend_View_Helper_HeadLink
     /**
      * Override parent to inject the last modified time of file.
      * This avoid browser cache and force reloading when the file changed.
+     *
      * @param string $method
      * @param array $args
+     *
      * @return type
      */
     public function __call($method, $args)

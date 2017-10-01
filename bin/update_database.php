@@ -7,6 +7,7 @@ $sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
 
 /**
  * Returns the last version available in SQL file
+ *
  * @return int last version of patches
  */
 function getPatchVersion()
@@ -29,8 +30,10 @@ function getPatchVersion()
 /**
  * Returns the whole SQL (enclosed in transaction) needed to update from
  * specified version to specified target version.
+ *
  * @param int $currentVersion the version currently found in database
  * @param int $targetVersion the target version to reach wich patches
+ *
  * @return string the SQL
  */
 function buildSQL($currentVersion, $targetVersion)
@@ -67,9 +70,10 @@ function buildSQL($currentVersion, $targetVersion)
 /**
  * Executes a batch of SQL commands.
  * (This is a workaround to Zend limitation to have only one command at once)
+ *
  * @param string $sql to be executed
  */
-function executeBatchSql($sql)
+function executeBatchSql($sql): void
 {
     $affectedRows = 0;
     $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
@@ -79,6 +83,7 @@ function executeBatchSql($sql)
                 $result = Zend_Registry::get('db')->query($query);
             } catch (\Exception $exception) {
                 echo 'FAILED QUERY: ' . $query . PHP_EOL;
+
                 throw $exception;
             }
 
@@ -92,7 +97,7 @@ function executeBatchSql($sql)
 /**
  * Do the actual update
  */
-function doUpdate()
+function doUpdate(): void
 {
     global $settingName;
 

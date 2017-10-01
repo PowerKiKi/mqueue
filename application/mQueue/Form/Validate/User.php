@@ -20,6 +20,7 @@ class User extends Zend_Validate_Db_RecordExists
      * Returns true if and only if $value contains a valid User ID
      *
      * @param  int $value
+     *
      * @return bool
      */
     public function isValid($value)

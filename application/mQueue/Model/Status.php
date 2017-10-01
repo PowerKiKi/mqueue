@@ -19,12 +19,14 @@ class Status extends AbstractModel
 
     /**
      * array of ratings names indexed by the rating value
+     *
      * @var array
      */
     public static $ratings = null;
 
     /**
      * Returns the unique ID for this status to be used in HTML
+     *
      * @return string
      */
     public function getUniqueId()
@@ -34,6 +36,7 @@ class Status extends AbstractModel
 
     /**
      * Returns the name
+     *
      * @return string
      */
     public function getName()
@@ -47,6 +50,7 @@ class Status extends AbstractModel
 
     /**
      * Returns the date of last udpate
+     *
      * @return Zend_Date
      */
     public function getDateUpdate()

@@ -9,8 +9,10 @@ class Setting extends AbstractModel
 {
     /**
      * Returns the setting, with a default value set if none was found.
+     *
      * @param string $id unique name of setting
      * @param mixed $defaultValue
+     *
      * @return \mQueue\Model\Setting
      */
     public static function get($id, $defaultValue)
@@ -22,10 +24,11 @@ class Setting extends AbstractModel
 
     /**
      * Defines the value of the setting
+     *
      * @param string $id unique name of setting
      * @param string $value the value to be set
      */
-    public static function set($id, $value)
+    public static function set($id, $value): void
     {
         $setting = self::get($id, $value);
         $setting->value = $value;

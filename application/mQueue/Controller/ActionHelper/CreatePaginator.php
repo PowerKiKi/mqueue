@@ -10,7 +10,9 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
 {
     /**
      * Create a new Zend_Paginator and configure it with GET or session variables
+     *
      * @param mixed $data
+     *
      * @return Zend_Paginator
      */
     public function createPaginator($data)
@@ -32,8 +34,10 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
         $currentContext = $this->getActionController()->getHelper('contextSwitch')->getCurrentContext();
         switch ($currentContext) {
             case 'csv': $perPage = -1;
+
                 break;
             case 'rss': $perPage = 200;
+
                 break;
         }
 
@@ -47,7 +51,9 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
 
     /**
      * Strategy pattern: call helper as broker method
+     *
      * @param mixed $data
+     *
      * @return Zend_Paginator
      */
     public function direct($data)

@@ -2,7 +2,7 @@
 
 class JsControllerTest extends AbstractControllerTestCase
 {
-    public function testRemoteJsAction()
+    public function testRemoteJsAction(): void
     {
         $params = ['action' => 'remote.js', 'controller' => 'js', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
@@ -18,7 +18,7 @@ class JsControllerTest extends AbstractControllerTestCase
         $this->assertContentContains('mqueue');
     }
 
-    public function testMqueueUserJsAction()
+    public function testMqueueUserJsAction(): void
     {
         $params = ['action' => 'mqueue-user.js', 'controller' => 'js', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
