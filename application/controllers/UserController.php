@@ -44,8 +44,6 @@ class UserController extends Zend_Controller_Action
 
                 $user = \mQueue\Model\UserMapper::findEmailPassword($values['email'], $values['password']);
                 if ($user) {
-                    Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 2); // Cookie for two months
-
                     \mQueue\Model\User::setCurrent($user);
 
                     $this->_helper->FlashMessenger('Logged in.');
