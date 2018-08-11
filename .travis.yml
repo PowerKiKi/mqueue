@@ -7,7 +7,7 @@ before_script:
   - nvm install 10
   - nvm use 10
   - bin/install_dependencies.sh
-  - npm install
+  - yarn install
   - gulp
 
 script:

@@ -4,7 +4,7 @@
 set -e
 
 # Install gulp.js
-npm install -g gulp-cli
+yarn global add gulp-cli
 
 # Init database
 cp application/configs/application.travis.ini application/configs/application.ini
