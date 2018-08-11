@@ -52,7 +52,7 @@ abstract class UserMapper extends AbstractMapper
      */
     public static function find($id)
     {
-        $result = self::getDbTable()->find($id);
+        $result = self::getDbTable()->find([$id]);
 
         return $result->current();
     }
