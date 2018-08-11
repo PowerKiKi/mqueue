@@ -40,6 +40,16 @@ class User extends Zend_Form
             'required' => true,
         ]);
 
+        // Add a captcha
+        $this->addElement('captcha', 'captcha', [
+            'label' => _tr('Are you a robot?'),
+            'required' => true,
+            'captcha' => 'figlet',
+            'captchaOptions' => [
+                'outputWidth' => 2000,
+            ],
+        ]);
+
         // Add the submit button
         $this->addElement('submit', 'submit', [
             'ignore' => true,
