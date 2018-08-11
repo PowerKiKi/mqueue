@@ -49,18 +49,30 @@ class UserControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('form', 'Subscribe');
 
         // Find out csrf value to be re-used in POST
-        $body = $this->getResponse()->getBody();
-        preg_match('/name="csrf" value="([^"]+)"/', $body, $m);
-        $csrf = $m[1];
+        $captcha = null;
+        $captchaId = null;
+        $csrf = null;
+        foreach ($_SESSION as $key => $q) {
+            if (preg_match('~^Zend_Form_Captcha_(.*)$~', $key, $m)) {
+                $captcha = $q['word'];
+                $captchaId = $m[1];
+            } elseif ($key === 'Zend_Form_Element_Hash_salt_csrf') {
+                $csrf = $q['hash'];
+            }
+        }
 
         // Reset everything
         $this->resetRequest();
         $this->resetResponse();
 
         // Prepare POST query
+        $this->newUserData['captcha'] = [
+            'id' => $captchaId,
+            'input' => $captcha,
+        ];
         $this->newUserData['csrf'] = $csrf;
         $this->request->setMethod('POST')
-                ->setPost($this->newUserData);
+            ->setPost($this->newUserData);
 
         // Subscribe new test user
         $this->dispatch($url);
@@ -93,7 +105,7 @@ class UserControllerTest extends AbstractControllerTestCase
 
         // Prepare POST query
         $this->request->setMethod('POST')
-                ->setPost($this->newUserData);
+            ->setPost($this->newUserData);
 
         $params = ['action' => 'login', 'controller' => 'user', 'module' => 'default'];
         $url = $this->url($this->urlizeOptions($params));
