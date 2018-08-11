@@ -14,7 +14,7 @@ abstract class SettingMapper extends AbstractMapper
      */
     public static function find($id, $defaultValue)
     {
-        $result = self::getDbTable()->find($id)->current();
+        $result = self::getDbTable()->find([$id])->current();
 
         if ($result == null) {
             $result = self::getDbTable()->createRow();
