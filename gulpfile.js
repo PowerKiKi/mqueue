@@ -1,40 +1,47 @@
-var gulp = require('gulp');
-var shell = require('gulp-shell');
+const {parallel, series, src, dest} = require('gulp');
+const shell = require('gulp-shell');
 
-gulp.task('default', ['composer', 'update_database', 'concat', 'compress', 'sass'], function() {
-    // place code for your default task here
-});
+function compress() {
+    const uglify = require('gulp-uglify');
 
-gulp.task('compress', function() {
-    var uglify = require('gulp-uglify');
-    gulp.src('public/js/*.js')
-            .pipe(uglify())
-            .pipe(gulp.dest('public/js/min'));
-});
+    return src('public/js/*.js')
+        .pipe(uglify())
+        .pipe(dest('public/js/min'));
+}
 
-gulp.task('concat', ['compress'], function() {
+function concatenate() {
     // CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
-    var concat = require('gulp-concat');
-    var uglify = require('gulp-uglify');
-    gulp.src('public/js/application/*.js')
-            .pipe(concat('application.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest('public/js/min/'));
-});
+    const concat = require('gulp-concat');
+    const uglify = require('gulp-uglify');
 
-gulp.task('update_database', ['composer'], shell.task([
-    'php bin/update_database.php'
-]));
+    return src('public/js/application/*.js')
+        .pipe(concat('application.js'))
+        .pipe(uglify())
+        .pipe(dest('public/js/min/'));
+}
 
-gulp.task('sass', function() {
-    var sass = require('gulp-sass');
+const update_database = shell.task([
+    'php bin/update_database.php',
+]);
 
-    return gulp.src('application/sass/**/*.scss')
-            .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-            .pipe(gulp.dest('public/css'));
-});
+function sass() {
+    const sass = require('gulp-sass');
 
-gulp.task('composer', function() {
-    var composer = require('gulp-composer');
+    return src('application/sass/**/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(dest('public/css'));
+}
+
+function composer() {
+    const composer = require('gulp-composer');
+
     return composer('install', {});
-});
+}
+
+const server = series(composer, update_database);
+const client = series(compress, concatenate, sass);
+
+/**
+ * Main tasks
+ */
+exports.default = parallel(server, client);
