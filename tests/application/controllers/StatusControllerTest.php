@@ -16,8 +16,8 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('p', 'no valid movie specified');
 
         // Can view any movie status (even non-existing movies)
-        $url .= '/1234567';
-        $this->dispatch($url);
+        $urlStatusShort = $url . '/1234567';
+        $this->dispatch($urlStatusShort);
 
         // assertions
         $this->assertModule($params['module']);
@@ -31,8 +31,8 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_5', 'Favorite');
 
         // Can view any movie status with bigger ID (even non-existing movies)
-        $url .= '/12345678';
-        $this->dispatch($url);
+        $urlStatusLong = $url . '/1234567';
+        $this->dispatch($urlStatusLong);
 
         // assertions
         $this->assertModule($params['module']);
