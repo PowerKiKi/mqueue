@@ -81,7 +81,8 @@ class Movie extends AbstractModel
         // Extract title
         $titleEntries = $xpath->evaluate('//meta[contains(@property, "og:title")]/@content');
         if ($titleEntries->length == 1) {
-            $this->title = $titleEntries->item(0)->value;
+            $rawTitle = $titleEntries->item(0)->value;
+            $this->title = preg_replace('~ - IMDb$~', '', $rawTitle);
         } else {
             $this->title = '[title not available, could not fetch from IMDb]';
 
