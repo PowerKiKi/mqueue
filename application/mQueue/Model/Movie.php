@@ -37,7 +37,7 @@ class Movie extends AbstractModel
      */
     public static function extractId($string)
     {
-        preg_match_all("/(\d{7})/", $string, $r);
+        preg_match_all("/(\d{7,8})/", $string, $r);
         if (isset($r[1][0])) {
             return $r[1][0];
         }

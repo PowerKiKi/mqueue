@@ -17,7 +17,7 @@ class Movie extends Zend_Form
             'required' => true,
             'autofocus' => true,
             'validators' => [
-                ['validator' => 'Regex', 'options' => ["/(\d{7})/"]],
+                ['validator' => 'Regex', 'options' => ["/(\d{7,8})/"]],
             ],
         ]);
 

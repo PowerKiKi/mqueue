@@ -55,7 +55,7 @@ var mqueue = (function() {
 
         $.each(matches, function()
         {
-            var regexp = /imdb\.(com|de|es|fr|it|pt)\/title\/tt(\d{7})/;
+            var regexp = /imdb\.(com|de|es|fr|it|pt)\/title\/tt(\d{7,8})/;
             if (regexp.test(this.href))
             {
                 var array = regexp.exec(this.href);

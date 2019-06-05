@@ -29,5 +29,20 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_3', 'Ok');
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_4', 'Excellent');
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_5', 'Favorite');
+
+        // Can view any movie status with bigger ID (even non-existing movies)
+        $url .= '/12345678';
+        $this->dispatch($url);
+
+        // assertions
+        $this->assertModule($params['module']);
+        $this->assertController($params['controller']);
+        $this->assertAction($params['action']);
+
+        $this->assertQueryContentContains('.mqueue_status.mqueue_status_1', 'Need');
+        $this->assertQueryContentContains('.mqueue_status.mqueue_status_2', 'Bad');
+        $this->assertQueryContentContains('.mqueue_status.mqueue_status_3', 'Ok');
+        $this->assertQueryContentContains('.mqueue_status.mqueue_status_4', 'Excellent');
+        $this->assertQueryContentContains('.mqueue_status.mqueue_status_5', 'Favorite');
     }
 }
