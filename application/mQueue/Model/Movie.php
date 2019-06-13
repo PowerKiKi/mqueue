@@ -6,28 +6,12 @@ use DOMDocument;
 use DOMXPath;
 use Exception;
 use Zend_Date;
-use Zend_Registry;
 
 /**
  * A movie
  */
 class Movie extends AbstractModel
 {
-    /**
-     * All known IMDb hostnames indexed by their language
-     *
-     * @var array
-     */
-    public static $imdbHostnames = [
-        'en' => 'www.imdb.com',
-        'fr' => 'www.imdb.fr',
-        'de' => 'www.imdb.de',
-        'es' => 'www.imdb.es',
-        'it' => 'www.imdb.it',
-        'pt' => 'www.imdb.pt',
-        'akas' => 'akas.imdb.com',
-    ];
-
     /**
      * Extract IMDb id from URL
      *
@@ -65,7 +49,7 @@ class Movie extends AbstractModel
      */
     public function fetchData(): void
     {
-        $ch = curl_init($this->getImdbUrl('akas'));
+        $ch = curl_init($this->getImdbUrl());
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept-Language: en-US,en;q=0.8']);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -128,19 +112,9 @@ class Movie extends AbstractModel
      *
      * @return string
      */
-    public function getImdbUrl($lang = null)
+    public function getImdbUrl()
     {
-        if ($lang == null) {
-            $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
-        }
-
-        if (isset(self::$imdbHostnames[$lang])) {
-            $hostname = self::$imdbHostnames[$lang];
-        } else {
-            $hostname = reset(self::$imdbHostnames);
-        }
-
-        return 'https://' . $hostname . '/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
+        return 'https://www.imdb.com/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
     }
 
     /**
