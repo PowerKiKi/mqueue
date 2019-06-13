@@ -31,7 +31,7 @@ class StatusControllerTest extends AbstractControllerTestCase
         $this->assertQueryContentContains('.mqueue_status.mqueue_status_5', 'Favorite');
 
         // Can view any movie status with bigger ID (even non-existing movies)
-        $urlStatusLong = $url . '/1234567';
+        $urlStatusLong = $url . '/1234567890';
         $this->dispatch($urlStatusLong);
 
         // assertions

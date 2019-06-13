@@ -37,7 +37,7 @@ class Movie extends AbstractModel
      */
     public static function extractId($string)
     {
-        preg_match_all("/(\d{7,8})/", $string, $r);
+        preg_match_all("/(\d{7,})/", $string, $r);
         if (isset($r[1][0])) {
             return $r[1][0];
         }
@@ -140,7 +140,7 @@ class Movie extends AbstractModel
             $hostname = reset(self::$imdbHostnames);
         }
 
-        return 'http://' . $hostname . '/title/tt' . $this->id . '/';
+        return 'http://' . $hostname . '/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
     }
 
     /**

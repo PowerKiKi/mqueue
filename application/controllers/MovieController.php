@@ -142,7 +142,7 @@ class MovieController extends Zend_Controller_Action
             $values = $form->getValues();
             $page = file_get_contents($values['url']);
 
-            $pattern = '|<a href="/title/tt(\d{7,8})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
+            $pattern = '|<a href="/title/tt(\d{7,})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
             preg_match_all($pattern, $page, $matches);
 
             $movies = [];

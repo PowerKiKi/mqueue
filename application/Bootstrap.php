@@ -130,8 +130,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('activityUserOld', new Zend_Controller_Router_Route('activity/index/user/:user/*', ['controller' => 'activity', 'action' => 'index']));
 
         // Routes to define and view statuses
-        $router->addRoute('status', new Zend_Controller_Router_Route_Regex('status/(\d{7,8})/(\d)', ['controller' => 'status', 'action' => 'index'], [1 => 'movie', 2 => 'rating'], 'status/%s/%s'));
-        $router->addRoute('statusView', new Zend_Controller_Router_Route_Regex('status/(\d{7,8})', ['controller' => 'status', 'action' => 'index'], [1 => 'movie'], 'status/%s'));
+        $router->addRoute('status', new Zend_Controller_Router_Route_Regex('status/(\d+)/(\d)', ['controller' => 'status', 'action' => 'index'], [1 => 'movie', 2 => 'rating'], 'status/%s/%s'));
+        $router->addRoute('statusView', new Zend_Controller_Router_Route_Regex('status/(\d+)', ['controller' => 'status', 'action' => 'index'], [1 => 'movie'], 'status/%s'));
     }
 
     /**
