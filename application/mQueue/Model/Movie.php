@@ -108,8 +108,6 @@ class Movie extends AbstractModel
     /**
      * Returns the IMDb url for the movie
      *
-     * @param string $lang suggested language for hostname
-     *
      * @return string
      */
     public function getImdbUrl()
