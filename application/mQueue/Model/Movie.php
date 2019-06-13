@@ -140,7 +140,7 @@ class Movie extends AbstractModel
             $hostname = reset(self::$imdbHostnames);
         }
 
-        return 'http://' . $hostname . '/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
+        return 'https://' . $hostname . '/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
     }
 
     /**
