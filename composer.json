@@ -3,7 +3,9 @@
     "description": "Web application to queue movies to watch",
     "require": {
         "php": ">=7.1",
+        "ext-dom": "*",
         "ext-curl": "*",
+        "ext-json": "*",
         "zendframework/zendframework1": "^1.12"
     },
     "license": "MIT",

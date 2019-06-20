@@ -74,9 +74,10 @@ class Movie extends AbstractModel
         }
 
         // Extract release date
-        $dateReleaseEntries = $xpath->evaluate('//*[@id="overview-top"]//meta[contains(@itemprop, "datePublished")]/@content');
-        if ($dateReleaseEntries->length == 1) {
-            $this->dateRelease = $dateReleaseEntries->item(0)->value;
+        $jsonLd = $xpath->evaluate('//script[@type="application/ld+json"]/text()');
+        if ($jsonLd->length == 1) {
+            $json = json_decode($jsonLd->item(0)->data, true);
+            $this->dateRelease = $json['datePublished'] ?? null;
         } else {
             $this->dateRelease = null;
         }
