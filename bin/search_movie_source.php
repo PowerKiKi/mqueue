@@ -11,8 +11,10 @@ require_once __DIR__ . '/../public/index.php';
  * @param Closure $func
  * @param \mQueue\Model\Movie[] $movies
  * @param int $seconds
+ *
+ * @return int
  */
-function movieProcessor(Closure $func, $movies, $seconds)
+function movieProcessor(Closure $func, $movies, $seconds): int
 {
     $total = $movies->count();
     $count = 0;
