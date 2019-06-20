@@ -19,10 +19,10 @@ class SearchEngine
         preg_match('/\\d+\\.\\d+\\.\\d+/', $cmd, $matches);
         $version = $matches[0];
         if (version_compare($version, '3.0.0', '>=')) {
-            return APPLICATION_PATH . '/../library/searchengine/nova3/nova2.py';
+            return 'python ' . APPLICATION_PATH . '/../library/searchengine/nova3/nova2.py';
         }
 
-        return APPLICATION_PATH . '/../library/searchengine/nova/nova2.py';
+        return 'python ' . APPLICATION_PATH . '/../library/searchengine/nova/nova2.py';
     }
 
     /**
