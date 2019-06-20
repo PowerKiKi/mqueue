@@ -13,7 +13,7 @@ class HeadLink extends Zend_View_Helper_HeadLink
      * @param string $method
      * @param array $args
      *
-     * @return type
+     * @return mixed
      */
     public function __call($method, $args)
     {

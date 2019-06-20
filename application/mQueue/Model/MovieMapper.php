@@ -94,7 +94,7 @@ abstract class MovieMapper extends AbstractMapper
      * @param array $filters
      * @param string $orderBy valid SQL sorting snippet
      *
-     * @return Zend_Db_Table_Select
+     * @return \Zend_Db_Table_Select
      */
     public static function getFilteredQuery(array $filters, string $orderBy)
     {

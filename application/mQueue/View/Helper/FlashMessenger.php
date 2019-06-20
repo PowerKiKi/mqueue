@@ -55,7 +55,7 @@ use Zend_View_Helper_Abstract;
 class FlashMessenger extends Zend_View_Helper_Abstract
 {
     /**
-     * @var Zend_Controller_Action_Helper_FlashMessenger
+     * @var \Zend_Controller_Action_Helper_FlashMessenger
      */
     private $_flashMessenger;
 
@@ -129,7 +129,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     /**
      * Returns the flash messenger
      *
-     * @return Zend_Controller_Action_Helper_FlashMessenger
+     * @return \Zend_Controller_Action_Helper_FlashMessenger
      */
     protected function _getFlashMessenger()
     {

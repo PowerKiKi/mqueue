@@ -9,7 +9,7 @@ abstract class AbstractMapper
     /**
      * Returns the Zend_Db_Table for the current model class
      *
-     * @return Zend_Db_Table_Abstract
+     * @return \Zend_Db_Table_Abstract
      */
     public static function getDbTable()
     {

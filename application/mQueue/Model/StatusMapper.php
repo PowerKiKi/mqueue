@@ -223,7 +223,7 @@ abstract class StatusMapper extends AbstractMapper
      *
      * @param null|\mQueue\Model\Movie|\mQueue\Model\User $item
      *
-     * @return Zend_Db_Table_Select
+     * @return \Zend_Db_Table_Select
      */
     public static function getActivityQuery($item = null)
     {
