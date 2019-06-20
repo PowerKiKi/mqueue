@@ -49,6 +49,8 @@ class Filters extends Zend_Form
      * Overrides isValid to dynamically generate subforms which will be used for validation.
      *
      * @param array $data
+     *
+     * @return bool
      */
     public function isValid($data)
     {
@@ -61,6 +63,8 @@ class Filters extends Zend_Form
      * Override setDefaults to dynamically generate subforms.
      *
      * @param array $defaults
+     *
+     * @return Zend_Form
      */
     public function setDefaults(array $defaults)
     {

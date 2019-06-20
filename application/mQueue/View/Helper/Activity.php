@@ -12,7 +12,7 @@ class Activity extends Zend_View_Helper_Abstract
      * Returns an HTML table of activities
      *
      * @param Zend_Paginator $activity
-     * @param array $hiddenColumns optionnally hidden columns
+     * @param array $hiddenColumns optionally hidden columns
      *
      * @return string
      */

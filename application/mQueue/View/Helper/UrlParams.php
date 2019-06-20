@@ -29,8 +29,10 @@ class UrlParams extends Zend_View_Helper_Abstract
      * @param array $params
      * @param string $result
      * @param string $previousName
+     *
+     * @return string
      */
-    private function flatten(array $params, $result = null, $previousName = null)
+    private function flatten(array $params, $result = '', $previousName = null): string
     {
         foreach ($params as $key => $value) {
             if ($previousName) {

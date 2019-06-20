@@ -19,7 +19,7 @@ function movieProcessor(Closure $func, $movies, $seconds): int
     $total = $movies->count();
     $count = 0;
     foreach ($movies as $movie) {
-        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . '] ' . $movie->getImdbUrl('akas') . "\t";
+        echo '[' . str_pad(++$count, 5, ' ', STR_PAD_LEFT) . '/' . str_pad($total, 5, ' ', STR_PAD_LEFT) . '] ' . $movie->getImdbUrl() . "\t";
         flush();
 
         $func($movie);

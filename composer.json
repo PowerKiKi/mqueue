@@ -5,7 +5,9 @@
         "php": ">=7.1",
         "ext-dom": "*",
         "ext-curl": "*",
+        "ext-iconv": "*",
         "ext-json": "*",
+        "ext-posix": "*",
         "zendframework/zendframework1": "^1.12"
     },
     "license": "MIT",

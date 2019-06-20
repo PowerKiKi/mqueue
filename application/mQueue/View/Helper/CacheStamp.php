@@ -16,7 +16,7 @@ class CacheStamp extends Zend_View_Helper_Abstract
      */
     public function cacheStamp($fileName)
     {
-        // In developent, use non minified version
+        // In development, use non minified version
         if (APPLICATION_ENV == 'development') {
             $fileName = str_replace('/js/min/', '/js/', $fileName);
         }

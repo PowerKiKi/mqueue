@@ -2,7 +2,6 @@
 
 namespace mQueue\View\Helper;
 
-use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
 
 class Graph extends Zend_View_Helper_Abstract
@@ -43,8 +42,8 @@ STRING;
                 <label for="graph_percent">Show graph as stacked percentage</label>';
 
         $this->view->headScript()
-                ->appendFile('/js/min/highcharts.js')
-                ->appendScript($js);
+            ->appendFile('/js/min/highcharts.js')
+            ->appendScript($js);
 
         return $html;
     }

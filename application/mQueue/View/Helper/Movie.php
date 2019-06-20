@@ -11,8 +11,10 @@ class Movie extends Zend_View_Helper_Abstract
      * Returns a string for a movie. It is composed of a link to IMDb and the movie title which links to the movie page.
      *
      * @param \mQueue\Model\Movie $movie
+     *
+     * @return string
      */
-    public function movie(\mQueue\Model\Movie $movie)
+    public function movie(\mQueue\Model\Movie $movie): string
     {
         $result = $this->view->link($movie);
 

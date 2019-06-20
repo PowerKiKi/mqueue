@@ -19,7 +19,7 @@ class GoogleAnalytics extends Zend_View_Helper_Abstract
         if (!is_string($trackingCode)) {
             global $application;
             if ($application instanceof Zend_Application) {
-                $trackingCode = $application->getOption('googleAnalyticsTrackingCode', null);
+                $trackingCode = $application->getOption('googleAnalyticsTrackingCode');
             }
         }
 

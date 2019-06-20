@@ -49,7 +49,7 @@ class Status extends AbstractModel
     }
 
     /**
-     * Returns the date of last udpate
+     * Returns the date of last update
      *
      * @return Zend_Date
      */

@@ -7,7 +7,7 @@ use Zend_Controller_Action_Helper_Abstract;
 class CreateSorting extends Zend_Controller_Action_Helper_Abstract
 {
     /**
-     * Initialize the view for sorting based on $sortParameterName and store/retrive values from session
+     * Initialize the view for sorting based on $sortParameterName and store/retrieve values from session
      * It will look for parameter "{name}Key" and "{name}Order" in request.
      * It will add variables to the view:
      * 	- sortParameterName
@@ -61,7 +61,8 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
     /**
      * Strategy pattern: call helper as broker method
      *
-     * @param  string $sortParameterName used to look for parameters in request and as key in $_SESSION
+     * @param string $sortParameterName used to look for parameters in request and as key in $_SESSION
+     * @param array $allowedKeys
      *
      * @return string similar to 'name DESC'
      */

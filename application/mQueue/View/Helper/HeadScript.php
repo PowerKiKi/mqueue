@@ -40,7 +40,7 @@ class HeadScript extends Zend_View_Helper_HeadScript
         if (mb_strpos($method, 'File')) {
             $fileName = $args[0];
 
-            // If file will be concatened, use concatenation system instead
+            // If file will be concatenated, use concatenation system instead
             if (is_array($fileName)) {
                 // If we are in development, actually don't concatenate anything
                 if (APPLICATION_ENV == 'development') {

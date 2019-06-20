@@ -137,7 +137,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     /**
      * Add the Zend_Db_Adapter to the registry if we need to call it outside of the modules.
      *
-     * @return Zend_Db_Adapter
+     * @return \Zend_Db_Adapter_Abstract
      */
     protected function _initMyDb()
     {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0c83bed64256690a697eddd9fc04a21",
+    "content-hash": "33b2e9dbebb82c19fffa12c7ac56dff5",
     "packages": [
         {
             "name": "zendframework/zendframework1",
@@ -1176,6 +1176,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
@@ -2472,7 +2473,9 @@
         "php": ">=7.1",
         "ext-dom": "*",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-posix": "*"
     },
     "platform-dev": []
 }

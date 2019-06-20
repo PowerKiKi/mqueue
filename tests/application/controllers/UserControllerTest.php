@@ -77,7 +77,7 @@ class UserControllerTest extends AbstractControllerTestCase
         // Subscribe new test user
         $this->dispatch($url);
 
-        $this->assertRedirectTo('/movie', 'succesfull subscription redirect to movie list');
+        $this->assertRedirectTo('/movie', 'successful subscription redirect to movie list');
     }
 
     public function testLoginAction(): void

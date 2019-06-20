@@ -21,7 +21,7 @@ class ActivityController extends Zend_Controller_Action
         $item = null;
         $this->view->title = $this->view->translate('Overall activity');
 
-        // Try to show user's actitvity
+        // Try to show user's activity
         if ($this->getRequest()->getParam('user')) {
             $item = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('user'));
             if ($item) {
@@ -29,7 +29,7 @@ class ActivityController extends Zend_Controller_Action
             }
         }
 
-        // Try to show movie's actitvity
+        // Try to show movie's activity
         if ($this->getRequest()->getParam('movie')) {
             $item = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('movie'));
             if ($item) {

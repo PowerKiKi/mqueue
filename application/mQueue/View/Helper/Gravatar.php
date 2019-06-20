@@ -2,7 +2,6 @@
 
 namespace mQueue\View\Helper;
 
-use mQueue\Model\User;
 use Zend_View_Helper_HtmlElement;
 
 class Gravatar extends Zend_View_Helper_HtmlElement
@@ -12,8 +11,10 @@ class Gravatar extends Zend_View_Helper_HtmlElement
      *
      * @param \mQueue\Model\User $user
      * @param string $size small|medium|big
+     *
+     * @return string
      */
-    public function gravatar(\mQueue\Model\User $user, $size = 'small')
+    public function gravatar(\mQueue\Model\User $user, $size = 'small'): string
     {
         $attribs = [
             'class' => 'gravatar user_' . $user->id . ' ' . $size,

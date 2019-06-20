@@ -2,7 +2,6 @@
 
 namespace mQueue\View\Helper;
 
-use mQueue\Model\Status;
 use mQueue\Model\User;
 use Zend_View_Helper_Abstract;
 
