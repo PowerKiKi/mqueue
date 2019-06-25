@@ -1,5 +1,12 @@
 const {parallel, series, src, dest} = require('gulp');
-const shell = require('gulp-shell');
+
+function execWithOutput(command) {
+    const cp = require('child_process');
+    return cp.exec(command, (err, stdout, stderr) => {
+        console.log(stdout);
+        console.warn(stderr);
+    });
+}
 
 function compress() {
     const uglify = require('gulp-uglify');
@@ -20,9 +27,9 @@ function concatenate() {
         .pipe(dest('public/js/min/'));
 }
 
-const update_database = shell.task([
-    'php bin/update_database.php',
-]);
+function update_database() {
+    return execWithOutput('php bin/update_database.php');
+}
 
 function sass() {
     const sass = require('gulp-sass');
@@ -33,9 +40,7 @@ function sass() {
 }
 
 function composer() {
-    const composer = require('gulp-composer');
-
-    return composer('install', {});
+    return execWithOutput('composer install --ansi --classmap-authoritative')
 }
 
 const server = series(composer, update_database);
