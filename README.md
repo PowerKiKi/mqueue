@@ -1,4 +1,4 @@
-# mQueue [![Build Status](https://travis-ci.org/PowerKiKi/mqueue.svg?branch=master)](https://travis-ci.org/PowerKiKi/mqueue) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/?branch=master)
+# mQueue [![Build Status](https://travis-ci.com/PowerKiKi/mqueue.svg?branch=master)](https://travis-ci.com/PowerKiKi/mqueue) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/PowerKiKi/mqueue/?branch=master)
 
 ## About
 
