@@ -120,9 +120,9 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     /**
      * Postpone the flash messages to the next next call. The next call will return empty string.
      *
-     * @param $isPostponed
+     * @param bool $isPostponed
      */
-    public function postpone($isPostponed = true): void
+    public function postpone(bool $isPostponed = true): void
     {
         $this->isPostponed = $isPostponed;
     }
