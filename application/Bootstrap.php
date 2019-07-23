@@ -4,19 +4,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     public static $translator = null;
 
-    protected function _initAutoload()
+    protected function _initAutoload(): void
     {
         // Add our own action helpers
         Zend_Controller_Action_HelperBroker::addPath(APPLICATION_PATH . '/mQueue/Controller/ActionHelper', 'mQueue\\Controller\\ActionHelper\\');
-
-        return Zend_Loader_AutoloaderFactory::factory([
-            'Zend_Loader_StandardAutoloader' => [
-                'autoregister_zf' => true,
-                'namespaces' => [
-                    'mQueue' => APPLICATION_PATH . '/mQueue',
-                ],
-            ],
-        ]);
     }
 
     protected function _initDoctype(): void
