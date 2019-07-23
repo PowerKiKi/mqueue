@@ -2,6 +2,7 @@
 
 namespace mQueue\Form;
 
+use mQueue\Model\Status;
 use mQueue\Model\UserMapper;
 use Zend_Form_SubForm;
 
@@ -39,7 +40,7 @@ class Filter extends Zend_Form_SubForm
         ]);
 
         $statuses = [];
-        foreach (\mQueue\Model\Status::$ratings as $rating => $label) {
+        foreach (Status::$ratings as $rating => $label) {
             $statuses[$rating] = $this->getView()->rating($rating);
         }
         $statuses = $statuses + [0 => _tr('nothing')];
@@ -122,7 +123,7 @@ class Filter extends Zend_Form_SubForm
 
         $statusLabels = [];
         foreach ($values['status'] as $status) {
-            $statusLabels[] = \mQueue\Model\Status::$ratings[$status] ?? $statuses[$status];
+            $statusLabels[] = Status::$ratings[$status] ?? $statuses[$status];
         }
         $text .= $users[$values['user']] . ':' . implode('+', $statusLabels);
 

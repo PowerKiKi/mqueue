@@ -33,10 +33,12 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
         // If we export to csv or rss, override perPage parameter
         $currentContext = $this->getActionController()->getHelper('contextSwitch')->getCurrentContext();
         switch ($currentContext) {
-            case 'csv': $perPage = -1;
+            case 'csv':
+                $perPage = -1;
 
                 break;
-            case 'rss': $perPage = 200;
+            case 'rss':
+                $perPage = 200;
 
                 break;
         }

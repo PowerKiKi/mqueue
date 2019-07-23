@@ -1,37 +1,39 @@
 <?php echo $this->doctype() ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width">
         <meta name="theme-color" content="#3679FF">
         <link rel="manifest" href="manifest.json">
-            <?php
-            echo $this->headTitle('mQueue')->setSeparator(' - ');
-            echo $this->headLink(['rel' => 'icon',
-                        'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
-                        'PREPEND', ])
-                    ->appendStylesheet('/css/application.css', 'all')
-                    ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
-                    ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+        <?php
+        echo $this->headTitle('mQueue')->setSeparator(' - ');
+        echo $this->headLink([
+                'rel' => 'icon',
+                'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
+                'PREPEND',
+            ])
+                ->appendStylesheet('/css/application.css', 'all')
+                ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
+                ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
             . "\n";
 
-            // Set localization file for timeago
-            $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
-            $path = '/js/min/jquery.timeago.' . $lang . '.js';
-            if (is_file(APPLICATION_PATH . '/../public' . $path)) {
-                $this->headScript()->prependFile($path);
-            }
+        // Set localization file for timeago
+        $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
+        $path = '/js/min/jquery.timeago.' . $lang . '.js';
+        if (is_file(APPLICATION_PATH . '/../public' . $path)) {
+            $this->headScript()->prependFile($path);
+        }
 
-            echo $this->headScript()
-                    ->prependFile([
-                        '/js/min/application.js',
-                        [
-                            '/js/application',
-                        ],
+        echo $this->headScript()
+            ->prependFile([
+                '/js/min/application.js',
+                [
+                    '/js/application',
+                ],
             ]);
 
-            echo $this->googleAnalytics();
-            ?>
+        echo $this->googleAnalytics();
+        ?>
     </head>
     <body>
         <div id="container">
@@ -39,7 +41,9 @@
                 <?php echo $this->languageSelector(); ?>
                 <?php echo new \mQueue\Form\QuickSearch(); ?>
                 <div id="header-logo">
-                    <h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>" title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a></h1>
+                    <h1><a href="<?php echo $this->serverUrl() . $this->baseUrl(''); ?>"
+                           title="<?php echo $this->translate('mQueue monster !'); ?>"><span><?php echo $this->translate('mQueue'); ?></span></a>
+                    </h1>
                     <span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
                 </div>
                 <div id="header-navigation"><span>&nbsp;</span>

@@ -10,12 +10,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Controller_Action_HelperBroker::addPath(APPLICATION_PATH . '/mQueue/Controller/ActionHelper', 'mQueue\\Controller\\ActionHelper\\');
 
         return Zend_Loader_AutoloaderFactory::factory([
-                    'Zend_Loader_StandardAutoloader' => [
-                        'autoregister_zf' => true,
-                        'namespaces' => [
-                            'mQueue' => APPLICATION_PATH . '/mQueue',
-                        ],
-                    ],
+            'Zend_Loader_StandardAutoloader' => [
+                'autoregister_zf' => true,
+                'namespaces' => [
+                    'mQueue' => APPLICATION_PATH . '/mQueue',
+                ],
+            ],
         ]);
     }
 
@@ -137,7 +137,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     /**
      * Add the Zend_Db_Adapter to the registry if we need to call it outside of the modules.
      *
-     * @return \Zend_Db_Adapter_Abstract
+     * @return Zend_Db_Adapter_Abstract
      */
     protected function _initMyDb()
     {

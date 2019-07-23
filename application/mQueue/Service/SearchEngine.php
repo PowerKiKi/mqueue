@@ -40,7 +40,7 @@ class SearchEngine
 
         $pipes = [];
         $process = proc_open(
-                $cmd, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipes
+            $cmd, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipes
         );
 
         if (is_resource($process)) {

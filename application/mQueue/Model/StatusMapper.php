@@ -4,6 +4,7 @@ namespace mQueue\Model;
 
 use DateTime;
 use DateTimeZone;
+use Zend_Db_Table_Select;
 
 abstract class StatusMapper extends AbstractMapper
 {
@@ -12,11 +13,11 @@ abstract class StatusMapper extends AbstractMapper
      * is very recent, it will be updated, otherwise a new status will be created.
      * IMPORTANT: This is the only allowed way to modify status.
      *
-     * @param \mQueue\Model\Movie $movie
-     * @param \mQueue\Model\User $user
+     * @param Movie $movie
+     * @param User $user
      * @param int $rating @see \mQueue\Model\Status
      *
-     * @return \mQueue\Model\Status
+     * @return Status
      */
     public static function set(Movie $movie, User $user, $rating)
     {
@@ -25,9 +26,9 @@ abstract class StatusMapper extends AbstractMapper
 
         // Find out if a very recent status exist to be replaced, so user can change their mind "quickly"
         $select = self::getDbTable()->select()
-                ->where('idUser = ?', $user->id)
-                ->where('idMovie = ?', $movie->id)
-                ->where('dateUpdate > DATE_SUB(NOW(), INTERVAL 5 MINUTE)');
+            ->where('idUser = ?', $user->id)
+            ->where('idMovie = ?', $movie->id)
+            ->where('dateUpdate > DATE_SUB(NOW(), INTERVAL 5 MINUTE)');
 
         $status = self::getDbTable()->fetchRow($select);
 
@@ -54,9 +55,9 @@ abstract class StatusMapper extends AbstractMapper
      * Find a status by its user and movie. If not found it will be created (but not saved).
      *
      * @param int $idMovie
-     * @param null|\mQueue\Model\User $user
+     * @param null|User $user
      *
-     * @return \mQueue\Model\Status
+     * @return Status
      */
     public static function find($idMovie, User $user = null)
     {
@@ -70,7 +71,7 @@ abstract class StatusMapper extends AbstractMapper
      * (if they don't exist in database, they will be created with default values but not saved)
      *
      * @param array $idMovies
-     * @param null|\mQueue\Model\User $user
+     * @param null|User $user
      *
      * @return array of \mQueue\Model\Status
      */
@@ -84,9 +85,9 @@ abstract class StatusMapper extends AbstractMapper
         // Do not hit database if we know there won't be any result anyway
         if ($user) {
             $select = self::getDbTable()->select()
-                    ->where('idUser = ?', $user->id)
-                    ->where('idMovie IN (?)', $idMovies)
-                    ->where('isLatest = 1');
+                ->where('idUser = ?', $user->id)
+                ->where('idMovie IN (?)', $idMovies)
+                ->where('isLatest = 1');
 
             $records = self::getDbTable()->fetchAll($select);
 
@@ -113,19 +114,20 @@ abstract class StatusMapper extends AbstractMapper
     /**
      * Build statistic for the given user.
      *
-     * @param \mQueue\Model\User $user
+     * @param User $user
      *
      * @return array statistics
      */
     public static function getStatistics(User $user)
     {
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
-                ->from('status', [
-                    'rating' => 'IFNULL(rating, 0)',
-                    'count' => 'COUNT(IFNULL(rating, 0))', ])
-                ->joinRight('movie', 'movie.id = status.idMovie AND status.idUser = ' . $user->id, [])
-                ->where('isLatest = 1 OR isLatest IS NULL')
-                ->group('IFNULL(rating, 0)');
+            ->from('status', [
+                'rating' => 'IFNULL(rating, 0)',
+                'count' => 'COUNT(IFNULL(rating, 0))',
+            ])
+            ->joinRight('movie', 'movie.id = status.idMovie AND status.idUser = ' . $user->id, [])
+            ->where('isLatest = 1 OR isLatest IS NULL')
+            ->group('IFNULL(rating, 0)');
 
         $records = self::getDbTable()->fetchAll($select);
 
@@ -150,7 +152,7 @@ abstract class StatusMapper extends AbstractMapper
     /**
      * Build statistic for the given user.
      *
-     * @param \mQueue\Model\User $user
+     * @param User $user
      * @param bool $percent
      *
      * @return array statistics
@@ -158,7 +160,7 @@ abstract class StatusMapper extends AbstractMapper
     public static function getGraph(User $user = null, $percent = false)
     {
         $select = self::getDbTable()->select()
-                ->order('dateUpdate');
+            ->order('dateUpdate');
 
         if ($user) {
             $select->where('idUser = ?', $user->id);
@@ -221,15 +223,15 @@ abstract class StatusMapper extends AbstractMapper
     /**
      * Returns the query to get activity for either the whole system, or a specific user, or a specific movie
      *
-     * @param null|\mQueue\Model\Movie|\mQueue\Model\User $item
+     * @param null|Movie|User $item
      *
-     * @return \Zend_Db_Table_Select
+     * @return Zend_Db_Table_Select
      */
     public static function getActivityQuery($item = null)
     {
         $select = self::getDbTable()->select()
-                ->from('status')
-                ->order('dateUpdate DESC');
+            ->from('status')
+            ->order('dateUpdate DESC');
 
         if ($item instanceof User) {
             $select->where('idUser = ?', $item->id);

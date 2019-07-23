@@ -2,6 +2,7 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\Status;
 use Zend_View_Helper_Abstract;
 
 class Rating extends Zend_View_Helper_Abstract
@@ -15,7 +16,7 @@ class Rating extends Zend_View_Helper_Abstract
      */
     public function rating(int $rating)
     {
-        $result = '<span class="mqueue_status current mqueue_status_' . $rating . '" title="' . \mQueue\Model\Status::$ratings[$rating] . '"><span>' . \mQueue\Model\Status::$ratings[$rating] . '</span></span>';
+        $result = '<span class="mqueue_status current mqueue_status_' . $rating . '" title="' . Status::$ratings[$rating] . '"><span>' . Status::$ratings[$rating] . '</span></span>';
 
         return $result;
     }

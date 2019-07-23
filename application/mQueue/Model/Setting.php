@@ -13,7 +13,7 @@ class Setting extends AbstractModel
      * @param string $id unique name of setting
      * @param mixed $defaultValue
      *
-     * @return \mQueue\Model\Setting
+     * @return Setting
      */
     public static function get($id, $defaultValue)
     {

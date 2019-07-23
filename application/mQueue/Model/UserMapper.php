@@ -11,7 +11,7 @@ abstract class UserMapper extends AbstractMapper
      *
      * @param array $values
      *
-     * @return \mQueue\Model\User
+     * @return User
      */
     public static function insertUser(array $values)
     {
@@ -30,13 +30,13 @@ abstract class UserMapper extends AbstractMapper
      * @param string $email
      * @param string $password
      *
-     * @return null|\mQueue\Model\User
+     * @return null|User
      */
     public static function findEmailPassword($email, $password)
     {
         $select = self::getDbTable()->select()
-                ->where('email = ?', $email)
-                ->where('password = SHA1(?)', $password);
+            ->where('email = ?', $email)
+            ->where('password = SHA1(?)', $password);
 
         $record = self::getDbTable()->fetchRow($select);
 
@@ -48,7 +48,7 @@ abstract class UserMapper extends AbstractMapper
      *
      * @param int $id
      *
-     * @return null|\mQueue\Model\User
+     * @return null|User
      */
     public static function find($id)
     {
@@ -60,7 +60,7 @@ abstract class UserMapper extends AbstractMapper
     /**
      * Finds all users
      *
-     * @return \mQueue\Model\User[]
+     * @return User[]
      */
     public static function fetchAll()
     {

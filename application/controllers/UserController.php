@@ -1,5 +1,10 @@
 <?php
 
+use mQueue\Form\Login;
+use mQueue\Model\StatusMapper;
+use mQueue\Model\User;
+use mQueue\Model\UserMapper;
+
 class UserController extends Zend_Controller_Action
 {
     public function init(): void
@@ -9,7 +14,7 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction(): void
     {
-        $this->view->users = \mQueue\Model\UserMapper::fetchAll();
+        $this->view->users = UserMapper::fetchAll();
     }
 
     public function newAction()
@@ -20,9 +25,9 @@ class UserController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $values = $form->getValues();
-                $user = \mQueue\Model\UserMapper::insertUser($values);
+                $user = UserMapper::insertUser($values);
 
-                \mQueue\Model\User::setCurrent($user);
+                User::setCurrent($user);
 
                 $this->_helper->FlashMessenger('Subscription complete.');
 
@@ -36,15 +41,15 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         $request = $this->getRequest();
-        $form = new \mQueue\Form\Login();
+        $form = new Login();
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $values = $form->getValues();
 
-                $user = \mQueue\Model\UserMapper::findEmailPassword($values['email'], $values['password']);
+                $user = UserMapper::findEmailPassword($values['email'], $values['password']);
                 if ($user) {
-                    \mQueue\Model\User::setCurrent($user);
+                    User::setCurrent($user);
 
                     $this->_helper->FlashMessenger('Logged in.');
 
@@ -52,8 +57,8 @@ class UserController extends Zend_Controller_Action
 
                     // If we have a valid referer to one page of ours (except login or logout), redirect to it
                     if (mb_strpos($referrer, $this->view->serverUrl() . $this->view->baseUrl()) === 0
-                            && mb_strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'login'])) !== 0
-                            && mb_strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'logout'])) !== 0) {
+                        && mb_strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'login'])) !== 0
+                        && mb_strpos($referrer, $this->view->serverUrl() . $this->view->url(['controller' => 'user', 'action' => 'logout'])) !== 0) {
                         return $this->redirect($values['referrer']);
                     }
 
@@ -72,21 +77,21 @@ class UserController extends Zend_Controller_Action
 
     public function logoutAction(): void
     {
-        \mQueue\Model\User::setCurrent(null);
+        User::setCurrent(null);
     }
 
     public function viewAction(): void
     {
         if ($this->getRequest()->getParam('id')) {
-            $this->view->user = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('id'));
+            $this->view->user = UserMapper::find($this->getRequest()->getParam('id'));
         } else {
-            $this->view->user = \mQueue\Model\User::getCurrent();
+            $this->view->user = User::getCurrent();
         }
 
         if (!$this->view->user) {
             throw new Exception($this->view->translate('User not found'));
         }
 
-        $this->view->userActivity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($this->view->user));
+        $this->view->userActivity = $this->_helper->createPaginator(StatusMapper::getActivityQuery($this->view->user));
     }
 }

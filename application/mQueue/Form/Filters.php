@@ -2,6 +2,7 @@
 
 namespace mQueue\Form;
 
+use mQueue\Model\Status;
 use mQueue\Model\UserMapper;
 use Zend_Controller_Action_HelperBroker;
 use Zend_Form;
@@ -100,7 +101,7 @@ class Filters extends Zend_Form
             $defaults['filter' . ($max + 1)] = [
                 'user' => \mQueue\Model\User::getCurrent() ? 0 : UserMapper::fetchAll()->current()->id,
                 'condition' => 'is',
-                'status' => array_keys(\mQueue\Model\Status::$ratings),
+                'status' => array_keys(Status::$ratings),
             ];
         }
 

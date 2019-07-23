@@ -2,6 +2,8 @@
 
 namespace mQueue\View\Helper;
 
+use mQueue\Model\MovieMapper;
+use mQueue\Model\UserMapper;
 use Zend_Date;
 use Zend_Paginator;
 use Zend_View_Helper_Abstract;
@@ -27,12 +29,12 @@ class Activity extends Zend_View_Helper_Abstract
         $cacheMovie = [];
         foreach ($activity as $status) {
             if (!array_key_exists($status->idUser, $cacheUser)) {
-                $cacheUser[$status->idUser] = \mQueue\Model\UserMapper::find($status->idUser);
+                $cacheUser[$status->idUser] = UserMapper::find($status->idUser);
             }
             $user = $cacheUser[$status->idUser];
 
             if (!array_key_exists($status->idMovie, $cacheMovie)) {
-                $cacheMovie[$status->idMovie] = \mQueue\Model\MovieMapper::find($status->idMovie);
+                $cacheMovie[$status->idMovie] = MovieMapper::find($status->idMovie);
             }
             $movie = $cacheMovie[$status->idMovie];
 
@@ -40,10 +42,10 @@ class Activity extends Zend_View_Helper_Abstract
 
             if (in_array('user', $columns)) {
                 $result .= '<div class="user"><a href="' . $this->view->url([
-                            'controller' => 'user',
-                            'action' => 'view',
-                            'id' => $user->id,
-                                ], 'singleid', true) . '">' . $this->view->gravatar($user, 'medium') . ' ' /* . $this->view->escape($user->nickname) */ . '</a></div>';
+                        'controller' => 'user',
+                        'action' => 'view',
+                        'id' => $user->id,
+                    ], 'singleid', true) . '">' . $this->view->gravatar($user, 'medium') . ' ' /* . $this->view->escape($user->nickname) */ . '</a></div>';
             }
 
             $result .= '<div class="others">';

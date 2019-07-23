@@ -60,9 +60,10 @@ class Status extends AbstractModel
 }
 
 // Defines ratings names
-\mQueue\Model\Status::$ratings = [
+Status::$ratings = [
     DefaultModelStatus::Need => _tr('Need'),
     DefaultModelStatus::Bad => _tr('Bad'),
     DefaultModelStatus::Ok => _tr('Ok'),
     DefaultModelStatus::Excellent => _tr('Excellent'),
-    DefaultModelStatus::Favorite => _tr('Favorite'), ];
+    DefaultModelStatus::Favorite => _tr('Favorite'),
+];

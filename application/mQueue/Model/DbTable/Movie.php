@@ -11,5 +11,5 @@ class Movie extends Zend_Db_Table_Abstract
 {
     /** Table name */
     protected $_name = 'movie';
-    protected $_rowClass = '\mQueue\Model\Movie';
+    protected $_rowClass = \mQueue\Model\Movie::class;
 }

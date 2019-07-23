@@ -4,6 +4,7 @@ namespace mQueue\Model;
 
 use Zend_Date;
 use Zend_Db_Expr;
+use Zend_Db_Table_Select;
 
 abstract class MovieMapper extends AbstractMapper
 {
@@ -12,7 +13,7 @@ abstract class MovieMapper extends AbstractMapper
      *
      * @param int $id
      *
-     * @return null|\mQueue\Model\Movie
+     * @return null|Movie
      */
     public static function find($id)
     {
@@ -24,7 +25,7 @@ abstract class MovieMapper extends AbstractMapper
     /**
      * Returns all movies
      *
-     * @return \mQueue\Model\Movie[]
+     * @return Movie[]
      */
     public static function fetchAll()
     {
@@ -36,7 +37,7 @@ abstract class MovieMapper extends AbstractMapper
     /**
      * Returns movies for search
      *
-     * @return \mQueue\Model\Movie[]
+     * @return Movie[]
      */
     public static function findAllForSearch()
     {
@@ -48,16 +49,16 @@ abstract class MovieMapper extends AbstractMapper
         }
 
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
-                ->from('movie')
-                ->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Status::Need, [])
-                ->where('source IS NULL')
-                ->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL searchCount MONTH)') // Search for same movie with an incrementally longer interval (1 month, 2 month, 3 month, etc.)
-                ->where('dateRelease IS NOT NULL') // Movie must be released ...
-                ->where('dateRelease < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // ...at least released one month ago, or longer
-                ->group('movie.id')
-                ->order('COUNT(movie.id) DESC') // First, order by popularity, so get the most needed first
-                ->order('RAND() ASC') // Then, randomize a little bit so we don't always look for the same movies
-                ->limit(5);
+            ->from('movie')
+            ->join('status', 'status.idMovie = movie.id AND status.isLatest AND rating = ' . Status::Need, [])
+            ->where('source IS NULL')
+            ->where('dateSearch IS NULL OR dateSearch < DATE_SUB(NOW(), INTERVAL searchCount MONTH)')// Search for same movie with an incrementally longer interval (1 month, 2 month, 3 month, etc.)
+            ->where('dateRelease IS NOT NULL')// Movie must be released ...
+            ->where('dateRelease < DATE_SUB(NOW(), INTERVAL 1 MONTH)')// ...at least released one month ago, or longer
+            ->group('movie.id')
+            ->order('COUNT(movie.id) DESC')// First, order by popularity, so get the most needed first
+            ->order('RAND() ASC')// Then, randomize a little bit so we don't always look for the same movies
+            ->limit(5);
 
         $records = self::getDbTable()->fetchAll($select);
 
@@ -69,15 +70,14 @@ abstract class MovieMapper extends AbstractMapper
      *
      * @param int $limit
      *
-     * @return \mQueue\Model\Movie[]
+     * @return Movie[]
      */
     public static function findAllForFetching($limit = null)
     {
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
-                ->from('movie')
-                ->where('dateUpdate IS NULL OR dateUpdate < DATE_SUB(NOW(), INTERVAL 1 MONTH)') // Don't fetch data for movies, more than once a month
-                ->order('RAND()') // Randomize order, so we don't watch only old movies
-;
+            ->from('movie')
+            ->where('dateUpdate IS NULL OR dateUpdate < DATE_SUB(NOW(), INTERVAL 1 MONTH)')// Don't fetch data for movies, more than once a month
+            ->order('RAND()'); // Randomize order, so we don't watch only old movies
 
         if ($limit) {
             $select->limit(20);
@@ -94,15 +94,15 @@ abstract class MovieMapper extends AbstractMapper
      * @param array $filters
      * @param string $orderBy valid SQL sorting snippet
      *
-     * @return \Zend_Db_Table_Select
+     * @return Zend_Db_Table_Select
      */
     public static function getFilteredQuery(array $filters, string $orderBy)
     {
         $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
         $select = self::getDbTable()->select()->setIntegrityCheck(false)
-                ->from('movie')
-                ->order($orderBy);
+            ->from('movie')
+            ->order($orderBy);
 
         $i = 0;
         $maxDate = '';

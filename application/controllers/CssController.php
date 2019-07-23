@@ -1,5 +1,7 @@
 <?php
 
+use mQueue\Model\UserMapper;
+
 class CssController extends Zend_Controller_Action
 {
     public function init(): void
@@ -10,6 +12,6 @@ class CssController extends Zend_Controller_Action
 
     public function gravatarCssAction(): void
     {
-        $this->view->users = \mQueue\Model\UserMapper::fetchAll();
+        $this->view->users = UserMapper::fetchAll();
     }
 }

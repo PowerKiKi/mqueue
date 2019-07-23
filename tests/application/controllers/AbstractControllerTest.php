@@ -19,10 +19,11 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
     public function setUp(): void
     {
         $this->bootstrap = new Zend_Application(
-                APPLICATION_ENV, [
-            'config' => [
-                APPLICATION_PATH . '/configs/application.ini',
-            ], ]
+            APPLICATION_ENV, [
+                'config' => [
+                    APPLICATION_PATH . '/configs/application.ini',
+                ],
+            ]
         );
 
         $this->testUser = \mQueue\Model\UserMapper::findEmailPassword($this->userData['email'], $this->userData['password']);
@@ -41,14 +42,14 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
     public function loginUser($login, $password): void
     {
         $this->request->setMethod('POST')
-                ->setPost([
-                    'login' => $login,
-                    'password' => $password,
-        ]);
+            ->setPost([
+                'login' => $login,
+                'password' => $password,
+            ]);
         $this->dispatch('/user/login');
 
         $this->resetRequest()
-                ->resetResponse();
+            ->resetResponse();
 
         $this->request->setPost([]);
     }
@@ -56,8 +57,8 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
     /**
      * Assert against plain text search; content should contain needle
      *
-     * @param  string $needle needle that should be contained in content
-     * @param  string $message
+     * @param string $needle needle that should be contained in content
+     * @param string $message
      */
     public function assertContentContains($needle, $message = ''): void
     {

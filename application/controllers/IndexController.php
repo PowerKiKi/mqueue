@@ -1,5 +1,7 @@
 <?php
 
+use mQueue\Model\User;
+
 class IndexController extends Zend_Controller_Action
 {
     public function init(): void
@@ -9,7 +11,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction(): void
     {
-        if (\mQueue\Model\User::getCurrent()) {
+        if (User::getCurrent()) {
             $this->_helper->redirector('index', 'movie');
         } else {
             $this->_helper->redirector('index', 'activity');

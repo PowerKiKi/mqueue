@@ -1,13 +1,19 @@
 <?php
 
+use mQueue\Model\Movie;
+use mQueue\Model\MovieMapper;
+use mQueue\Model\StatusMapper;
+use mQueue\Model\User;
+use mQueue\Model\UserMapper;
+
 class StatusController extends Zend_Controller_Action
 {
     public function init(): void
     {
         $contextSwitch = $this->_helper->getHelper('contextSwitch');
         $contextSwitch->addActionContext('list', 'json')
-                ->addActionContext('index', 'json')
-                ->initContext();
+            ->addActionContext('index', 'json')
+            ->initContext();
     }
 
     public function indexAction(): void
@@ -18,7 +24,7 @@ class StatusController extends Zend_Controller_Action
             $this->view->jsonCallback = $jsonCallback;
         }
 
-        $idMovie = \mQueue\Model\Movie::extractId($this->_request->getParam('movie'));
+        $idMovie = Movie::extractId($this->_request->getParam('movie'));
 
         if ($idMovie == null) {
             throw new Exception('no valid movie specified.');
@@ -26,17 +32,17 @@ class StatusController extends Zend_Controller_Action
 
         // If new rating is specified and we are logged in, save it and create movie if needed
         $rating = $this->_request->getParam('rating');
-        if (isset($rating) && \mQueue\Model\User::getCurrent()) {
-            $movie = \mQueue\Model\MovieMapper::find($idMovie);
+        if (isset($rating) && User::getCurrent()) {
+            $movie = MovieMapper::find($idMovie);
 
             if ($movie == null) {
-                $movie = \mQueue\Model\MovieMapper::getDbTable()->createRow();
+                $movie = MovieMapper::getDbTable()->createRow();
                 $movie->setId($idMovie);
                 $movie->save();
             }
-            $status = $movie->setStatus(\mQueue\Model\User::getCurrent(), $rating);
+            $status = $movie->setStatus(User::getCurrent(), $rating);
         } else {
-            $status = \mQueue\Model\StatusMapper::find($idMovie, \mQueue\Model\User::getCurrent());
+            $status = StatusMapper::find($idMovie, User::getCurrent());
         }
 
         if (!$jsonCallback) {
@@ -58,13 +64,13 @@ class StatusController extends Zend_Controller_Action
 
         $idMovies = [];
         foreach (explode(',', trim($this->_request->getParam('movies'), ',')) as $idMovie) {
-            $idMovie = \mQueue\Model\Movie::extractId($idMovie);
+            $idMovie = Movie::extractId($idMovie);
             if ($idMovie) {
                 $idMovies[] = $idMovie;
             }
         }
 
-        $statuses = \mQueue\Model\StatusMapper::findAll($idMovies, \mQueue\Model\User::getCurrent());
+        $statuses = StatusMapper::findAll($idMovies, User::getCurrent());
 
         $json = [];
         foreach ($statuses as $s) {
@@ -78,8 +84,8 @@ class StatusController extends Zend_Controller_Action
     public function graphAction(): void
     {
         $percent = $this->_request->getParam('percent');
-        $user = \mQueue\Model\UserMapper::find($this->getParam('user'));
-        $data = \mQueue\Model\StatusMapper::getGraph($user, $percent);
+        $user = UserMapper::find($this->getParam('user'));
+        $data = StatusMapper::getGraph($user, $percent);
         $chart = [
             'chart' => [
                 'zoomType' => 'x',

@@ -13,14 +13,14 @@ class User extends AbstractModel
      * null if no user logged in
      * \mQueue\Model\User if logged in
      *
-     * @var \mQueue\Model\User
+     * @var User
      */
     private static $currentUser = -1;
 
     /**
      * Returns the user currently logged in or null
      *
-     * @return null|\mQueue\Model\User
+     * @return null|User
      */
     public static function getCurrent()
     {
@@ -39,7 +39,7 @@ class User extends AbstractModel
     /**
      * Set the user currently logged in, or log him out
      *
-     * @param \mQueue\Model\User $user
+     * @param User $user
      */
     public static function setCurrent(DefaultModelUser $user = null): void
     {

@@ -1,5 +1,9 @@
 <?php
 
+use mQueue\Model\MovieMapper;
+use mQueue\Model\StatusMapper;
+use mQueue\Model\UserMapper;
+
 class ActivityController extends Zend_Controller_Action
 {
     public function init(): void
@@ -23,7 +27,7 @@ class ActivityController extends Zend_Controller_Action
 
         // Try to show user's activity
         if ($this->getRequest()->getParam('user')) {
-            $item = \mQueue\Model\UserMapper::find($this->getRequest()->getParam('user'));
+            $item = UserMapper::find($this->getRequest()->getParam('user'));
             if ($item) {
                 $this->view->title = $this->view->translate('Activity for %s', [$item->nickname]);
             }
@@ -31,12 +35,12 @@ class ActivityController extends Zend_Controller_Action
 
         // Try to show movie's activity
         if ($this->getRequest()->getParam('movie')) {
-            $item = \mQueue\Model\MovieMapper::find($this->getRequest()->getParam('movie'));
+            $item = MovieMapper::find($this->getRequest()->getParam('movie'));
             if ($item) {
                 $this->view->title = $this->view->translate('Activity for %s', [$item->getTitle()]);
             }
         }
 
-        $this->view->activity = $this->_helper->createPaginator(\mQueue\Model\StatusMapper::getActivityQuery($item));
+        $this->view->activity = $this->_helper->createPaginator(StatusMapper::getActivityQuery($item));
     }
 }

@@ -19,8 +19,12 @@ class Movie extends AbstractModel
      *
      * @return null|string the id extracted
      */
-    public static function extractId(string $string): ?string
+    public static function extractId(?string $string): ?string
     {
+        if (!$string) {
+            return null;
+        }
+
         $string = str_pad($string, 7, '0', STR_PAD_LEFT);
         preg_match_all("/(\d{7,})/", $string, $r);
         if (isset($r[1][0])) {
@@ -93,7 +97,7 @@ class Movie extends AbstractModel
      *
      * @param string $id
      *
-     * @return \mQueue\Model\Movie
+     * @return Movie
      */
     public function setId($id)
     {
@@ -120,9 +124,9 @@ class Movie extends AbstractModel
     /**
      * Returns the status for this movie and the specified user
      *
-     * @param \mQueue\Model\User $user
+     * @param User $user
      *
-     * @return \mQueue\Model\Status
+     * @return Status
      */
     public function getStatus(User $user = null)
     {
@@ -132,10 +136,10 @@ class Movie extends AbstractModel
     /**
      * Set the status for the specified user
      *
-     * @param \mQueue\Model\User $user
+     * @param User $user
      * @param int $rating @see \mQueue\Model\Status
      *
-     * @return \mQueue\Model\Status
+     * @return Status
      */
     public function setStatus(User $user, $rating)
     {

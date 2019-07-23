@@ -29,7 +29,7 @@ class QuickSearch extends Zend_Form
         ]);
 
         $this->addDecorator('FormElements')
-                ->addDecorator('HtmlTag', ['tag' => 'span'])
-                ->addDecorator('Form');
+            ->addDecorator('HtmlTag', ['tag' => 'span'])
+            ->addDecorator('Form');
     }
 }

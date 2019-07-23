@@ -2,6 +2,7 @@
 
 namespace mQueue\View\Helper;
 
+use Zend_Controller_Action_Helper_FlashMessenger;
 use Zend_Controller_Action_HelperBroker;
 use Zend_View_Helper_Abstract;
 
@@ -55,7 +56,7 @@ use Zend_View_Helper_Abstract;
 class FlashMessenger extends Zend_View_Helper_Abstract
 {
     /**
-     * @var \Zend_Controller_Action_Helper_FlashMessenger
+     * @var Zend_Controller_Action_Helper_FlashMessenger
      */
     private $_flashMessenger;
 
@@ -95,7 +96,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
         //add any messages from this request
         if ($flashMessenger->hasCurrentMessages()) {
             $messages = array_merge(
-                    $messages, $flashMessenger->getCurrentMessages()
+                $messages, $flashMessenger->getCurrentMessages()
             );
             //we don't need to display them twice.
             $flashMessenger->clearCurrentMessages();
@@ -129,7 +130,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     /**
      * Returns the flash messenger
      *
-     * @return \Zend_Controller_Action_Helper_FlashMessenger
+     * @return Zend_Controller_Action_Helper_FlashMessenger
      */
     protected function _getFlashMessenger()
     {
