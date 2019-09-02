@@ -2,6 +2,9 @@ language: php
 php:
   - 7.1
 
+addons:
+  mariadb: '10.1'
+
 before_script:
   - nvm install 10
   - nvm use 10
