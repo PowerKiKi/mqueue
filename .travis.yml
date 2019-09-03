@@ -3,7 +3,7 @@ php:
   - 7.1
 
 addons:
-  mariadb: '10.1'
+  mariadb: '10.3'
 
 before_script:
   - nvm install 10
