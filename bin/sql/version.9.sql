@@ -1,0 +1,5 @@
+ALTER TABLE `movie`
+    CHANGE `searchCount` `searchCount` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+    CHANGE `identity` `identity` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+    CHANGE `quality` `quality` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+    CHANGE `score` `score` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0';
