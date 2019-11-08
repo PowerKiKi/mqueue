@@ -68,7 +68,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initSession(): void
     {
         Zend_Session::setOptions(['name' => 'mqueue']);
-        Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 12); // Cookie for 1 year
+
+        if (!Zend_Session::sessionExists()) {
+            Zend_Session::rememberMe(1 * 60 * 60 * 24 * 31 * 12); // Cookie for 1 year
+        }
     }
 
     protected function _initLanguage(): void
