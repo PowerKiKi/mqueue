@@ -25,13 +25,25 @@ class Movie extends AbstractModel
             return null;
         }
 
-        $string = str_pad($string, 7, '0', STR_PAD_LEFT);
+        $string = self::paddedId($string);
         preg_match_all("/(\d{7,})/", $string, $r);
         if (isset($r[1][0])) {
             return $r[1][0];
         }
 
         return null;
+    }
+
+    /**
+     * Returns the ID for IMDb with padded 0
+     *
+     * @param string $id
+     *
+     * @return string the id extracted
+     */
+    public static function paddedId(string $id): string
+    {
+        return str_pad($id, 7, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -116,9 +128,9 @@ class Movie extends AbstractModel
      *
      * @return string
      */
-    public function getImdbUrl()
+    public function getImdbUrl(): string
     {
-        return 'https://www.imdb.com/title/tt' . str_pad($this->id, 7, '0', STR_PAD_LEFT) . '/';
+        return 'https://www.imdb.com/title/tt' . self::paddedId($this->id) . '/';
     }
 
     /**

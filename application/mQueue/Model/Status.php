@@ -31,7 +31,7 @@ class Status extends AbstractModel
      */
     public function getUniqueId()
     {
-        return $this->idMovie . '_' . $this->idUser;
+        return Movie::paddedId($this->idMovie) . '_' . $this->idUser;
     }
 
     /**

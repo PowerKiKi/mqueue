@@ -98,6 +98,7 @@ abstract class StatusMapper extends AbstractMapper
 
         // Fill non existing statuses in databases
         foreach ($idMovies as $id) {
+            $id = (int) $id;
             if (!array_key_exists($id, $statuses)) {
                 $status = self::getDbTable()->createRow();
                 if ($user) {
