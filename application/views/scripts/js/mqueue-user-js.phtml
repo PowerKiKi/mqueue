@@ -10,7 +10,7 @@
 // Inject script if any links to IMDb found on the current page
 if (document.evaluate('count(//a[contains(@href, "title/tt")])', document, null, XPathResult.NUMBER_TYPE, null).numberValue > 0)
 {
-    var script = document.createElement('script');
+    const script = document.createElement('script');
     script.src = '<?php echo $this->serverUrl() . $this->baseUrl('js/remote.js'); ?>';
     document.getElementsByTagName('head')[0].appendChild(script);
 }

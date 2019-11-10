@@ -24,8 +24,8 @@ class Graph extends Zend_View_Helper_Abstract
 
         $js = <<<STRING
         $(document).ready(function() {
-            var refreshGraph = function() {
-                var percentage = $('#graph_percent').is(':checked') ? '?percent=1' : '';
+            const refreshGraph = function() {
+                const percentage = $('#graph_percent').is(':checked') ? '?percent=1' : '';
                 $.get('$url' + percentage, function (chart) {
                     chart = $.parseJSON(chart);
                     $('#chart_container').highcharts(chart);

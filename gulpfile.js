@@ -9,21 +9,21 @@ function execWithOutput(command) {
 }
 
 function compress() {
-    const uglify = require('gulp-uglify');
+    const terser = require('gulp-terser');
 
     return src('public/js/*.js')
-        .pipe(uglify())
+        .pipe(terser())
         .pipe(dest('public/js/min'));
 }
 
 function concatenate() {
     // CAUTION: This must be the exact same files in reverse order than in application/layout/layout.phtml
     const concat = require('gulp-concat');
-    const uglify = require('gulp-uglify');
+    const terser = require('gulp-terser');
 
     return src('public/js/application/*.js')
         .pipe(concat('application.js'))
-        .pipe(uglify())
+        .pipe(terser())
         .pipe(dest('public/js/min/'));
 }
 
