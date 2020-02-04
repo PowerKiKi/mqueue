@@ -87,10 +87,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         } else {
             $locale = new Zend_Locale(); // autodetect browser
         }
-        Zend_Registry::set('Zend_Locale', $locale);
+        Zend_Registry::set(Zend_Locale::class, $locale);
 
         $adapter = new Zend_Translate('gettext', APPLICATION_PATH . '/localization', $locale, ['scan' => Zend_Translate::LOCALE_FILENAME, 'disableNotices' => true]);
-        Zend_Registry::set('Zend_Translate', $adapter);
+        Zend_Registry::set(Zend_Translate::class, $adapter);
         Zend_Form::setDefaultTranslator($adapter);
         self::$translator = $adapter;
     }

@@ -2,6 +2,7 @@
 
 namespace mQueue\View\Helper;
 
+use Zend_Locale;
 use Zend_Registry;
 use Zend_View_Helper_Abstract;
 
@@ -35,7 +36,7 @@ class AlternateFormats extends Zend_View_Helper_Abstract
                 $url .= '&';
             }
 
-            $url .= 'format=' . $format . '&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage();
+            $url .= 'format=' . $format . '&lang=' . Zend_Registry::get(Zend_Locale::class)->getLanguage();
 
             $formatLinks[] = '<a class="' . $format . '" href="' . $url . '">' . self::$supportedFormats[$format]['name'] . '</a>';
             if ($title && isset(self::$supportedFormats[$format]['mime'])) {
