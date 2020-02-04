@@ -1,5 +1,7 @@
-<?php echo $this->doctype() ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+$lang = Zend_Registry::get(Zend_Locale::class)->getLanguage();
+?><!doctype html>
+<html lang="<?php echo $lang ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width">
@@ -14,11 +16,10 @@
             ])
                 ->appendStylesheet('/css/application.css', 'all')
                 ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
-                ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . Zend_Registry::get('Zend_Locale')->getLanguage(), 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+                ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . $lang, 'application/rss+xml', $this->translate('mQueue - Overall activity'))
             . "\n";
 
         // Set localization file for timeago
-        $lang = Zend_Registry::get('Zend_Locale')->getLanguage();
         $path = '/js/min/jquery.timeago.' . $lang . '.js';
         if (is_file(APPLICATION_PATH . '/../public' . $path)) {
             $this->headScript()->prependFile($path);

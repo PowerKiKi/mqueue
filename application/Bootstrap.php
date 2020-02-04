@@ -14,7 +14,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $this->bootstrap('view');
         $view = $this->getResource('view');
-        $view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
 
         // Enable our own View Helpers
         $view->addHelperPath(APPLICATION_PATH . '/mQueue/View/Helper', 'mQueue\\View\\Helper');
