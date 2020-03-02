@@ -1247,10 +1247,10 @@ has-values@^1.0.0:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-highcharts@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.2.1.tgz#313c434bbfd4525a72b76c6bfbd9c39dfe2d1993"
-  integrity sha512-/fSUZiONmM+x49IQJNf8XwZGiNGOPRmxEOcd0xdJP9Xc3OlG46ZiUWgSLfhYQ9Oyhmzc3V3SKYCLud8+rKLi+w==
+highcharts@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-8.0.1.tgz#b34b8b8df50ae2864fa699559259f3d5c65f6d9c"
+  integrity sha512-qxEJQIk/G8tPt8crGsuXRjE0apJG4LBZxDmzTklpUvoQU12VG9fRnOlPOqGfuVl0Pz+GibVLWrJRAU3HpB2wuw==
 
 homedir-polyfill@^1.0.1:
   version "1.0.3"
