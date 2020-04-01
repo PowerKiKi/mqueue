@@ -1,15 +1,6 @@
 {
     "name": "powerkiki/mqueue",
     "description": "Web application to queue movies to watch",
-    "require": {
-        "php": ">=7.1",
-        "ext-dom": "*",
-        "ext-curl": "*",
-        "ext-iconv": "*",
-        "ext-json": "*",
-        "ext-posix": "*",
-        "zendframework/zendframework1": "^1.12"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -20,10 +11,29 @@
     "autoload": {
         "psr-4": {
             "mQueue\\": "application/mQueue/"
+        },
+        "classmap": [
+            "application/controllers/",
+            "application/Bootstrap.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "mQueueTest\\": "tests/mQueueTest"
         }
+    },
+    "require": {
+        "php": ">=7.1",
+        "ext-dom": "*",
+        "ext-curl": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-posix": "*",
+        "zendframework/zendframework1": "^1.12"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",
+        "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "^5.7"
     }
 }

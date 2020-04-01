@@ -31,8 +31,8 @@ class Headers extends Zend_Controller_Action_Helper_Abstract
      *
      * @param mixed $data
      */
-    public function direct($data)
+    public function direct($data): void
     {
-        return $this->headers($data);
+        $this->headers($data);
     }
 }

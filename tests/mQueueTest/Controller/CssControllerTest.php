@@ -1,5 +1,7 @@
 <?php
 
+namespace mQueueTest\Controller;
+
 class CssControllerTest extends AbstractControllerTestCase
 {
     public function testGravatarAction(): void

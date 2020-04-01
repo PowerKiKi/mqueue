@@ -1,5 +1,7 @@
 <?php
 
+namespace mQueueTest\Controller;
+
 class ActivityControllerTest extends AbstractControllerTestCase
 {
     protected function assertCommonThings(array $params): void

@@ -1,5 +1,7 @@
 <?php
 
+namespace mQueueTest\Controller;
+
 class StatusControllerTest extends AbstractControllerTestCase
 {
     public function testIndexAction(): void

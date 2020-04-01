@@ -1,5 +1,7 @@
 <?php
 
+namespace mQueueTest\Controller;
+
 class UserControllerTest extends AbstractControllerTestCase
 {
     protected $idUser;

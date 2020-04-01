@@ -1,6 +1,8 @@
 <?php
 
-abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
+namespace mQueueTest\Controller;
+
+abstract class AbstractControllerTestCase extends \Zend_Test_PHPUnit_ControllerTestCase
 {
     /**
      * @var \mQueue\Model\User
@@ -18,7 +20,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
 
     public function setUp(): void
     {
-        $this->bootstrap = new Zend_Application(
+        $this->bootstrap = new \Zend_Application(
             APPLICATION_ENV, [
                 'config' => [
                     APPLICATION_PATH . '/configs/application.ini',
@@ -70,7 +72,7 @@ abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTe
                 $failure = $message . "\n" . $failure;
             }
 
-            throw new Zend_Test_PHPUnit_Constraint_Exception($failure);
+            throw new \Zend_Test_PHPUnit_Constraint_Exception($failure);
         }
     }
 }

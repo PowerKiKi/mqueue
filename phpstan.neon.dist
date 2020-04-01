@@ -1,0 +1,9 @@
+parameters:
+    level: 0
+    paths:
+        - application/mQueue/
+        - tests/
+    autoload_files:
+        - tests/bootstrap.php
+    ignoreErrors:
+        - '~Result of method Zend_View_Helper_HeadLink\:\:__call\(\) \(void\) is used\.~'

@@ -1,5 +1,7 @@
 <?php
 
+namespace mQueueTest\Controller;
+
 class JsControllerTest extends AbstractControllerTestCase
 {
     public function testRemoteJsAction(): void

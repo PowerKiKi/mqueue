@@ -1,6 +1,6 @@
 <phpunit bootstrap="./tests/bootstrap.php" colors="true">
-    <testsuite name="Controllers Test Suite">
-        <directory>./tests/application/controllers</directory>
+    <testsuite name="Test Suite">
+        <directory>./tests/mQueueTest</directory>
     </testsuite>
     <!--    <testsuite name="Models Test Suite">
         <directory>./application/models</directory>
@@ -21,9 +21,6 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="./tests/log/report" charset="UTF-8" yui="true" hightlight="true" lowupperbound="50" highlowerbound="80">
-            <log type="testdox" target="./tests/log/testdox.html">
-            </log>
-        </log>
+        <log type="coverage-html" target="./tests/log/report"/>
     </logging>
 </phpunit>
