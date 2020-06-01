@@ -6,7 +6,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.1.0",
     "gulp-terser": "^1.2.0",
-    "highcharts": "^8.0.4",
+    "highcharts": "^8.1.0",
     "jquery": "^3.5.0",
     "timeago": "^1.6.7"
   }
