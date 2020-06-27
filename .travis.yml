@@ -6,8 +6,8 @@ addons:
   mariadb: '10.3'
 
 before_script:
-  - nvm install 10
-  - nvm use 10
+  - nvm install 12
+  - nvm use 12
   - bin/install_dependencies.sh
   - yarn install
   - gulp
