@@ -10,4 +10,4 @@ RewriteRule ^.*$ index.php [NC,L]
 	<FilesMatch "\.(svg|jpe?g|png|gif|js|css)$">
 		Header set Cache-Control "max-age=604800"
 	</FilesMatch>
- </IfModule>
+</IfModule>
