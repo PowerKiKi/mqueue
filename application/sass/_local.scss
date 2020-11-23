@@ -1,3 +1,7 @@
+:root {
+    --font-color: #595959;
+}
+
 a {
     text-decoration: none;
     &:hover {
@@ -6,7 +10,7 @@ a {
 }
 
 html {
-    color: grey;
+    color: var(--font-color);
     height: 101%;
     font-family: arial, sans-serif;
 }
@@ -145,7 +149,7 @@ ul.navigation {
     text-align: center;
     font-size: 0.8em;
     a {
-        color: grey;
+        color: var(--font-color);
         text-decoration: none;
     }
 }
@@ -303,7 +307,7 @@ td {
 }
 
 a.sort {
-    color: grey;
+    color: var(--font-color);
     &.asc:after, &.desc:after {
         position: absolute;
         padding-left: 0.5em;
