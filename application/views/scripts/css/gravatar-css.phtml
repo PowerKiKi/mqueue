@@ -12,9 +12,8 @@ foreach ($sizes as $name => $size) {
 foreach ($this->users as $user) {
     $urlBase = 'https://secure.gravatar.com/avatar/' . md5(trim(mb_strtolower($user->email))) . '.jpg?default=identicon';
     foreach ($sizes as $name => $size) {
-        $url = $urlBase . '&size=' . $size;
-        $additionnalSelector = $name == 'small' ? ", select.filterUser option[value='" . $user->id . "']" : ''; ?>
-span.gravatar.user_<?php echo $user->id; ?>.<?php echo $name . $additionnalSelector; ?> {background-image: url(<?php echo $url; ?>);}
+        $url = $urlBase . '&size=' . $size; ?>
+span.gravatar.user_<?php echo $user->id; ?>.<?php echo $name; ?> {background-image: url(<?php echo $url; ?>);}
 <?php
     }
 }
