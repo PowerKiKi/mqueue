@@ -8,6 +8,7 @@ $lang = Zend_Registry::get(Zend_Locale::class)->getLanguage();
         <meta name="theme-color" content="#3679FF">
         <link rel="manifest" href="manifest.json">
         <?php
+        echo $this->googleAnalytics();
         echo $this->headTitle('mQueue')->setSeparator(' - ');
         echo $this->headLink([
                 'rel' => 'icon',
@@ -32,8 +33,6 @@ $lang = Zend_Registry::get(Zend_Locale::class)->getLanguage();
                     '/js/application',
                 ],
             ]);
-
-        echo $this->googleAnalytics();
         ?>
     </head>
     <body>
