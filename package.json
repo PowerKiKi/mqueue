@@ -5,9 +5,9 @@
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.1.0",
-    "gulp-terser": "^1.4.1",
-    "highcharts": "^8.2.2",
-    "jquery": "^3.5.1",
+    "gulp-terser": "^2.0.1",
+    "highcharts": "^9.0.1",
+    "jquery": "^3.6.0",
     "timeago": "^1.6.7"
   }
 }
