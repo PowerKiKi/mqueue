@@ -66,6 +66,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initSession(): void
     {
+        // If no open session yet, open it
+        if (isset($_SESSION)) {
+            return;
+        }
+
         // We need to receive cookie from any third party sites, so we inject SameSite
         // into path, because PHP 7.2 does not have a way to do it properly
         $cookieParams = session_get_cookie_params();

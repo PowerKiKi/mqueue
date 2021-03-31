@@ -22,10 +22,13 @@
             "mQueueTest\\": "tests/mQueueTest"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "require": {
-        "php": ">=7.1",
-        "ext-dom": "*",
+        "php": "~7.2.0",
         "ext-curl": "*",
+        "ext-dom": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-posix": "*",
@@ -33,6 +36,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",
+        "pcov/clobber": "@stable",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "^5.7"
     }
