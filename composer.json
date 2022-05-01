@@ -38,6 +38,6 @@
         "friendsofphp/php-cs-fixer": "@stable",
         "pcov/clobber": "@stable",
         "phpstan/phpstan": "@stable",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^8.5"
     }
 }
