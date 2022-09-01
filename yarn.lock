@@ -1303,10 +1303,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-highcharts@^9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.0.1.tgz#49ec994a7897a96fc3e0880f49a0eca34adff6a2"
-  integrity sha512-0UmcCz2RmFuqfT/Igu3h5sGnkeSqqZwfuYrTzJ/htptmJAo5SSxH62NFcTjVRk+3WstoBJmoXR0v5FVGQUzK5A==
+highcharts@^10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-10.2.1.tgz#8723b53a5461c12b61f3ff268c28ff80187b9bf1"
+  integrity sha512-4QwLQwWc0XdBHXc2Uy6IJisAUir+sgQIMyFqYZc3BD9iFSFUdllLkRyoed6y33aPb73LAMZE2qLB5SuLqFE/fg==
 
 homedir-polyfill@^1.0.1:
   version "1.0.3"
