@@ -1,13 +1,14 @@
+@use "sass:meta";
+@use "variables";
 @CHARSET "UTF-8";
 
-@import "variables";
-@import "local";
-@import "status";
+@include meta.load-css("local");
+@include meta.load-css("status");
 
 @media handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-    @import "handheld";
+    @include meta.load-css("handheld");
 }
 
 @media print {
-    @import "print";
+    @include meta.load-css("print");
 }

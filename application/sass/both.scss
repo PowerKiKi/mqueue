@@ -1,3 +1,4 @@
+@use "sass:meta";
 @CHARSET "UTF-8";
 
-@import "status";
+@include meta.load-css("status");

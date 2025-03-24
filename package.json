@@ -2,12 +2,10 @@
   "name": "mqueue",
   "private": true,
   "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.1.0",
-    "gulp-terser": "^2.0.1",
-    "highcharts": "^9.0.1",
+    "esbuild": "^0.25.1",
+    "highcharts": "^12.1.2",
     "jquery": "^3.6.0",
+    "sass": "^1.86.0",
     "timeago": "^1.6.7"
   }
 }

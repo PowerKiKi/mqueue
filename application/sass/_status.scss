@@ -1,4 +1,5 @@
-@import "variables";
+@use "variables";
+@use "sass:math";
 
 $status_dimension: 16px;
 $preloader_width : 5 * $status_dimension;
@@ -33,9 +34,9 @@ $preloader_height: 6px;
 
         > .preloader {
             display: block !important;
-            margin-top: ($status_dimension - $preloader_height) / 2;
+            margin-top: math.div($status_dimension - $preloader_height, 2);
             height: $preloader_height;
-            background-color: $color1;
+            background-color: variables.$color1;
             border-radius: 3px;
             animation-name: preloaderAnimation;
             animation-duration: 1.5s;

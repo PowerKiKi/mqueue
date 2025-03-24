@@ -1,3 +1,4 @@
+@use "variables";
 :root {
     --font-color: #595959;
 }
@@ -25,7 +26,7 @@ body {
     background: white;
     width: 900px;
     margin: 0 auto;
-    border: 6px solid $color1;
+    border: 6px solid variables.$color1;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -33,9 +34,9 @@ body {
 }
 
 #header {
-    background-image: repeating-linear-gradient(-45deg, $color1, $color1 15px, $color2 15px, $color2 30px);
-    background-image: -webkit-repeating-linear-gradient(-45deg, $color1, $color1 15px, $color2 15px, $color2 30px);
-    background-color: $color2;
+    background-image: repeating-linear-gradient(-45deg, variables.$color1, variables.$color1 15px, variables.$color2 15px, variables.$color2 30px);
+    background-image: -webkit-repeating-linear-gradient(-45deg, variables.$color1, variables.$color1 15px, variables.$color2 15px, variables.$color2 30px);
+    background-color: variables.$color2;
     h1 {
         margin: 0px;
         a {
@@ -389,7 +390,7 @@ div.flashmessenger {
     #search {
         opacity: 0.8;
         width: 10em;
-        border: 2px solid $color1;
+        border: 2px solid variables.$color1;
         &:hover, &:focus {
             opacity: 1;
         }

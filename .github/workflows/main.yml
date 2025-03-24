@@ -43,10 +43,7 @@ jobs:
             # Prepare our app
             - run: mysql --protocol=tcp --user=root --execute='SET GLOBAL sql_mode = "";'
             - run: cp application/configs/application.sample.ini application/configs/application.ini
-            - run: composer install --ansi --classmap-authoritative
-            - run: php bin/update_database.php
-            - run: yarn install --frozen-lockfile
-            - run: ./node_modules/.bin/gulp
+            - run: ./bin/build.sh
 
             # Lint and tests
             - run: ./vendor/bin/php-cs-fixer fix --format=checkstyle | cs2pr

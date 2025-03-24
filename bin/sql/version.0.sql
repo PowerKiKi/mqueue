@@ -20,7 +20,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `movie` (
-  `id` varchar(7) collate utf8_bin NOT NULL,
+  `id` varchar(8) collate utf8_bin NOT NULL,
   `dateUpdate` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `title` varchar(512) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `movie` (
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL auto_increment,
   `idUser` int(11) NOT NULL,
-  `idMovie` varchar(7) collate utf8_bin NOT NULL,
+  `idMovie` varchar(8) collate utf8_bin NOT NULL,
   `rating` tinyint(4) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique_status` (`idUser`,`idMovie`),
