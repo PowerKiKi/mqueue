@@ -15,20 +15,20 @@ jobs:
                 options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=5
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '7.2'
                   coverage: pcov
                   tools: cs2pr
 
-            - uses: actions/cache@v2
+            - uses: actions/cache@v4
               with:
                   path: ~/.cache/composer
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
                   restore-keys: ${{ runner.os }}-composer-
 
-            - uses: actions/cache@v2
+            - uses: actions/cache@v4
               with:
                   path: ~/.cache/yarn
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
