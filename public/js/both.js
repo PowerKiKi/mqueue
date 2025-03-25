@@ -86,7 +86,7 @@ const mqueue = (function () {
                     }
                     // Add status on every links concerning that movie
                     else {
-                        const selector = 'a[href*=\'/title/tt' + id.split('_')[0] + '\']';
+                        const selector = 'a[href*=\'/title/tt' + id.split('_')[0] + '\']:not([class*=\'ipc-lockup-overlay\'])';
                         $(selector, node).after(status);
                         $(node).filter(selector).after(status);
                     }
