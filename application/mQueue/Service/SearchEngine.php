@@ -51,9 +51,9 @@ class SearchEngine
             $status = proc_get_status($process);
             posix_setpgid($status['pid'], $status['pid']);
 
-            stream_set_blocking($pipes[0], 0);
-            stream_set_blocking($pipes[1], 0);
-            stream_set_blocking($pipes[2], 0);
+            stream_set_blocking($pipes[0], false);
+            stream_set_blocking($pipes[1], false);
+            stream_set_blocking($pipes[2], false);
             fclose($pipes[0]);
         }
 
