@@ -1,10 +1,8 @@
 <?php
 
 use mQueue\Form\Filters;
-use mQueue\Form\Import;
 use mQueue\Model\Movie;
 use mQueue\Model\MovieMapper;
-use mQueue\Model\Status;
 use mQueue\Model\StatusMapper;
 use mQueue\Model\User;
 use mQueue\Model\UserMapper;
@@ -130,62 +128,5 @@ class MovieController extends Zend_Controller_Action
         }
 
         $this->view->form = $form;
-    }
-
-    public function importAction(): void
-    {
-        $request = $this->getRequest();
-        $form = new Import();
-        $form->setDefaults(['favoriteMinimum' => 9, 'excellentMinimum' => 7, 'okMinimum' => 5]);
-        $this->view->form = $form;
-
-        if ($this->getRequest()->isPost() && $form->isValid($request->getPost())) {
-            if (User::getCurrent() == null) {
-                $this->_helper->FlashMessenger(['error' => _tr('You must be logged in.')]);
-
-                return;
-            }
-
-            $values = $form->getValues();
-            $page = file_get_contents($values['url']);
-
-            $pattern = '|<a href="/title/tt(\d{7,})/">.*</td>\s*<td.*>(\d+(\.\d)*)</td>|U';
-            preg_match_all($pattern, $page, $matches);
-
-            $movies = [];
-            $matchesCount = count($matches[1]);
-            for ($i = 0; $i < $matchesCount; ++$i) {
-                $id = $matches[1][$i];
-                $imdbRating = $matches[2][$i];
-
-                $movie = MovieMapper::find($id);
-                if (!$movie) {
-                    $movie = MovieMapper::getDbTable()->createRow();
-                    $movie->setId($id);
-                    $movie->save();
-                }
-
-                if ($imdbRating >= $values['favoriteMinimum']) {
-                    $rating = Status::Favorite;
-                } elseif ($imdbRating >= $values['excellentMinimum']) {
-                    $rating = Status::Excellent;
-                } elseif ($imdbRating >= $values['okMinimum']) {
-                    $rating = Status::Ok;
-                } else {
-                    $rating = Status::Bad;
-                }
-
-                $movie->setStatus(User::getCurrent(), $rating);
-                $movies[] = $movie;
-            }
-
-            $count = count($movies);
-            if ($count) {
-                $this->_helper->FlashMessenger(_tr('Movies imported.'));
-                $this->view->movies = $movies;
-            } else {
-                $this->_helper->FlashMessenger(['warning' => _tr('No movies found for import.')]);
-            }
-        }
     }
 }

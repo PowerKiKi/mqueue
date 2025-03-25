@@ -16,7 +16,6 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="view"/>
           <actionMethod actionName="add"/>
-          <actionMethod actionName="import"/>
         </controllerFile>
         <controllerFile controllerName="status">
           <actionMethod actionName="index"/>
@@ -112,9 +111,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="activity">
             <viewScriptFile forActionName="index"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="movie">
-            <viewScriptFile forActionName="import"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

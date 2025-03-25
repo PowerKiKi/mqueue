@@ -92,51 +92,12 @@ body {
 }
 
 ul.navigation {
+    float: left;
     list-style: none outside none;
     margin: 0;
     padding: 0;
-    li, ul {
-        list-style: none outside none;
-        margin: 0;
-        padding: 0;
-    }
-    float: left;
-    position: relative;
-    z-index: 999;
     li {
         float: left;
-        &.hover, &:hover {
-            cursor: default;
-            position: relative;
-            z-index: 599;
-        }
-    }
-    ul {
-        left: 0;
-        position: absolute;
-        top: 100%;
-        visibility: hidden;
-        z-index: -999;
-        padding: 0.5em 1em 0.5em 0.5em;
-        white-space: nowrap;
-        background: #163066;
-        border-radius: 5px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        li {
-            float: none;
-            a {
-                display: inline-block;
-                width: 100%;
-            }
-        }
-        ul {
-            left: 99%;
-            top: 1px;
-        }
-    }
-    li:hover > ul {
-        visibility: visible;
     }
 }
 

@@ -29,20 +29,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'label' => $view->translate('Movies'),
                 'controller' => 'movie',
                 'route' => 'default',
-                'pages' => [
-                    [
-                        'label' => $view->translate('Add movie'),
-                        'controller' => 'movie',
-                        'action' => 'add',
-                        'route' => 'default',
-                    ],
-                    [
-                        'label' => $view->translate('Import votes from IMDb'),
-                        'controller' => 'movie',
-                        'action' => 'import',
-                        'route' => 'default',
-                    ],
-                ],
+            ],
+            [
+                'label' => $view->translate('Add movie'),
+                'controller' => 'movie',
+                'action' => 'add',
+                'route' => 'default',
             ],
             [
                 'label' => $view->translate('Activity'),
