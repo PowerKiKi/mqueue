@@ -82,7 +82,7 @@ const mqueue = (function () {
                     // Add status beside main title if on the main page of movie
                     if ($('link[rel=\'canonical\'][href*=\'' + id.split('_')[0] + '\']').length !== 0) {
                         // New IMDb version, add under the main title in the subtext line
-                        $('.title_wrapper .subtext', node).append('<span class="ghost">|</span>' + status);
+                        $('h1[data-testid="hero__pageTitle"]+ul', node).append('<li role="presentation" class="ipc-inline-list__item">' + status + '</li>');
                     }
                     // Add status on every links concerning that movie
                     else {
