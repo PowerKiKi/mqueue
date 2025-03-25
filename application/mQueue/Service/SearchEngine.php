@@ -45,6 +45,7 @@ class SearchEngine
             $pipes
         );
 
+        $status = [];
         if (is_resource($process)) {
             // Give group id to process (to later kill all its children)
             $status = proc_get_status($process);

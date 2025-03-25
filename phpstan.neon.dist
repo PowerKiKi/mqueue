@@ -1,5 +1,5 @@
 parameters:
-    level: 0
+    level: 1
     paths:
         - application/mQueue/
         - tests/
@@ -7,3 +7,5 @@ parameters:
         - tests/bootstrap.php
     ignoreErrors:
         - '~Result of method Zend_View_Helper_HeadLink\:\:__call\(\) \(void\) is used\.~'
+        - '~^Access to an undefined property mQueue\\(Model|Form)\\.*~'
+        - '~^Access to an undefined property mQueueTest\\.*~'
