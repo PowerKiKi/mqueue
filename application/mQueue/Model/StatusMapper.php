@@ -2,7 +2,7 @@
 
 namespace mQueue\Model;
 
-use DateTime;
+use DateTimeImmutable;
 use DateTimeZone;
 use Zend_Db_Table_Select;
 
@@ -13,8 +13,6 @@ abstract class StatusMapper extends AbstractMapper
      * is very recent, it will be updated, otherwise a new status will be created.
      * IMPORTANT: This is the only allowed way to modify status.
      *
-     * @param Movie $movie
-     * @param User $user
      * @param int $rating @see \mQueue\Model\Status
      *
      * @return Status
@@ -55,11 +53,10 @@ abstract class StatusMapper extends AbstractMapper
      * Find a status by its user and movie. If not found it will be created (but not saved).
      *
      * @param int $idMovie
-     * @param null|User $user
      *
      * @return Status
      */
-    public static function find($idMovie, User $user = null)
+    public static function find($idMovie, ?User $user = null)
     {
         $statuses = self::findAll([$idMovie], $user);
 
@@ -68,14 +65,11 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Returns an array of Status containing all statuses for specified ids
-     * (if they don't exist in database, they will be created with default values but not saved)
-     *
-     * @param array $idMovies
-     * @param null|User $user
+     * (if they don't exist in database, they will be created with default values but not saved).
      *
      * @return array of \mQueue\Model\Status
      */
-    public static function findAll(array $idMovies, User $user = null)
+    public static function findAll(array $idMovies, ?User $user = null)
     {
         $statuses = [];
         if (!count($idMovies)) {
@@ -114,8 +108,6 @@ abstract class StatusMapper extends AbstractMapper
 
     /**
      * Build statistic for the given user.
-     *
-     * @param User $user
      *
      * @return array statistics
      */
@@ -158,7 +150,7 @@ abstract class StatusMapper extends AbstractMapper
      *
      * @return array statistics
      */
-    public static function getGraph(User $user = null, $percent = false)
+    public static function getGraph(?User $user = null, $percent = false)
     {
         $select = self::getDbTable()->select()
             ->order('dateUpdate');
@@ -191,7 +183,7 @@ abstract class StatusMapper extends AbstractMapper
             }
             $lastStatuses[$row->idUser][$row->idMovie] = $row->rating;
 
-            $time = new DateTime($row->dateUpdate);
+            $time = new DateTimeImmutable($row->dateUpdate);
             $time->setTimezone(new DateTimeZone('GMT'));
             $epoch = (int) $time->format('U') * 1000;
 
@@ -222,7 +214,7 @@ abstract class StatusMapper extends AbstractMapper
     }
 
     /**
-     * Returns the query to get activity for either the whole system, or a specific user, or a specific movie
+     * Returns the query to get activity for either the whole system, or a specific user, or a specific movie.
      *
      * @param null|Movie|User $item
      *

@@ -24,7 +24,7 @@ if (!is_array($this->permanentParams)) {
         <a href="<?php echo $this->urlParams(array_merge($this->permanentParams, ['page' => $this->next, 'perPage' => $this->itemCountPerPage])); ?>"><?php echo _tr('Next »'); ?></a>
     <?php endif; ?>
     <!-- Current display stats -->
-    (<?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?>/<?php echo $this->totalItemCount; ?>) |
+    (<?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?>/<?php echo $this->totalItemCount; ?>) |
 
     <!-- Count per page links -->
     <span>

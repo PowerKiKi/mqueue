@@ -11,7 +11,6 @@ class UrlParams extends Zend_View_Helper_Abstract
     /**
      * Returns the current page URL with specified GET parameters.
      *
-     * @param array $params
      * @param bool $escapeParams if false '&' characters will not be escaped
      *
      * @return string
@@ -24,13 +23,10 @@ class UrlParams extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Flatten a recursive array in GET parameters (same as HTML form send GET request)
+     * Flatten a recursive array in GET parameters (same as HTML form send GET request).
      *
-     * @param array $params
      * @param string $result
      * @param string $previousName
-     *
-     * @return string
      */
     private function flatten(array $params, $result = '', $previousName = null): string
     {

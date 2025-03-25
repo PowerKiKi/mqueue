@@ -9,7 +9,10 @@ use Zend_Db_Table_Abstract;
  */
 class Setting extends Zend_Db_Table_Abstract
 {
-    /** Table name */
+    /**
+     * Table name.
+     */
     protected $_name = 'setting';
+
     protected $_rowClass = \mQueue\Model\Setting::class;
 }

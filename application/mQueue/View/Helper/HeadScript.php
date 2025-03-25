@@ -7,11 +7,10 @@ use Zend_View_Helper_HeadScript;
 class HeadScript extends Zend_View_Helper_HeadScript
 {
     /**
-     * Include a directory recursively
+     * Include a directory recursively.
      *
      * @param string $directory
      * @param string $method
-     * @param array $args
      */
     private function includeDirectory($directory, $method, array $args): void
     {

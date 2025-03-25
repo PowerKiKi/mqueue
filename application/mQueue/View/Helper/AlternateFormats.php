@@ -18,9 +18,8 @@ class AlternateFormats extends Zend_View_Helper_Abstract
     ];
 
     /**
-     * Returns a string of HTML links for end-user, and also append 'alternate' links to HTML header
+     * Returns a string of HTML links for end-user, and also append 'alternate' links to HTML header.
      *
-     * @param array $formats
      * @param string $title
      *
      * @return string

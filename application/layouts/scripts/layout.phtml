@@ -11,13 +11,13 @@ $lang = Zend_Registry::get(Zend_Locale::class)->getLanguage();
         echo $this->googleAnalytics();
         echo $this->headTitle('mQueue')->setSeparator(' - ');
         echo $this->headLink([
-                'rel' => 'icon',
-                'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
-                'PREPEND',
-            ])
-                ->appendStylesheet('/css/application.css', 'all')
-                ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
-                ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . $lang, 'application/rss+xml', $this->translate('mQueue - Overall activity'))
+            'rel' => 'icon',
+            'href' => $this->serverUrl() . $this->baseUrl('/images/favicon.png'),
+            'PREPEND',
+        ])
+            ->appendStylesheet('/css/application.css', 'all')
+            ->appendStylesheet($this->serverUrl() . $this->baseUrl('/css/gravatar.css'), 'all')
+            ->prependAlternate($this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index'], 'activity', true) . '?format=rss&lang=' . $lang, 'application/rss+xml', $this->translate('mQueue - Overall activity'))
             . "\n";
 
         // Set localization file for timeago

@@ -9,7 +9,7 @@ namespace mQueue\Service;
 class SearchEngine
 {
     /**
-     * Returns the command for the appropriate version of Nova
+     * Returns the command for the appropriate version of Nova.
      *
      * @return string
      */
@@ -26,7 +26,7 @@ class SearchEngine
     }
 
     /**
-     * Execute a shell command with a timeout
+     * Execute a shell command with a timeout.
      *
      * @param string $cmd shell command
      * @param int $timeout seconds after which the process will be killed
@@ -40,7 +40,9 @@ class SearchEngine
 
         $pipes = [];
         $process = proc_open(
-            $cmd, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipes
+            $cmd,
+            [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']],
+            $pipes
         );
 
         if (is_resource($process)) {
@@ -78,7 +80,7 @@ class SearchEngine
     }
 
     /**
-     * Parse string content and return an array of unique sources
+     * Parse string content and return an array of unique sources.
      *
      * @param string $content
      *
@@ -105,7 +107,7 @@ class SearchEngine
     }
 
     /**
-     * Search for the given title and return an array of sources
+     * Search for the given title and return an array of sources.
      *
      * @param string $title
      *
@@ -124,7 +126,7 @@ class SearchEngine
     }
 
     /**
-     * Returns the given name simplified as much as possible
+     * Returns the given name simplified as much as possible.
      *
      * @param string $name
      *
@@ -159,10 +161,9 @@ class SearchEngine
     }
 
     /**
-     * Compute scores of all sources according to the title searched
+     * Compute scores of all sources according to the title searched.
      *
      * @param string $title
-     * @param array $sources
      *
      * @return array
      */
@@ -184,7 +185,7 @@ class SearchEngine
         ];
 
         $cleanTitle = $this->cleanName($title);
-        preg_match('/((18|19|20)\d{2})(– )?\)$/', $title, $matches);
+        preg_match("/((18|19|20)\\d{2})(–\u{a0})?\\)\$/", $title, $matches);
         $year = $matches[1];
 
         foreach ($sources as &$source) {
@@ -215,7 +216,7 @@ class SearchEngine
             similar_text($cleanTitle, $cleanSource, $identity);
 
             // If the name contains the year of the movie, boost identity
-            if (preg_match("/\b$year\b/", $source['name'])) {
+            if (preg_match("/\\b$year\\b/", $source['name'])) {
                 $identity += 20;
             }
 

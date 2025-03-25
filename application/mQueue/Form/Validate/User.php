@@ -15,7 +15,7 @@ class User extends Zend_Validate_Db_RecordExists
     }
 
     /**
-     * Defined by Zend_Validate_Interface
+     * Defined by Zend_Validate_Interface.
      *
      * Returns true if and only if $value contains a valid User ID
      *

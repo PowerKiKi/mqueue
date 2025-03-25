@@ -11,9 +11,8 @@ use Zend_View_Helper_Abstract;
 class Activity extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns an HTML table of activities
+     * Returns an HTML table of activities.
      *
-     * @param Zend_Paginator $activity
      * @param array $hiddenColumns optionally hidden columns
      *
      * @return string
@@ -42,10 +41,10 @@ class Activity extends Zend_View_Helper_Abstract
 
             if (in_array('user', $columns)) {
                 $result .= '<div class="user"><a href="' . $this->view->url([
-                        'controller' => 'user',
-                        'action' => 'view',
-                        'id' => $user->id,
-                    ], 'singleid', true) . '">' . $this->view->gravatar($user, 'medium') . ' ' /* . $this->view->escape($user->nickname) */ . '</a></div>';
+                    'controller' => 'user',
+                    'action' => 'view',
+                    'id' => $user->id,
+                ], 'singleid', true) . '">' . $this->view->gravatar($user, 'medium') . ' ' /* . $this->view->escape($user->nickname) */ . '</a></div>';
             }
 
             $result .= '<div class="others">';

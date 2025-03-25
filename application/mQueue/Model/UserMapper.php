@@ -7,9 +7,7 @@ use mQueue\Model\UserMapper as DefaultModelUserMapper;
 abstract class UserMapper extends AbstractMapper
 {
     /**
-     * Create and save a new user
-     *
-     * @param array $values
+     * Create and save a new user.
      *
      * @return User
      */
@@ -25,7 +23,7 @@ abstract class UserMapper extends AbstractMapper
     }
 
     /**
-     * Finds a user by its email and password (not hashed)
+     * Finds a user by its email and password (not hashed).
      *
      * @param string $email
      * @param string $password
@@ -44,7 +42,7 @@ abstract class UserMapper extends AbstractMapper
     }
 
     /**
-     * Finds a user by its ID
+     * Finds a user by its ID.
      *
      * @param int $id
      *
@@ -58,7 +56,7 @@ abstract class UserMapper extends AbstractMapper
     }
 
     /**
-     * Finds all users
+     * Finds all users.
      *
      * @return User[]
      */

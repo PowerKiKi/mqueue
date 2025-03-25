@@ -12,10 +12,9 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
      * It will add variables to the view:
      *    - sortParameterName
      *  - sortSelectedKey
-     *  - sortSelectedOrder
+     *  - sortSelectedOrder.
      *
      * @param string $sortParameterName used to look for parameters in request and as key in $_SESSION
-     * @param array $allowedKeys
      *
      * @return string similar to 'name DESC'
      */
@@ -39,11 +38,10 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * Returns a valid SQL sorting snippet
+     * Returns a valid SQL sorting snippet.
      *
      * @param string $key
      * @param string $order
-     * @param array $allowedKeys
      *
      * @return string similar to 'name DESC'
      */
@@ -59,10 +57,9 @@ class CreateSorting extends Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * Strategy pattern: call helper as broker method
+     * Strategy pattern: call helper as broker method.
      *
      * @param string $sortParameterName used to look for parameters in request and as key in $_SESSION
-     * @param array $allowedKeys
      *
      * @return string similar to 'name DESC'
      */

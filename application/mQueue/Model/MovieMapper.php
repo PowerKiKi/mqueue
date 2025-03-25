@@ -9,7 +9,7 @@ use Zend_Db_Table_Select;
 abstract class MovieMapper extends AbstractMapper
 {
     /**
-     * Returns a movie by its ID
+     * Returns a movie by its ID.
      *
      * @param int $id
      *
@@ -23,7 +23,7 @@ abstract class MovieMapper extends AbstractMapper
     }
 
     /**
-     * Returns all movies
+     * Returns all movies.
      *
      * @return Movie[]
      */
@@ -35,7 +35,7 @@ abstract class MovieMapper extends AbstractMapper
     }
 
     /**
-     * Returns movies for search
+     * Returns movies for search.
      *
      * @return Movie[]
      */
@@ -66,7 +66,7 @@ abstract class MovieMapper extends AbstractMapper
     }
 
     /**
-     * Returns movies for data fetching
+     * Returns movies for data fetching.
      *
      * @param int $limit
      *
@@ -91,7 +91,6 @@ abstract class MovieMapper extends AbstractMapper
     /**
      * Returns a query filtered according to parameters. This query may be used with paginator.
      *
-     * @param array $filters
      * @param string $orderBy valid SQL sorting snippet
      *
      * @return Zend_Db_Table_Select
@@ -167,7 +166,7 @@ abstract class MovieMapper extends AbstractMapper
     /**
      * Delete obsolete sources for all movies.
      * An obsolete source is either a source older than 3 months, or
-     * a source which is not needed anymore (nobody need the movie anymore)
+     * a source which is not needed anymore (nobody need the movie anymore).
      */
     public static function deleteObsoleteSources(): void
     {

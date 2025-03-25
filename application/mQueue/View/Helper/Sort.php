@@ -7,7 +7,7 @@ use Zend_View_Helper_Abstract;
 class Sort extends Zend_View_Helper_Abstract
 {
     /**
-     * Return an HTML links to be able to sort (will typically be in table header)
+     * Return an HTML links to be able to sort (will typically be in table header).
      *
      * @param string $label
      * @param string $column
@@ -17,7 +17,7 @@ class Sort extends Zend_View_Helper_Abstract
      *
      * @return string
      */
-    public function sort($label, $column, $selectedSortKey, $selectedSortOrder, array $additionalParameters = null)
+    public function sort($label, $column, $selectedSortKey, $selectedSortOrder, ?array $additionalParameters = null)
     {
         if ($additionalParameters === null) {
             $additionalParameters = [];

@@ -119,6 +119,6 @@ class StatusController extends Zend_Controller_Action
         }
 
         echo Zend_Json::encode($chart, Zend_Json::TYPE_ARRAY);
-        die();
+        exit();
     }
 }

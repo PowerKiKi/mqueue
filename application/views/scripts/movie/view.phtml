@@ -15,7 +15,7 @@
             'controller' => 'user',
             'action' => 'view',
             'id' => $user->id,
-                ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
+        ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a></td>';
         echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
 
         echo '</tr>';
@@ -27,7 +27,7 @@
 <?php
 echo $this->alternateFormats([
     'rss' => $this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index', 'movie' => $this->movie->id], 'activityMovie', true),
-        ], 'mQueue - ' . $this->translate('Activity for %s', [$this->movie->getTitle()]));
+], 'mQueue - ' . $this->translate('Activity for %s', [$this->movie->getTitle()]));
 ?>
 
 <?php echo $this->paginationControl($this->movieActivity); ?>

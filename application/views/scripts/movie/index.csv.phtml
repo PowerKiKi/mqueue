@@ -6,7 +6,7 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0,pre-check=0');
 header('Pragma: public');
 
-$out = fopen('php://output', 'w');
+$out = fopen('php://output', 'wb');
 
 fputcsv($out, [$this->urlParams($this->permanentParams, false)]);
 

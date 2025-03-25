@@ -9,7 +9,7 @@ abstract class AbstractMapper
     private static $dbTables = [];
 
     /**
-     * Returns the Zend_Db_Table for the current model class
+     * Returns the Zend_Db_Table for the current model class.
      *
      * @return Zend_Db_Table_Abstract
      */
@@ -27,13 +27,13 @@ abstract class AbstractMapper
 
     /**
      * Returns the short class name of the model
-     * eg: called from \mQueue\Model\ChapterMapper, it will return 'Chapter'
+     * eg: called from \mQueue\Model\ChapterMapper, it will return 'Chapter'.
      *
      * @return string short class name
      */
     private static function getShortClassName()
     {
-        $className = get_called_class();
+        $className = static::class;
         preg_match('/([^\\\\]*)Mapper$/', $className, $r);
 
         return $r[1];

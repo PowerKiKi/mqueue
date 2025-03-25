@@ -8,7 +8,7 @@ use Zend_View_Helper_Abstract;
 class GoogleAnalytics extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns javascript code for Google Analytics
+     * Returns javascript code for Google Analytics.
      *
      * @param string $trackingCode
      *

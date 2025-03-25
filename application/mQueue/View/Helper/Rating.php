@@ -8,9 +8,7 @@ use Zend_View_Helper_Abstract;
 class Rating extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns some help text about statuses for end-user
-     *
-     * @param int $rating
+     * Returns some help text about statuses for end-user.
      *
      * @return string
      */

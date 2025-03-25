@@ -6,7 +6,7 @@ $settingName = 'databaseVersion'; // This is the setting name used in the databa
 $sqlPath = __DIR__ . '/sql/'; // This is the path where all SQL patches resides
 
 /**
- * Returns the last version available in SQL file
+ * Returns the last version available in SQL file.
  *
  * @return int last version of patches
  */
@@ -69,14 +69,14 @@ function buildSQL($currentVersion, $targetVersion)
 
 /**
  * Executes a batch of SQL commands.
- * (This is a workaround to Zend limitation to have only one command at once)
+ * (This is a workaround to Zend limitation to have only one command at once).
  *
  * @param string $sql to be executed
  */
 function executeBatchSql($sql): void
 {
     $affectedRows = 0;
-    $queries = preg_split("/;+(?=([^'|^\\\']*['|\\\'][^'|^\\\']*['|\\\'])*[^'|^\\\']*[^'|^\\\']$)/", $sql);
+    $queries = preg_split("/;+(?=([^'|^\\\\']*['|\\\\'][^'|^\\\\']*['|\\\\'])*[^'|^\\\\']*[^'|^\\\\']$)/", $sql);
     foreach ($queries as $query) {
         if (mb_strlen(trim($query)) > 0) {
             try {
@@ -95,7 +95,7 @@ function executeBatchSql($sql): void
 }
 
 /**
- * Do the actual update
+ * Do the actual update.
  */
 function doUpdate(): void
 {
@@ -107,7 +107,7 @@ function doUpdate(): void
         if (mb_strpos($e->getMessage(), 'SQLSTATE[42S02]') >= 0) {
             $currentVersion = -1;
         } else {
-            die('Caught exception: ' . $e->getMessage() . "\n");
+            exit('Caught exception: ' . $e->getMessage() . "\n");
         }
     }
 

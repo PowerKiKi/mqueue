@@ -78,7 +78,7 @@ class Filter extends Zend_Form_SubForm
     }
 
     /**
-     * Disable extra field elements
+     * Disable extra field elements.
      */
     public function disableExtraFields(): void
     {
@@ -87,7 +87,7 @@ class Filter extends Zend_Form_SubForm
     }
 
     /**
-     * Override getValues() to replace special '0' value with current user
+     * Override getValues() to replace special '0' value with current user.
      *
      * @param bool $suppressArrayNotation
      *
@@ -105,7 +105,7 @@ class Filter extends Zend_Form_SubForm
     }
 
     /**
-     * Returns values as readable text for end-user
+     * Returns values as readable text for end-user.
      *
      * @return string
      */

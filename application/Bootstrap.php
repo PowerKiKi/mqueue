@@ -2,7 +2,7 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    public static $translator = null;
+    public static $translator;
 
     protected function _initAutoload(): void
     {
@@ -158,7 +158,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 }
 
 /**
- * Global shortcut method that returns localized strings
+ * Global shortcut method that returns localized strings.
  *
  * @param string $msgId the original string to translate
  *

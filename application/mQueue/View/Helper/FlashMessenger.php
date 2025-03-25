@@ -34,8 +34,6 @@ use Zend_View_Helper_Abstract;
  *
  * http://noumenal.co.uk/
  *
- * @author     Carlton Gibson <carlton.gibson@noumenal.co.uk>
- * @copyright  Copyright (c) 2009 Noumenal Software Ltd. (http://noumenal.co.uk/)
  * @license    http://noumenal.co.uk/license/new-bsd     New BSD License
  *
  * @version    $Revision: 3 $ $Date: 2009-08-13 16:02:49 +0100 (Thu, 13 Aug 2009) $ modified for specific purpose
@@ -76,7 +74,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Render the flash messages
+     * Render the flash messages.
      *
      * @return string flash messages formatted as div
      */
@@ -96,7 +94,8 @@ class FlashMessenger extends Zend_View_Helper_Abstract
         //add any messages from this request
         if ($flashMessenger->hasCurrentMessages()) {
             $messages = array_merge(
-                $messages, $flashMessenger->getCurrentMessages()
+                $messages,
+                $flashMessenger->getCurrentMessages()
             );
             //we don't need to display them twice.
             $flashMessenger->clearCurrentMessages();
@@ -119,8 +118,6 @@ class FlashMessenger extends Zend_View_Helper_Abstract
 
     /**
      * Postpone the flash messages to the next next call. The next call will return empty string.
-     *
-     * @param bool $isPostponed
      */
     public function postpone(bool $isPostponed = true): void
     {
@@ -128,7 +125,7 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Returns the flash messenger
+     * Returns the flash messenger.
      *
      * @return Zend_Controller_Action_Helper_FlashMessenger
      */

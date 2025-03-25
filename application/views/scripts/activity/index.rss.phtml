@@ -21,16 +21,16 @@ foreach ($this->activity as $status) {
 
     $date = new Zend_Date($status->dateUpdate);
     $text = '<p><a href="' . $this->serverUrl() . $this->url([
-                'controller' => 'user',
-                'action' => 'view',
-                'id' => $user->id,
-                    ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> ' .
-            '<a href="' . $this->serverUrl() . $this->url([
+        'controller' => 'user',
+        'action' => 'view',
+        'id' => $user->id,
+    ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> '
+            . '<a href="' . $this->serverUrl() . $this->url([
                 'controller' => 'movie',
                 'action' => 'view',
                 'id' => $movie->id,
-                    ], 'singleid', true) . '">' . $this->escape($movie->getTitle()) . '</a> ' .
-            $status->getName() . '</p>';
+            ], 'singleid', true) . '">' . $this->escape($movie->getTitle()) . '</a> '
+            . $status->getName() . '</p>';
     $text .= '<p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
 
     $title = $this->escape($user->nickname) . ' - ' . $this->escape($movie->getTitle()) . ' - ' . $status->getName();
@@ -53,7 +53,7 @@ foreach ($this->activity as $status) {
         ];
     }
 
-    array_push($entries, $entry);
+    $entries[] = $entry;
 }
 
 // Create the RSS array

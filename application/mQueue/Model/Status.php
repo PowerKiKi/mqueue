@@ -6,26 +6,26 @@ use mQueue\Model\Status as DefaultModelStatus;
 use Zend_Date;
 
 /**
- * A status (link between movie and user with a rating)
+ * A status (link between movie and user with a rating).
  */
 class Status extends AbstractModel
 {
-    const Nothing = 0;
-    const Need = 1;
-    const Bad = 2;
-    const Ok = 3;
-    const Excellent = 4;
-    const Favorite = 5;
+    public const Nothing = 0;
+    public const Need = 1;
+    public const Bad = 2;
+    public const Ok = 3;
+    public const Excellent = 4;
+    public const Favorite = 5;
 
     /**
-     * array of ratings names indexed by the rating value
+     * array of ratings names indexed by the rating value.
      *
      * @var array
      */
-    public static $ratings = null;
+    public static $ratings;
 
     /**
-     * Returns the unique ID for this status to be used in HTML
+     * Returns the unique ID for this status to be used in HTML.
      *
      * @return string
      */
@@ -35,7 +35,7 @@ class Status extends AbstractModel
     }
 
     /**
-     * Returns the name
+     * Returns the name.
      *
      * @return string
      */
@@ -49,7 +49,7 @@ class Status extends AbstractModel
     }
 
     /**
-     * Returns the date of last update
+     * Returns the date of last update.
      *
      * @return Zend_Date
      */

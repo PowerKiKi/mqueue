@@ -13,11 +13,11 @@ foreach ($this->paginator as $movie) {
     foreach ($this->users as $user) {
         $status = $movie->getStatus($user);
         $text .= '<p><a href="' . $this->serverUrl() . $this->url([
-                    'controller' => 'user',
-                    'action' => 'view',
-                    'id' => $user->id,
-                        ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> ' .
-                $status->getName() . '</p>';
+            'controller' => 'user',
+            'action' => 'view',
+            'id' => $user->id,
+        ], 'singleid', true) . '">' . $this->gravatar($user) . ' ' . $this->escape($user->nickname) . '</a> '
+                . $status->getName() . '</p>';
     }
 
     $title = $movie->getTitle();
@@ -40,7 +40,7 @@ foreach ($this->paginator as $movie) {
         ];
     }
 
-    array_push($entries, $entry);
+    $entries[] = $entry;
 }
 
 // Create the RSS array

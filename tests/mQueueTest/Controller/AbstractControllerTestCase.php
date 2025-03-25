@@ -2,26 +2,33 @@
 
 namespace mQueueTest\Controller;
 
-abstract class AbstractControllerTestCase extends \Zend_Test_PHPUnit_ControllerTestCase
+use Zend_Application;
+use Zend_Test_PHPUnit_Constraint_Exception;
+use Zend_Test_PHPUnit_ControllerTestCase;
+
+abstract class AbstractControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
 {
     /**
      * @var \mQueue\Model\User
      */
     protected $testUser;
+
     protected $userData = [
         'nickname' => 'test user',
         'email' => 'valid@email.org',
         'password' => 'superpassword',
     ];
+
     protected $movieData = [
         'id' => '0096446',
         'title' => 'Willow (1988)',
     ];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        $this->bootstrap = new \Zend_Application(
-            APPLICATION_ENV, [
+        $this->bootstrap = new Zend_Application(
+            APPLICATION_ENV,
+            [
                 'config' => [
                     APPLICATION_PATH . '/configs/application.ini',
                 ],
@@ -57,7 +64,7 @@ abstract class AbstractControllerTestCase extends \Zend_Test_PHPUnit_ControllerT
     }
 
     /**
-     * Assert against plain text search; content should contain needle
+     * Assert against plain text search; content should contain needle.
      *
      * @param string $needle needle that should be contained in content
      * @param string $message
@@ -72,7 +79,7 @@ abstract class AbstractControllerTestCase extends \Zend_Test_PHPUnit_ControllerT
                 $failure = $message . "\n" . $failure;
             }
 
-            throw new \Zend_Test_PHPUnit_Constraint_Exception($failure);
+            throw new Zend_Test_PHPUnit_Constraint_Exception($failure);
         }
     }
 }

@@ -18,7 +18,7 @@ class Import extends Zend_Form
             'required' => true,
             'description' => _tr('eg: http://www.imdb.com/mymovies/list?l=39480251'),
             'validators' => [
-                ['validator' => 'Regex', 'options' => ["|mymovies/list\?l=\d+|"]],
+                ['validator' => 'Regex', 'options' => ['|mymovies/list\\?l=\\d+|']],
             ],
         ]);
 

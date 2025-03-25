@@ -63,8 +63,6 @@ class Filters extends Zend_Form
     /**
      * Override setDefaults to dynamically generate subforms.
      *
-     * @param array $defaults
-     *
      * @return Zend_Form
      */
     public function setDefaults(array $defaults)
@@ -121,7 +119,7 @@ class Filters extends Zend_Form
     }
 
     /**
-     * Returns values as readable text for end-user
+     * Returns values as readable text for end-user.
      *
      * @return string
      */

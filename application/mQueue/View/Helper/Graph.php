@@ -8,13 +8,13 @@ use Zend_View_Helper_Abstract;
 class Graph extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns a graph for everybody or single user
+     * Returns a graph for everybody or single user.
      *
      * @param User $user
      *
      * @return string
      */
-    public function graph(User $user = null)
+    public function graph(?User $user = null)
     {
         $params = ['controller' => 'status', 'action' => 'graph'];
         if ($user) {

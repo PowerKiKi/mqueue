@@ -11,7 +11,7 @@ if (@$_SERVER['HTTP_HOST'] == 'localhost') {
 }
 
 // Define application environment
-defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ?: 'production'));
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, [
@@ -25,7 +25,8 @@ require_once APPLICATION_PATH . '/../vendor/autoload.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(
-        APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini'
+    APPLICATION_ENV,
+    APPLICATION_PATH . '/configs/application.ini'
 );
 $application->bootstrap();
 

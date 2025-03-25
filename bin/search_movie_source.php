@@ -1,18 +1,15 @@
 <?php
 
 /**
- * This script will search for source for needed movies that does not have sources yet
+ * This script will search for source for needed movies that does not have sources yet.
  */
 require_once __DIR__ . '/../public/index.php';
 
 /**
- * Process a movie and pause between each of them
+ * Process a movie and pause between each of them.
  *
- * @param Closure $func
  * @param \mQueue\Model\Movie[] $movies
  * @param int $seconds
- *
- * @return int
  */
 function movieProcessor(Closure $func, $movies, $seconds): int
 {
@@ -33,12 +30,12 @@ function movieProcessor(Closure $func, $movies, $seconds): int
 }
 
 /**
- * Search source
+ * Search source.
  */
 function searchSource(): void
 {
     $movies = \mQueue\Model\MovieMapper::findAllForSearch();
-    $searcher = function (\mQueue\Model\Movie $movie): void {
+    $searcher = function (mQueue\Model\Movie $movie): void {
         $searchEngine = new mQueue\Service\SearchEngine();
 
         $movie->fetchData(); // Refresh movie data to be sure we have latest available title
@@ -60,7 +57,7 @@ function searchSource(): void
 }
 
 /**
- * Fetch movie data for those that need it
+ * Fetch movie data for those that need it.
  *
  * @param int $limit
  * @param int $sleep seconds to sleep between each movie
@@ -68,7 +65,7 @@ function searchSource(): void
 function fetchMovieData($limit = null, $sleep = 0): void
 {
     $movies = \mQueue\Model\MovieMapper::findAllForFetching($limit);
-    $fetcher = function (\mQueue\Model\Movie $movie): void {
+    $fetcher = function (mQueue\Model\Movie $movie): void {
         $movie->fetchData();
         echo $movie->title;
     };

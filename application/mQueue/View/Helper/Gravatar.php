@@ -8,12 +8,9 @@ use Zend_View_Helper_HtmlElement;
 class Gravatar extends Zend_View_Helper_HtmlElement
 {
     /**
-     * Return a span with CSS class for a user on gravatar
+     * Return a span with CSS class for a user on gravatar.
      *
-     * @param User $user
      * @param string $size small|medium|big
-     *
-     * @return string
      */
     public function gravatar(User $user, $size = 'small'): string
     {

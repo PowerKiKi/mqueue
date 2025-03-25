@@ -9,9 +9,7 @@ use Zend_View_Helper_Abstract;
 class StatusLinks extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns the set of links to display a status (the icons used to rate movies)
-     *
-     * @param Status $status
+     * Returns the set of links to display a status (the icons used to rate movies).
      *
      * @return string
      */
@@ -30,10 +28,10 @@ class StatusLinks extends Zend_View_Helper_Abstract
         foreach (Status::$ratings as $val => $name) {
             $class = $val . ($status->rating == $val ? ' current' : '');
             $url = $this->view->serverUrl() . $this->view->url([
-                    'controller' => 'status',
-                    'movie' => $status->idMovie,
-                    'rating' => ($val == $status->rating && $user && $user->id == $status->idUser) ? 0 : $val,
-                ], 'status', true);
+                'controller' => 'status',
+                'movie' => $status->idMovie,
+                'rating' => ($val == $status->rating && $user && $user->id == $status->idUser) ? 0 : $val,
+            ], 'status', true);
 
             $result .= '<' . $tag . ' class="mqueue_status mqueue_status_' . $class . '"' . ($tag == 'a' ? ' href="' . $url . '"' : '') . ' title="' . $name . '"><span>' . $name . '</span></' . $tag . '>';
         }

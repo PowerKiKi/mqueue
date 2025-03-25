@@ -8,12 +8,12 @@ use Exception;
 use Zend_Date;
 
 /**
- * A movie
+ * A movie.
  */
 class Movie extends AbstractModel
 {
     /**
-     * Extract IMDb id from URL
+     * Extract IMDb id from URL.
      *
      * @param string $string
      *
@@ -26,7 +26,7 @@ class Movie extends AbstractModel
         }
 
         $string = self::paddedId($string);
-        preg_match_all("/(\d{7,})/", $string, $r);
+        preg_match_all('/(\\d{7,})/', $string, $r);
         if (isset($r[1][0])) {
             return $r[1][0];
         }
@@ -35,9 +35,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Returns the ID for IMDb with padded 0
-     *
-     * @param string $id
+     * Returns the ID for IMDb with padded 0.
      *
      * @return string the id extracted
      */
@@ -47,7 +45,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Returns the title, if needed fetch the title from IMDb
+     * Returns the title, if needed fetch the title from IMDb.
      *
      * @return string
      */
@@ -62,7 +60,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Fetch data from IMDb and store in database (possibly overwriting)
+     * Fetch data from IMDb and store in database (possibly overwriting).
      */
     public function fetchData(): void
     {
@@ -105,7 +103,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Sets the ID for the movie from any string containing a valid ID
+     * Sets the ID for the movie from any string containing a valid ID.
      *
      * @param string $id
      *
@@ -124,9 +122,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Returns the IMDb url for the movie
-     *
-     * @return string
+     * Returns the IMDb url for the movie.
      */
     public function getImdbUrl(): string
     {
@@ -134,21 +130,20 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Returns the status for this movie and the specified user
+     * Returns the status for this movie and the specified user.
      *
      * @param User $user
      *
      * @return Status
      */
-    public function getStatus(User $user = null)
+    public function getStatus(?User $user = null)
     {
         return StatusMapper::find($this->id, $user);
     }
 
     /**
-     * Set the status for the specified user
+     * Set the status for the specified user.
      *
-     * @param User $user
      * @param int $rating @see \mQueue\Model\Status
      *
      * @return Status
@@ -161,7 +156,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * Set the source for the movie if any. In any case record the search date and count
+     * Set the source for the movie if any. In any case record the search date and count.
      *
      * @param array|false $source
      */

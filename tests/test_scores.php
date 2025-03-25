@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This script is used to test score computing algorithm on a batch of movies and their sources
+ * This script is used to test score computing algorithm on a batch of movies and their sources.
  */
 require_once __DIR__ . '/../public/index.php';
 

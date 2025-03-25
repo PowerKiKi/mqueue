@@ -20,16 +20,16 @@
         echo '<td class="number"><a href="' . $this->url([
             'controller' => 'movie',
             'action' => 'index',
-                ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=' . $val . '">' . $stats[$val] . '</a></td>';
+        ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=' . $val . '">' . $stats[$val] . '</a></td>';
     }
     echo '<td class="number"><a href="' . $this->url([
         'controller' => 'movie',
         'action' => 'index',
-            ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=isnot&amp;filter1[status][]=0">' . $stats['rated'] . '</a></td>';
+    ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=isnot&amp;filter1[status][]=0">' . $stats['rated'] . '</a></td>';
     echo '<td class="number"><a href="' . $this->url([
         'controller' => 'movie',
         'action' => 'index',
-            ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=0">' . $stats[\mQueue\Model\Status::Nothing] . '</a></td>';
+    ], 'default', true) . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=0">' . $stats[\mQueue\Model\Status::Nothing] . '</a></td>';
     echo '</tr>';
     ?>
 </table>
@@ -43,6 +43,6 @@
 <?php
 echo $this->alternateFormats([
     'rss' => $this->serverUrl() . $this->url(['controller' => 'activity', 'action' => 'index', 'user' => $this->user->id], 'activityUser', true),
-        ], 'mQueue - ' . $this->translate('Activity for %s', [$this->user->nickname]));
+], 'mQueue - ' . $this->translate('Activity for %s', [$this->user->nickname]));
 ?>
 <?php echo $this->paginationControl($this->userActivity); ?>

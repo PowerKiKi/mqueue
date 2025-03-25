@@ -9,7 +9,7 @@ use Zend_Session_Namespace;
 class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
 {
     /**
-     * Create a new Zend_Paginator and configure it with GET or session variables
+     * Create a new Zend_Paginator and configure it with GET or session variables.
      *
      * @param mixed $data
      *
@@ -52,7 +52,7 @@ class CreatePaginator extends Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * Strategy pattern: call helper as broker method
+     * Strategy pattern: call helper as broker method.
      *
      * @param mixed $data
      *

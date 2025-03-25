@@ -9,7 +9,10 @@ use Zend_Db_Table_Abstract;
  */
 class Movie extends Zend_Db_Table_Abstract
 {
-    /** Table name */
+    /**
+     * Table name.
+     */
     protected $_name = 'movie';
+
     protected $_rowClass = \mQueue\Model\Movie::class;
 }

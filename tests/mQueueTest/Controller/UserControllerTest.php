@@ -5,13 +5,14 @@ namespace mQueueTest\Controller;
 class UserControllerTest extends AbstractControllerTestCase
 {
     protected $idUser;
+
     protected $newUserData = [
         'nickname' => 'new test user',
         'email' => 'new_valid@email.org',
         'password' => 'superpassword',
     ];
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $user = \mQueue\Model\UserMapper::findEmailPassword($this->newUserData['email'], $this->newUserData['password']);
         if ($user) {
@@ -84,12 +85,12 @@ class UserControllerTest extends AbstractControllerTestCase
 
     public function testLoginAction(): void
     {
-        $this->assertNull(\mQueue\Model\User::getCurrent(), 'at first we are not logged in');
+        self::assertNull(\mQueue\Model\User::getCurrent(), 'at first we are not logged in');
 
         // Create test user
         $this->testNewAction();
 
-        $this->assertNotNull(\mQueue\Model\User::getCurrent(), 'after subscription, we are automatically logged in');
+        self::assertNotNull(\mQueue\Model\User::getCurrent(), 'after subscription, we are automatically logged in');
 
         // Reset everything
         $this->resetRequest();
@@ -99,7 +100,7 @@ class UserControllerTest extends AbstractControllerTestCase
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
-        $this->assertNull(\mQueue\Model\User::getCurrent(), 'after logged out, we are logged out');
+        self::assertNull(\mQueue\Model\User::getCurrent(), 'after logged out, we are logged out');
 
         // Reset everything
         $this->resetRequest();
@@ -113,6 +114,6 @@ class UserControllerTest extends AbstractControllerTestCase
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
 
-        $this->assertNotNull(\mQueue\Model\User::getCurrent(), 'after login, we are login');
+        self::assertNotNull(\mQueue\Model\User::getCurrent(), 'after login, we are login');
     }
 }

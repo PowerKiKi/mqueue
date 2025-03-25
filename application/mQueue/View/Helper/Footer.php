@@ -7,7 +7,7 @@ use Zend_View_Helper_Abstract;
 class Footer extends Zend_View_Helper_Abstract
 {
     /**
-     * Returns the website footer
+     * Returns the website footer.
      *
      * @return string
      */
@@ -16,7 +16,10 @@ class Footer extends Zend_View_Helper_Abstract
         $result = '';
 
         $result .= '<a href="' . $this->view->serverUrl() . $this->view->url(
-                ['controller' => 'about'], 'default', true) . '">' . $this->view->translate('about mQueue') . '</a> ';
+            ['controller' => 'about'],
+            'default',
+            true
+        ) . '">' . $this->view->translate('about mQueue') . '</a> ';
 
         return $result;
     }

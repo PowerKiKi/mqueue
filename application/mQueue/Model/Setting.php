@@ -3,7 +3,7 @@
 namespace mQueue\Model;
 
 /**
- * Settings stored in database (not to be confused with application configuration)
+ * Settings stored in database (not to be confused with application configuration).
  */
 class Setting extends AbstractModel
 {
@@ -23,7 +23,7 @@ class Setting extends AbstractModel
     }
 
     /**
-     * Defines the value of the setting
+     * Defines the value of the setting.
      *
      * @param string $id unique name of setting
      * @param string $value the value to be set
