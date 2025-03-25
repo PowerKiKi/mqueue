@@ -13,7 +13,7 @@ class User extends AbstractModel
      * null if no user logged in
      * \mQueue\Model\User if logged in.
      *
-     * @var User
+     * @var null|-1|User
      */
     private static $currentUser = -1;
 

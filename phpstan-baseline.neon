@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method current\\(\\) on array\\<mQueue\\\\Model\\\\User\\>\\.$#"
+			count: 1
+			path: application/mQueue/Form/Filters.php
+
+		-
+			message: "#^Method mQueue\\\\View\\\\Helper\\\\HeadScript\\:\\:__call\\(\\) should return mQueue\\\\View\\\\Helper\\\\HeadScript but returns Zend_View_Helper_HeadScript\\.$#"
+			count: 1
+			path: application/mQueue/View/Helper/HeadScript.php

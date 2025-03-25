@@ -132,7 +132,9 @@ class FlashMessenger extends Zend_View_Helper_Abstract
     protected function _getFlashMessenger()
     {
         if (null === $this->_flashMessenger) {
-            $this->_flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+            /** @var Zend_Controller_Action_Helper_FlashMessenger $broker */
+            $broker = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+            $this->_flashMessenger = $broker;
         }
 
         return $this->_flashMessenger;

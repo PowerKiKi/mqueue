@@ -222,8 +222,8 @@ abstract class StatusMapper extends AbstractMapper
      */
     public static function getActivityQuery($item = null)
     {
-        $select = self::getDbTable()->select()
-            ->from('status')
+        $select = self::getDbTable()->select();
+        $select->from('status')
             ->order('dateUpdate DESC');
 
         if ($item instanceof User) {

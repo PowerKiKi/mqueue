@@ -99,7 +99,8 @@ abstract class MovieMapper extends AbstractMapper
     {
         $orderBy = preg_replace('/^(status\d+)(.*)/', '\\1.rating\\2', $orderBy);
 
-        $select = self::getDbTable()->select()->setIntegrityCheck(false)
+        $select = self::getDbTable()->select();
+        $select->setIntegrityCheck(false)
             ->from('movie')
             ->order($orderBy);
 

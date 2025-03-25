@@ -1,5 +1,5 @@
 parameters:
-    level: 2
+    level: 3
     paths:
         - application/mQueue/
         - tests/
@@ -13,6 +13,7 @@ parameters:
         # Tolerate loose typing in magic Zend things
         - '~^Access to an undefined property (Zend_Controller_Action_Helper_Abstract|Zend_Db_Table_Row_Abstract|Zend_View|Zend_View_Interface|Zend_Form|Zend_Navigation_Page|Zend_Session_Namespace|Application\\Form\\JQuery\\SubForm)\:\:.*\.$~'
         - '~^Call to an undefined method (Zend_View|Zend_View_Interface|Zend_Controller_Action_Helper_Abstract|Zend_Form_Decorator_Abstract|Zend_Form_Element)\:\:.*\(\)\.$~'
+        - '~but returns (Zend_Db_Table_Row_Abstract|Zend_Db_Table_Rowset_Abstract)(\|null)?\.$~'
 
 includes:
     - phpstan-baseline.neon
