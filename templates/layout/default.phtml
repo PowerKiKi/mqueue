@@ -1,0 +1,61 @@
+<?php
+$lang = mb_substr(Locale::getDefault(), 0, 2);
+?><!doctype html>
+<html lang="<?php echo $lang ?>">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width">
+        <meta name="theme-color" content="#3679FF">
+        <link rel="manifest" href="manifest.json">
+        <?php
+        echo $this->googleAnalytics();
+echo $this->headTitle('Application')->setSeparator(' - ');
+echo $this->headLink([
+    'rel' => 'icon',
+    'href' => $this->serverUrl('/images/favicon.png'),
+    'PREPEND',
+])
+    ->appendStylesheet('/css/application.css', 'all')
+    ->appendStylesheet($this->serverUrl('/css/gravatar.css'), 'all')
+    ->prependAlternate($this->serverUrl($this->url('activity.index', [], ['format' => 'rss', 'lang' => $lang])), 'application/rss+xml', $this->translate('Application - Overall activity'));
+
+// Set localization file for timeago
+$path = '/js/min/jquery.timeago.' . $lang . '.js';
+if (is_file('public' . $path)) {
+    $this->headScript()->prependFile($path);
+}
+
+echo $this->headScript()
+    ->prependDirectory(
+        '/js/min/application.js',
+        '/js/application',
+    );
+?>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <?php
+        if (!$this->isError) {
+            echo $this->languageSelector();
+        } ?>
+                <?php echo $this->form(new Application\Form\QuickSearch()); ?>
+                <div id="header-logo">
+                    <h1><a href="<?php echo $this->serverUrl('/'); ?>"
+                           title="<?php echo $this->translate('Application monster !'); ?>"><span><?php echo $this->translate('Application'); ?></span></a>
+                    </h1>
+                    <span class="tagline"><?php echo $this->translate('never forget movies you want to watch'); ?></span>
+                </div>
+                <div id="header-navigation"><span>&nbsp;</span>
+                    <?php echo $this->navigation('default')->menu()->setMaxDepth(1); ?>
+                    <?php echo $this->loginState(); ?>
+                </div>
+            </div>
+            <div id="content">
+                <?php echo $this->flashMessenger(); ?>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+        <div id="footer"><?php echo $this->footer(); ?></div>
+    </body>
+</html>

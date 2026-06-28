@@ -1,0 +1,10 @@
+<?php $this->headTitle(sprintf('%d %s', $this->status, $this->message ?: $this->reason)); ?>
+
+<h1>Oops!</h1>
+<?php if ($this->message): ?>
+    <p><?php echo $this->escapeHtml($this->message) ?></p><?php else: ?>
+    <p><?php echo $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason)) ?></p>
+
+    <?php // TODO REMOVE THIS var_dump($this->error);?>
+
+<?php endif; ?>

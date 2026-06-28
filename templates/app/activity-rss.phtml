@@ -1,0 +1,49 @@
+<?php
+
+use Application\Model\Status;
+use Laminas\Feed\Writer\Feed;
+
+/**
+ * Create the feed.
+ */
+$feed = new Feed();
+$feed->setType('rss');
+$feed->setTitle('mQueue - ' . $this->title);
+$feed->setLink($this->serverUrl($this->url()));
+$feed->setFeedLink($this->serverUrl($this->url(queryParams: ['format' => 'rss', 'lang' => mb_substr(Locale::getDefault(), 0, 2)])), 'rss');
+$feed->setDateModified();
+$feed->setDescription($this->title);
+
+// Cycle through the rankings, creating an array storing
+// each, and push the array onto the $entries array
+/** @var Status $status */
+foreach ($this->activity as $status) {
+    $user = $status->user;
+    $movie = $status->movie;
+
+    $text = '<p><a href="' . $this->serverUrl($this->url('user.view', ['id' => $user->id])) . '">' . $this->gravatar($user) . ' ' . $this->escapeHtml($user->nickname) . '</a> '
+        . '<a href="' . $this->serverUrl($this->url('movie.view', ['id' => $movie->id])) . '">' . $this->escapeHtml($movie->title) . '</a> '
+        . $status->getName() . '</p><p><a href="' . $movie->getImdbUrl() . '">' . $movie->getImdbUrl() . '</a></p>';
+
+    $title = $user->nickname . ' - ' . $movie->title . ' - ' . $status->getName();
+
+    $entry = $feed->createEntry();
+    $feed->addEntry($entry);
+
+    $entry->setTitle($title);
+    $entry->setLink($this->serverUrl($this->url('movie.view', ['id' => $movie->id])));
+    $entry->setDescription($title);
+    $entry->setContent($text);
+    $entry->setDateModified($status->dateUpdate);
+    $entry->addAuthor(['name' => 'mQueue']);
+
+    if ($movie->source) {
+        $entry->setEnclosure([
+            'uri' => $movie->source,
+            'type' => 'application/x-bittorrent',
+            'length' => 0, // Because unknown
+        ]);
+    }
+}
+
+echo $feed->export('rss');

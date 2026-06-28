@@ -1,0 +1,39 @@
+<?php $this->headTitle(_tr('Add movie')); ?>
+<h2><?php echo _tr('Add a new movie'); ?></h2>
+<?php echo $this->form($this->form); ?>
+<?php if ($this->movies): ?>
+    <h3><?php echo _tr('Movie found'); ?></h3>
+
+    <table>
+        <tr>
+            <th><?php echo _tr('Rating'); ?></th>
+            <th><?php echo _tr('Title'); ?></th>
+        </tr>
+        <?php if (count($this->movies) === 0): ?>
+            <tr>
+                <td colspan="2">
+                    <?php echo _tr('There is no movie to show. Please read the %link% to learn how to add movies.', ['link' => '<a href="' . $this->url('faq') . '">' . _tr('FAQ') . '</a>']); ?>
+                </td>
+            </tr>
+        <?php else: ?><?php foreach ($this->movies as $entry): ?>
+            <tr>
+                <td><?php echo $this->statusLinks($entry->getStatus(Application\Model\User::getCurrent())); ?></td>
+                <td>
+                    <a href="<?php echo $this->url('movie.view', ['id' => $entry->id]); ?>"><?php echo $this->movie($entry); ?></a>
+                </td>
+            </tr>
+        <?php endforeach ?><?php endif; ?>
+    </table>
+
+    <div class="tips"><?php echo $this->statusHelp(); ?></div>
+
+<?php else: ?>
+
+    <div class="tips">
+        <?php
+        echo _tr('See the %link% to learn how to add movies directly from www.imdb.com in a single click !', [
+            'link' => '<a href="' . $this->url('faq') . '">' . _tr('FAQ') . '</a>',
+        ]);
+    ?>
+    </div>
+<?php endif; ?>

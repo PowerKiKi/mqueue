@@ -1,36 +1,38 @@
 <?php
 
-// Keep session data for 120 days, unless explicit destroy in code
-ini_set('session.gc_maxlifetime', 1 * 60 * 60 * 24 * 120);
+declare(strict_types=1);
 
-// Define path to application directory
-defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(__DIR__ . '/../application'));
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-if (@$_SERVER['HTTP_HOST'] == 'localhost' || @$_SERVER['HTTP_HOST'] == 'mqueue.lan') {
-    define('APPLICATION_ENV', 'development');
+// Delegate static file requests back to the PHP built-in webserver
+if (PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {
+    return false;
 }
 
-// Define application environment
-defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ?: 'production'));
+chdir(dirname(__DIR__));
+require 'vendor/autoload.php';
 
-// Ensure library/ is on include_path
-set_include_path(implode(PATH_SEPARATOR, [
-    realpath(APPLICATION_PATH . '/../library'),
-    get_include_path(),
-]));
+/**
+ * Self-called anonymous function that creates its own scope and keeps the global namespace clean.
+ */
+(function (): void {
+    /** @var Psr\Container\ContainerInterface $container */
+    $container = require 'config/container.php';
 
-/** Zend_Application */
-require_once APPLICATION_PATH . '/Debug.php';
-require_once APPLICATION_PATH . '/../vendor/autoload.php';
+    global $app;
+    /** @var Mezzio\Application $app */
+    $app = $container->get(Mezzio\Application::class);
+    $factory = $container->get(Mezzio\MiddlewareFactory::class);
 
-// Create application, bootstrap, and run
-$application = new Zend_Application(
-    APPLICATION_ENV,
-    APPLICATION_PATH . '/configs/application.ini'
-);
-$application->bootstrap();
+    // Execute programmatic/declarative middleware pipeline and routing
+    // configuration statements
+    (require 'config/pipeline.php')($app, $factory, $container);
+    (require 'config/routes.php')($app, $factory, $container);
 
-// we only run the application if this file were NOT included (otherwise, the file was included to access misc functions)
-if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
-    $application->run();
-}
+    // we only run the application if this file was NOT included (otherwise, the file was included to access misc functions)
+    if (realpath(__FILE__) === realpath($_SERVER['SCRIPT_FILENAME'])) {
+        $app->run();
+    }
+})();

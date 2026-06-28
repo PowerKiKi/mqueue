@@ -1,0 +1,27 @@
+<?php $this->headTitle($this->movie->title); ?>
+<h2><?php echo $this->escapeHtml($this->movie->title); ?></h2><p><?php echo $this->link($this->movie, true) ?></p>
+<h3><?php echo _tr('Current status'); ?></h3>
+<table>
+    <tr>
+        <th><?php echo _tr('User'); ?></th>
+        <th><?php echo _tr('Rating'); ?></th>
+    </tr>
+    <?php
+    // Table data
+    foreach ($this->users as $user) {
+        echo '<tr>';
+        echo '<td><a href="' . $this->url('user.view', ['id' => $user->id]) . '">' . $this->gravatar($user) . ' ' . $this->escapeHtml($user->nickname) . '</a></td>';
+        echo '<td>' . $this->statusLinks($this->movie->getStatus($user)) . '</td>';
+
+        echo '</tr>';
+    }
+?>
+</table><h3><?php echo _tr('Activity'); ?></h3>
+<?php echo $this->activity($this->movieActivity, ['movie']); ?>
+<?php
+echo $this->alternateFormats([
+    'rss' => $this->url('movie.index', ['movie' => $this->movie->id]),
+], 'mQueue - ' . _tr('Activity for %s', [$this->movie->title]));
+?>
+
+<?php echo $this->paginationControl($this->movieActivity); ?>

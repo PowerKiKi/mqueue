@@ -1,0 +1,68 @@
+<?php
+
+use Laminas\Form\FieldsetInterface;
+
+$this->headTitle(_tr('Movies'));
+?>
+<h2><?php echo _tr('Movies list'); ?></h2>
+<?php $this->form($this->formFilter); // Weird but required to have correct name input below?>
+<?php echo $this->form()->openTag($this->formFilter); ?>
+<fieldset id="fieldset-filters">
+    <legend><?php echo _tr('Filter') ?></legend>
+    <?php foreach ($this->formFilter as $element):
+        if ($element instanceof FieldsetInterface):?>
+            <div class="filter">
+                <?php foreach ($element as $subElement):
+                    echo $this->formRow($subElement);
+                endforeach; ?>
+            </div>
+        <?php
+        else:
+            echo $this->formRow($element);
+        endif;
+    endforeach;
+?>
+</fieldset>
+<?php echo $this->form()->closeTag(); ?>
+<table>
+    <tr>
+        <?php
+    $i = 0;
+foreach ($this->users as $user):
+    ?>
+            <th><?php echo $this->sort($user->nickname, 'status' . $i++, $this->sorting, $this->permanentParams); ?></th>
+        <?php endforeach; ?>
+        <th><?php echo $this->sort(_tr('Title'), 'title', $this->sorting, $this->permanentParams); ?></th>
+    </tr>
+    <?php if ($this->paginator->getTotalItemCount() === 0): ?>
+        <tr>
+            <td colspan="<?php echo count($this->users) + 1; ?>">
+                <?php echo _tr('There is no movie to show.'); ?>
+            </td>
+        </tr>
+    <?php else: ?><?php foreach ($this->paginator as $entry): ?>
+        <tr>
+            <?php foreach ($this->users as $user): ?>
+                <td class="rating"><?php echo $this->statusLinks($entry->getStatus($user)) ?></td>
+            <?php endforeach; ?>
+            <td class="movie"><?php echo $this->movie($entry); ?></td>
+        </tr>
+    <?php endforeach; ?><?php endif; ?>
+</table>
+<?php
+echo $this->alternateFormats([
+    'rss' => $this->urlParams($this->permanentParams, false),
+    'csv' => $this->urlParams($this->permanentParams, false),
+], 'mQueue - ' . $this->filterName);
+?>
+<?php
+echo $this->paginationControl($this->paginator, null, null, ['permanentParams' => $this->permanentParams]);
+?>
+
+<div class="tips">
+    <?php if ($this->paginator->getTotalItemCount() !== 0): ?><?php echo $this->statusHelp(); ?><?php else: ?><?php
+        echo _tr('See the %link% to learn how to add movies directly from www.imdb.com in a single click !', [
+            'link' => '<a href="' . $this->url('faq') . '">' . _tr('FAQ') . '</a>',
+        ]);
+        ?><?php endif; ?>
+</div>

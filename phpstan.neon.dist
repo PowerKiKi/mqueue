@@ -1,19 +1,18 @@
 parameters:
     level: 5
     paths:
-        - application/mQueue/
+        - bin/
+        - src/
         - tests/
-    bootstrapFiles:
-        - tests/bootstrap.php
+    doctrine:
+        repositoryClass: Application\Repository\AbstractRepository
+        objectManagerLoader: tests/object-manager.php
     ignoreErrors:
-        - '~Result of method Zend_View_Helper_HeadLink\:\:__call\(\) \(void\) is used\.~'
-        - '~^Access to an undefined property mQueue\\(Model|Form)\\.*~'
-        - '~^Access to an undefined property mQueueTest\\.*~'
-
-        # Tolerate loose typing in magic Zend things
-        - '~^Access to an undefined property (Zend_Controller_Action_Helper_Abstract|Zend_Db_Table_Row_Abstract|Zend_View|Zend_View_Interface|Zend_Form|Zend_Navigation_Page|Zend_Session_Namespace|Application\\Form\\JQuery\\SubForm)\:\:.*\.$~'
-        - '~^Call to an undefined method (Zend_View|Zend_View_Interface|Zend_Controller_Action_Helper_Abstract|Zend_Form_Decorator_Abstract|Zend_Form_Element)\:\:.*\(\)\.$~'
-        - '~but returns (Zend_Db_Table_Row_Abstract|Zend_Db_Table_Rowset_Abstract)(\|null)?\.$~'
+        - identifier: class.extendsFinalByPhpDoc
 
 includes:
     - phpstan-baseline.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon

@@ -1,0 +1,40 @@
+<?php use Application\Enum\Rating;
+
+$this->headTitle($this->user->nickname); ?>
+<?php echo $this->gravatar($this->user, 'big'); ?>
+<h2><?php echo $this->escapeHtml($this->user->nickname); ?></h2><h3><?php echo $this->translate('Statistics'); ?></h3>
+
+<table>
+    <?php
+    // Table header
+    echo '<tr>';
+foreach (Rating::possibleChoices() as $rating) {
+    echo '<th><span class="status current status_' . $rating->value . '" title="' . $rating->name() . '"><span>' . $rating->name() . '</span></span></th>';
+}
+echo '<th>' . $this->translate('Rated') . '</th>';
+echo '<th>' . $this->translate('Not rated') . '</th>';
+echo '</tr>';
+
+$stats = $this->user->getStatistics();
+echo '<tr>';
+foreach (Rating::possibleChoices() as $rating) {
+    echo '<td class="number"><a href="' . $this->url('movie.index') . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=' . $rating->value . '">' . $stats[$rating->value] . '</a></td>';
+}
+echo '<td class="number"><a href="' . $this->url('movie.index') . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=isnot&amp;filter1[status][]=0">' . $stats['rated'] . '</a></td>';
+echo '<td class="number"><a href="' . $this->url('movie.index') . '?filter1[user]=' . $this->user->id . '&amp;filter1[condition]=is&amp;filter1[status][]=0">' . $stats[Rating::Nothing->value] . '</a></td>';
+echo '</tr>';
+?>
+</table>
+
+<h2><?php echo $this->translate('Timeline'); ?></h2>
+<?php echo $this->graph($this->user); ?>
+
+<h3><?php echo $this->translate('Activity'); ?></h3>
+<?php echo $this->activity($this->userActivity, ['user']); ?>
+
+<?php
+echo $this->alternateFormats([
+    'rss' => $this->url('activity.user', ['user' => $this->user->id]),
+], 'mQueue - ' . _tr('Activity for %s', [$this->user->nickname]));
+?>
+<?php echo $this->paginationControl($this->userActivity); ?>

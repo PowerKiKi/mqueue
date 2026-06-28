@@ -28,12 +28,6 @@ jobs:
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
                   restore-keys: ${{ runner.os }}-composer-
 
-            - uses: actions/cache@v4
-              with:
-                  path: ~/.cache/yarn
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: ${{ runner.os }}-yarn-
-
             - name: Setup problem matchers for PHP
               run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 

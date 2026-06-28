@@ -16,7 +16,7 @@ an IMDb movie). This is possible thanks to the use of user-script (greasemonkey 
 
 1. Create a database and a user in MariaDB (eg: "mqueue")
 2. Download latest version: `git clone https://github.com/PowerKiKi/mqueue.git`
-3. In `application/configs/`, copy `application.sample.ini` to `application.ini` and edit database configuration
+3. Configure database in `config/autoload/local.php` (see example `config/autoload/local.php.dist`)
 4. Run `./bin/build.sh`
 5. Open mQueue in your browser (something similar to http://mqueue/ or http://localhost/mqueue/public/)
 

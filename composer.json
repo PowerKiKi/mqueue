@@ -8,36 +8,83 @@
             "email": "adrien.crivelli@gmail.com"
         }
     ],
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "development-disable": "laminas-development-mode disable",
+        "development-enable": "laminas-development-mode enable",
+        "development-status": "laminas-development-mode status",
+        "mezzio": "laminas --ansi",
+        "check": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --ansi --dry-run --diff",
+            "phpstan analyse --ansi",
+            "@test"
+        ],
+        "fix": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --ansi"
+        ],
+        "clear-config-cache": "php bin/clear-config-cache.php",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ],
+        "static-analysis": "psalm --stats",
+        "static-analysis-update-baseline": "psalm --stats --update-baseline",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
     "autoload": {
         "psr-4": {
-            "mQueue\\": "application/mQueue/"
+            "Application\\": "src/Application/"
         },
-        "classmap": [
-            "application/controllers/",
-            "application/Bootstrap.php"
+        "files": [
+            "src/functions.php"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-            "mQueueTest\\": "tests/mQueueTest"
+            "ApplicationTest\\": "tests/ApplicationTest/"
         }
     },
-    "config": {
-        "sort-packages": true
-    },
     "require": {
-        "php": "~7.2.0",
+        "php": "^8.4",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
-        "ext-json": "*",
+        "ext-intl": "*",
         "ext-posix": "*",
-        "zendframework/zendframework1": "^1.12"
+        "beberlei/doctrineextensions": "^1.5",
+        "cakephp/chronos": "^3.5",
+        "doctrine/migrations": "^3.9",
+        "doctrine/orm": "^3.6",
+        "laminas/laminas-captcha": "^2.20",
+        "laminas/laminas-config-aggregator": "^1.19",
+        "laminas/laminas-diactoros": "^3.8",
+        "laminas/laminas-feed": "^2.26",
+        "laminas/laminas-form": "^3.24",
+        "laminas/laminas-i18n": "^2.32",
+        "laminas/laminas-paginator": "^2.22",
+        "laminas/laminas-servicemanager": "^3.24",
+        "laminas/laminas-stdlib": "^3.21",
+        "mezzio/mezzio": "^3.23",
+        "mezzio/mezzio-flash": "^1.10",
+        "mezzio/mezzio-helpers": "^5.20",
+        "mezzio/mezzio-laminasrouter": "^3.12",
+        "mezzio/mezzio-laminasviewrenderer": "^2.19",
+        "mezzio/mezzio-session": "^1.17",
+        "mezzio/mezzio-session-ext": "^1.21",
+        "mimmi20/mezzio-navigation-laminasviewrenderer": "^7.0",
+        "roave/psr-container-doctrine": "^6.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",
-        "pcov/clobber": "@stable",
-        "phpstan/phpstan": "@stable",
-        "phpunit/phpunit": "^5.7"
+        "laminas/laminas-development-mode": "@stable",
+        "mezzio/mezzio-tooling": "@stable",
+        "phpstan/phpstan-doctrine": "@stable",
+        "phpstan/phpstan-phpunit": "@stable",
+        "phpunit/phpunit": "@stable"
     }
 }
