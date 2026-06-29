@@ -14,7 +14,7 @@ class GraphHandlerTest extends AbstractHandler
         self::assertInstanceOf(JsonResponse::class, $response);
 
         $body = (string) $response->getBody();
-        $chart = json_decode($body, true, JSON_THROW_ON_ERROR);
+        $chart = json_decode($body, true, flags: JSON_THROW_ON_ERROR);
         self::assertArrayHasKey('chart', $chart);
     }
 
@@ -24,7 +24,7 @@ class GraphHandlerTest extends AbstractHandler
         self::assertInstanceOf(JsonResponse::class, $response);
 
         $body = (string) $response->getBody();
-        $chart = json_decode($body, true, JSON_THROW_ON_ERROR);
+        $chart = json_decode($body, true, flags: JSON_THROW_ON_ERROR);
         self::assertArrayHasKey('chart', $chart);
         self::assertStringContainsString(' [%]', $chart['yAxis']['title']['text']);
     }
