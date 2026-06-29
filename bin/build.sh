@@ -17,7 +17,7 @@ echo "Updating all PHP dependencies via composer..."
 $COMPOSER install --classmap-authoritative --ignore-platform-reqs
 
 echo "Updating database..."
-$PHP ./bin/update_database.php
+$PHP ./bin/doctrine migrations:migrate --no-interaction
 
 echo "Compiling CSS..."
 ./node_modules/.bin/sass --style=compressed --no-source-map src/sass/:public/css/
