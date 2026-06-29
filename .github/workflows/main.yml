@@ -6,7 +6,7 @@ jobs:
 
         services:
             mariadb:
-                image: mariadb:10.3
+                image: mariadb:10.11
                 ports:
                     - 3306:3306
                 env:
@@ -15,14 +15,27 @@ jobs:
                 options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=5
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
+
+            - name: Install mariadb-client
+              run: |
+                  sudo apt update
+                  sudo apt install mariadb-client
+
+            - uses: pnpm/action-setup@v6
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: '22'
+                  cache: 'pnpm'
+
             - uses: shivammathur/setup-php@v2
               with:
-                  php-version: '7.2'
-                  coverage: pcov
+                  php-version: '8.4'
                   tools: cs2pr
 
-            - uses: actions/cache@v4
+            - uses: actions/cache@v5
               with:
                   path: ~/.cache/composer
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -35,17 +48,11 @@ jobs:
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             # Prepare our app
-            - run: mysql --protocol=tcp --user=root --execute='SET GLOBAL sql_mode = "";'
-            - run: cp application/configs/application.sample.ini application/configs/application.ini
+            - run: cp config/autoload/local.php.dist config/autoload/local.php
             - run: ./bin/build.sh
+            - run: ./bin/load-test-data.sh
 
             # Lint and tests
             - run: ./vendor/bin/php-cs-fixer fix --format=checkstyle | cs2pr
             - run: ./vendor/bin/phpstan analyse
-            - run: ./vendor/bin/pcov clobber
-            - run: ./vendor/bin/phpunit --coverage-clover coverage-clover.xml
-
-            - name: Upload code coverage
-              run: |
-                  curl -LO https://scrutinizer-ci.com/ocular.phar
-                  php ocular.phar code-coverage:upload --format=php-clover coverage-clover.xml
+            - run: ./vendor/bin/phpunit

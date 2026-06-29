@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Application\Migration;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+class Version20260629062614 extends AbstractMigration
+{
+    public function up(Schema $schema): void
+    {
+        $this->addSql('CREATE TABLE movie (id INT AUTO_INCREMENT NOT NULL, date_update DATETIME NOT NULL, title VARCHAR(512) NOT NULL, start_year SMALLINT UNSIGNED DEFAULT NULL, date_search DATETIME DEFAULT NULL, search_count SMALLINT UNSIGNED DEFAULT 0 NOT NULL, identity SMALLINT UNSIGNED DEFAULT 0 NOT NULL, quality SMALLINT UNSIGNED DEFAULT 0 NOT NULL, score SMALLINT UNSIGNED DEFAULT 0 NOT NULL, source VARCHAR(1024) DEFAULT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('CREATE TABLE status (id INT AUTO_INCREMENT NOT NULL, date_update DATETIME NOT NULL, rating INT UNSIGNED DEFAULT 0 NOT NULL, is_latest TINYINT DEFAULT 0 NOT NULL, movie_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_7B00651C8F93B6FC (movie_id), INDEX IDX_7B00651CA76ED395 (user_id), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, date_update DATETIME NOT NULL, nickname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649A188FE64 (nickname), UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('ALTER TABLE status ADD CONSTRAINT FK_7B00651C8F93B6FC FOREIGN KEY (movie_id) REFERENCES movie (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE status ADD CONSTRAINT FK_7B00651CA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
+    }
+}

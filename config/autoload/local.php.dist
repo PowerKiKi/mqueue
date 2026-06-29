@@ -10,4 +10,17 @@
 declare(strict_types=1);
 
 return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
+                    'host' => getenv('CI') ? '127.0.0.1' : 'localhost', // On GitHub Actions we want to connect via tcp, but locally we prefer socket
+                    'dbname' => 'mqueue',
+                    'user' => 'root',
+                    'password' => '',
+                    'port' => 3306,
+                ],
+            ],
+        ],
+    ],
 ];
