@@ -208,7 +208,7 @@ class StatusRepository extends AbstractRepository
             $lastStatuses[$userId][$movieId] = $rating;
 
             $time = new Chronos($row['date_update']);
-            $time->setTimezone(new DateTimeZone('GMT'));
+            $time = $time->setTimezone(new DateTimeZone('GMT'));
             $epoch = (int) $time->format('U') * 1000;
 
             // If we are in percent mode, we need all status for each timestamp
