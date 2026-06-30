@@ -134,7 +134,7 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Need',
                 'data' => [
                     [
-                        1577890800000,
+                        1577919600000,
                         2,
                     ],
                 ],
@@ -143,11 +143,11 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Bad',
                 'data' => [
                     [
-                        1577977200000,
+                        1578006000000,
                         1,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -156,11 +156,11 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Ok',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         1,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                 ],
@@ -173,7 +173,7 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Favorite',
                 'data' => [
                     [
-                        1577890800000,
+                        1577919600000,
                         2,
                     ],
                 ],
@@ -190,11 +190,11 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Bad',
                 'data' => [
                     [
-                        1577977200000,
+                        1578006000000,
                         1,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -203,11 +203,11 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Ok',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         1,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                 ],
@@ -220,7 +220,7 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Favorite',
                 'data' => [
                     [
-                        1577890800000,
+                        1577919600000,
                         1,
                     ],
                 ],
@@ -233,19 +233,19 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Need',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         0,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                     [
-                        1577977200000,
+                        1578006000000,
                         0,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -254,19 +254,19 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Bad',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         0,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                     [
-                        1577977200000,
+                        1578006000000,
                         1,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -275,19 +275,19 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Ok',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         1,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                     [
-                        1577977200000,
+                        1578006000000,
                         0,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -296,19 +296,19 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Excellent',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         0,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         0,
                     ],
                     [
-                        1577977200000,
+                        1578006000000,
                         0,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         0,
                     ],
                 ],
@@ -317,19 +317,19 @@ class StatusRepositoryTest extends TestCase
                 'name' => 'Favorite',
                 'data' => [
                     [
-                        1577804400000,
+                        1577833200000,
                         0,
                     ],
                     [
-                        1577890800000,
+                        1577919600000,
                         1,
                     ],
                     [
-                        1577977200000,
+                        1578006000000,
                         1,
                     ],
                     [
-                        1578063600000,
+                        1578092400000,
                         1,
                     ],
                 ],
