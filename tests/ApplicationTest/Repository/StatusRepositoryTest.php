@@ -10,6 +10,7 @@ use Application\Model\Status;
 use Application\Model\User;
 use Application\Repository\StatusRepository;
 use ApplicationTest\Traits\TestWithTransactionAndUser;
+use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
 
 class StatusRepositoryTest extends TestCase
@@ -127,42 +128,32 @@ class StatusRepositoryTest extends TestCase
 
     public function testGetGraph(): void
     {
+        $d1 = $this->epoch('2020-01-01');
+        $d2 = $this->epoch('2020-01-02');
+        $d3 = $this->epoch('2020-01-03');
+        $d4 = $this->epoch('2020-01-04');
+
         $user = $this->getEntityManager()->getReference(User::class, 1001);
         $actual = $this->repository->getGraph(null, false);
         self::assertSame([
             [
                 'name' => 'Need',
                 'data' => [
-                    [
-                        1577919600000,
-                        2,
-                    ],
+                    [$d2, 2],
                 ],
             ],
             [
                 'name' => 'Bad',
                 'data' => [
-                    [
-                        1578006000000,
-                        1,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
+                    [$d3, 1],
+                    [$d4, 0],
                 ],
             ],
             [
                 'name' => 'Ok',
                 'data' => [
-                    [
-                        1577833200000,
-                        1,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
+                    [$d1, 1],
+                    [$d2, 0],
                 ],
             ],
             [
@@ -172,10 +163,7 @@ class StatusRepositoryTest extends TestCase
             [
                 'name' => 'Favorite',
                 'data' => [
-                    [
-                        1577919600000,
-                        2,
-                    ],
+                    [$d2, 2],
                 ],
             ],
         ], $actual);
@@ -189,27 +177,15 @@ class StatusRepositoryTest extends TestCase
             [
                 'name' => 'Bad',
                 'data' => [
-                    [
-                        1578006000000,
-                        1,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
+                    [$d3, 1],
+                    [$d4, 0],
                 ],
             ],
             [
                 'name' => 'Ok',
                 'data' => [
-                    [
-                        1577833200000,
-                        1,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
+                    [$d1, 1],
+                    [$d2, 0],
                 ],
             ],
             [
@@ -219,10 +195,7 @@ class StatusRepositoryTest extends TestCase
             [
                 'name' => 'Favorite',
                 'data' => [
-                    [
-                        1577919600000,
-                        1,
-                    ],
+                    [$d2, 1],
                 ],
             ],
         ], $actual);
@@ -232,108 +205,52 @@ class StatusRepositoryTest extends TestCase
             [
                 'name' => 'Need',
                 'data' => [
-                    [
-                        1577833200000,
-                        0,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
-                    [
-                        1578006000000,
-                        0,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
+                    [$d1, 0],
+                    [$d2, 0],
+                    [$d3, 0],
+                    [$d4, 0],
                 ],
             ],
             [
                 'name' => 'Bad',
                 'data' => [
-                    [
-                        1577833200000,
-                        0,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
-                    [
-                        1578006000000,
-                        1,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
-                ],
+                    [$d1, 0],
+                    [$d2, 0],
+                    [$d3, 1],
+                    [$d4, 0], ],
             ],
             [
                 'name' => 'Ok',
                 'data' => [
-                    [
-                        1577833200000,
-                        1,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
-                    [
-                        1578006000000,
-                        0,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
+                    [$d1, 1],
+                    [$d2, 0],
+                    [$d3, 0],
+                    [$d4, 0],
                 ],
             ],
             [
                 'name' => 'Excellent',
                 'data' => [
-                    [
-                        1577833200000,
-                        0,
-                    ],
-                    [
-                        1577919600000,
-                        0,
-                    ],
-                    [
-                        1578006000000,
-                        0,
-                    ],
-                    [
-                        1578092400000,
-                        0,
-                    ],
+                    [$d1, 0],
+                    [$d2, 0],
+                    [$d3, 0],
+                    [$d4, 0],
                 ],
             ],
             [
                 'name' => 'Favorite',
                 'data' => [
-                    [
-                        1577833200000,
-                        0,
-                    ],
-                    [
-                        1577919600000,
-                        1,
-                    ],
-                    [
-                        1578006000000,
-                        1,
-                    ],
-                    [
-                        1578092400000,
-                        1,
-                    ],
+                    [$d1, 0],
+                    [$d2, 1],
+                    [$d3, 1],
+                    [$d4, 1],
                 ],
             ],
         ], $actual);
+    }
+
+    private function epoch(string $s): int
+    {
+        return new Chronos($s)->timestamp * 1000;
     }
 }
