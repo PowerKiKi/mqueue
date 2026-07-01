@@ -15,6 +15,7 @@ return new PhpCsFixer\Config()
     ->setRiskyAllowed(true)
     ->setFinder($finder)
     ->setCacheFile(sys_get_temp_dir() . '/php-cs-fixer' . preg_replace('~\W~', '-', __DIR__))
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         'align_multiline_comment' => true,
         'array_indentation' => true,
