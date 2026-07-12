@@ -122,7 +122,6 @@ class Movie extends AbstractModel
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $file = curl_exec($ch);
-        curl_close($ch);
         if (!$file) {
             return null;
         }
