@@ -60,7 +60,7 @@ class Movie extends AbstractModel
     }
 
     #[ORM\Column(type: 'smallint', nullable: true, options: ['unsigned' => true])]
-    public ?int $startYear;
+    public ?int $year;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     public ?Chronos $dateSearch = null;
@@ -88,7 +88,7 @@ class Movie extends AbstractModel
         $couldNotFetch = '[title not available, could not fetch from IMDb]';
 
         $data = $this->fetchJson();
-        $title = @$data['primaryTitle'];
+        $title = @$data['Title'];
 
         // Extract title
         if ($title) {
@@ -100,12 +100,12 @@ class Movie extends AbstractModel
         }
 
         // Extract release date
-        $startYear = @$data['startYear'];
-        if ($startYear) {
-            $this->startYear = $startYear;
-            $this->title .= " ($startYear)";
+        $year = (int) @$data['Year'];
+        if ($year) {
+            $this->year = $year;
+            $this->title .= " ($year)";
         } else {
-            $this->startYear = null;
+            $this->year = null;
         }
 
         $this->dateUpdate = Chronos::now();
@@ -114,7 +114,13 @@ class Movie extends AbstractModel
 
     private function fetchJson(): ?array
     {
-        $url = 'https://api.imdbapi.dev/titles/tt' . self::paddedId($this->id);
+        global $container;
+        $apiKey = $container->get('config')['apiKey'];
+        if (!$apiKey) {
+            return null;
+        }
+
+        $url = "https://www.omdbapi.com/?apikey=$apiKey&i=tt" . self::paddedId($this->id);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept-Language: en-US,en;q=0.8']);
         curl_setopt($ch, CURLOPT_HEADER, false);

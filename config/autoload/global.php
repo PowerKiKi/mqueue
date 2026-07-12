@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'minimize' => true,
     'googleAnalyticsTrackingCode' => '',
+    'apiKey' => '',
     'templates' => [
         'paths' => [
             'app' => ['templates/app'],

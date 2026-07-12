@@ -50,8 +50,8 @@ class MovieRepository extends AbstractRepository
             ->andWhere('status.rating = :rating')
             ->andWhere('movie.source IS NULL')
             ->andWhere("movie.dateSearch IS NULL OR movie.dateSearch < DATE_SUB(NOW(), movie.searchCount, 'MONTH')") // Search for same movie with an incrementally longer interval (1 month, 2 month, 3 month, etc.)
-            ->andWhere('movie.startYear IS NOT NULL') // Movie must be released ...
-            ->andWhere("movie.startYear < DATE_SUB(NOW(), 1, 'MONTH')") // ...at least released one month ago, or longer
+            ->andWhere('movie.year IS NOT NULL') // Movie must be released ...
+            ->andWhere("movie.year < DATE_SUB(NOW(), 1, 'MONTH')") // ...at least released one month ago, or longer
             ->addGroupBy('movie.id')
             ->addOrderBy('COUNT(movie.id)', 'DESC') // First, order by popularity, so get the most needed first
             ->addOrderBy('RAND()', 'ASC') // Then, randomize a little bit so we don't always look for the same movies
