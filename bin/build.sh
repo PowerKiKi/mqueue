@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Try to use specific PHP, or fallback to default version
-PHP=`which php8.4` || PHP='php'
+PHP=`which php8.5` || PHP='php'
 COMPOSER="$PHP `which composer` --no-interaction --no-plugins"
 
 # Exit script on any error
