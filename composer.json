@@ -82,7 +82,6 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",
         "laminas/laminas-development-mode": "@stable",
-        "mezzio/mezzio-tooling": "@stable",
         "phpstan/phpstan-doctrine": "@stable",
         "phpstan/phpstan-phpunit": "@stable",
         "phpunit/phpunit": "@stable"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "387f30b91314b682e113374c2df00692",
+    "content-hash": "c5b27e62b83d29234f05156008f148e7",
     "packages": [
         {
             "name": "beberlei/doctrineextensions",
@@ -6688,76 +6688,6 @@
             "time": "2026-06-25T14:17:04+00:00"
         },
         {
-            "name": "laminas/laminas-cli",
-            "version": "1.15.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laminas/laminas-cli.git",
-                "reference": "926a884548a5ff078128ffa3fe9381cd0a4ae8c4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-cli/zipball/926a884548a5ff078128ffa3fe9381cd0a4ae8c4",
-                "reference": "926a884548a5ff078128ffa3fe9381cd0a4ae8c4",
-                "shasum": ""
-            },
-            "require": {
-                "composer-runtime-api": "^2.0.0",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
-                "psr/container": "^1.0 || ^2.0",
-                "symfony/console": "^7.4 || ^8.0",
-                "symfony/event-dispatcher": "^7.4 || ^8.0",
-                "webmozart/assert": "^1.11 || ^2.1.5"
-            },
-            "conflict": {
-                "amphp/amp": "<2.6.4"
-            },
-            "require-dev": {
-                "laminas/laminas-coding-standard": "^3.1.0",
-                "laminas/laminas-mvc": "^3.8.0",
-                "laminas/laminas-servicemanager": "^3.24.0",
-                "mikey179/vfsstream": "2.0.x-dev",
-                "phpunit/phpunit": "^11.5.55",
-                "psalm/plugin-phpunit": "^0.19.5",
-                "vimeo/psalm": "^6.15.1"
-            },
-            "bin": [
-                "bin/laminas"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Laminas\\Cli\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Command-line interface for Laminas projects",
-            "keywords": [
-                "cli",
-                "command",
-                "console",
-                "laminas"
-            ],
-            "support": {
-                "chat": "https://laminas.dev/chat",
-                "docs": "https://docs.laminas.dev/laminas-cli/",
-                "forum": "https://discourse.laminas.dev",
-                "issues": "https://github.com/mezzio/laminas-cli/issues",
-                "rss": "https://github.com/mezzio/laminas-cli/releases.atom",
-                "source": "https://github.com/mezzio/laminas-cli"
-            },
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
-            ],
-            "time": "2026-03-10T09:04:36+00:00"
-        },
-        {
             "name": "laminas/laminas-development-mode",
             "version": "3.15.0",
             "source": {
@@ -6817,86 +6747,6 @@
                 }
             ],
             "time": "2025-10-14T21:17:32+00:00"
-        },
-        {
-            "name": "mezzio/mezzio-tooling",
-            "version": "2.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mezzio/mezzio-tooling.git",
-                "reference": "7875384c2840faf51c94f8e3fe0990caf011c0e9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio-tooling/zipball/7875384c2840faf51c94f8e3fe0990caf011c0e9",
-                "reference": "7875384c2840faf51c94f8e3fe0990caf011c0e9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "laminas/laminas-cli": "^1.7.0",
-                "mezzio/mezzio": "^3.13.0",
-                "mezzio/mezzio-router": "^3.9.0",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.1",
-                "symfony/process": "^6.0.11"
-            },
-            "conflict": {
-                "amphp/amp": "<2.6.4",
-                "symfony/console": "<5.4.45",
-                "symfony/string": "<5.4.45"
-            },
-            "require-dev": {
-                "laminas/laminas-coding-standard": "~2.5.0",
-                "laminas/laminas-diactoros": "^3.3",
-                "mikey179/vfsstream": "^1.6.12",
-                "mockery/mockery": "^1.6.10",
-                "php-mock/php-mock-phpunit": "^2.9.0",
-                "phpdocumentor/reflection-docblock": "^5.3.0",
-                "phpunit/phpunit": "^10.5.35",
-                "psalm/plugin-mockery": "^0.11.0",
-                "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.17.0"
-            },
-            "type": "library",
-            "extra": {
-                "laminas": {
-                    "config-provider": "Mezzio\\Tooling\\ConfigProvider"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mezzio\\Tooling\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Migration and development tooling for Mezzio",
-            "homepage": "https://mezzio.dev",
-            "keywords": [
-                "http",
-                "laminas",
-                "mezzio",
-                "middleware",
-                "psr",
-                "psr-7"
-            ],
-            "support": {
-                "chat": "https://laminas.dev/chat",
-                "docs": "https://docs.mezzio.dev/mezzio/",
-                "forum": "https://discourse.laminas.dev",
-                "issues": "https://github.com/mezzio/mezzio-tooling/issues",
-                "rss": "https://github.com/mezzio/mezzio-tooling/releases.atom",
-                "source": "https://github.com/mezzio/mezzio-tooling"
-            },
-            "funding": [
-                {
-                    "url": "https://crowdfunding.linuxfoundation.org/initiatives/laminas-project",
-                    "type": "custom"
-                }
-            ],
-            "time": "2026-06-30T15:17:55+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -10144,7 +9994,6 @@
     "stability-flags": {
         "friendsofphp/php-cs-fixer": 0,
         "laminas/laminas-development-mode": 0,
-        "mezzio/mezzio-tooling": 0,
         "phpstan/phpstan-doctrine": 0,
         "phpstan/phpstan-phpunit": 0,
         "phpunit/phpunit": 0
