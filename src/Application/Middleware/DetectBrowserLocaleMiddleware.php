@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Application\Middleware;
 
+use Dflydev\FigCookies\FigRequestCookies;
+use Dflydev\FigCookies\FigResponseCookies;
+use Dflydev\FigCookies\SetCookie;
 use Laminas\I18n\Translator\Translator;
 use Locale;
-use Mezzio\Session\SessionMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -23,25 +25,28 @@ class DetectBrowserLocaleMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        /** @var \Mezzio\Session\SessionInterface $session */
-        $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
-
         $requested = $request->getQueryParams()['lang'] ?? null;
 
         $locale = $this->pick(
             $requested, // Language switch by user
-            $session->get('lang'), // Memorized choice
+            FigRequestCookies::get($request, 'lang')->getValue(), // Memorized choice
             Locale::acceptFromHttp($request->getHeaderLine('accept-language')), // If nothing else, read browser configuration
         );
-
-        if ($requested === $locale) {
-            $session->set('lang', $locale);
-        }
 
         $this->translator->setLocale($locale);
         Locale::setDefault($locale);
 
-        return $handler->handle($request);
+        $response = $handler->handle($request);
+        if ($requested === $locale) {
+            $response = FigResponseCookies::set(
+                $response,
+                SetCookie::create('lang')
+                    ->withValue($locale)
+                    ->withPath('/'),
+            );
+        }
+
+        return $response;
     }
 
     private function pick(null|false|string ...$choices): string
