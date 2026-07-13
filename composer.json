@@ -55,6 +55,7 @@
         "ext-dom": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
+        "ext-pdo_mysql": "*",
         "ext-posix": "*",
         "beberlei/doctrineextensions": "^1.5",
         "cakephp/chronos": "^3.5",
