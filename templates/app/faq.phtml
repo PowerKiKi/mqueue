@@ -5,12 +5,7 @@
     <dd><?php echo $this->translate('To get the most of this website, you should:'); ?>
         <ol>
             <li><a href="<?php echo $this->url('user.new'); ?>"><?php echo $this->translate('Create an account'); ?></a></li>
-            <li>
-                <ol>
-                    <li class="browser_chrome"><?php echo $this->translate('For Chrome, skip to next step'); ?></li>
-                    <li class="browser_firefox"><?php echo $this->translate('For Firefox, <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">install Greasemonkey</a>'); ?></li>
-                </ol>
-            </li>
+            <li><a href="https://violentmonkey.github.io/"><?php echo $this->translate('Install Violentmonkey'); ?></a></li>
             <li><a href="/js/mqueue.user.js"><?php echo $this->translate('Install the user script'); ?></a></li>
             <li><?php echo $this->translate('Surf on <a href="http://www.imdb.com/">www.imdb.com</a> and rate movies by clicking icons'); ?></li>
         </ol>
