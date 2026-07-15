@@ -107,6 +107,11 @@ class StatusRepositoryTest extends TestCase
             96446 => 2002,
             123 => null,
         ], $this->toIds($actual));
+
+        $actual = $this->repository->getAllByMoviesAndUser(['096446'], $user);
+        self::assertSame([
+            96446 => 2002,
+        ], $this->toIds($actual));
     }
 
     public function testGetOneByMovieAndUser(): void

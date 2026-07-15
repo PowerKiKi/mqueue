@@ -86,6 +86,9 @@ class StatusRepository extends AbstractRepository
      */
     public function getAllByMoviesAndUser(array $idMovies, ?User $user): array
     {
+        $idMovies = array_map(fn (string|int $id) => (int) $id, $idMovies);
+        $idMovies = array_unique($idMovies);
+
         $statuses = [];
         if (!count($idMovies)) {
             return $statuses;
