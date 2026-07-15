@@ -6,8 +6,8 @@
 
 $(document).ready(function()
 {
-$("head").append('<link href="<?php echo $this->cacheStamp('/css/both.css'); ?>" media="screen" rel="stylesheet" type="text/css" />');
-mqueue.monitorLinks('<?php echo $this->serverUrl() ?>');
+$("head").append('<link href="<?php echo $this->serverUrl($this->cacheStamp('/css/both.css')); ?>" media="screen" rel="stylesheet" type="text/css" />');
+mqueue.monitorLinks('<?php echo $this->serverUrl('/') ?>');
 });
 })(jQuery.noConflict(true));
 })();
