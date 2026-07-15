@@ -60,6 +60,6 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/status/graph/:user', \Application\Handler\Status\GraphHandler::class, 'status.graph.user');
     $app->get('/about', \Application\Handler\AboutPageHandler::class, 'about');
     $app->get('/css/gravatar.css', \Application\Handler\GravatarPageHandler::class, 'css.gravatar');
-    $app->get('/js/mqueue-user.js', \Application\Handler\JsMqueueUserHandler::class, 'js.mqueue-user');
+    $app->get('/js/mqueue.user.js', \Application\Handler\JsMqueueUserHandler::class, 'js.mqueue-user');
     $app->get('/js/remote.js', \Application\Handler\JsRemoteHandler::class, 'js.remote');
 };
