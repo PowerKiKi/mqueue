@@ -15,8 +15,8 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       jquery:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^3.7.1
+        version: 3.7.1
       sass:
         specifier: ^1.102.0
         version: 1.102.0
@@ -296,8 +296,8 @@ packages:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
     engines: {node: '>=0.10.0'}
 
-  jquery@4.0.0:
-    resolution: {integrity: sha512-TXCHVR3Lb6TZdtw1l3RTLf8RBWVGexdxL6AC8/e0xZKEpBflBsjh9/8LXw+dkNFuOyW9B7iB3O1sP7hS0Kiacg==}
+  jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
 
   node-addon-api@7.1.1:
     resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
@@ -504,7 +504,7 @@ snapshots:
       is-extglob: 2.1.1
     optional: true
 
-  jquery@4.0.0: {}
+  jquery@3.7.1: {}
 
   node-addon-api@7.1.1:
     optional: true
