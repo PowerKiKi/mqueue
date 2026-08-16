@@ -5,9 +5,11 @@ declare(strict_types=1);
 use Laminas\ServiceManager\ServiceManager;
 
 // Secure cookie usage
+$oneYear = 365 * 86400;
 ini_set('session.cookie_secure', '1');
 ini_set('session.cookie_httponly', '1');
-ini_set('session.gc_maxlifetime', 365 * 86400);
+ini_set('session.gc_maxlifetime', $oneYear);
+ini_set('session.cookie_lifetime', $oneYear);
 ini_set('session.cookie_samesite', 'None');
 
 // Load configuration
