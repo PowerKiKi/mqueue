@@ -17,13 +17,13 @@ class HeadScript extends \Laminas\View\Helper\HeadScript
      */
     private function includeDirectory(string $directory): void
     {
-        foreach (array_reverse(glob($directory . '/*', GLOB_ONLYDIR)) as $file) {
-            if (is_dir($file)) {
-                $this->includeDirectory($file);
-            } else {
-                $file = ($this->cacheStamp)(str_replace('public/', '', $file));
-                $this->prependFile($file);
+        foreach (array_reverse(glob($directory . '/*')) as $file) {
+            if (!is_file($file)) {
+                continue;
             }
+
+            $file = ($this->cacheStamp)(str_replace('public/', '', $file));
+            $this->prependFile($file);
         }
     }
 
