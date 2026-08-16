@@ -20,9 +20,6 @@ importers:
       sass:
         specifier: ^1.101.0
         version: 1.101.0
-      timeago:
-        specifier: ^1.6.7
-        version: 1.6.7
 
 packages:
 
@@ -322,9 +319,6 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
-  timeago@1.6.7:
-    resolution: {integrity: sha512-FikcjN98+ij0siKH4VO4dZ358PR3oDDq4Vdl1+sN9gWz1/+JXGr3uZbUShYH/hL7bMhcTpPbplJU5Tej4b4jbQ==}
-
 snapshots:
 
   '@esbuild/aix-ppc64@0.28.1':
@@ -529,7 +523,3 @@ snapshots:
       '@parcel/watcher': 2.6.0
 
   source-map-js@1.2.1: {}
-
-  timeago@1.6.7:
-    dependencies:
-      jquery: 3.7.1
