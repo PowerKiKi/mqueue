@@ -25,14 +25,17 @@ class Graph
 
         $js = <<<JS
                     $(document).ready(function() {
-                        const refreshGraph = function() {
-                            const percentage = $('#graph_percent').is(':checked') ? '?percent=1' : '';
-                            $.get('$url' + percentage, function (chart) {
-                                $('#chart_container').highcharts(chart);
-                            });
-                        };
+                         const checkbox = $('#graph_percent');
+                         
+                         async function refreshGraph() {
+                            const percentage = checkbox.is(':checked') ? '?percent=1' : '';
+                            const response = await fetch('$url' + percentage);
+                            const chart = await response.json();
+                        
+                            $('#chart_container').highcharts(chart);
+                        }
 
-                        $('#graph_percent').change(refreshGraph);
+                        checkbox.change(refreshGraph);
                         refreshGraph();
 
                     });
