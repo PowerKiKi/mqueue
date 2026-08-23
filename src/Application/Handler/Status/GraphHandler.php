@@ -53,6 +53,9 @@ class GraphHandler extends PageHandler
             ];
         }
 
-        return new JsonResponse($chart);
+        return new JsonResponse(
+            $chart,
+            encodingOptions: JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
+        );
     }
 }

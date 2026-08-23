@@ -7,8 +7,8 @@ use Application\Handler\PageHandler;
 use Application\Model\Movie;
 use Application\Model\Status;
 use Application\Model\User;
-use Application\Response\JsonCallbackResponse;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Router\RouteResult;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,14 +36,14 @@ class IndexHandler extends PageHandler
             $status = _em()->getRepository(Status::class)->getOneByMovieAndUser($idMovie, User::getCurrent());
         }
 
-        $jsonCallback = $request->getQueryParams()['jsoncallback'] ?? null;
-        if ($jsonCallback) {
-            return new JsonCallbackResponse(
-                $jsonCallback,
+        $format = $request->getQueryParams()['format'] ?? null;
+        if ($format === 'json') {
+            return new JsonResponse(
                 [
                     'status' => ($this->statusLinks)($status),
                     'id' => $status->getUniqueId(),
                 ],
+                encodingOptions: JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
             );
         }
 

@@ -3,26 +3,28 @@
 const mqueue = (function () {
 
     /**
-     * JSONp function to set and retrieve new status
-     * @return
+     * Set and retrieve new status
      */
-    function setStatus() {
+    async function setStatus(event) {
+        event.preventDefault();
+
         const parent = $(this).parent();
         parent.addClass('loading');
-        $.getJSON(this.href + '?format=json&jsoncallback=?', function (data) {
-            $('.mqueue_status_links_' + data.id).each(function () {
-                $(this).replaceWith(data.status);
-            });
 
-            parent.removeClass('loading');
-            $('.mqueue_status_links_' + data.id + ' .mqueue_status').click(setStatus);
+        const url = this.href + '?format=json';
+        const response = await fetch(url, {credentials: 'include'});
+        const data = await response.json();
+
+        $('.mqueue_status_links_' + data.id).each(function () {
+            $(this).replaceWith(data.status);
         });
-        return false;
+
+        parent.removeClass('loading');
+        $('.mqueue_status_links_' + data.id + ' .mqueue_status').click(setStatus);
     }
 
     /**
      * Bind ajax on all status links
-     * @return
      */
     function bindStatus() {
         $('a.mqueue_status').click(setStatus);
@@ -30,9 +32,6 @@ const mqueue = (function () {
 
     /**
      * Scan the current page for IMDB links and inject appropriate icons
-     * @param server
-     * @param node
-     * @return
      */
     function injectStatus(server, node) {
         const maxPerQuery = 400;
@@ -41,7 +40,7 @@ const mqueue = (function () {
         let query = '';
         let i = 0;
 
-        // Find every references to any movies, within the node, or the node itself
+        // Find all references to any movies, within the node, or the node itself
         const selector = 'a[href*=\'title/tt\'], link[rel=\'canonical\']';
         const matches = $(selector, node);
         if ($(node).is(selector))
@@ -75,31 +74,31 @@ const mqueue = (function () {
         }
 
         // Get statuses from server per bunch of queries
-        $.each(queries, function (x, query) {
-            const url = server + 'status/list/movies/' + query + '?format=json&jsoncallback=?';
-            $.getJSON(url, function (data) {
-                $.each(data.status, function (id, status) {
-                    // Add status beside main title if on the main page of movie
-                    if ($('link[rel=\'canonical\'][href*=\'' + id.split('_')[0] + '\']').length !== 0) {
-                        // New IMDb version, add under the main title in the subtext line
-                        $('h1[data-testid="hero__pageTitle"]~ul', node).append('<li role="presentation" class="ipc-inline-list__item">' + status + '</li>');
-                    }
-                    // Add status on every links concerning that movie
-                    else {
-                        const selector = 'a[href*=\'/title/tt' + id.split('_')[0] + '\']:not([class*=\'ipc-lockup-overlay\'])';
-                        $(selector, node).after(status);
-                        $(node).filter(selector).after(status);
-                    }
-                });
+        $.each(queries, async function (x, query) {
+            const url = server + 'status/list/movies/' + query + '?format=json';
+            const response = await fetch(url, {credentials: 'include'});
+            const data = await response.json();
 
-                bindStatus();
+            $.each(data.status, function (id, status) {
+                // Add status beside main title if on the main page of movie
+                if ($('link[rel=\'canonical\'][href*=\'' + id.split('_')[0] + '\']').length !== 0) {
+                    // New IMDb version, add under the main title in the subtext line
+                    $('h1[data-testid="hero__pageTitle"]~ul', node).append('<li role="presentation" class="ipc-inline-list__item">' + status + '</li>');
+                }
+                // Add status on every links concerning that movie
+                else {
+                    const selector = 'a[href*=\'/title/tt' + id.split('_')[0] + '\']:not([class*=\'ipc-lockup-overlay\'])';
+                    $(selector, node).after(status);
+                    $(node).filter(selector).after(status);
+                }
             });
+
+            bindStatus();
         });
     }
 
     /**
-     * Monitor any links refering to IMDb, existing now or in future
-     * @param server
+     * Monitor any links referring to IMDb, existing now or in future
      **/
     function monitorLinks(server) {
         let timeoutId;

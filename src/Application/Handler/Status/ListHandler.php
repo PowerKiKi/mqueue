@@ -6,7 +6,7 @@ use Application\Handler\PageHandler;
 use Application\Model\Movie;
 use Application\Model\Status;
 use Application\Model\User;
-use Application\Response\JsonCallbackResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Router\RouteResult;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,13 +35,11 @@ class ListHandler extends PageHandler
             $json[$s->getUniqueId()] = $html;
         }
 
-        $jsonCallback = $request->getQueryParams()['jsoncallback'] ?? 'jsonp';
-
-        return new JsonCallbackResponse(
-            $jsonCallback,
+        return new JsonResponse(
             [
                 'status' => $json,
             ],
+            encodingOptions: JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
         );
     }
 }

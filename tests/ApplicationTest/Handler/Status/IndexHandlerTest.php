@@ -2,10 +2,10 @@
 
 namespace ApplicationTest\Handler\Status;
 
-use Application\Response\JsonCallbackResponse;
 use ApplicationTest\Handler\AbstractHandler;
 use ApplicationTest\Traits\TestWithTransactionAndUser;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Diactoros\ServerRequest;
 
 class IndexHandlerTest extends AbstractHandler
@@ -32,11 +32,11 @@ class IndexHandlerTest extends AbstractHandler
 
     public function testNonExistingMovie(): void
     {
-        $response = $this->handle(new ServerRequest(uri: '/status/96446', queryParams: ['jsoncallback' => 'myCallback']));
+        $response = $this->handle(new ServerRequest(uri: '/status/96446', queryParams: ['format' => 'json']));
 
         $body = (string) $response->getBody();
-        self::assertInstanceOf(JsonCallbackResponse::class, $response);
-        self::assertStringContainsString('myCallback(', $body);
+        self::assertInstanceOf(JsonResponse::class, $response);
+        self::assertStringContainsString('{"status":', $body);
     }
 
     public function testSetStatus(): void
