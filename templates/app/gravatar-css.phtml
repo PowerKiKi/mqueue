@@ -10,7 +10,7 @@ foreach ($sizes as $name => $size) {
     echo 'span.gravatar.' . $name . '{width: ' . $size . 'px; height: ' . $size . 'px;}' . PHP_EOL;
 }
 foreach ($this->users as $user) {
-    $urlBase = 'https://secure.gravatar.com/avatar/' . md5(mb_trim(mb_strtolower($user->email))) . '.jpg?default=identicon';
+    $urlBase = 'https://secure.gravatar.com/avatar/' . hash('sha256', mb_trim(mb_strtolower($user->email))) . '.jpg?default=identicon';
     foreach ($sizes as $name => $size) {
         $url = $urlBase . '&size=' . $size; ?>
 span.gravatar.user_<?php echo $user->id; ?>.<?php echo $name; ?> {background-image: url(<?php echo $url; ?>);}
