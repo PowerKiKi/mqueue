@@ -1,6 +1,6 @@
 /*global $, document */
 
-const mqueue = (function () {
+const mqueue = (() =>{
 
     /**
      * Set and retrieve new status
@@ -142,8 +142,6 @@ const mqueue = (function () {
         monitorLinks: monitorLinks,
     };
 
-}());
+})();
 
-$(document).ready(function () {
-    mqueue.bindStatus();
-});
+$(document).ready(() => mqueue.bindStatus());
