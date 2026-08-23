@@ -22,7 +22,7 @@ class HeadScript extends \Laminas\View\Helper\HeadScript
                 continue;
             }
 
-            $file = ($this->cacheStamp)(str_replace('public/', '', $file));
+            $file = ($this->cacheStamp)(preg_replace('~^public~', '', $file));
             $this->prependFile($file);
         }
     }
