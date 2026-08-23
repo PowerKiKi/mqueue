@@ -37,7 +37,14 @@ class User extends AbstractModel
     public string $email;
 
     #[ORM\Column(type: 'string')]
-    public string $password;
+    public string $password {
+        /**
+         * Hash and change the user password.
+         */
+        set {
+            $this->password = password_hash($value, PASSWORD_DEFAULT);
+        }
+    }
 
     /**
      * Returns movie ratings statistics.

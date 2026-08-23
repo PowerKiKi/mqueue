@@ -21,7 +21,7 @@ class UserRepository extends AbstractRepository
 
         $user->nickname = $values['nickname'];
         $user->email = $values['email'];
-        $user->password = sha1($values['password']);
+        $user->password = $values['password'];
 
         $this->getEntityManager()->flush();
 
@@ -33,10 +33,28 @@ class UserRepository extends AbstractRepository
      */
     public function getByEmailAndPassword(string $email, string $password): ?User
     {
-        return $this->findOneBy([
-            'email' => $email,
-            'password' => sha1($password),
-        ]);
+        $user = $this->findOneByEmail($email);
+
+        if (!$user) {
+            return null;
+        }
+
+        $hashFromDb = $user->password;
+        $isSha1 = mb_strlen($hashFromDb) === 40 && ctype_xdigit($hashFromDb);
+
+        // If we found a user, and he has a correct SHA1, or correct new hash, then return the user
+        if (($isSha1 && sha1($password) === $hashFromDb) || password_verify($password, $hashFromDb)) {
+            // Update the hash in DB, if we are still SHA1, or if PHP default options changed
+            if ($isSha1 || password_needs_rehash($hashFromDb, PASSWORD_DEFAULT)) {
+                $user->password = $password;
+            }
+
+            $this->getEntityManager()->flush();
+
+            return $user;
+        }
+
+        return null;
     }
 
     /**

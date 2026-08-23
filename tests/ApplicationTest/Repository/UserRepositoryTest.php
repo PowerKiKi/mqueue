@@ -31,7 +31,7 @@ class UserRepositoryTest extends TestCase
 
         self::assertSame('newuser', $user->nickname);
         self::assertSame('newuser@example.com', $user->email);
-        self::assertSame('91dfd9ddb4198affc5c194cd8ce6d338fde470e2', $user->password);
+        self::assertStringStartsWith('$2y$12$', $user->password);
         self::assertNotNull($user->id);
     }
 
@@ -51,6 +51,7 @@ class UserRepositoryTest extends TestCase
 
         $user = $this->repository->getByEmailAndPassword('user2@example.com', 'user2');
         self::assertSame('user2', $user?->nickname);
+        self::assertStringStartsWith('$2y$12$', $user->password);
     }
 
     public function testGetAll(): void
