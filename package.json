@@ -1,11 +1,11 @@
 {
   "name": "mqueue",
   "private": true,
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@12.18.0",
   "dependencies": {
     "esbuild": "^0.28.2",
-    "highcharts": "^13.0.0",
+    "highcharts": "^13.1.1",
     "jquery": "^4.0.0",
-    "sass": "^1.102.0"
+    "sass": "^1.108.2"
   }
 }
